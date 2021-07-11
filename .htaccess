@@ -1,0 +1,198 @@
+RewriteEngine On
+
+#DirectoryIndex login.php
+
+
+#DirectoryIndex maintenance.php
+
+RewriteRule ^login$ login.php 
+
+RewriteRule ^terminate-account-system$ cores/logout.php
+
+ #dashboard
+RewriteRule ^.home.login-successful$ homepage.php?CHECKER=DASHBOARD
+
+
+ #USERS dashboard
+RewriteRule ^.home.login-successful-ussers$ homepage.php?CHECKER_USERS=DASHBOARDS
+   
+ 
+ 
+#MEMBERSHIP
+#ADD MEMBER
+RewriteRule ^.login-success.add-new-member.html.css.js.kt$ homepage.php?CHECKER=ADD_NEW_MEMBER
+
+#VIEW MEMBERS
+RewriteRule ^.login-success.view-all-new-members.kt.css.js.html.cpp$ homepage.php?CHECKER=VIEW_ALL_MEMBERS
+
+#PAY CONTRIBUTION FIRST PAGE
+RewriteRule ^.login-success.pay-monthly-contribution-members.kt.css.js.java.cpp$ homepage.php?CHECKER=PAY_MONTHLY_CONTRIBUTIONS
+
+
+
+#MEMBERS APPROVALS
+
+#MEMBER CONTRIBUTIONS APPROVAL EDIT
+RewriteRule ^.login-success.approve-member-contributions-edit.html.css.js.kt$ homepage.php?CHECKER=VIEW_MEMBER_CONTRIBUTIONS_APPROVALS
+
+
+#LOANS GUARANTORS APPROVALS
+RewriteRule ^.login-success.approve-member-loans-guarantors.html.css.java.kt$ homepage.php?CHECKER=VIEW_GUARANTORS_APPROVALS
+
+
+
+
+#APPROVALS BY STAFF
+#DELETE PAYMENTS APPROVALS
+RewriteRule ^.login-success.delete-payments-approval.py.css.kt.java$ homepage.php?CHECKER=DELETE_PAYMENTS_APPROVALS
+
+
+#DEDUCTIONS
+#VIEW_DEDUCTIONS_OF_GUARANTORS
+RewriteRule ^.login-success.all-guarantors-deductions-report.js.css.java.kt.html.py$ homepage.php?CHECKER=VIEW_DEDUCTIONS_OF_GUARANTORS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#CUSTOMERS
+#ADD CUSTOMER
+RewriteRule ^.login-success.add-new-customer.html.css.kt.java$ homepage.php?CHECKER=ADD_NEW_CUSTOMER
+
+#VIEW CUSTOMER
+RewriteRule ^.login-success.view-customer-list.xml.cpp.vb$ homepage.php?CHECKER=VIEW_ALL_CUSTOMERS
+ 
+
+#ERROR PAGE
+RewriteRule ^.home.attacked-detected.html.cpp.java.ruby$ homepage.php?CHECKER=ERROR_PAGE_DETECTED
+
+
+
+#LOANS
+#ADD NEW LOAN
+RewriteRule ^.login-success.add-new-loans.js.css.js.java$ homepage.php?CHECKER=ADD_NEW_LOAN
+
+#VIEW ALL LOANS
+RewriteRule ^.login-success.view-al-loans.js.kt.json.java$ homepage.php?CHECKER=VIEW_ALL_LOANS_COLLECTED
+
+#VIEW ALL PENDING LOANS
+RewriteRule ^.login-success.view-all-pending-loans.js.kt.json.daco.java$ homepage.php?CHECKER=VIEW_ALL_PENDING_LOANS
+
+
+#VIEW ALL PENDING LOANS AT MEMEBR SIDE
+RewriteRule ^.login-success.view-all-loans-pendins.kt.css.js.html.cpp.js.ruby.p.html$ homepage.php?CHECKER=VIEW_PENDING_LOANS_AT_MEMBER_SIDE  
+
+
+#VIEW ALL COLECTED LOANS AT MEMEBR SIDE
+RewriteRule ^.login-success.view-all-loans-collected.kt.css.js.html.cpp.js.ruby.p.pyton.javas$ homepage.php?CHECKER=VIEW_COLLECTED_LOANS_AT_MEMBER_SIDE  
+
+#PAY LOANS
+RewriteRule ^.login-success.pay-my-loyal-loans.js.css.json.html.xml$ homepage.php?CHECKER=PAY_LOANS_FIRST_PAGE
+
+#ACCUNTS
+#EXPENSES
+RewriteRule ^.login-success.expenses-incure-and-add-expenses-list.js.css.kt.kt$ homepage.php?CHECKER=ACCOUNTS_EXPENSES_LIST
+
+
+#BANK STATEMENT
+RewriteRule ^.login-success.bank-statements-and-add-statement-list.js.css.kt.kt$ homepage.php?CHECKER=BANK_STATEMENTS_LIST
+
+#FINANCIAL REPORTS
+RewriteRule ^.login-success.generate-financial-reports.java.js.css.kt.kt$ homepage.php?CHECKER=ACCOUNTS_FINANCIAL_REPORTS
+
+
+
+#REPORTS
+#MEMBERS LIST
+RewriteRule ^.login-success.all-the-members-list.js.css.kt.java$ homepage.php?CHECKER=MEMBERS_LIST_REPORTS
+
+#CUSTOMERS LIST
+RewriteRule ^.login-success.all-the-customers-list.js.css.kt.java$ homepage.php?CHECKER=CUSTOMERS_LIST_REPORTS
+
+
+
+#MEMBER CONTRIBUTION LIST
+RewriteRule ^.login-success.all-the-member-contribution-list.js.css.java.java$ homepage.php?CHECKER=MEMBER_CONTRIBUTIONS_LIST_REPORTS
+
+
+#LOAN LIST
+RewriteRule ^.login-success.all-the-loan-colelcted-list.js.css.java.html$ homepage.php?CHECKER=LOAN_LIST_REPORTS
+
+
+#LOAN INTEREST REPORT
+RewriteRule ^.login-success.all-the-loan-interest-list.js.css.java.html.tensorflow$ homepage.php?CHECKER=LOAN_INTEREST_REPORTS
+
+
+#LOAN INTEREST REPORT
+RewriteRule ^.login-success.all-the-contribution-penalty-list.js.css.java.html.github$ homepage.php?CHECKER=CONTRIBUTION_PENALTY_REPORTS
+
+
+#ACCOUNT REPORT
+RewriteRule ^.login-success.all-account-and-revenue-report.js.css.java.kt$ homepage.php?CHECKER=ACCOUNT_REPORTS
+
+
+#EXPENSES REPORT
+RewriteRule ^.login-success.all-company-expenses-report.js.css.java.kt.html$ homepage.php?CHECKER=COMPANY_EXPENSES_REPORTS
+
+
+
+#REGISTRATION FEES REPORT
+RewriteRule ^.login-success.all-company-registration-fees-report.js.css.java.kt.html$ homepage.php?CHECKER=COMPANY_REGISTRATION_FEES_REPORTS
+
+
+#PROFIT AND LOSS  REPORT
+RewriteRule ^.login-success.all-company-profit-and-loss-report.js.css.java.kt.html$ homepage.php?CHECKER=PROFIT_AND_LOSS_REPORT
+
+
+#FINANCIAL_POSITION_REPORT
+RewriteRule ^.login-success.all-company-financial-position-report.js.css.java.kt.html.css$ homepage.php?CHECKER=FINANCIAL_POSITION_REPORT
+
+
+#COMPANY RETURNS REPORT
+RewriteRule ^.login-success.all-companys-returs-report.js.css.java.kt$ homepage.php?CHECKER=COMPANY_RETURS_REPORTS
+
+
+
+ 
+# CONFIGURATION
+#MEMBER INTEREST CONFIG
+RewriteRule ^.home.settings-member-interest.config.ruby.java.html$ homepage.php?CHECKER=MEMBER_INTEREST_CONFIGURATION
+
+
+#CUSTOMER INTEREST CONFIG
+RewriteRule ^.home.settings-customer-interest.config.ruby.java$ homepage.php?CHECKER=CUSTOMER_INTEREST_CONFIGURATION
+
+
+#PROFILE
+RewriteRule ^.home.myprofile-staff.java.ruby$ homepage.php?CHECKER=STAFF_PROFILE
+
+
+
+#STAFF CONFIG
+RewriteRule ^.home.settings-staff.config.java.kt$ homepage.php?CHECKER=STAFF_CONFIGURATION
+
+
+#PAYROL CONFIG
+RewriteRule ^.home.settings-payroll.config.java.kt.css$ homepage.php?CHECKER=PAYROLL_CONFIGURATION
+
+
+#CLOSE FOR THE YEAR CONFIG
+RewriteRule ^.home.settings-closings.config.java.html.css.jaca$ homepage.php?CHECKER=PAYROLLCLOSE_FOR_THE_YEAR_CONFIGURATION
+
+
+
+#VIEW ALL DACTIVATED MEMEBRS CONFIG
+RewriteRule ^.home.settings-view-all-deactivate-members.config.java.html.css.java$ homepage.php?CHECKER=VIEW_ALL_DEACTIVATED_MEMBERS_CONFIGURATION
+
+
+
+RewriteRule ^.esgapehtllaroftsopxajaehtsitaht..ajaxpost$ AjaxPage/index.php
