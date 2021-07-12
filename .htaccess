@@ -1,9 +1,15 @@
+
+
 RewriteEngine On
 
+#############FOR MAINTAINANCE#######
 #DirectoryIndex login.php
-
-
 #DirectoryIndex maintenance.php
+#RewriteRule ^login$ maintenance.php
+
+#############FOR MAINTAINANCE#######
+
+
 
 RewriteRule ^login$ login.php 
 
@@ -196,3 +202,11 @@ RewriteRule ^.home.settings-view-all-deactivate-members.config.java.html.css.jav
 
 
 RewriteRule ^.esgapehtllaroftsopxajaehtsitaht..ajaxpost$ AjaxPage/index.php
+
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW UPGRADE_INSECURE_REQUESTS:daakyewelfare.com
+Header always set Content-Security-Policy: upgrade-insecure-requests
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW UPGRADE_INSECURE_REQUESTS:daakyewelfare.com
+
+
+

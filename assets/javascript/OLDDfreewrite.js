@@ -4911,6 +4911,7 @@ function closeSTaffAccount(staffID) {
 function changePassword(member_id) {
 
 
+
   var CurrentPasswordClass = $(".CurrentPasswordClass").val();
   var NewPasswordClass = $(".NewPasswordClass").val();
   var ConfirmNewPasswordClass = $(".ConfirmNewPasswordClass").val();
@@ -4935,10 +4936,6 @@ function changePassword(member_id) {
         if (result.value) {
 
           $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=changePassword",{member_id:member_id,CurrentPasswordClass:CurrentPasswordClass,NewPasswordClass:NewPasswordClass,ConfirmNewPasswordClass:ConfirmNewPasswordClass},function (showOutPut) {
-
-
-            // alert(showOutPut);
-            // exit();
 
             if (showOutPut.includes("errorinupdate")) {
               Swal.fire({

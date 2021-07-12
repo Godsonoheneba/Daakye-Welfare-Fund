@@ -10,7 +10,7 @@
     <div class="modal-content">
       <!-- .modal-header -->
       <div class="modal-header">
-        <center> <h6 id="moreStaffInfoLabel" class="modal-title text-center"> Change Staff Password for <?php echo $staffName ?>  </h6></center>
+        <center> <h6 id="moreStaffInfoLabel" class="modal-title text-center"> Change Staff Password for <?php echo $staffName   ?>   </h6></center>
      </div><!-- /.modal-header -->
      <!-- .modal-body -->
      <div class="modal-body px-0">
@@ -94,7 +94,7 @@
     </div><!-- /.modal-body -->
     <!-- .modal-footer -->
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" onclick="changePassword('<?php echo $id ?>')">Change</button>
+      <button type="button" class="btn btn-success" onclick="changePassword('<?php echo $theStaffTabID ?>')">Change</button>
       <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
     </div><!-- /.modal-footer -->
   </div><!-- /.modal-content -->

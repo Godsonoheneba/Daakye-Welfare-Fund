@@ -1,9 +1,12 @@
 
+  
+  
+
 
 <!-- ---------------------------MORE INFO MODAL------------- -->
 
 <!-- .modal -->
-<div class="modal fade" id="change_password" tabindex="-1" role="dialog" aria-labelledby="moreStaffInfoLabel" aria-hidden="true">
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="moreStaffInfoLabel" aria-hidden="true">
   <!-- .modal-dialog -->
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <!-- .modal-content -->
@@ -21,49 +24,7 @@
 
           <div class="col-md-12 mb-3">
 
-            <center>
-
-
-             <?php 
-
-             if ($staffPhoto==="") {
-
-              if ($gender==='Male') {
-                echo "
-                <a  class=\"user-avatar user-avatar-xl\">
-
-                <img src=\"assets/images/customs/male.png\" alt=\"\">
-
-                </a>
-                " ;
-              } else {
-
-                echo "
-                <a  class=\"user-avatar user-avatar-xxl\">
-
-                <img src=\"assets/images/customs/female.jpg\" alt=\"\">
-
-                </a>
-                " ;
-              }
-
-
-
-            } else {
-              echo "
-              <a  class=\"user-avatar user-avatar-xxl\">
-
-              <img src=\"staff_data/passport/$staffPhoto\" alt=\"\">
-
-              </a>
-              " ;
-            }
-
-            ?>
-
-
-
-          </center>
+            
 
           <div class="col-md-12 mb-3">
             <label for="CurrentPassword"> Current Password </label> <input type="password" class="form-control CurrentPasswordClass" name="CurrentPasswordClass" id="CurrentPassword" placeholder="Current Password"  required="">
@@ -94,7 +55,7 @@
     </div><!-- /.modal-body -->
     <!-- .modal-footer -->
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" onclick="changePassword('<?php echo $id ?>')">Change</button>
+      <button type="button" class="btn btn-success" onclick="changePassword('<?php echo $member_id ?>')">Change</button>
       <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
     </div><!-- /.modal-footer -->
   </div><!-- /.modal-content -->

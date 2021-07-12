@@ -35,24 +35,17 @@ $staffName = $firstName . " " . $lastName;
 $getShortName = substr($firstName, 0,1);
 
 
-
-
-
 $slEmpl = mysqli_query($conn, "SELECT type_name FROM employment_type WHERE  active='yes' AND type_id='$employmentType' ");
 $getLite = mysqli_fetch_assoc($slEmpl);
 $type_name = $getLite["type_name"];
 
 
-$seWho = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE  active='yes' AND username='$staffID' ");
+$seWho = mysqli_query($conn, "SELECT confirm FROM who_can_login_in WHERE  active='yes' AND username='$staffID' ");
 $gegt = mysqli_fetch_assoc($seWho);
 $confirm = $gegt["confirm"];
-$theStaffTabID = $gegt["id"];
 
 
-
-
-
-
+ 
 
 ?>
 
@@ -174,20 +167,11 @@ include 'more_staff_info_modal.php';
 
             <?php 
 
-            $theID = "3";
-
-            $login_sessionUpper = strtoupper($login_session);
-
-
-              if ($login_session_type === $theID) { 
+              if ($login_session === $id) {
                 
                 $changePass = "<a  href=\"#\" data-toggle=\"modal\" data-target=\"#change_password\" class=\"nav-link\">Change Password</a>";
 
-              }else if ($login_sessionUpper === $username) { 
-                
-                $changePass = "<a  href=\"#\" data-toggle=\"modal\" data-target=\"#change_password\" class=\"nav-link\">Change Password</a>";
-
-              }else {
+              } else {
                $changePass = "";
 
               }
@@ -217,9 +201,6 @@ include 'more_staff_info_modal.php';
            <a href="#" class="nav-link">Print Info</a> 
            <a style="cursor: pointer;" onclick="resetStaffPassword('<?php echo $staffID ?>')" class="nav-link">Reset Password</a> 
            <a style="cursor: pointer;" onclick="closeSTaffAccount('<?php echo $id ?>')" class="nav-link">Close Account</a> 
-
-           <?php include 'change_password_modal.php'; ?>
-
 
          </nav><!-- /.nav -->
        </div><!-- /.card -->
@@ -496,6 +477,9 @@ include 'more_staff_info_modal.php';
 
 
 <?php 
+
+// include 'change_password_modal.php';
+
 
 
 include 'change_employment_type_modal.php';

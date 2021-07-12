@@ -8834,7 +8834,7 @@ if ($_GET["CHECKPOST"]=="getCompanyExpensesRepots") {
           $done_by = $getdac["done_by"];
 
 
-          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by' AND active='yes' LIMIT 1 ");
+          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE id='$done_by' AND active='yes' LIMIT 1 ");
           $ahemvals = mysqli_fetch_assoc($staffss);
 
           $firstName = $ahemvals["firstName"];
@@ -8983,7 +8983,7 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
 
 
 
-          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by' AND active='yes' LIMIT 1 ");
+          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE id='$done_by' AND active='yes' LIMIT 1 ");
           $ahemvals = mysqli_fetch_assoc($staffss);
 
           $firstName = $ahemvals["firstName"];
@@ -10781,7 +10781,7 @@ if ($_GET["CHECKPOST"]=="closeAccountPost") {
 }
 
 
- 
+
 /*==========================CHANGE STAFF PASSWORD=============================*/
 
 if ($_GET["CHECKPOST"]=="changePassword") {
@@ -10796,8 +10796,7 @@ if ($_GET["CHECKPOST"]=="changePassword") {
   $NewPasswordClassEncrypt = md5($NewPasswordClass);
 
 
-
-  $queryInfo = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE id='$member_id' AND active='yes'");
+  $queryInfo = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE username='$member_id' AND active='yes'");
 
   $fetch =mysqli_fetch_assoc($queryInfo);
   $table_id = $fetch["id"];
@@ -10805,8 +10804,6 @@ if ($_GET["CHECKPOST"]=="changePassword") {
   $password = $fetch["password"];
 
 
-// echo "$table_id >>>> $member_id >>>>>>>>>>>>>>>>>> $Encry_CurrentPasswordClass >>>>>>>>>>>>>>>>>> $password";
-// exit();
 
   if (!empty($CurrentPasswordClass) && !empty($NewPasswordClass) && !empty($ConfirmNewPasswordClass) ) {
 
@@ -10816,7 +10813,7 @@ if ($_GET["CHECKPOST"]=="changePassword") {
       if ($Encry_CurrentPasswordClass===$password ) {
 
 
-        if (mysqli_query($conn, "UPDATE who_can_login_in SET password='$NewPasswordClassEncrypt',real_password='$NewPasswordClass'  WHERE id='$table_id' AND active='yes' LIMIT 1 " )) {
+        if (mysqli_query($conn, "UPDATE who_can_login_in SET password='$NewPasswordClassEncrypt',real_password='$NewPasswordClass'  WHERE username='$username' AND active='yes' LIMIT 1 " )) {
 
           echo "done";
 
