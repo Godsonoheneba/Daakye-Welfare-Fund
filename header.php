@@ -41,6 +41,17 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
 
 
+  $queWO = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE username='$username' AND active='yes' LIMIT 1");
+
+    $feer45 =mysqli_fetch_assoc($queWO);
+    $real_password = $feer45["real_password"];
+
+
+    
+
+
+
+
   $queryInfo22 = mysqli_query($conn, "SELECT * FROM employment_type WHERE type_id='$employmentType' AND active='yes' LIMIT 1");
 
     $fetch22 =mysqli_fetch_assoc($queryInfo22);
