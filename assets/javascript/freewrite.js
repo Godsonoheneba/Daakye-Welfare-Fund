@@ -973,8 +973,6 @@ function deactivateMember(member_id,fullname) {
         $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=deactivatememberPost",{member_id:member_id,answers:answers},function (showOutPut) {
 
 
-
-
           // alert(showOutPut)
           // exit();
 
@@ -983,6 +981,20 @@ function deactivateMember(member_id,fullname) {
            Swal.fire({
             title: "Error",
             text: "Field cannot be empty",
+            type: "warning",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Ok",
+            closeOnConfirm: false,
+            closeOnCancel: false
+
+          });
+
+
+         }else if (showOutPut.includes("notready")) {
+
+           Swal.fire({
+            title: "Error",
+            text: "Cannot delete member, Member has guarantee for someone.",
             type: "warning",
             confirmButtonClass: "btn-danger",
             confirmButtonText: "Ok",

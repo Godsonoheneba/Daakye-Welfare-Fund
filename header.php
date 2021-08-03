@@ -61,6 +61,9 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
 
 
+/*UPDATE LOANS ACTIVE TO NO IF FINISH PAY IS YES*/
+ mysqli_query($conn, " UPDATE loans_all SET active='no'  WHERE finish_paying ='yes' ");
+
 
 
 // mysqli_query($conn, "UPDATE members SET paid_reg_form='yes' WHERE active='yes' ");
@@ -98,128 +101,128 @@ if ($login_session_type==="3" || $login_session_type==="1") {
  /*----------------------------------------AUTOMATIC DEDUCT FROM GUARANTORS WHEN MEMBER / CUTOMER DONT PAY-0------------*/
 
 
- $seL = mysqli_query($conn, "SELECT * FROM loans_all WHERE active='yes' AND guarantor1_confirm='yes' AND guarantor2_confirm='yes' AND loan_status='issued' AND finish_paying='no' ");
+$seL = mysqli_query($conn, "SELECT * FROM loans_all WHERE active='yes' AND guarantor1_confirm='yes' AND guarantor2_confirm='yes' AND loan_status='issued' AND finish_paying='no' ");
 
- while ($fet = mysqli_fetch_assoc($seL)) {
+         while ($fet = mysqli_fetch_assoc($seL)) {
 
 
-   $loanid = $fet["id"];
-   $amount_collected = $fet["amount_collected"];
-   $date_issued = $fet["date_issued"];
-   $person_id = $fet["person_id"];
-   $guarantor1 = $fet["guarantor1"];
-   $guarantor2 = $fet["guarantor2"];
-   $date_of_completion = $fet["date_of_completion"];
-   $balance = $fet["balance"];
-   $total_interest_rate_amount = $fet["total_interest_rate_amount"];
-   $interest_rate = $fet["interest_rate"];
-   $interest_amount_paid = $fet["interest_amount_paid"];
-   $amount_paid = $fet["amount_paid"];
-   $total_amount_to_pay = $fet["total_amount_to_pay"];
+           $loanid = $fet["id"];
+           $amount_collected = $fet["amount_collected"];
+           $date_issued = $fet["date_issued"];
+           $person_id = $fet["person_id"];
+           $guarantor1 = $fet["guarantor1"];
+           $guarantor2 = $fet["guarantor2"];
+           $date_of_completion = $fet["date_of_completion"];
+           $balance = $fet["balance"];
+           $total_interest_rate_amount = $fet["total_interest_rate_amount"];
+           $interest_rate = $fet["interest_rate"];
+           $interest_amount_paid = $fet["interest_amount_paid"];
+           $amount_paid = $fet["amount_paid"];
+           $total_amount_to_pay = $fet["total_amount_to_pay"];
 
-   $shareBalancetoGua = $balance / 2;
+           $shareBalancetoGua = $balance / 2;
 
-   $getInterestAsCompRevenue = $interest_rate * $balance;
+           $getInterestAsCompRevenue = $interest_rate * $balance;
 
-   $getTOtalAmountofLoanCollect = $balance - $getInterestAsCompRevenue;
+           $getTOtalAmountofLoanCollect = $balance - $getInterestAsCompRevenue;
 
 
-   $todayDateCheck = date("Y-m-d");
+           $todayDateCheck = date("Y-m-d");
 
-  $exploDateOfComp = explode("-", $date_of_completion);
-  $complYear = current($exploDateOfComp);
-  $complMonth = next($exploDateOfComp);
-  $complDay = end($exploDateOfComp);
+          $exploDateOfComp = explode("-", $date_of_completion);
+          $complYear = current($exploDateOfComp);
+          $complMonth = next($exploDateOfComp);
+          $complDay = end($exploDateOfComp);
 
 
-    $complMonth+=2;
+            $complMonth+=2;
 
-    if ($complMonth<=9) {
-     $complMonth = "0".$complMonth;
-    } else {
-      $complMonth = $complMonth;
-    }
+            if ($complMonth<=9) {
+             $complMonth = "0".$complMonth;
+            } else {
+              $complMonth = $complMonth;
+            }
 
-    if ($complMonth===13) {
-      $complYear+=1;
-       $complMonth = "01";
-    }
+            if ($complMonth===13) {
+              $complYear+=1;
+               $complMonth = "01";
+            }
 
 
 
-     if ($complMonth===14) {
-      $complYear+=1;
-       $complMonth = "02";
-    }
+             if ($complMonth===14) {
+              $complYear+=1;
+               $complMonth = "02";
+            }
 
 
-    $date_of_completion_plus_grace_period = "$complYear-$complMonth-$complDay";
+            $date_of_completion_plus_grace_period = "$complYear-$complMonth-$complDay";
 
-   $datedinWords = date("jS F, Y");
+           $datedinWords = date("jS F, Y");
 
-   $staffID = strtolower($staffID);
+           $staffID = strtolower($staffID);
 
 
 
-   if ($date_of_completion_plus_grace_period===$todayDateCheck) {
+           if ($date_of_completion_plus_grace_period===$todayDateCheck) {
 
 
 
-    /*-----------------guarntor one info---------------*/
-    $queryIn = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor1' AND active='yes'");
-    $fetch2 =mysqli_fetch_assoc($queryIn);
-    $id = $fetch2["id"];
-    $total_contribution_made1 = $fetch2["total_contribution_made"];
+            /*-----------------guarntor one info---------------*/
+            $queryIn = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor1' AND active='yes'");
+            $fetch2 =mysqli_fetch_assoc($queryIn);
+            $id = $fetch2["id"];
+            $total_contribution_made1 = $fetch2["total_contribution_made"];
 
 
 
-    /*-----------------guarntor two info---------------*/
-    $queryIn2 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor2' AND active='yes'");
-    $fetch4 =mysqli_fetch_assoc($queryIn2);
-    $id = $fetch4["id"];
-    $total_contribution_made2 = $fetch4["total_contribution_made"];
+            /*-----------------guarntor two info---------------*/
+            $queryIn2 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor2' AND active='yes'");
+            $fetch4 =mysqli_fetch_assoc($queryIn2);
+            $id = $fetch4["id"];
+            $total_contribution_made2 = $fetch4["total_contribution_made"];
 
 
-    // /*-------------insert into deduct guarantorfor guarantor one-------------*/
-    mysqli_query($conn, "INSERT INTO deduct_guarantors (person_id, guarantor_id, amount,person_balance) VALUES('$person_id','$guarantor1','$shareBalancetoGua','$balance') ");
+            // /*-------------insert into deduct guarantorfor guarantor one-------------*/
+            mysqli_query($conn, "INSERT INTO deduct_guarantors (person_id, guarantor_id, amount,person_balance) VALUES('$person_id','$guarantor1','$shareBalancetoGua','$balance') ");
 
 
-    //  /*-------------insertinto deduct guarantor for guarantor two-------------*/
-  mysqli_query($conn, "INSERT INTO deduct_guarantors (person_id, guarantor_id, amount,person_balance) VALUES('$person_id','$guarantor2','$shareBalancetoGua','$balance') ");
+            //  /*-------------insertinto deduct guarantor for guarantor two-------------*/
+          mysqli_query($conn, "INSERT INTO deduct_guarantors (person_id, guarantor_id, amount,person_balance) VALUES('$person_id','$guarantor2','$shareBalancetoGua','$balance') ");
 
 
-    //   /*-------------insert into loans pay-------------*/
-    mysqli_query($conn, "INSERT INTO loans_pay (person_id, loan_id, loan_collected_date, amount_collected, amount_paid, balance_before,date_paid, receipt_no, staff) VALUES('$person_id','$loanid','$date_issued', '$amount_collected','$balance','$balance','$datedinWords','paid by guarantors','$staffID') ");
+            //   /*-------------insert into loans pay-------------*/
+            mysqli_query($conn, "INSERT INTO loans_pay (person_id, loan_id, loan_collected_date, amount_collected, amount_paid, balance_before,date_paid, receipt_no, staff) VALUES('$person_id','$loanid','$date_issued', '$amount_collected','$balance','$balance','$datedinWords','paid by guarantors','$staffID') ");
 
 
 
-$purpose = "Loans Interest Paid by the Guarantors";
+            $purpose = "Loans Interest Paid by the Guarantors";
 
-    //   /*-------------insert interest on it to company revenue-------------*/
-    mysqli_query($conn, "INSERT INTO company_revenue (person_id, loan_id, amount, purpose, purpose_date, done_by) VALUES('$person_id','$loanid','$getInterestAsCompRevenue', '$purpose','$todayDateCheck','$staffID') ");
+                //   /*-------------insert interest on it to company revenue-------------*/
+                mysqli_query($conn, "INSERT INTO company_revenue (person_id, loan_id, amount, purpose, purpose_date, done_by) VALUES('$person_id','$loanid','$getInterestAsCompRevenue', '$purpose','$todayDateCheck','$staffID') ");
 
 
 
 
-      /*-------------insert interest on it to company revenue-------------*/
-    mysqli_query($conn, "INSERT INTO loan_collects (person_id, loan_id, amount, done_by) VALUES('$person_id','$loanid','$getTOtalAmountofLoanCollect', '$staffID') ");
+                  /*-------------insert interest on it to company revenue-------------*/
+                mysqli_query($conn, "INSERT INTO loan_collects (person_id, loan_id, amount, done_by) VALUES('$person_id','$loanid','$getTOtalAmountofLoanCollect', '$staffID') ");
 
 
 
-    /*----------------------------DEDUCT FROM GUARANTOR 1 CONTRIBUTIONS---------------*/
+                /*----------------------------DEDUCT FROM GUARANTOR 1 CONTRIBUTIONS---------------*/
 
-    $new_total_contribution_made1 = $total_contribution_made1 - $shareBalancetoGua;
-     mysqli_query($conn, "UPDATE members SET total_contribution_made='$new_total_contribution_made1' WHERE member_id='$guarantor1' AND active='yes' LIMIT 1 ");
+                $new_total_contribution_made1 = $total_contribution_made1 - $shareBalancetoGua;
+                 mysqli_query($conn, "UPDATE members SET total_contribution_made='$new_total_contribution_made1' WHERE member_id='$guarantor1' AND active='yes' LIMIT 1 ");
 
 
 
-       $dated = date("jS F, Y");
-       $activityType = "Amount Deduct from total Contribution";
-       $MemberDescription = "An amount of $shareBalancetoGua was deducted from your Total contribution ";
+                   $dated = date("jS F, Y");
+                   $activityType = "Amount Deduct from total Contribution";
+                   $MemberDescription = "An amount of $shareBalancetoGua was deducted from your Total contribution ";
 
 
 
-       mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$guarantor1','$activityType','$MemberDescription','$dated','$staffID')");
+                   mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$guarantor1','$activityType','$MemberDescription','$dated','$staffID')");
 
 
 
@@ -227,39 +230,39 @@ $purpose = "Loans Interest Paid by the Guarantors";
 
 
 
-      /*----------------------------DEDUCT FROM GUARANTOR 2 CONTRIBUTIONS---------------*/
+                  /*----------------------------DEDUCT FROM GUARANTOR 2 CONTRIBUTIONS---------------*/
 
-    $new_total_contribution_made2 = $total_contribution_made2 - $shareBalancetoGua;
-     mysqli_query($conn, "UPDATE members SET total_contribution_made='$new_total_contribution_made2' WHERE member_id='$guarantor2' AND active='yes' LIMIT 1 ");
+                $new_total_contribution_made2 = $total_contribution_made2 - $shareBalancetoGua;
+                 mysqli_query($conn, "UPDATE members SET total_contribution_made='$new_total_contribution_made2' WHERE member_id='$guarantor2' AND active='yes' LIMIT 1 ");
 
 
-      mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$guarantor2','$activityType','$MemberDescription','$dated','$staffID')");
+                  mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$guarantor2','$activityType','$MemberDescription','$dated','$staffID')");
 
 
 
 
 
 
-      /*----------------------------SET FINISH PAYING TO YES---------------*/
-     mysqli_query($conn, "UPDATE loans_all SET interest_amount_paid='$total_interest_rate_amount', amount_paid='$total_amount_to_pay', balance='0', months_left='0', finish_paying='yes' WHERE person_id='$person_id' AND active='yes' LIMIT 1 ");
+                  /*----------------------------SET FINISH PAYING TO YES---------------*/
+                 mysqli_query($conn, "UPDATE loans_all SET interest_amount_paid='$total_interest_rate_amount', amount_paid='$total_amount_to_pay', balance='0', months_left='0', finish_paying='yes' WHERE person_id='$person_id' AND active='yes' LIMIT 1 ");
 
 
 
 
 
-      /*----------------------------UPDATE MEMBER SET HAD LOAN NO--------------*/
+                  /*----------------------------UPDATE MEMBER SET HAD LOAN NO--------------*/
 
-     mysqli_query($conn, "UPDATE members SET has_loan='no' WHERE member_id_encrypt='$person_id' AND active='yes' LIMIT 1 ");
+                 mysqli_query($conn, "UPDATE members SET has_loan='no' WHERE member_id_encrypt='$person_id' AND active='yes' LIMIT 1 ");
 
 
 
-  } else {
-      # code...
-  }
+              } else {
+                  # code...
+              }
 
 
 
-}
+            }
 
 
 
@@ -316,6 +319,26 @@ $purpose = "Loans Interest Paid by the Guarantors";
      <img src=\"Datas/members_datas/$image\" >
      ";
    }
+
+
+
+   $login_sessionCap = strtoupper($login_session);
+     $queryWho = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE username='$login_sessionCap' AND active='yes'");
+
+    $fetcAhema =mysqli_fetch_assoc($queryWho);
+    $real_password = $fetcAhema["real_password"];
+    
+
+    if ($real_password === $login_sessionCap) {
+      echo "Masa equall";
+      exit();
+    } else {
+      echo "Masa equall";
+      exit();
+    }
+    
+
+
 
 
 

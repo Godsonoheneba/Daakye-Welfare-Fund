@@ -1570,7 +1570,7 @@ if ($_GET["CHECKPOST"]=="EditNextOfKin") {
 
 
 
-
+ 
 
 
 
@@ -1589,11 +1589,15 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
   $reasons = $reasons[0]; 
 
 
-  $stf = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$login_session'");
+  $stf1 = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$login_session'");
 
-  $getdac3 = mysqli_fetch_assoc($stf);
+  $getdac3 = mysqli_fetch_assoc($stf1);
+
+  if (isset($getdac3)) {
 
   $staffID = $getdac3["staffID"];
+
+   }
 
   $dated = date("jS F, Y");
   $activityType = "Member Deactivated";
@@ -1616,10 +1620,8 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
 
   $realAmounttobegiven = $total_contribution_made - $five_percent_of_total;
 
-  $companyRevenuePurpose = "5% of Member Deactivated charge";
-
-
-
+  $companyRevenuePurpose = "5% of Member Deactivated charge" ;
+   
 
   $selLoansIF = mysqli_query($conn, "SELECT * FROM loans_all WHERE  person_id='$member_id_encrypt' ORDER BY id DESC  LIMIT 1 ");
 
@@ -1652,6 +1654,9 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
 
 
   $getTheRawPrincipaAMountforPaying = $balance - $getNewInterestLeft;
+
+
+
 
 
 
@@ -1691,7 +1696,12 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
 
        $getdac3 = mysqli_fetch_assoc($stf);
 
+       if (isset($getdac3)) {
+          
        $staffID = $getdac3["staffID"];
+
+       }
+
 
        $TOdated = date("jS F, Y");
 
@@ -1706,21 +1716,35 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
 
 
 
+ 
 
   if (!empty($reasons)) {
 
 
      ////////////if member has  loan/////
 
-  if (mysqli_num_rows($selLoansIF)===1) {
+    if (mysqli_num_rows($selLoansIF)===1) {
 
 
-    $realAmounttobegiven -=$balance;
+        $selLoansIF2323 = mysqli_query($conn, "SELECT * FROM loans_all WHERE finish_paying='no' AND active='yes' ");
 
 
+        $getLoanss343 = mysqli_fetch_assoc($selLoansIF2323);
+        $guarantor1_check = $getLoanss343["guarantor1"];
+        $guarantor2_check = $getLoanss343["guarantor2"];
+
+      // exit();
 
 
-      // if (mysqli_query($conn, "UPDATE members SET active='no' WHERE member_id='$member_id' AND active='yes' LIMIT 1 ")) {
+      if ($guarantor1_check===$member_id || $guarantor2_check===$member_id) {
+          
+        echo "notready";
+
+        } else {
+
+
+         $realAmounttobegiven -=$balance;
+
 
       if (mysqli_query($conn, "UPDATE members SET active='no' WHERE member_id='$member_id' AND active='yes' LIMIT 1 ")) {
 
@@ -1739,10 +1763,11 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
         if ($realAmounttobegiven >= 0) {
 
 
+
             ///////////////////////updating total contribution to amount to be given/////
-            mysqli_query($conn, "
+             mysqli_query($conn, "
               UPDATE members SET total_contribution_made='$realAmounttobegiven' 
-              WHERE member_id='$guarantor1' 
+              WHERE member_id='$member_id' 
               AND active='yes' 
               LIMIT 1 ");
 
@@ -1902,7 +1927,16 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
       
 
 
-     } 
+     
+
+
+
+        }
+        
+
+
+
+  } 
 
      ////////////if member has no loan/////
      else {
@@ -5331,7 +5365,9 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
     $new_date_issued = date("jS F, Y");
 
-    if (mysqli_query($conn, "UPDATE loans_all SET amount_collected='$new_total_amount_collected',interest_rate='$new_interest_rate', total_interest_rate_amount='$new_total_interest_rate_amount', interest_amount_paid='$new_interest_amount_paid' ,total_amount_to_pay='$new_total_amount_to_pay' ,amount_paid='$new_amount_paid' ,b alance='$new_balance', date_requested='$todayDate' , date_issued='$new_date_issued' ,monthly_installment='$new_monthly_installment', total_months_for_payment='$new_total_months_for_payment',next_month_payment_date='$nextMonthPayment', months_left='$new_months_left', date_of_completion='$date_Of_Completions' ,next_month_payment_amount='$new_monthly_installment' WHERE id='$loanID' AND person_id='$person_id' LIMIT 1  ")) {
+
+
+    if (mysqli_query($conn, "UPDATE loans_all SET amount_collected='$new_total_amount_collected',interest_rate='$new_interest_rate', total_interest_rate_amount='$new_total_interest_rate_amount', interest_amount_paid='$new_interest_amount_paid' ,total_amount_to_pay='$new_total_amount_to_pay' ,amount_paid='$new_amount_paid' ,balance='$new_balance', date_requested='$todayDate' , date_issued='$new_date_issued' ,monthly_installment='$new_monthly_installment', total_months_for_payment='$new_total_months_for_payment',next_month_payment_date='$nextMonthPayment', months_left='$new_months_left', date_of_completion='$date_Of_Completions' ,next_month_payment_amount='$new_monthly_installment' WHERE id='$loanID' AND person_id='$person_id' LIMIT 1  ")) {
 
       mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$person_id','$activityType','$MemberDescription','$dated','$login_session')");
 

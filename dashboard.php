@@ -122,12 +122,29 @@ $totalloanAMount = $getRow2["amount_collected"];
 
 
 
+/*-----------------get interest_amount_paid ----------------*/
+$getTotalInterestPaid = mysqli_query($conn, "SELECT SUM(interest_amount_paid) AS interest_amount_paid FROM loans_all WHERE  active='yes' AND loan_status='issued' AND finish_paying='no'   ");
+$getRow23434 = mysqli_fetch_assoc($getTotalInterestPaid);
+$interest_amount_paid = $getRow23434["interest_amount_paid"];
+
+
+
+
+/*-----------------get amount_paid ----------------*/
+$getTotalamount_paid = mysqli_query($conn, "SELECT SUM(amount_paid) AS amount_paid FROM loans_all WHERE  active='yes' AND loan_status='issued' AND finish_paying='no'   ");
+$getRow23434Amtn = mysqli_fetch_assoc($getTotalamount_paid);
+$amount_paid = $getRow23434Amtn["amount_paid"];
+
+
+$totalloanAMountPaid = $amount_paid - $interest_amount_paid;
 
 
 /*-----------------get total loans paid ----------------*/
-$getTotalLoanspaid = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM loan_collects WHERE  active='yes'  ");
-$getRow23 = mysqli_fetch_assoc($getTotalLoanspaid);
-$totalloanAMountPaid = $getRow23["amount"];
+// $getTotalLoanspaid = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM loan_collects WHERE  active='yes'  ");
+// $getRow23 = mysqli_fetch_assoc($getTotalLoanspaid);
+// $totalloanAMountPaid = $getRow23["amount"];
+
+
 
 
 $totalLoansLeftTOBePaid = $totalloanAMount - $totalloanAMountPaid;
