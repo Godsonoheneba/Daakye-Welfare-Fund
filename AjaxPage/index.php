@@ -10883,6 +10883,71 @@ if ($_GET["CHECKPOST"]=="changePassword") {
 
 
 
+/*==========================CHANGE DEFAULT PASSWORD=============================*/
+
+if ($_GET["CHECKPOST"]=="changeDefaultPassword") {
+
+  $tabID = $_POST["tabID"];
+  $CurrentPasswordClass = $_POST["CurrentPasswordClass"];
+  $NewPasswordClass = $_POST["NewPasswordClass"];
+  $ConfirmNewPasswordClass = $_POST["ConfirmNewPasswordClass"];
+
+  $Encry_CurrentPasswordClass = md5($CurrentPasswordClass);
+
+  $NewPasswordClassEncrypt = md5($NewPasswordClass);
+
+
+
+  $queryInfo = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE id='$tabID' AND active='yes'");
+
+  $fetch =mysqli_fetch_assoc($queryInfo);
+  $table_id = $fetch["id"];
+  $username = $fetch["username"];
+  $password = $fetch["password"];
+
+
+// echo "$table_id >>>> $tabID >>>>>>>>>>>>>>>>>> $Encry_CurrentPasswordClass >>>>>>>>>>>>>>>>>> $password";
+// exit();
+
+  if (!empty($CurrentPasswordClass) && !empty($NewPasswordClass) && !empty($ConfirmNewPasswordClass) ) {
+
+
+    if ($NewPasswordClass===$ConfirmNewPasswordClass) {
+
+      if ($Encry_CurrentPasswordClass===$password ) {
+
+
+        if (mysqli_query($conn, "UPDATE who_can_login_in SET password='$NewPasswordClassEncrypt',real_password='$NewPasswordClass'  WHERE id='$table_id' AND active='yes' LIMIT 1 " )) {
+
+          echo "done";
+
+        } else {
+          echo "errorinupdate";
+        }
+
+      } else {
+        echo "cureentnot";
+      }
+
+
+
+    } else {
+      echo "newNot";
+    }
+
+
+  } else {
+
+    echo "empty";
+  }
+
+
+}
+
+
+
+
+
 
 
 
