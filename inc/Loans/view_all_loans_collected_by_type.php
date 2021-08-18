@@ -204,6 +204,33 @@ if ($getLoanTypeName==="All") {
                       $date_added = $getdac["date_added"];
                       $loan_added_by = $getdac["loan_added_by"];
 
+                      $Tableid = $id;
+
+
+                      $selMemsG1 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor1'   LIMIT 1  ");
+
+                      $getDemMem1 = mysqli_fetch_assoc($selMemsG1);
+
+                      $firstnameG1 = $getDemMem1["firstname"];
+                      $surnameG1 = $getDemMem1["surname"];
+
+                      $guarantor1Name = $firstnameG1 .  ' ' .  $surnameG1 ;
+
+
+
+                      $selMemsG2 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor2'   LIMIT 1  ");
+
+                      $getDemMem2 = mysqli_fetch_assoc($selMemsG2);
+
+                      $firstnameG2 = $getDemMem2["firstname"];
+                      $surnameG2 = $getDemMem2["surname"];
+
+                      $guarantor2Name = $firstnameG2 .  ' ' .  $surnameG2 ;
+
+
+
+
+
 
                       if ($total_months_for_payment==="1") {
                         $MonthsString = "Month";
@@ -237,6 +264,9 @@ if ($getLoanTypeName==="All") {
 
                       $personName = $firstname . ' ' .  $surname ;
 
+
+                       $getShortName = substr($personName, 0,1);
+
                     } else {
                       $selMems = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id' AND active='yes'  LIMIT 1  ");
 
@@ -248,6 +278,10 @@ if ($getLoanTypeName==="All") {
                       $telephone = $getDemMem["telephone"];
 
                       $personName = $firstname .  ' ' .  $surname ;
+
+                       $getShortName = substr($personName, 0,1);
+
+
                     }
 
 
@@ -275,8 +309,10 @@ if ($getLoanTypeName==="All") {
                       <!-- tr -->
 
                       <tr>
+
+               
                         <td class="align-middle px-0" style="width: 1.5rem">
-                          <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-2020158584<?php echo $id ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
+                          <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-82020158584<?php echo $Tableid ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
                         </td>
 
 
@@ -307,7 +343,7 @@ if ($getLoanTypeName==="All") {
 
                           echo "$finishPayLoan";
 
-                          ?>
+                          ?> 
 
 
                           <label class="btn btn-secondary" onclick="window.open('ViewPDFS/Loans/print_loans_agreement.php?PRINT_LOAN_AGREEMENT_AMOUNT=<?php echo $amount_collected ?>&&DATE=<?php echo $date_requested ?>&&TRUE=<?php echo $person_id ?>')" >
@@ -321,6 +357,143 @@ if ($getLoanTypeName==="All") {
 
 
                       </td>
+
+
+
+
+                <div class="row col-12">
+
+                  <!-- tr -->
+                  <tr class="row-details bg-light collapse" id="details-82020158584<?php echo $Tableid ?>">
+                    <td colspan="20">
+                      <!-- .row -->
+
+                      <div class="row" style="overflow-y: auto;">
+                       <!-- .col -->
+                       <div class="col-md-12 text-center">
+
+                         <center>
+
+                           <div class="col-md-2 text-center">
+                            <div class="tile tile-xl tile-circle bg-purple mb-2"> <?php echo $getShortName ?> </div>
+                            <h3 class="card-title mb-4"> <?php echo $person_idss ?> </h3>
+                            <h3 class="card-title mb-4"> <?php echo $personName ?> </h3>
+                          </div><!-- /.col -->
+
+
+                        </center>
+
+
+                      </div><!-- /.col -->
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+
+                      <div class="col-md-6">
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr>
+                              <th> telephone </th>
+                              <td> <?php echo $telephone ?></td>
+                            </tr>
+
+                            <tr>
+                              <th> Loan Requested  </th>
+                              <td> <address><?php echo $amount_collected ?> </address> </td>
+                            </tr>
+
+                            <tr>
+                              <th> Interest Rate  </th>
+                              <td> <?php echo $interest_rate ?> </td>
+                            </tr>
+                            <tr>
+                              <th> Total Interest </th>
+                              <td> <?php echo $total_interest_rate_amount ?>  </td>
+                            </tr>
+
+
+
+                            <tr>
+                              <th> Total Amount to Pay </th>
+                              <td> <?php echo $total_amount_to_pay ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Date Requested </th>
+                              <td> <?php echo $date_requested ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Monthly Instalment </th>
+                              <td> <?php echo $monthly_installment ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Total months for payment </th>
+                              <td> <?php echo $total_months_for_payment ?> </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div><!-- /.col -->
+
+
+
+                      <div class="col-md-6">
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr>
+                              <th> Guaranto 1 </th>
+                              <td> <?php echo $guarantor1Name ?></td>
+                            </tr>
+                            <tr>
+                              <th> Confirm </th>
+                              <td> <?php echo $guarantor1_confirm ?></td>
+                            </tr>
+                            <tr>
+                              <th> Guarantor 2  </th>
+                              <td> <address><?php echo $guarantor2Name ?> </address> </td>
+                            </tr>
+                            <tr>
+                              <th> Confirm </th>
+                              <td> <?php echo $guarantor2_confirm ?> </td>
+                            </tr>
+                            <tr>
+                              <th> Loan status </th>
+                              <td> <?php echo $loan_status ?> </td>
+                            </tr>
+                            <tr>
+                              <th>Added Date </th>
+                              <td> <?php echo $date_added ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Done By </th>
+                              <td> <?php echo $staffFullName ?>  </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div><!-- /.col -->
+
+
+
+
+                    </div><!-- /.row -->
+                  </td>
+                </tr><!-- /tr -->
+
+              </div>
+
 
 
                     </tbody><!-- /tbody -->
@@ -375,6 +548,34 @@ if ($getLoanTypeName==="All") {
                       $loan_added_by = $getdac["loan_added_by"];
 
 
+
+                      $Tableid = $id;
+
+
+                      $selMemsG1 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor1'   LIMIT 1  ");
+
+                      $getDemMem1 = mysqli_fetch_assoc($selMemsG1);
+
+                      $firstnameG1 = $getDemMem1["firstname"];
+                      $surnameG1 = $getDemMem1["surname"];
+
+                      $guarantor1Name = $firstnameG1 .  ' ' .  $surnameG1 ;
+
+
+
+                      $selMemsG2 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor2'   LIMIT 1  ");
+
+                      $getDemMem2 = mysqli_fetch_assoc($selMemsG2);
+
+                      $firstnameG2 = $getDemMem2["firstname"];
+                      $surnameG2 = $getDemMem2["surname"];
+
+                      $guarantor2Name = $firstnameG2 .  ' ' .  $surnameG2 ;
+
+
+
+
+
                       if ($total_months_for_payment==="1") {
                         $MonthsString = "Month";
                       } else {
@@ -406,6 +607,8 @@ if ($getLoanTypeName==="All") {
                       $telephone = $getDemMem["telephone"];
 
                       $personName = $firstname . ' ' .  $surname ;
+                       $getShortName = substr($personName, 0,1);
+
 
                     } else {
                       $selMems = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id' AND active='yes'  LIMIT 1  ");
@@ -418,6 +621,8 @@ if ($getLoanTypeName==="All") {
                       $telephone = $getDemMem["telephone"];
 
                       $personName = $firstname .  ' ' .  $surname ;
+                       $getShortName = substr($personName, 0,1);
+
                     }
 
 
@@ -442,8 +647,12 @@ if ($getLoanTypeName==="All") {
                       <!-- tr -->
 
                       <tr>
-                        <td class="align-middle px-0" style="width: 1.5rem">
-                          <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-2020158584<?php echo $id ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
+
+
+
+
+                         <td class="align-middle px-0" style="width: 1.5rem">
+                          <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-82020158584<?php echo $Tableid ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
                         </td>
 
 
@@ -485,6 +694,140 @@ if ($getLoanTypeName==="All") {
 
 
                         </div><!-- /button radio -->
+
+
+
+
+
+                             <div class="row col-12">
+
+                  <!-- tr -->
+                  <tr class="row-details bg-light collapse" id="details-82020158584<?php echo $Tableid ?>">
+                    <td colspan="20">
+                      <!-- .row -->
+
+                      <div class="row" style="overflow-y: auto;">
+                       <!-- .col -->
+                       <div class="col-md-12 text-center">
+
+                         <center>
+
+                           <div class="col-md-2 text-center">
+                            <div class="tile tile-xl tile-circle bg-purple mb-2"> <?php echo $getShortName ?> </div>
+                            <h3 class="card-title mb-4"> <?php echo $person_idss ?> </h3>
+                            <h3 class="card-title mb-4"> <?php echo $personName ?> </h3>
+                          </div><!-- /.col -->
+
+
+                        </center>
+
+
+                      </div><!-- /.col -->
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+
+                      <div class="col-md-6">
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr>
+                              <th> telephone </th>
+                              <td> <?php echo $telephone ?></td>
+                            </tr>
+
+                            <tr>
+                              <th> Loan Requested  </th>
+                              <td> <address><?php echo $amount_collected ?> </address> </td>
+                            </tr>
+
+                            <tr>
+                              <th> Interest Rate  </th>
+                              <td> <?php echo $interest_rate ?> </td>
+                            </tr>
+                            <tr>
+                              <th> Total Interest </th>
+                              <td> <?php echo $total_interest_rate_amount ?>  </td>
+                            </tr>
+
+
+
+                            <tr>
+                              <th> Total Amount to Pay </th>
+                              <td> <?php echo $total_amount_to_pay ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Date Requested </th>
+                              <td> <?php echo $date_requested ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Monthly Instalment </th>
+                              <td> <?php echo $monthly_installment ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Total months for payment </th>
+                              <td> <?php echo $total_months_for_payment ?> </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div><!-- /.col -->
+
+
+
+                      <div class="col-md-6">
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr>
+                              <th> Guaranto 1 </th>
+                              <td> <?php echo $guarantor1Name ?></td>
+                            </tr>
+                            <tr>
+                              <th> Confirm </th>
+                              <td> <?php echo $guarantor1_confirm ?></td>
+                            </tr>
+                            <tr>
+                              <th> Guarantor 2  </th>
+                              <td> <address><?php echo $guarantor2Name ?> </address> </td>
+                            </tr>
+                            <tr>
+                              <th> Confirm </th>
+                              <td> <?php echo $guarantor2_confirm ?> </td>
+                            </tr>
+                            <tr>
+                              <th> Loan status </th>
+                              <td> <?php echo $loan_status ?> </td>
+                            </tr>
+                            <tr>
+                              <th>Added Date </th>
+                              <td> <?php echo $date_added ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Done By </th>
+                              <td> <?php echo $staffFullName ?>  </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div><!-- /.col -->
+
+
+
+
+                    </div><!-- /.row -->
+
 
 
                       </td>
@@ -539,6 +882,33 @@ if ($getLoanTypeName==="All") {
                       $loan_added_by = $getdac["loan_added_by"];
 
 
+
+                      $Tableid = $id;
+
+
+                      $selMemsG1 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor1'   LIMIT 1  ");
+
+                      $getDemMem1 = mysqli_fetch_assoc($selMemsG1);
+
+                      $firstnameG1 = $getDemMem1["firstname"];
+                      $surnameG1 = $getDemMem1["surname"];
+
+                      $guarantor1Name = $firstnameG1 .  ' ' .  $surnameG1 ;
+
+
+
+                      $selMemsG2 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$guarantor2'   LIMIT 1  ");
+
+                      $getDemMem2 = mysqli_fetch_assoc($selMemsG2);
+
+                      $firstnameG2 = $getDemMem2["firstname"];
+                      $surnameG2 = $getDemMem2["surname"];
+
+                      $guarantor2Name = $firstnameG2 .  ' ' .  $surnameG2 ;
+
+
+
+
                       if ($total_months_for_payment==="1") {
                         $MonthsString = "Month";
                       } else {
@@ -570,6 +940,8 @@ if ($getLoanTypeName==="All") {
                       $telephone = $getDemMem["telephone"];
 
                       $personName = $firstname . ' ' .  $surname ;
+                       $getShortName = substr($personName, 0,1);
+
 
                     } else {
                       $selMems = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id' AND active='yes'  LIMIT 1  ");
@@ -582,6 +954,8 @@ if ($getLoanTypeName==="All") {
                       $telephone = $getDemMem["telephone"];
 
                       $personName = $firstname .  ' ' .  $surname ;
+                       $getShortName = substr($personName, 0,1);
+                      
                     }
 
 
@@ -606,8 +980,14 @@ if ($getLoanTypeName==="All") {
                       <!-- tr -->
 
                       <tr>
-                        <td class="align-middle px-0" style="width: 1.5rem">
-                          <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-2020158584<?php echo $id ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
+
+
+                       
+
+
+
+                         <td class="align-middle px-0" style="width: 1.5rem">
+                          <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-82020158584<?php echo $Tableid ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
                         </td>
 
 
@@ -649,6 +1029,136 @@ if ($getLoanTypeName==="All") {
 
 
                         </div><!-- /button radio -->
+
+
+                             <div class="row col-12">
+
+                  <!-- tr -->
+                  <tr class="row-details bg-light collapse" id="details-82020158584<?php echo $Tableid ?>">
+                    <td colspan="20">
+                      <!-- .row -->
+
+                      <div class="row" style="overflow-y: auto;">
+                       <!-- .col -->
+                       <div class="col-md-12 text-center">
+
+                         <center>
+
+                           <div class="col-md-2 text-center">
+                            <div class="tile tile-xl tile-circle bg-purple mb-2"> <?php echo $getShortName ?> </div>
+                            <h3 class="card-title mb-4"> <?php echo $person_idss ?> </h3>
+                            <h3 class="card-title mb-4"> <?php echo $personName ?> </h3>
+                          </div><!-- /.col -->
+
+
+                        </center>
+
+
+                      </div><!-- /.col -->
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+
+                      <div class="col-md-6">
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr>
+                              <th> telephone </th>
+                              <td> <?php echo $telephone ?></td>
+                            </tr>
+
+                            <tr>
+                              <th> Loan Requested  </th>
+                              <td> <address><?php echo $amount_collected ?> </address> </td>
+                            </tr>
+
+                            <tr>
+                              <th> Interest Rate  </th>
+                              <td> <?php echo $interest_rate ?> </td>
+                            </tr>
+                            <tr>
+                              <th> Total Interest </th>
+                              <td> <?php echo $total_interest_rate_amount ?>  </td>
+                            </tr>
+
+
+
+                            <tr>
+                              <th> Total Amount to Pay </th>
+                              <td> <?php echo $total_amount_to_pay ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Date Requested </th>
+                              <td> <?php echo $date_requested ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Monthly Instalment </th>
+                              <td> <?php echo $monthly_installment ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Total months for payment </th>
+                              <td> <?php echo $total_months_for_payment ?> </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div><!-- /.col -->
+
+
+
+                      <div class="col-md-6">
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr>
+                              <th> Guaranto 1 </th>
+                              <td> <?php echo $guarantor1Name ?></td>
+                            </tr>
+                            <tr>
+                              <th> Confirm </th>
+                              <td> <?php echo $guarantor1_confirm ?></td>
+                            </tr>
+                            <tr>
+                              <th> Guarantor 2  </th>
+                              <td> <address><?php echo $guarantor2Name ?> </address> </td>
+                            </tr>
+                            <tr>
+                              <th> Confirm </th>
+                              <td> <?php echo $guarantor2_confirm ?> </td>
+                            </tr>
+                            <tr>
+                              <th> Loan status </th>
+                              <td> <?php echo $loan_status ?> </td>
+                            </tr>
+                            <tr>
+                              <th>Added Date </th>
+                              <td> <?php echo $date_added ?>  </td>
+                            </tr>
+
+                            <tr>
+                              <th> Done By </th>
+                              <td> <?php echo $staffFullName ?>  </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div><!-- /.col -->
+
+
+
+
+                    </div><!-- /.row -->
 
 
                       </td>
