@@ -33,6 +33,7 @@ $getDemMem = mysqli_fetch_assoc($selMems);
 $firstname = $getDemMem["firstname"];
 $surname = $getDemMem["surname"];
 $contribution_amount = $getDemMem["contribution_amount"];
+$total_contribution_made = $getDemMem["total_contribution_made"];
 
 $memberName = $firstname . ' ' . ' ' . ' ' .  $surname ;
 
@@ -181,10 +182,10 @@ if (mysqli_num_rows($seleContrins) > 0) {
 
 
 	$pdf->SetFont('Arial','B',10);
-	$pdf->Cell(40,10,'Balance: ' ,0,0,'L');
+	$pdf->Cell(40,10,'Total Contribution: ' ,0,0,'L');
 	$pdf->SetFont('Arial','B',14);
 
-	$pdf->Cell(50,10, 'GHC 0.00',0,1,'L');
+	$pdf->Cell(50,10, number_format($total_contribution_made,2),0,1,'L');
 	$pdf->Cell(189,.01, '',1,1,'L');
 
 
