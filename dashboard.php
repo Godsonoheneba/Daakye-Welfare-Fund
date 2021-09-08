@@ -189,6 +189,14 @@ $totalPenalty = $getRow2482["amount"];
 
 
 
+$getthYear = date("Y");
+/*-----------------get total LOAN  penalty Interest  ----------------*/
+$getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year='$getthYear'  ");
+$getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
+$totalLoanPenalty = $getRow2555656["amount"];
+
+
+
 
 
 
@@ -210,7 +218,7 @@ $totalPercDeduction = $getRow248235["amount"];
 
 /*-----------------get total Revenue ----------------*/
 
-$getAllTOtalInterest = $totalInterest + $totalPenalty + $totalRegFee + $totalPercDeduction;
+$getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
 
 $totalRevenueGet = $getAllTOtalInterest - $totalExpenses;
 
@@ -412,9 +420,22 @@ if ($login_session_type==="1" || $login_session_type==="3") {
             <div class="col-12 col-sm-6 col-lg-3">
               <!-- .metric -->
               <a href="" class="metric metric-bordered align-items-center">
-                <h2 class="metric-label"> Total Penalties </h2>
+                <h2 class="metric-label"> Total Member Contribution Penalties </h2>
                 <p class="metric-value h3">
                   <sub><i class="fa fa-tasks"></i></sub> <span class="value">GH&#8373; <?php echo number_format($totalPenalty, 2) ?> </span>
+                </p>
+              </a> <!-- /.metric -->
+            </div><!-- /metric col-12 col-sm-6 col-lg-3umn -->
+
+
+
+            <!-- metric column -->
+            <div class="col-12 col-sm-6 col-lg-3">
+              <!-- .metric -->
+              <a href="" class="metric metric-bordered align-items-center">
+                <h2 class="metric-label"> Total Loan Penalties </h2>
+                <p class="metric-value h3">
+                  <sub><i class="fa fa-tasks"></i></sub> <span class="value">GH&#8373; <?php echo number_format($totalLoanPenalty, 2) ?> </span>
                 </p>
               </a> <!-- /.metric -->
             </div><!-- /metric col-12 col-sm-6 col-lg-3umn -->

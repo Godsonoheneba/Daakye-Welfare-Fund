@@ -3453,7 +3453,11 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
 
 
 /*---------------------------PAY LOANS--------------*/
-function payLoans(getLoanID,getPersonID,companyRevenueAmount,companyRevenuePurpose,actuaInterestPaid,actuaAmountToPayperMOnth,actualLoanAMountWihoutInterest,next_month_payment_amount) {
+function payLoans(getLoanID,getPersonID,companyRevenueAmount,companyRevenuePurpose,actuaInterestPaid,actuaAmountToPayperMOnth,actualLoanAMountWihoutInterest,next_month_payment_amount,penalty_For_late_Payment) {
+
+
+  // alert(penalty_For_late_Payment)
+  // exit();
 
   
 
@@ -3484,9 +3488,9 @@ function payLoans(getLoanID,getPersonID,companyRevenueAmount,companyRevenuePurpo
       }).then((result) => {
 
 
-        if (result.value) {
+        if (result.value) { 
 
-          $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=payLoansPost",{getLoanID:getLoanID,getPersonID:getPersonID,companyRevenueAmount:companyRevenueAmount,companyRevenuePurpose:companyRevenuePurpose,actuaInterestPaid:actuaInterestPaid,actuaAmountToPayperMOnth:actuaAmountToPayperMOnth,actualLoanAMountWihoutInterest:actualLoanAMountWihoutInterest,next_month_payment_amount:next_month_payment_amount,payLoanAmountClass:payLoanAmountClass},function (showOutPut) {
+          $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=payLoansPost",{getLoanID:getLoanID,getPersonID:getPersonID,companyRevenueAmount:companyRevenueAmount,companyRevenuePurpose:companyRevenuePurpose,actuaInterestPaid:actuaInterestPaid,actuaAmountToPayperMOnth:actuaAmountToPayperMOnth,actualLoanAMountWihoutInterest:actualLoanAMountWihoutInterest,next_month_payment_amount:next_month_payment_amount,payLoanAmountClass:payLoanAmountClass,penalty_For_late_Payment:penalty_For_late_Payment},function (showOutPut) {
 
 
             // alert(showOutPut);

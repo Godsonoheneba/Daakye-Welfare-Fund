@@ -5750,7 +5750,7 @@ if ($_GET["CHECKPOST"]=="searchLoanPersonLivePost") {
 
 if ($_GET["CHECKPOST"]=="payLoansPost") {
 
-  if (isset($_POST["getLoanID"]) && isset($_POST["getPersonID"]) && isset($_POST["companyRevenueAmount"]) && isset($_POST["companyRevenuePurpose"]) && isset($_POST["actuaInterestPaid"]) && isset($_POST["actuaAmountToPayperMOnth"]) && isset($_POST["actualLoanAMountWihoutInterest"]) && isset($_POST["next_month_payment_amount"]) && isset($_POST["payLoanAmountClass"]) ) {
+  if (isset($_POST["getLoanID"]) && isset($_POST["getPersonID"]) && isset($_POST["companyRevenueAmount"]) && isset($_POST["companyRevenuePurpose"]) && isset($_POST["actuaInterestPaid"]) && isset($_POST["actuaAmountToPayperMOnth"]) && isset($_POST["actualLoanAMountWihoutInterest"]) && isset($_POST["next_month_payment_amount"]) && isset($_POST["payLoanAmountClass"]) && isset($_POST["penalty_For_late_Payment"]) ) {
 
     $getLoanID = $_POST["getLoanID"];
     $getPersonID = $_POST["getPersonID"];
@@ -5761,6 +5761,9 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
     $actualLoanAMountWihoutInterest = $_POST["actualLoanAMountWihoutInterest"];
     $next_month_payment_amount = $_POST["next_month_payment_amount"];
     $payLoanAmountClass = $_POST["payLoanAmountClass"];
+    $penalty_For_late_Payment = $_POST["penalty_For_late_Payment"];
+
+
 
 
 
@@ -5858,20 +5861,45 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
       $balace_before = $balance;
 
-      $gettheInterestOnPayment = $interest_rate * $payLoanAmountClass;
+      $deductPenalty = $payLoanAmountClass - $penalty_For_late_Payment;
 
-      $getTheRawPrincipaAMountforPaying = $payLoanAmountClass - $gettheInterestOnPayment;
+      $deductOrigInterest = $deductPenalty - $actuaInterestPaid;
+
+
+      // $gettheInterestOnPayment = $interest_rate * $payLoanAmountClass;
+
+
+      $getPenandInt = $penalty_For_late_Payment + $actuaInterestPaid;
+
+      $getRemaiAmPaying = $payLoanAmountClass - $getPenandInt ;
+
+      $gettheInterestOnPayment = $interest_rate * $getRemaiAmPaying;
+
+
+      $getTheRawPrincipaAMountforPaying = $deductPenalty - $gettheInterestOnPayment;
+
+
+      $interest_amount_paid += $gettheInterestOnPayment;
+
+
+      $amount_paying_now_without_penalty = $payLoanAmountClass - $penalty_For_late_Payment;
+
+
+
+
+      // echo "getPenandInt = $getPenandInt >>>>> interest_amount_paid===$interest_amount_paid >>>> deductOrigInterest ==== $deductOrigInterest >>>>> actuaInterestPaid====$actuaInterestPaid >>>>>>> interest_rate === $interest_rate >>> deductPenalty==$deductPenalty >>>>>> gettheInterestOnPayment===$gettheInterestOnPayment >>>>>>>    getTheRawPrincipaAMountforPaying===$getTheRawPrincipaAMountforPaying >>>>>>>    penalty_For_late_Payment===$penalty_For_late_Payment >>>>>>>   payLoanAmountClass===$payLoanAmountClass >>>>>>>     ";
+
+      // exit();
 
       /*---------------------------VARIABLES DECLARES-------------------*/
-      $interest_amount_paid += $gettheInterestOnPayment;
 
       if ($quit_loan==="yes") {
         $amount_paid += $monthly_installment;
         $balance -= $monthly_installment;
       } else {
 
-        $amount_paid += $payLoanAmountClass;
-        $balance -= $payLoanAmountClass;
+        $amount_paid += $amount_paying_now_without_penalty;
+        $balance -= $amount_paying_now_without_penalty;
       }
 
 
@@ -6027,10 +6055,20 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
           mysqli_query($conn, "INSERT INTO staff_activities (staff_id,activity_type,description,datecreated) VALUES('$staffID','$activityType','$StaffDescription','$TOdated')");
         }
 
- 
- 
+  
 
-        mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$getPersonID','$getLoanID','$gettheInterestOnPayment','$companyRevenuePurpose','$next_month_payment_date','$login_session ')");
+       mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$getPersonID','$getLoanID','$gettheInterestOnPayment','$companyRevenuePurpose','$next_month_payment_date','$login_session ')");
+ 
+       
+   
+
+
+        if ($penalty_For_late_Payment>0) {
+
+            $gettYear = date("Y");
+            
+                 mysqli_query($conn, "INSERT INTO comp_reve_loan_penalty (member_id,loan_id,amount,default_date,done_by,year) VALUES('$getPersonID','$getLoanID','$penalty_For_late_Payment','$next_month_payment_date','$login_session', '$gettYear')");
+        }
 
         mysqli_query($conn, "INSERT INTO loan_collects (person_id,loan_id,amount,done_by) VALUES('$getPersonID','$getLoanID','$getTheRawPrincipaAMountforPaying','$login_session' )");
 

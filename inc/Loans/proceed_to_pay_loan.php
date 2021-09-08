@@ -73,7 +73,7 @@ if (mysqli_num_rows($selectCust21) > 0) {
 
 
 
-
+ 
 
   $todayss = date("Y-m-d");
 
@@ -88,10 +88,11 @@ if (mysqli_num_rows($selectCust21) > 0) {
 
    $companyRevenueAmount = ($total_interest_rate_amount / $total_months_for_payment) + $penalty_For_late_Payment;
 
-   $companyRevenuePurpose = "Loan Interest and Penalty Interest";
+   $companyRevenuePurpose = "Loan Interest";
 
  } else {
   $next_month_payment_amount = $next_month_payment_amount;
+  $penalty_For_late_Payment = "0";
 
   $estraString = " ";
 
@@ -101,8 +102,10 @@ if (mysqli_num_rows($selectCust21) > 0) {
 
 }
 
+$RealcompanyRevenueAmount = ($total_interest_rate_amount / $total_months_for_payment);
 
-
+// echo "penalty_For_late_Payment === $penalty_For_late_Payment >>>>>>> companyRevenueAmount === $companyRevenueAmount >>>>>>>> next_month_payment_amount === $next_month_payment_amount >>>>>>>> RealcompanyRevenueAmount === $RealcompanyRevenueAmount";
+// exit();
 
 /*----------------------check if balance is less than monthly installment */
 if ($balance <= $monthly_installment) {
@@ -126,6 +129,8 @@ $actuaAmountToPayperMOnth = $total_amount_to_pay / $total_months_for_payment;
 $actualLoanAMountWihoutInterest = $next_month_payment_amount - $companyRevenueAmount;
 
 
+// echo "actuaInterestPaid == $actuaInterestPaid >>>>>>> penalty_For_late_Payment === $penalty_For_late_Payment >>>>>>> companyRevenueAmount === $companyRevenueAmount >>>>>>>> next_month_payment_amount === $next_month_payment_amount >>>>>>>> RealcompanyRevenueAmount === $RealcompanyRevenueAmount";
+// exit();
 
 } else {
 
