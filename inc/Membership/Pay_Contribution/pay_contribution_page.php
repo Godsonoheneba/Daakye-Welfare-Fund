@@ -153,9 +153,13 @@ $penaltyContiAMount = $penAInterest * $contribution_amount;
 
 if ($chechTOdayDate > $realDateFOrPayment   ) {
   $payThisAmountAsCOntri = $penaltyContiAMount + $contribution_amount;
+
+  $penaltyContiAMount = $penaltyContiAMount;
   
 } else {
   $payThisAmountAsCOntri = $contribution_amount;
+
+  $penaltyContiAMount = "0";
 }
 
 
@@ -273,7 +277,7 @@ if ($last_month_contributed === "12") {
 
 
       <div class="col-lg-12">
-
+ 
 
        <div class="section-block text-center text-sm-left " style="margin: 30px!important;">
 
@@ -355,7 +359,7 @@ if ($last_month_contributed === "12") {
           <hr class="my-5">
 
 
-
+ 
         </div>
 
 
@@ -364,7 +368,7 @@ if ($last_month_contributed === "12") {
         include 'pay_contribution_modal.php';
 
 
-        include 'member_statement_modal.php';
+        // include 'member_statement_modal.php';
 
 
         ?>

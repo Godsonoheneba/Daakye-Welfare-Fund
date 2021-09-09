@@ -1097,7 +1097,8 @@ function payMontlyDues(member_id,member_id_encrypt,payThisAmountAsCOntri,penalty
           $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=payMonthlyDuesPost",{member_id:member_id,member_id_encrypt:member_id_encrypt,payThisAmountAsCOntri:payThisAmountAsCOntri,penaltyContiAMount:penaltyContiAMount,month_to_pay:month_to_pay,year_to_pay:year_to_pay,ownAMountPayClass:ownAMountPayClass},function (showOutPut) {
 
 
-
+            // alert(showOutPut);
+            // exit();
 
 
 
@@ -1218,6 +1219,15 @@ function payMontlyDues(member_id,member_id_encrypt,payThisAmountAsCOntri,penalty
     } else {
 
 
+     ownAMountPayClass = ownAMountPayClass;
+     payThisAmountAsCOntri = payThisAmountAsCOntri;
+
+
+
+      // if (penaltyContiAMount > payThisAmountAsCOntri) {
+
+    if (penaltyContiAMount==="0") {
+
 
       Swal.fire({
         title: 'Are you sure you want to pay for your own amount of  ' + ownAMountPayClass + ' for '+ month_to_pay,
@@ -1235,6 +1245,8 @@ function payMontlyDues(member_id,member_id_encrypt,payThisAmountAsCOntri,penalty
           $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=payMonthlyDuesPost",{member_id:member_id,member_id_encrypt:member_id_encrypt,payThisAmountAsCOntri:payThisAmountAsCOntri,penaltyContiAMount:penaltyContiAMount,month_to_pay:month_to_pay,year_to_pay:year_to_pay,ownAMountPayClass:ownAMountPayClass},function (showOutPut) {
 
 
+            // alert(showOutPut);
+            // exit();
 
 
 
@@ -1369,6 +1381,219 @@ function payMontlyDues(member_id,member_id_encrypt,payThisAmountAsCOntri,penalty
 
 
       });
+
+
+    
+
+
+
+      } else {
+
+
+
+    ownAMountPayClass = ownAMountPayClass;
+     payThisAmountAsCOntri = payThisAmountAsCOntri;
+
+
+
+      if (ownAMountPayClass >= payThisAmountAsCOntri) {
+
+
+
+
+
+      Swal.fire({
+        title: 'Are you sure you want to pay for your own amount of  ' + ownAMountPayClass + ' for '+ month_to_pay,
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Pay Dues!'
+      }).then((result) => {
+
+ 
+        if (result.value) { 
+
+          $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=payMonthlyDuesPost",{member_id:member_id,member_id_encrypt:member_id_encrypt,payThisAmountAsCOntri:payThisAmountAsCOntri,penaltyContiAMount:penaltyContiAMount,month_to_pay:month_to_pay,year_to_pay:year_to_pay,ownAMountPayClass:ownAMountPayClass},function (showOutPut) {
+
+
+            // alert(showOutPut);
+            // exit();
+
+
+
+
+            if (showOutPut.includes("empty")) {
+              Swal.fire({
+                title: "Error",
+                text: "Fields Cannot be Empty",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ok",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+              });
+
+
+              addBut.show();
+              loadingBut.hide();
+
+
+            }else if (showOutPut.includes("payforintersest")) {
+
+              Swal.fire({
+                title: "Error",
+                text: "You owe a penalty of GHC" + penaltyContiAMount + ".00,  You must pay something more than your penalty!!!",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ok",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+              });
+
+              addBut.show();
+              loadingBut.hide();
+
+
+
+
+            }else if (showOutPut.includes("specificationerror")) {
+
+              Swal.fire({
+                title: "Error",
+                text: "An error occured , Please contact technicians",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ok",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+              });
+
+              addBut.show();
+              loadingBut.hide();
+
+
+
+
+            }else if (showOutPut.includes("Exist")) {
+
+              Swal.fire({
+                title: "Error",
+                text: "Member had already paid for this month",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ok",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+              });
+
+              addBut.show();
+              loadingBut.hide();
+
+
+
+
+            }else{
+
+
+              Swal.fire(
+                'Successfull!',
+                ' Payment has been made.',
+                'success'
+                ).then((result) =>{
+
+                  Swal.fire({
+                    title: 'Print',
+                    text: "Print Receipt",
+                    type: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Print'
+                  }).then((result) => {
+
+
+                    if (result.value) {
+
+                      window.open(showOutPut.trim())
+
+
+                      location.reload();
+
+
+
+                    }else{
+
+                      location.reload();
+                    }
+                  })
+
+
+
+                })
+
+
+
+
+              }
+
+
+
+
+            });
+
+        }else{
+          location.reload();
+        }
+
+
+      });
+
+
+    
+
+
+
+      
+
+
+
+      }else{
+
+
+            Swal.fire({
+            title: "Error",
+            text: "Add Penalty of " + penaltyContiAMount + " to Own amount " ,
+            type: "warning",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Ok",
+            closeOnConfirm: false,
+            closeOnCancel: false
+
+          });
+
+          addBut.show();
+          loadingBut.hide();
+
+
+      }
+
+
+
+
+
+  
+
+
+      }
+
+
+
 
 
     }

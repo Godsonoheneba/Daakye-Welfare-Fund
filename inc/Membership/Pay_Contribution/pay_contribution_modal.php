@@ -84,10 +84,10 @@ if ($getMonthForAddingMem === "12") {
     <!-- .modal-content -->
     <div class="modal-content">
       <!-- .modal-header -->
-      <div class="modal-header text-center">
+     <!--  <div class="modal-header text-center">
         <h6 id="depositModalLabel" class="modal-title">Pay <?php echo $fullname ?> 's Monthly Dues <br>   </h6>
         <h6 id="depositModalLabel" class="modal-title">PAY THIS AMOUNT IN FULL:  <?php echo number_format($payThisAmountAsCOntri, 2) ?> </h6>
-      </div><!-- /.modal-header -->
+      </div> -->
       <!-- .modal-body -->
       <div class="modal-body px-0">
         <!-- .list-group -->
@@ -100,6 +100,43 @@ if ($getMonthForAddingMem === "12") {
 
 
 
+        <div class=" table-responsive">
+          <!-- .table -->
+          <table class="table">
+            <!-- thead -->
+            <thead> 
+              <tr class="text-center">
+                <th> CONTRIBUTION AMOUNT</th>
+                <th> PENALTY</th>
+                <th> TOTAL </th>
+              </tr>
+            </thead><!-- /thead -->
+            <!-- tbody -->
+
+
+
+               <tbody class="getsearch" data-toggle="sidebar" data-sidebar="show">
+                <!-- tr -->
+
+                <tr class="text-center">
+                 
+
+
+                  <td class="align-middle">  <?php echo number_format($contribution_amount,2)?> </td>
+                  <td class="align-middle">  <?php echo number_format($penaltyContiAMount,2)?> </td>
+                  <td class="align-middle">  <?php echo number_format($payThisAmountAsCOntri,2)?> </td>
+
+                 
+                 
+
+                </tr>
+
+
+
+            </tbody><!-- /tbody -->
+
+      </table><!-- /.table -->
+    </div><!-- /.table-responsive -->
 
 
 
@@ -421,7 +458,7 @@ if ($getMonthForAddingMem === "12") {
 
 
 
-
+ 
 
 
           <div class="form-group col-md-12 mb-3">

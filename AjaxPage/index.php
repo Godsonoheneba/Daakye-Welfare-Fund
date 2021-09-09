@@ -2142,9 +2142,11 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
       /*----------------------get deductions for interst---------------*/
-      $deductInterestFromThis = $payThisAmountAsCOntri - $contribution_amount;
+      // $penaltyContiAMount = $payThisAmountAsCOntri - $contribution_amount;
 
+      // $penaltyContiAMount = $penaltyContiAMount;
 
+      $getRealAmountPaying = $payThisAmountAsCOntri - $penaltyContiAMount;
 
       if ($ownAMountPayClass==="" || $ownAMountPayClass==="0") {
 
@@ -2152,14 +2154,14 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
         /*--------------------DO THIS WHEN NO SPECIFICATION---------------*/
 
 
-        if (mysqli_query($conn, "INSERT INTO members_contributions (member_id,member_id_encrypt,year,month,amount,receipt_number,date_paid,done_by) VALUES('$member_id','$member_id_encrypt','$year_to_pay','$month_to_pay','$payThisAmountAsCOntri','$receiptNumber','$TOdated2','$login_session') ")) {
+        if (mysqli_query($conn, "INSERT INTO members_contributions (member_id,member_id_encrypt,year,month,amount,receipt_number,date_paid,done_by) VALUES('$member_id','$member_id_encrypt','$year_to_pay','$month_to_pay','$getRealAmountPaying','$receiptNumber','$TOdated2','$login_session') ")) {
 
 
-         if ($deductInterestFromThis >0) {
+         if ($penaltyContiAMount >0) {
 
-           mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$member_id_encrypt','$id','$deductInterestFromThis','$companyRevenuePurpose','$last_month_contributed','$login_session ')");
+           mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$member_id_encrypt','$id','$penaltyContiAMount','$companyRevenuePurpose','$last_month_contributed','$login_session ')");
 
-           $actualMonthlyContriTODB = $payThisAmountAsCOntri - $deductInterestFromThis;
+           $actualMonthlyContriTODB = $payThisAmountAsCOntri - $penaltyContiAMount;
 
          } else {
 
@@ -2192,19 +2194,25 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
       /*--------------------DO THIS WHEN  SPECIFY AMOUNT TO PAY---------------*/
 
-      if ($ownAMountPayClass > $deductInterestFromThis) {
-
-        $dedcutAMountToPayFromInterest = $ownAMountPayClass - $deductInterestFromThis;
+      // if ($ownAMountPayClass > $penaltyContiAMount) {
 
 
-        if (mysqli_query($conn, "INSERT INTO members_contributions (member_id,member_id_encrypt,year,month,amount,receipt_number,date_paid,done_by) VALUES('$member_id','$member_id_encrypt','$year_to_pay','$month_to_pay','$ownAMountPayClass','$receiptNumber','$TOdated2','$login_session') ")) {
+      if ($ownAMountPayClass >= $payThisAmountAsCOntri) {
 
 
-         if ($deductInterestFromThis > 0) {
+        // $dedcutAMountToPayFromInterest = $ownAMountPayClass - $penaltyContiAMount;
+
+         $getRealAmountPaying = $ownAMountPayClass - $penaltyContiAMount;
+
+
+        if (mysqli_query($conn, "INSERT INTO members_contributions (member_id,member_id_encrypt,year,month,amount,receipt_number,date_paid,done_by) VALUES('$member_id','$member_id_encrypt','$year_to_pay','$month_to_pay','$getRealAmountPaying','$receiptNumber','$TOdated2','$login_session') ")) {
+
+
+         if ($penaltyContiAMount > 0) {
 
            mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$member_id_encrypt','$id','$penaltyContiAMount','$companyRevenuePurpose','$last_month_contributed','$login_session ')");
 
-           $actualMonthlyContriTODB = $ownAMountPayClass - $deductInterestFromThis;
+           $actualMonthlyContriTODB = $ownAMountPayClass - $penaltyContiAMount;
 
          } else {
 
