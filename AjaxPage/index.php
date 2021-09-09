@@ -2524,7 +2524,7 @@ if ($_GET["CHECKPOST"]=="searchMemberbyLivePost") {
 
 
    $searchStatuss = mysqli_query($conn, "SELECT * FROM members
-    WHERE (`member_id` LIKE '%".$seachresultInput."%' OR `firstname` LIKE '%".$seachresultInput."%' OR `surname` LIKE '%".$seachresultInput."%' OR `telephone` LIKE '%".$seachresultInput."%' )  ");
+    WHERE (`member_id` LIKE '%".$seachresultInput."%' OR `firstname` LIKE '%".$seachresultInput."%' OR `surname` LIKE '%".$seachresultInput."%' OR `telephone` LIKE '%".$seachresultInput."%' ) AND active='yes'  ");
 
 
 
