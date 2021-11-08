@@ -594,11 +594,11 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithImage") {
   }
 
 
-}
+  }
 
-} else {
- echo "empty";
-}
+  } else {
+   echo "empty";
+  }
 
 
 }
@@ -946,11 +946,11 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithNoImage") {
 
 
 
-}
+  }
 
-} else {
- echo "empty";
-}
+  } else {
+   echo "empty";
+  }
 
 
 }

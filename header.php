@@ -67,6 +67,27 @@ if ($login_session_type==="3" || $login_session_type==="1") {
     
 
 
+   /*-----------------------------------UPDATE MEMBER CONTRIBUTION ACTIVE TO NO IF MEMBER IS DEACTIVATED----------------*/
+
+
+   $sleMem = mysqli_query($conn, "SELECT * FROM members WHERE active='no'  ");
+
+   while ($fetGGG = mysqli_fetch_assoc($sleMem)) {
+
+     $Memberactive = $fetGGG["active"];
+     $member_id = $fetGGG["member_id"];
+
+
+     if ($Memberactive==="no" ) {
+
+      mysqli_query($conn, "UPDATE members_contributions SET active='no'  WHERE member_id='$member_id'   " );
+
+    } else {
+
+     /*-----------do nothing*/
+   }
+
+ }
 
 
   $queryInfo22 = mysqli_query($conn, "SELECT * FROM employment_type WHERE type_id='$employmentType' AND active='yes' LIMIT 1");

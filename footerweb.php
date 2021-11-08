@@ -71,14 +71,14 @@
 									
 										<p class="text-muted mb-2"> 
 
-										<i class="fa fa-map-marker">  </i>Nkawkwa | Ashanti
+										<i class="fa fa-map-marker">  </i>KWAHU , EASTERN REGION , GHANA
 										<br>
 
-										<i class="fa fa-phone">  </i>+233 5488 778 554 / +233 2025 487854
+										<i class="fa fa-phone">  </i>0244474866 /0203228660
 
 										<br>
 
-										<i class="fa fa-envelope">  </i>ohenebadac@gmail.com
+										<i class="fa fa-envelope">  </i>info@daakyewelfare.com
 
 
 										</p>
@@ -91,7 +91,7 @@
 							</div><!-- /.row -->
 
 
-							<p class="text-white text-center mt-5" style="font-size: 12px;"> © <?php echo date("Y") ?> Daakye Welfare Fund | DWF, Inc. All rights reserved. </p>
+							<p class="text-white text-center mt-5" style="font-size: 12px;"> © <?php echo date("Y") ?> Daakye Welfare Fund | DWF, Inc. All rights reserved.  BY GOADGH INC </p>
 						</div><!-- /.container -->
 					</section>
 

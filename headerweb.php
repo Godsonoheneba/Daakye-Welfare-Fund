@@ -75,10 +75,7 @@
 	<link rel='https://api.w.org/' href='wp-json/index.html' />
 	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.php?rsd" />
 	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml" /> 
-	<meta name="generator" content="WordPress 5.0.8" />
-	<meta name="generator" content="WooCommerce 3.6.4" />
-	<link rel="canonical" href="index.html" />
-	<link rel='shortlink' href='index.html' />
+
 	<link rel="alternate" type="application/json+oembed" href="wp-json/oembed/1.0/embed2cee.json?url=http%3A%2F%2Fwp.efforttech.net%2Fnewwp%2Fsigma%2F" />
 	<link rel="alternate" type="text/xml+oembed" href="wp-json/oembed/1.0/embed09ff?url=http%3A%2F%2Fwp.efforttech.net%2Fnewwp%2Fsigma%2F&amp;format=xml" />
 
@@ -147,16 +144,17 @@
 			<header id="header" class="header-style2">
 				<div class="container">
 					<div class="row">
+
 						<div class="col-sm-2">
 							<!-- LOGO -->
 							<div id="logo">
-								<a href="index.php"><img src="images/logo.png" alt="Logo" title="Arctica"></a>
+								<a href="index.php"><img src="images/logo - white.png" alt="Logo" title="DWF"></a>
 							</div><!-- LOGO -->
 						</div><!-- col -->
 						<div class="col-sm-10">
 							<!-- MENU -->
 							<nav class="clearfix pr-220">
-								<a class="mobile-menu-button waves" href="#"></a>
+								<!-- <a class="mobile-menu-button waves" href="#"></a> -->
 								<ul class="menu clearfix nav" id="menu">
 
 

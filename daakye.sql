@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2021 at 09:54 PM
+-- Generation Time: Sep 18, 2021 at 02:17 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -1058,7 +1058,14 @@ INSERT INTO `company_revenue` (`id`, `person_id`, `loan_id`, `amount`, `purpose`
 (947, '804a70567b6b99224f7cb04eae59ec9b', '101', 34, 'Loan Interest', '2021-08-06', 'a202009072020 ', '2021-08-01 14:17:57', 'no', 'yes'),
 (948, '5ae9f282be92007656e70ec35f9b0417', '70', 30, 'Loan Interest', '2021-08-01', 'a202009072020 ', '2021-08-01 21:57:47', 'no', 'yes'),
 (949, '6f9ac748f51e3446e2375cc8e7e4ea7b', '', 1100, '5% of Member Deactivated charge', '', 'a202009072020 ', '2021-08-03 08:00:49', 'no', 'yes'),
-(950, '6f9ac748f51e3446e2375cc8e7e4ea7b', '2', 1693.28, 'Loan Interest', '2021-08-03', 'a202009072020 ', '2021-08-03 08:00:49', 'no', 'yes');
+(950, '6f9ac748f51e3446e2375cc8e7e4ea7b', '2', 1693.28, 'Loan Interest', '2021-08-03', 'a202009072020 ', '2021-08-03 08:00:49', 'no', 'yes'),
+(951, 'e3d199250595fdfae9afa9fe6dbbc52f', '91', 11.025, 'Loan Interest and Penalty Interest', '2021-08-06', 'a202009072020 ', '2021-09-07 16:13:01', 'no', 'yes'),
+(952, 'e3d199250595fdfae9afa9fe6dbbc52f', '91', 11.025, 'Loan Interest and Penalty Interest', '2021-09-06', 'a202009072020 ', '2021-09-07 16:32:23', 'no', 'yes'),
+(953, '4e15912a0cb5d2e4d16de8299976da97', '102', 54.191666666667, 'Loan Interest', '2021-08-30', 'a202009072020 ', '2021-09-08 11:46:51', 'no', 'yes'),
+(954, 'f32c195df052ba6152d40376a3698fc7', '66', 27.822222222222, 'Loan Interest', '2021-04-07', 'a202009072020 ', '2021-09-08 11:58:48', 'no', 'yes'),
+(955, 'df33a280f461067d82a4957aac60a637', '1', 7.5, 'Penalty For member contribution', '06', 'a202009072020 ', '2021-09-09 05:18:35', 'no', 'yes'),
+(956, '171b443ad9f8e2396b49cdac0b514015', '13', 5, 'Penalty For member contribution', '05', 'a202009072020 ', '2021-09-09 05:22:25', 'no', 'yes'),
+(957, '171b443ad9f8e2396b49cdac0b514015', '13', 5, 'Penalty For member contribution', '06', 'a202009072020 ', '2021-09-09 08:03:56', 'no', 'yes');
 
 -- --------------------------------------------------------
 
@@ -1225,6 +1232,32 @@ CREATE TABLE `company_share_dividend_list` (
 
 INSERT INTO `company_share_dividend_list` (`id`, `year`, `date_added`, `done_by`, `active`) VALUES
 (1, '2020', '2020-12-31 23:21:54', 'a202009072020', 'yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comp_reve_loan_penalty`
+--
+
+CREATE TABLE `comp_reve_loan_penalty` (
+  `id` int(11) NOT NULL,
+  `member_id` varchar(100) NOT NULL,
+  `loan_id` varchar(100) NOT NULL,
+  `amount` float NOT NULL,
+  `default_date` varchar(100) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
+  `done_by` varchar(50) NOT NULL,
+  `year` varchar(10) NOT NULL,
+  `active` varchar(3) NOT NULL DEFAULT 'yes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comp_reve_loan_penalty`
+--
+
+INSERT INTO `comp_reve_loan_penalty` (`id`, `member_id`, `loan_id`, `amount`, `default_date`, `date_added`, `done_by`, `year`, `active`) VALUES
+(1, '4e15912a0cb5d2e4d16de8299976da97', '102', 56.9, '2021-08-30', '2021-09-08 11:46:51', 'a202009072020 ', '2021', 'yes'),
+(2, 'f32c195df052ba6152d40376a3698fc7', '66', 15.3, '2021-04-07', '2021-09-08 11:58:48', 'a202009072020', '2021', 'yes');
 
 -- --------------------------------------------------------
 
@@ -1660,7 +1693,7 @@ INSERT INTO `loans_all` (`id`, `person_id`, `status`, `amount_collected`, `inter
 (63, 'f9c68dac721efc4024d5b36875b1f591', 'Customer', '8000', '0.05', 2400, 2400, '10400', 10400, 0, '2020-10-14', '16th October, 2020', 1733.3333333333, '6', '0', '2021-04-16', '2021-03-16', 1733, '', 'yes', 'yes', 'O198804111337', 'yes', 'B196201129479', 'yes', 'yes', 'issued', 'a202009072020', '2020-10-14 14:36:16', 'm199204012020', 'no'),
 (64, '881516e9d01e366c38442e3253592573', 'Customer', '5000', '0.05', 2000, 351.938, '7000', 7039, 0, '2020-10-27', '1st November, 2020', 875, '8', '0', '2021-07-01', '2021-08-01', 875, '', 'no', 'yes', 'O197811249158', 'yes', 'A197803218630', 'yes', 'yes', 'issued', 'a202009072020', '2020-10-27 11:05:10', 'm199204012020', 'no'),
 (65, '9645be92727e452aa3f2fed3f9c8324a', 'Customer', '3000', '0.05', 900, 195.075, '3900', 3903, 0, '2020-10-31', '6th November, 2020', 650, '6', '0', '2021-05-06', '2021-06-06', 650, '', 'no', 'yes', 'E197706274299', 'yes', 'A198904254224', 'yes', 'yes', 'issued', 'a202009072020', '2020-10-31 21:50:03', 'm199204012020', 'no'),
-(66, 'f32c195df052ba6152d40376a3698fc7', 'Member', '10000', '0.1', 1000, 122.4, '11000', 1224, 9776, '2020-11-05', '7th November, 2020', 305.55555555556, '36', '32', '2023-11-07', '2021-04-07', 306, '', 'no', 'no', 'A197909197866', 'yes', 'A198809138228', 'yes', 'yes', 'issued', 'a202009072020', '2020-11-05 09:10:22', 'a198101211224', 'yes'),
+(66, 'f32c195df052ba6152d40376a3698fc7', 'Member', '10000', '0.1', 1000, 150.222, '11000', 1530, 9470, '2020-11-05', '7th November, 2020', 305.55555555556, '36', '31', '2023-11-07', '2021-05-07', 306, '', 'no', 'no', 'A197909197866', 'yes', 'A198809138228', 'yes', 'yes', 'issued', 'a202009072020', '2020-11-05 09:10:22', 'a198101211224', 'yes'),
 (67, '0c964637e2ef993918fa8af3e269715f', 'Member', '3000', '0.05', 150, 150, '3150', 3150, 0, '2020-11-06', '6th November, 2020', 262.5, '12', '0', '2021-11-06', '2021-06-06', 263, '', 'no', 'yes', 'O198007258377', 'yes', 'A197511024269', 'yes', 'yes', 'issued', 'a202009072020', '2020-11-06 11:19:01', 'm199204012020', 'no'),
 (68, 'd7ffb0fb779d6cb471a09e24a683994b', 'Member', '6000', '0.05', 300, 300, '6300', 6300, 0, '2020-11-06', '6th November, 2020', 525, '12', '0', '2021-11-06', '2021-05-06', 525, '', 'no', 'yes', 'A197511024269', 'yes', 'F198107286855', 'yes', 'yes', 'issued', 'a202009072020', '2020-11-06 11:32:50', 'm199204012020', 'no'),
 (69, '76843477d5cb52059303d58dfde03f2f', 'Member', '2000', '0.1', 200, 88.86, '2200', 889, 1311, '2020-11-16', '17th December, 2020', 91.666666666667, '24', '15', '2022-12-17', '2021-10-17', 92, '', 'no', 'no', 'K198903112823', 'yes', 'A195105058588', 'yes', 'yes', 'issued', 'a202009072020', '2020-11-16 18:00:07', 'm199204012020', 'yes'),
@@ -1685,7 +1718,7 @@ INSERT INTO `loans_all` (`id`, `person_id`, `status`, `amount_collected`, `inter
 (88, 'b30930ad4b85876a75383e2d4e58730f', 'Member', '1000', '0.05', 50, 0, '1050', 0, 1050, '2021-02-14', '', 87.5, '12', '12', '', '', 0, '', 'no', 'no', 'A197511024269', 'no', 'D194602208346', 'no', '', 'pending', '', '2021-02-14 22:58:08', 'k197710198159', 'no'),
 (89, 'b30930ad4b85876a75383e2d4e58730f', 'Member', '50000', '0.05', 2500, 0, '52500', 0, 52500, '2021-02-15', '', 4375, '12', '12', '', '', 0, '', 'no', 'no', 'A198802264559', 'no', 'A198502272234', 'no', '', 'pending', '', '2021-02-15 10:16:20', 'k197710198159', 'no'),
 (90, 'b30930ad4b85876a75383e2d4e58730f', 'Member', '50000', '0.1', 5000, 830, '55000', 8300, 46700, '2021-02-15', '6th March, 2021', 1527.7777777778, '36', '31', '2024-03-06', '2021-09-06', 1528, '', 'no', 'no', 'A198802264559', 'yes', 'A198502272234', 'yes', 'yes', 'issued', 'a202009072020', '2021-02-15 11:11:15', 'k197710198159', 'yes'),
-(91, 'e3d199250595fdfae9afa9fe6dbbc52f', 'Member', '2400', '0.05', 120, 42.525, '2520', 851, 1670, '2021-02-15', '6th March, 2021', 210, '12', '8', '2022-003-06', '2021-08-06', 210, '', 'no', 'no', 'O197904042957', 'yes', 'A198809226340', 'yes', 'yes', 'issued', 'a202009072020', '2021-02-15 12:26:45', 'm199204012020', 'yes'),
+(91, 'e3d199250595fdfae9afa9fe6dbbc52f', 'Member', '2400', '0.05', 120, 64.575, '2520', 1293, 1230, '2021-02-15', '6th March, 2021', 210, '12', '6', '2022-003-06', '2021-10-06', 210, '', 'no', 'no', 'O197904042957', 'yes', 'A198809226340', 'yes', 'yes', 'issued', 'a202009072020', '2021-02-15 12:26:45', 'm199204012020', 'yes'),
 (92, '98297ce6f6f568f40b0213b457f898be', 'Member', '30000', '0.1', 3000, 300, '33000', 3000, 30000, '2021-02-26', '30th April, 2021', 916.66666666667, '36', '33', '2024-04-30', '2021-08-30', 917, '', 'no', 'no', 'A197701188203', 'yes', 'A198308069162', 'yes', 'yes', 'issued', 'a202009072020', '2021-02-26 08:53:23', 'o198804111337', 'yes'),
 (93, '9b8523cb399d3fec01e2207f98d4d0e6', 'Member', '6000', '0.05', 300, 106.312, '6300', 2126, 4174, '2021-03-04', '31st March, 2021', 525, '12', '8', '2022-003-31', '2021-08-31', 525, '', 'no', 'no', 'A199209231716', 'yes', 'A199209231716', 'yes', 'yes', 'issued', 'a202009072020', '2021-03-04 14:31:43', 'a199209231716', 'yes'),
 (94, '0c6fe47b5c646315d41e9027388c4e2e', 'Member', '12000', '0.1', 1200, 220, '13200', 2200, 11000, '2021-03-05', '31st March, 2021', 366.66666666667, '36', '32', '2024-03-31', '2021-08-31', 367, '', 'no', 'no', 'D198211199568', 'yes', 'D198211199568', 'yes', 'yes', 'issued', 'a202009072020', '2021-03-05 08:50:10', 'm199204012020', 'yes'),
@@ -1696,9 +1729,9 @@ INSERT INTO `loans_all` (`id`, `person_id`, `status`, `amount_collected`, `inter
 (99, 'd95ab1ddbc1ccf364189c4b5051b1754', 'Member', '7200', '0.05', 360, 97.65, '7560', 1954, 5608, '2021-05-04', '6th May, 2021', 630, '12', '9', '2022-005-06', '2021-09-06', 630, '', 'no', 'no', 'A198802264559', 'yes', 'A198802264559', 'yes', 'yes', 'issued', 'a202009072020', '2021-05-04 14:59:56', 'a198802264559', 'yes'),
 (100, 'db85f1cdeb0ce6fec112b4ed0a0f6baf', 'Member', '2200', '0.05', 110, 19.3, '2310', 386, 1924, '2021-05-05', '6th May, 2021', 192.5, '12', '10', '2022-005-06', '2021-08-06', 193, '', 'no', 'no', 'A198809226340', 'yes', 'Y197109077220', 'yes', 'yes', 'issued', 'a202009072020', '2021-05-05 14:57:25', 'a198809226340', 'yes'),
 (101, '804a70567b6b99224f7cb04eae59ec9b', 'Member', '7400', '0.1', 740, 102, '8140', 1020, 7120, '2021-05-05', '6th May, 2021', 339.16666666667, '24', '21', '2023-05-06', '2021-09-06', 339, '', 'no', 'no', 'A201210193179', 'yes', 'N198603123977', 'yes', 'yes', 'issued', 'a202009072020', '2021-05-05 15:09:10', 'a201210193179', 'yes'),
-(102, '4e15912a0cb5d2e4d16de8299976da97', 'Member', '13000', '0.05', 650, 60, '13650', 1200, 12450, '2021-06-08', '30th June, 2021', 1137.5, '12', '11', '2022-006-30', '2021-08-30', 1138, '', 'no', 'no', 'B198302284444', 'yes', 'B197706273872', 'yes', 'yes', 'issued', 'a202009072020', '2021-06-08 13:05:50', 'a198612143049', 'yes'),
+(102, '4e15912a0cb5d2e4d16de8299976da97', 'Member', '13000', '0.05', 650, 114.192, '13650', 2338, 11312, '2021-06-08', '30th June, 2021', 1137.5, '12', '10', '2022-006-30', '2021-09-30', 1138, '', 'no', 'no', 'B198302284444', 'yes', 'B197706273872', 'yes', 'yes', 'issued', 'a202009072020', '2021-06-08 13:05:50', 'a198612143049', 'yes'),
 (103, '3b52c500e61ec3c323a3bd83011bd534', 'Member', '1600', '0.05', 80, 15, '1680', 300, 1380, '2021-07-21', '1st August, 2021', 280, '6', '5', '2022-02-01', '2021-10-01', 280, '', 'no', 'no', 'A198308069162', 'yes', 'O201506043357', 'yes', 'yes', 'issued', 'a202009072020', '2021-07-21 12:27:02', 'o199209202602', 'yes'),
-(104, 'e12cce3e02e24a0e9edbe3cfe3ca5d5a', 'Member', '14000', '0.05', 700, 0, '14700', 0, 14700, '2021-08-09', '', 1225, '12', '12', '', '', 0, '', 'no', 'no', 'B197706273872', 'no', 'O196402278961', 'no', '', 'pending', '', '2021-08-09 12:14:24', 'a202009072020', 'yes');
+(105, 'e12cce3e02e24a0e9edbe3cfe3ca5d5a', 'Member', '16000', '0.05', 800, 0, '16800', 0, 16800, '2021-08-20', '', 1400, '12', '12', '', '', 0, '', 'no', 'no', 'A197701188203', 'no', 'A197703198739', 'no', '', 'pending', '', '2021-08-20 09:08:22', 'a202009072020', 'yes');
 
 -- --------------------------------------------------------
 
@@ -2456,7 +2489,11 @@ INSERT INTO `loans_pay` (`id`, `person_id`, `loan_id`, `loan_collected_date`, `a
 (725, '3b52c500e61ec3c323a3bd83011bd534', '103', '1st August, 2021', '1600', '300', '1680', '08', '2021', '1st August, 2021', '0000725', '2021-08-01 10:21:17', 'a202009072020', 'yes'),
 (726, '804a70567b6b99224f7cb04eae59ec9b', '101', '6th May, 2021', '7400', '340', '7460', '08', '2021', '1st August, 2021', '0000726', '2021-08-01 14:17:57', 'a202009072020', 'yes'),
 (727, '5ae9f282be92007656e70ec35f9b0417', '70', '1st December, 2020', '9800', '300', '8438', '08', '2021', '1st August, 2021', '0000727', '2021-08-01 21:57:47', 'a202009072020', 'yes'),
-(728, '6f9ac748f51e3446e2375cc8e7e4ea7b', '2', '17th April, 2020', '30000', '19932', '19932', '08', '2021', '3rd August, 2021', '0000728', '2021-08-03 08:00:49', 'a202009072020', 'yes');
+(728, '6f9ac748f51e3446e2375cc8e7e4ea7b', '2', '17th April, 2020', '30000', '19932', '19932', '08', '2021', '3rd August, 2021', '0000728', '2021-08-03 08:00:49', 'a202009072020', 'yes'),
+(729, 'e3d199250595fdfae9afa9fe6dbbc52f', '91', '6th March, 2021', '2400', '220.5', '1670', '09', '2021', '7th September, 2021', '0000729', '2021-09-07 16:13:01', 'a202009072020', 'yes'),
+(730, 'e3d199250595fdfae9afa9fe6dbbc52f', '91', '6th March, 2021', '2400', '220.5', '1450', '09', '2021', '7th September, 2021', '0000730', '2021-09-07 16:32:23', 'a202009072020', 'yes'),
+(731, '4e15912a0cb5d2e4d16de8299976da97', '102', '30th June, 2021', '13000', '1194.9', '12450', '09', '2021', '8th September, 2021', '0000731', '2021-09-08 11:46:51', 'a202009072020', 'yes'),
+(732, 'f32c195df052ba6152d40376a3698fc7', '66', '7th November, 2020', '10000', '321.3', '9776', '09', '2021', '8th September, 2021', '0000732', '2021-09-08 11:58:48', 'a202009072020', 'yes');
 
 -- --------------------------------------------------------
 
@@ -3232,7 +3269,11 @@ INSERT INTO `loan_collects` (`id`, `person_id`, `loan_id`, `amount`, `date_added
 (725, '3b52c500e61ec3c323a3bd83011bd534', '103', '285', '2021-08-01 10:21:17', 'a202009072020', 'yes'),
 (726, '804a70567b6b99224f7cb04eae59ec9b', '101', '306', '2021-08-01 14:17:57', 'a202009072020', 'yes'),
 (727, '5ae9f282be92007656e70ec35f9b0417', '70', '270', '2021-08-01 21:57:47', 'a202009072020', 'yes'),
-(728, '6f9ac748f51e3446e2375cc8e7e4ea7b', '2', '18238.72', '2021-08-03 08:00:49', 'a202009072020', 'yes');
+(728, '6f9ac748f51e3446e2375cc8e7e4ea7b', '2', '18238.72', '2021-08-03 08:00:49', 'a202009072020', 'yes'),
+(729, 'e3d199250595fdfae9afa9fe6dbbc52f', '91', '209.475', '2021-09-07 16:13:01', 'a202009072020', 'yes'),
+(730, 'e3d199250595fdfae9afa9fe6dbbc52f', '91', '209.475', '2021-09-07 16:32:23', 'a202009072020', 'yes'),
+(731, '4e15912a0cb5d2e4d16de8299976da97', '102', '1083.8083333333', '2021-09-08 11:46:51', 'a202009072020', 'yes'),
+(732, 'f32c195df052ba6152d40376a3698fc7', '66', '278.17777777778', '2021-09-08 11:58:48', 'a202009072020', 'yes');
 
 -- --------------------------------------------------------
 
@@ -3304,19 +3345,19 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `member_id`, `member_id_encrypt`, `total_guarantee`, `password`, `firstname`, `surname`, `residencial_address`, `postal_address`, `place_of_work`, `home_town`, `email`, `telephone`, `dob`, `gender`, `marital_status`, `contribution_amount`, `total_contribution_made`, `last_month_contributed`, `last_year_contributed`, `image`, `kin_1_name`, `kin_1_mobile`, `kin_1_percent`, `kin_2_name`, `kin_2_mobile`, `kin_2_percent`, `kin_3_name`, `kin_3_mobile`, `kin_3_percent`, `kin_4_name`, `kin_4_mobile`, `kin_4_percent`, `kin_5_name`, `kin_5_mobile`, `kin_5_percent`, `kin_6_name`, `kin_6_mobile`, `kin_6_percent`, `kin_7_name`, `kin_7_mobile`, `kin_7_percent`, `kin_8_name`, `kin_8_mobile`, `kin_8_percent`, `kin_9_name`, `kin_9_mobile`, `kin_9_percent`, `kin_10_name`, `kin_10_mobile`, `kin_10_percent`, `paid_reg_form`, `has_loan`, `staff`, `date_created`, `active`) VALUES
-(1, 'B197706273872', 'df33a280f461067d82a4957aac60a637', 2, 'df33a280f461067d82a4957aac60a637', 'AGYA KWAKU', 'BAFFOU-ANTWI', 'EI-0159-8843', 'KF1443, KOFORIDUA', 'ST. JOSEPH TECHNICAL INSTITUTE', 'AKIM ABENASE', 'ohenebadac@gmail.com', '0244474866', '1977-06-27', 'Male', 'Married', '150', 20500, '06', '2021', 'A1YBd9nsWmtgJSE/AGYA KWAKU.PNG', 'KWASI BARFFOU-BOSOMPEM', '0244474866', '25', 'NANA YAA OBREMPOMAA-BOSOMPEM', '0244474866', '25', 'NAA AKOMEA-BOSOMPEM', '0244474866', '30', 'HANCILA AGYEIWAA', '0244474866', '20', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2015-04-10 14:43:58', 'yes'),
+(1, 'B197706273872', 'df33a280f461067d82a4957aac60a637', 2, 'df33a280f461067d82a4957aac60a637', 'AGYA KWAKU', 'BAFFOU-ANTWI', 'EI-0159-8843', 'KF1443, KOFORIDUA', 'ST. JOSEPH TECHNICAL INSTITUTE', 'AKIM ABENASE', 'ohenebadac@gmail.com', '0244474866', '1977-06-27', 'Male', 'Married', '150', 20593, '07', '2021', 'A1YBd9nsWmtgJSE/AGYA KWAKU.PNG', 'KWASI BARFFOU-BOSOMPEM', '0244474866', '25', 'NANA YAA OBREMPOMAA-BOSOMPEM', '0244474866', '25', 'NAA AKOMEA-BOSOMPEM', '0244474866', '30', 'HANCILA AGYEIWAA', '0244474866', '20', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2015-04-10 14:43:58', 'yes'),
 (2, 'L198506213028', '4929e0c4828ed20e1a4a7f1b1220f605', 2, '4929e0c4828ed20e1a4a7f1b1220f605', 'DANIEL', 'LAMINOR TETTEH', 'EN-2470-185', 'BOXLT1, LARTEH', 'PRESBYTERIAN SENIOR HIGH TECHNICAL SCHOOL', 'SUHUM', 'dantetteh119@gmail.com', '0266565749', '1985-06-21', 'Male', 'Single', '100', 7400, '07', '2021', 'qE4lKm2eLzAIh9Z/LAMINOR DANIEL T.PNG', 'EDITH LAMINOR', '0249442208', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2015-04-10 14:43:58', 'yes'),
 (3, 'O197612215723', '6f9ac748f51e3446e2375cc8e7e4ea7b', 1, '6f9ac748f51e3446e2375cc8e7e4ea7b', 'MICHAEL', 'OWUSU-ADJEI', 'EI-0123-8094', 'BOXMP27 MPRAESO ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'OBOMENG KWAHU', 'pattydabs@yahoo.com', '0244207968', '1976-12-21', 'Male', 'Married', '500', 22000, '03', '2021', 'bmc4tZAj2sV1NoJ/Owusu-Adjei Michael.PNG', 'JACOBS SOMUAH AGYEI', '0244207968', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2016-04-10 14:43:58', 'no'),
 (4, 'A098205242598', 'cff0a751c28c69066ff8b4fb6ce5572f', 1, 'cff0a751c28c69066ff8b4fb6ce5572f', 'GEORGE', 'ABRAH', 'EI-0159-8843', 'BOXMP27 MPRAESO ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'ATIBIE KWAHU', 'ritgeok@gmail.com', '0243068121', '1982-05-24', 'Male', 'Single', '100', 5495, '04', '2021', 'RHiuG34qVzNs2EB/ABRAH GEORGE.PNG', 'EUGENE KWABENA BOATENG ABRAH', '0243068121', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2015-04-10 14:43:58', 'no'),
 (5, 'A198408142185', '8b4611583e4862a01143fb1831bab33d', 0, '8b4611583e4862a01143fb1831bab33d', 'JOSHUA', 'ACHEAMPONG', 'EI-0162-6541', 'BOXMP27 MPRAESO ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'MAMFE AKUAPIM', 'joshua.acca@gmail.com', '0273344449', '1984-08-14', 'Male', 'Married', '100', 24200, '02', '2021', 'YWaTIcblo67zwd2/JOSHUA ACHEAMPONG.PNG', 'LEROY OHENE-ACHEAMPONG', '0273344449', '60', 'RYSSA OHENE-ACHEAMPONG', '0273344449', '40', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2019-01-10 14:43:58', 'no'),
-(6, 'A197703198739', '1c632cef625f2ba3a32a642715b14ff4', 0, '1c632cef625f2ba3a32a642715b14ff4', 'EMMANUEL', 'ADDO', 'E2-0303-6082', 'BOXLT1 LARTEH AKUAPIM', 'LARTEH PSHTS', 'KOFORIDUA', 'addoemml30@gmail.com', '0244942253', '1977-03-19', 'Male', 'Married', '150', 9700, '06', '2021', 'nKjTgovk7cX9laA/ADDO EMMANUEL.PNG', 'ASEDA NANA YAW ADDO', '0246515962', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2015-04-10 14:43:58', 'yes'),
+(6, 'A197703198739', '1c632cef625f2ba3a32a642715b14ff4', 3, '1c632cef625f2ba3a32a642715b14ff4', 'EMMANUEL', 'ADDO', 'E2-0303-6082', 'BOXLT1 LARTEH AKUAPIM', 'LARTEH PSHTS', 'KOFORIDUA', 'addoemml30@gmail.com', '0244942253', '1977-03-19', 'Male', 'Married', '150', 9700, '06', '2021', 'nKjTgovk7cX9laA/ADDO EMMANUEL.PNG', 'ASEDA NANA YAW ADDO', '0246515962', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2015-04-10 14:43:58', 'yes'),
 (7, 'K197710198159', 'b30930ad4b85876a75383e2d4e58730f', 3, 'b30930ad4b85876a75383e2d4e58730f', 'AKYEAMPONG BROBBEY', 'KWAKU', 'AF-0105-2107', 'ACCRA', 'BRITISH AMERICAN TOBACCO', 'ACCRA', 'kabrobbey@outlook.com', '0276682996', '1977-10-19', 'Male', 'Married', '100', 25000, '06', '2021', 'kNhWRLo7nHwSPYM/KWAKU AKYEAMPONG B.PNG', 'SUSANA MANUBEA BROBBEY', '0276682996', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2017-04-10 14:43:58', 'yes'),
 (8, 'A198802264559', 'd95ab1ddbc1ccf364189c4b5051b1754', 3, 'd95ab1ddbc1ccf364189c4b5051b1754', 'BISMARK', 'AMPOFUL', 'GD-016-6890', 'ACCRA', 'BRITISH AMERICAN TOBACCO', 'ACCRA', 'ampofulb@gmail.com', '0244595747', '1988-02-26', 'Male', 'Married', '250', 10000, '07', '2021', 'LE956JZe4HUjuYh/IMG-20200412-WA0014.jpg', 'RHODALYN AMPOFO', '0244595747', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2018-04-10 14:43:58', 'yes'),
 (9, 'O198012239125', '1ef0c993d3ca4ee5c9177d98e52a4641', 0, '1ef0c993d3ca4ee5c9177d98e52a4641', 'KINGSLEY', ' OPOKU KWAKYE', 'EI-0163-2442', 'BOXMP27 MPRAESO ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'AKIM TAFO', 'kwakyeopoku@gmail.com', '0541712567', '1980-12-23', 'Male', 'Married', '100', 8000, '06', '2021', 'sPngStIlewhyrVf/Kingsley Opoku Kwakye.PNG', 'HANNAH AKYIREM', '0542182168', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2016-04-10 14:43:58', 'yes'),
 (10, 'K196804149849', 'bd9a00153af8971d071912a6640b320c', 0, 'bd9a00153af8971d071912a6640b320c', 'EFFAH', 'KWADWO', 'EB-0040-8673', 'BOXMP27 ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'AKROSO AKIM', 'effahkwadwo29@gmail.com', '0244733266', '1968-04-14', 'Male', 'Married', '500', 18400, '01', '2021', 'GRFAaoMiND6KZXr/EFFAH_KWADWO.PNG', 'KOFI NYAMEKYE EFFAH', '0244733266', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2015-10-10 14:43:58', 'no'),
 (11, 'A197909197866', '8cf963330da5304bef23307812bb9bdc', 4, '8cf963330da5304bef23307812bb9bdc', 'GODWIN', 'AKPALU', 'EI-0441-6066', 'BOX20 KWAHU TAFO', 'ST. JOSEPH TECHNICAL INSTITUTE', 'KOFORIDUA', 'b.godwin_2017@yahoo.com', '0204166375', '1979-09-19', 'Male', 'Married', '100', 7500, '07', '2021', '', 'DORIS KWARTENG', '0204166375', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2017-04-10 14:43:58', 'yes'),
 (12, 'D198211199568', '0c6fe47b5c646315d41e9027388c4e2e', 3, '0c6fe47b5c646315d41e9027388c4e2e', 'FELIX', 'DAMPARE', 'EJ-0052-3600', 'BOXMP27 ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'ABETIFI  KWAHU', 'kofydampary@yahoo.com', '0209020007', '1982-11-19', 'Male', 'Married', '500', 17900, '07', '2021', 'lYvMHULIVi8EsuJ/Dampare_Felix.PNG', 'NANA AMA OFORIWAA DAMPARE', '0209020007', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2019-04-10 14:43:58', 'yes'),
-(13, 'A198809138228', '171b443ad9f8e2396b49cdac0b514015', 3, '171b443ad9f8e2396b49cdac0b514015', 'BERNICE', ' AZUMAH', 'EI-0440-6101', 'BOX20 KWAHU TAFO', 'ST. JOSEPH TECHNICAL INSTITUTE', 'SHIA', 'berniceazumah09@gmail.com', '0246786116', '1988-09-13', 'Female', 'Married', '100', 7000, '05', '2021', 'Bv7LOe9gzS2IAam/AZUMAH BERNICE.PNG', 'AKORDOR ESTHER', '0246786116', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2016-04-10 14:43:58', 'yes'),
+(13, 'A198809138228', '171b443ad9f8e2396b49cdac0b514015', 3, '171b443ad9f8e2396b49cdac0b514015', 'BERNICE', ' AZUMAH', 'EI-0440-6101', 'BOX20 KWAHU TAFO', 'ST. JOSEPH TECHNICAL INSTITUTE', 'SHIA', 'berniceazumah09@gmail.com', '0246786116', '1988-09-13', 'Female', 'Married', '100', 7402, '09', '2021', 'Bv7LOe9gzS2IAam/AZUMAH BERNICE.PNG', 'AKORDOR ESTHER', '0246786116', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2016-04-10 14:43:58', 'yes'),
 (14, 'S198407029056', 'bd92219b51135ac736047a2fb5d100a3', 0, 'bd92219b51135ac736047a2fb5d100a3', 'RITA', 'SERWAA', 'EI-0158-9449', 'KWAHU ATIBIE', 'KWAHU ATIBIE', 'KWAHU TAFO', 'abena84rita@gmail.com', '0243738475', '1984-07-02', 'Female', 'Single', '100', 5100, '06', '2021', 'enLuJ1GPXUMxQ2D/RITA SERWAA.PNG', 'AWUDU ZAINAB', '0243738475', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2018-04-10 14:43:58', 'yes'),
 (15, 'A198612143049', '4e15912a0cb5d2e4d16de8299976da97', 4, '4e15912a0cb5d2e4d16de8299976da97', 'REGINA', 'AMPADU', 'EH-0000-9502', 'BOX20 KWAHU TAFO', 'ST. JOSEPH TECHNICAL INSTITUTE', 'ABETIFI', 'regina1986ampadupl@gmail.com', '0546126126', '1986-12-14', 'Female', 'Married', '100', 7000, '07', '2021', '', 'PAIGE EFFAH OPOKU', '0546126126', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2015-04-10 14:43:58', 'yes'),
 (16, 'B198302094140', 'cf946c41f98d12c2ccbb53fbb58ae491', 3, 'cf946c41f98d12c2ccbb53fbb58ae491', 'GODFRED', 'BAABU', 'EI-0544-5142', 'BOX20 KWAHU TAFO', 'ST. JOSEPH TECHNICAL INSTITUTE', 'MPRAESO', 'gbaabu1983@gmail.com', '0244570132', '1983-02-09', 'Male', 'Married', '50', 3150, '11', '2020', 'KrkDuWClcE23pa6/BAABU.PNG', 'HELLEN KORLEKIE OTOO', '0244570132', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2015-04-10 14:43:58', 'no'),
@@ -3335,7 +3376,7 @@ INSERT INTO `members` (`id`, `member_id`, `member_id_encrypt`, `total_guarantee`
 (29, 'A198812104190', 'ecad8001f92c1a31c51476401f69daae', 4, 'ecad8001f92c1a31c51476401f69daae', 'KWAME', 'AGYEPONG LARBI', 'EI--0163-4822', 'BOXMP27 MPRAESO ATIBIE', 'KWAHU GOVERNMENT HOSPITAL', 'KOFORIDUA JUMAPO', 'klagyepong4real@gmail.com', '0244058673', '1988-12-10', 'Male', 'Single', '200', 10800, '12', '2020', 'cSf368di2HyDenF/AGYEPONG KWAME LARBI.PNG', 'SAMUEL AGYEPONG', '0244058673', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2016-04-10 14:43:58', 'yes'),
 (30, 'A198101211224', 'f32c195df052ba6152d40376a3698fc7', 0, 'f32c195df052ba6152d40376a3698fc7', 'MICHAEL', 'AMOAH-OBENG', 'EH-0001-9622', 'OKWAHU CAMPUS, ABETIFI', 'PRESBYTERIAN UNIVERSITY COLLEGE ABETIFI', 'NSUTA-BUEM, OTI REGION', 'amichacel@gmail.com', '0243178479', '1981-01-21', 'Male', 'Married', '100', 5400, '12', '2020', '', 'PHILOMEMA AMOA-OBENG', '0243178479', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'no', 'yes', 'm199204012020', '2020-01-10 14:43:58', 'yes'),
 (31, 'O197802213335', 'ff1ddf7affced72bb600a070aaea9a76', 0, 'ff1ddf7affced72bb600a070aaea9a76', 'FRANCIS', 'OSEI AGYEI', 'EW-0026-0705', 'BOX20 KWAHU TAFO', 'ST. JOSEPH TECHNICAL INSTITUTE', 'ASAMANKESE', 'oseifrans197@gmail.com', '0246753777', '1978-02-21', 'Male', 'Married', '100', 6700, '04', '2021', 'QRoIYA45itNfaTS/OSEI AGYEI FRANCIS.PNG', 'BRIDGET SERWAA AGYEI', '0243753777', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2015-04-10 14:43:58', 'no'),
-(32, 'A197701188203', '362ea5c93a4504e2a23b0ff37491417a', 2, '362ea5c93a4504e2a23b0ff37491417a', 'HARRY ERNEST', 'AFEDO', 'EI-0121-6588', 'BEPONG SHS', 'BEPONG SHS', 'AVALAVI-AFIFE, KETU', 'afedoharry@gmail.com', '0243402673', '1977-01-18', 'Male', 'Married', '200', 9400, '07', '2021', '1oLxHzvlfDVwhJI/AFEDO HARRY.PNG', 'AFEDO MANNEL  DELAEDEM', '0243402673', '20', 'DELAESI MIKAYLA AFEDO', '0243402673', '20', 'MELVIN ELIKEM AFEDO', '0243402673', '25', 'EDUDZI MAVERICK AFEDO', '0243402673', '30', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2017-04-10 14:43:58', 'yes'),
+(32, 'A197701188203', '362ea5c93a4504e2a23b0ff37491417a', 3, '362ea5c93a4504e2a23b0ff37491417a', 'HARRY ERNEST', 'AFEDO', 'EI-0121-6588', 'BEPONG SHS', 'BEPONG SHS', 'AVALAVI-AFIFE, KETU', 'afedoharry@gmail.com', '0243402673', '1977-01-18', 'Male', 'Married', '200', 9400, '07', '2021', '1oLxHzvlfDVwhJI/AFEDO HARRY.PNG', 'AFEDO MANNEL  DELAEDEM', '0243402673', '20', 'DELAESI MIKAYLA AFEDO', '0243402673', '20', 'MELVIN ELIKEM AFEDO', '0243402673', '25', 'EDUDZI MAVERICK AFEDO', '0243402673', '30', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2017-04-10 14:43:58', 'yes'),
 (33, 'A201210193179', '804a70567b6b99224f7cb04eae59ec9b', 2, '804a70567b6b99224f7cb04eae59ec9b', 'MANNEL DELAEDEM', 'AFEDO', 'EI-0121-6588', 'BEPONG', 'STUDENT', 'AVALAVI-AFIFE, KETU', 'afedoharry@gmail.com', '0243402673', '2012-10-19', 'Male', 'Single', '100', 4000, '07', '2021', 'sXie8CM4Zlnu75V/MANNEL DELA EDEM.PNG', 'AFEDO HARRY ERNEST', '0243402673', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2018-04-10 14:43:58', 'yes'),
 (34, 'N198603123977', 'ae945938ee671ef1bc3cbd6e484ae65c', 2, 'ae945938ee671ef1bc3cbd6e484ae65c', 'PATIENCE', 'NYAVE', 'EI-0121-6588', 'BEPONG', 'BEPONG PRESBYTERIAN PRIMARY SCHOOL', 'DABALA', 'patiencenyave@gmail.com', '0240781917', '1986-03-12', 'Female', 'Married', '100', 1900, '07', '2021', 'oQUMhxy7aqF52ru/PATIENCE NYAVE.PNG', 'AFEDO HARRY ERNEST', '0243402673', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'm199204012020', '2020-01-10 14:43:58', 'yes'),
 (35, 'B198806031011', '013a9b254355174c5654ac893f4b3b7d', 3, '013a9b254355174c5654ac893f4b3b7d', 'MAVIS', 'BOATENG', 'EI-0123-2486', 'ASAKRAKA BOX 16', 'ASAKRAKA DA BASIC SCHOOL', 'OBO', 'boatengmavis615@gmail.com', '0244233573', '1988-06-03', 'Female', 'Married', '200', 10100, '02', '2021', 'GJ8Xd27avjKrQON/BOATENG MAVIS.PNG', 'ELMER AWUAH DANKYI', '0244233573', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'm199204012020', '2018-04-10 14:43:58', 'yes'),
@@ -3391,7 +3432,7 @@ INSERT INTO `members` (`id`, `member_id`, `member_id_encrypt`, `total_guarantee`
 (85, 'A194807013283', '616978f30496a9b1121714d400c613b0', 0, '616978f30496a9b1121714d400c613b0', 'Francis', 'Akuamoah', 'El-0524-5922', 'P. O. Box 14, Kwahu tafo', 'Kwahu tafo', 'Kwahu tafo', '', '0552193246', '1948-07-01', 'Male', 'Married', '200', 1400, '04', '2021', '', 'Lydia ofosuaah', '0551045513', '25', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'a202009072020', '2020-10-09 14:06:12', 'no'),
 (86, 'O198904035945', '398082ff9ed7e5dd93f2b9b899b31f54', 0, '398082ff9ed7e5dd93f2b9b899b31f54', 'Elijah kwame ', 'Ofori Agyemang ', 'BT-0146-6122', 'Techiman', 'Techiman', 'Assin fosu', 'agyemangs@yahoo.com ', '0592510961', '1989-04-03', 'Male', 'Single', '200', 1200, '02', '2021', '', 'Mavis Boateng  100%', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'a202009072020', '2020-10-31 14:51:04', 'no'),
 (87, 'G198705116309', 'a34732f4c215f89f8c7498ecf32284f2', 0, 'a34732f4c215f89f8c7498ecf32284f2', 'Augustine ', 'Gyimah Baffour', 'AD-191-8930', 'Box is 9356 Kumasi', 'Self employed ', 'Adansi Fomena', 'bgaustine33@gmail.com ', '0244687268', '1987-05-11', 'Male', 'Married', '100', 700, '07', '2021', '', 'Opoku Mensah Love', '0247048837', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'a202009072020', '2021-01-02 08:10:11', 'yes'),
-(88, 'A199709248428', 'e12cce3e02e24a0e9edbe3cfe3ca5d5a', 0, 'e12cce3e02e24a0e9edbe3cfe3ca5d5a', 'DACOSTA', 'AGYEI', '', 'AK202-5215', 'Student', 'Kumasi', 'ohenebadac@gmail.com', '0548157455', '1997-09-24', 'Male', 'Single', '100', 7000, '08', '2021', '', 'AHEMA', '0247690569', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'no', 'no', 'a202009072020', '2021-01-09 09:24:47', 'yes'),
+(88, 'A199709248428', 'e12cce3e02e24a0e9edbe3cfe3ca5d5a', 0, 'e12cce3e02e24a0e9edbe3cfe3ca5d5a', 'DACOSTA', 'AGYEI', '', 'AK202-5215', 'Student', 'Kumasi', 'ohenebadac@gmail.com', '0548157455', '1997-09-24', 'Male', 'Single', '100', 10000, '08', '2021', '', 'AHEMA', '0247690569', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'no', 'no', 'a202009072020', '2021-01-09 09:24:47', 'yes'),
 (89, 'O198803187316', '1c73e25b585f0d6edc2ca7ecc8c18502', 0, '1c73e25b585f0d6edc2ca7ecc8c18502', 'Deborah ', 'Owiredu Amankwah ', 'EJ-0055-8418', 'Box 581 Accra ', 'Jingle bell school ', 'Asakraka kwahu ', 'deborahamankwahowiredu@yahoo.com ', '0249529485', '1988-03-18', 'Female', 'Married', '100', 2100, '08', '2021', '', 'Yvette Ansomah owiredu ', '0249529485', '100', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'a202009072020', '2021-01-09 16:31:55', 'yes'),
 (90, 'A198408272577', 'd7c5ddd04f6973134551d36e6f1f70bc', 0, 'd7c5ddd04f6973134551d36e6f1f70bc', 'Isaac ', 'Antwi', 'EI-0445-9322', 'P o box 20 Kwahu tafo ', 'Kwahu tafo ', 'Apire', 'antwiisaac87@yahoo.com ', '0242947772', '1984-08-27', 'Male', 'Married', '100', 400, '04', '2021', '', 'Emmanuella antwi', '0551503417', '50', 'Jeremy antwi ', '0551503417', '50', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'a202009072020', '2021-01-26 05:16:10', 'no'),
 (91, 'B198803128128', '8975898add8756c3fc7ce86733ee8c0c', 0, '8975898add8756c3fc7ce86733ee8c0c', 'Matilda ', 'Baidoo ', 'EI-0214-3370', 'Box 17 nkwatia kwahu', 'St peter jhs', 'Kwahu tafo ', 'matildabaidoo@gmail.com ', '0240047185', '1988-03-12', 'Female', 'Married', '200', 1400, '07', '2021', '', 'Audrey kissiwaa', '0240047185', '40', 'Myron amoah addo', '0240047185', '20', 'Arianna ohenewaa ', '0245191316', '20', 'Avina ohenewaa ', '0245191316', '20', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'no', 'a202009072020', '2021-01-31 18:59:23', 'yes'),
@@ -7309,7 +7350,16 @@ INSERT INTO `members_activities` (`id`, `member_id`, `activity_type`, `descripti
 (3875, 'a199709248428', 'login', 'Login make suceesfully', 'August 5, 2021, 12:29 pm', '', 'yes'),
 (3876, 'a199709248428', 'login', 'Login make suceesfully', 'August 5, 2021, 12:30 pm', '', 'yes'),
 (3877, 'a199709248428', 'login', 'Login make suceesfully', 'August 5, 2021, 12:30 pm', '', 'yes'),
-(3878, 'a199709248428', 'login', 'Login make suceesfully', 'August 5, 2021, 1:15 pm', '', 'yes');
+(3878, 'a199709248428', 'login', 'Login make suceesfully', 'August 5, 2021, 1:15 pm', '', 'yes'),
+(3879, 'e3d199250595fdfae9afa9fe6dbbc52f', 'Loan Paid', ' A loan of  220.5 was paid', '7th September, 2021', 'a202009072020', 'yes'),
+(3880, 'e3d199250595fdfae9afa9fe6dbbc52f', 'Loan Paid', ' A loan of  220.5 was paid', '7th September, 2021', 'a202009072020', 'yes'),
+(3881, '4e15912a0cb5d2e4d16de8299976da97', 'Loan Paid', ' A loan of  1194.9 was paid', '8th September, 2021', 'a202009072020', 'yes'),
+(3882, 'f32c195df052ba6152d40376a3698fc7', 'Loan Paid', ' A loan of  321.3 was paid', '8th September, 2021', 'a202009072020', 'yes'),
+(3883, 'B197706273872', 'Monthly Contribution Paid', '150  was Paid for the month of 072021', '9th September, 2021', 'a202009072020', 'yes'),
+(3884, 'A198809138228', 'Monthly Contribution Paid', '100  was Paid for the month of 062021', '9th September, 2021', 'a202009072020', 'yes'),
+(3885, 'A198809138228', 'Monthly Contribution Paid', '100  was Paid for the month of 072021', '9th September, 2021', 'a202009072020', 'yes'),
+(3886, 'A198809138228', 'Monthly Contribution Paid', '100  was Paid for the month of 082021', '9th September, 2021', 'a202009072020', 'yes'),
+(3887, 'A198809138228', 'Monthly Contribution Paid', '100  was Paid for the month of 092021', '9th September, 2021', 'a202009072020', 'yes');
 
 -- --------------------------------------------------------
 
@@ -10743,7 +10793,12 @@ INSERT INTO `members_contributions` (`id`, `member_id`, `member_id_encrypt`, `ye
 (3411, 'A197701188203', '362ea5c93a4504e2a23b0ff37491417a', '2021', '07', '100', '0003411', '2021-08-01', '2021-08-01 14:21:34', 'a202009072020', 'yes'),
 (3412, 'N198603123977', 'ae945938ee671ef1bc3cbd6e484ae65c', '2021', '07', '100', '0003412', '2021-08-01', '2021-08-01 14:22:21', 'a202009072020', 'yes'),
 (3413, 'A197803218630', '5ae9f282be92007656e70ec35f9b0417', '2021', '07', '100', '0003413', '2021-08-01', '2021-08-01 21:56:29', 'a202009072020', 'yes'),
-(3414, 'G198705116309', 'a34732f4c215f89f8c7498ecf32284f2', '2021', '07', '100', '0003414', '2021-08-02', '2021-08-02 08:10:00', 'a202009072020', 'yes');
+(3414, 'G198705116309', 'a34732f4c215f89f8c7498ecf32284f2', '2021', '07', '100', '0003414', '2021-08-02', '2021-08-02 08:10:00', 'a202009072020', 'yes'),
+(3415, 'B197706273872', 'df33a280f461067d82a4957aac60a637', '2021', '07', '100', '0003415', '2021-09-09', '2021-09-09 05:18:35', 'a202009072020', 'yes'),
+(3416, 'A198809138228', '171b443ad9f8e2396b49cdac0b514015', '2021', '06', '105', '0003416', '2021-09-09', '2021-09-09 05:22:25', 'a202009072020', 'yes'),
+(3417, 'A198809138228', '171b443ad9f8e2396b49cdac0b514015', '2021', '07', '100', '0003417', '2021-09-09', '2021-09-09 08:03:56', 'a202009072020', 'yes'),
+(3418, 'A198809138228', '171b443ad9f8e2396b49cdac0b514015', '2021', '08', '100', '0003418', '2021-09-09', '2021-09-09 08:06:41', 'a202009072020', 'yes'),
+(3419, 'A198809138228', '171b443ad9f8e2396b49cdac0b514015', '2021', '09', '102', '0003419', '2021-09-09', '2021-09-09 08:10:02', 'a202009072020', 'yes');
 
 -- --------------------------------------------------------
 
@@ -15599,7 +15654,20 @@ INSERT INTO `staff_activities` (`id`, `staff_id`, `activity_type`, `description`
 (4512, 'a202009072020', 'login', 'Login make suceesfully', 'August 2, 2021, 11:15 am', 'yes'),
 (4513, '', 'Loan Paid', 'A loan of 19932 was paid  By : a202009072020', '3rd August, 2021', 'yes'),
 (4514, 'a202009072020', 'login', 'Login make suceesfully', 'August 5, 2021, 1:20 pm', 'yes'),
-(4515, 'a202009072020', 'login', 'Login make suceesfully', 'August 9, 2021, 2:13 pm', 'yes');
+(4515, 'a202009072020', 'login', 'Login make suceesfully', 'August 9, 2021, 2:13 pm', 'yes'),
+(4516, 'a202009072020', 'login', 'Login make suceesfully', 'August 18, 2021, 4:55 pm', 'yes'),
+(4517, 'm199204012020', 'login', 'Login make suceesfully', 'August 31, 2021, 8:41 pm', 'yes'),
+(4518, 'a202009072020', 'login', 'Login make suceesfully', 'September 7, 2021, 6:09 pm', 'yes'),
+(4519, '', 'Loan Paid', 'A loan of 220.5 was paid  By : a202009072020', '7th September, 2021', 'yes'),
+(4520, '', 'Loan Paid', 'A loan of 220.5 was paid  By : a202009072020', '7th September, 2021', 'yes'),
+(4521, '', 'Loan Paid', 'A loan of 1194.9 was paid  By : a202009072020', '8th September, 2021', 'yes'),
+(4522, '', 'Loan Paid', 'A loan of 321.3 was paid  By : a202009072020', '8th September, 2021', 'yes'),
+(4523, 'a202009072020', 'login', 'Login make suceesfully', 'September 9, 2021, 7:13 am', 'yes'),
+(4524, '', 'Monthly Contribution Paid', 'B197706273872 Monthly Contribution was Paid with amount of 150 By : a202009072020', '9th September, 2021', 'yes'),
+(4525, '', 'Monthly Contribution Paid', 'A198809138228 Monthly Contribution was Paid with amount of 100 By : a202009072020', '9th September, 2021', 'yes'),
+(4526, '', 'Monthly Contribution Paid', 'A198809138228 Monthly Contribution was Paid with amount of 100 By : a202009072020', '9th September, 2021', 'yes'),
+(4527, '', 'Monthly Contribution Paid', 'A198809138228 Monthly Contribution was Paid with amount of 100 By : a202009072020', '9th September, 2021', 'yes'),
+(4528, '', 'Monthly Contribution Paid', 'A198809138228 Monthly Contribution was Paid with amount of 100 By : a202009072020', '9th September, 2021', 'yes');
 
 -- --------------------------------------------------------
 
@@ -15626,7 +15694,7 @@ CREATE TABLE `who_can_login_in` (
 --
 
 INSERT INTO `who_can_login_in` (`id`, `username`, `password`, `real_password`, `type`, `last_login`, `status`, `date_added`, `confirm`, `done_by`, `active`) VALUES
-(1, 'M199204012020', '6e70d591814000a5a40e5a904cdfaac7', 'godson@0548', '1', '2021-07-12 10:29:40', 'online', '2020-04-09 13:17:14', 'yes', 'M199204012020', 'yes'),
+(1, 'M199204012020', '6e70d591814000a5a40e5a904cdfaac7', 'godson@0548', '1', '2021-08-31 18:41:28', 'online', '2020-04-09 13:17:14', 'yes', 'M199204012020', 'yes'),
 (2, 'B197706273872', '4ab52371762b735317125e6446a51e8f', '2804', '2', '2021-06-10 05:37:53', 'online', '2020-04-10 14:43:58', 'yes', 'm199204012020', 'yes'),
 (3, 'L198506213028', '946529c8ecce44455d8c946ec136a812', 'hart4420', '2', '2021-08-01 10:40:20', 'online', '2020-04-10 14:47:44', 'yes', 'm199204012020', 'yes'),
 (4, 'O197612215723', 'a93f4485a3f5f682affa8de49f9bca33', '*kwaben#a*76', '2', '2020-09-03 08:34:17', 'online', '2020-04-10 14:59:37', 'yes', 'm199204012020', 'yes'),
@@ -15712,7 +15780,7 @@ INSERT INTO `who_can_login_in` (`id`, `username`, `password`, `real_password`, `
 (84, 'B199306254666', 'cd0704920792ca9589b11428a0a0bed6', 'osei4631', '2', '2021-03-06 21:11:41', 'online', '2020-09-02 15:56:27', 'yes', 'm199204012020', 'yes'),
 (85, 'O198910118711', 'b4a21ae257946448de1e531f7f40ff54', 'O198910118711', '2', '2020-12-17 16:47:21', 'online', '2020-09-02 15:59:50', 'yes', 'm199204012020', 'yes'),
 (86, 'O199206219683', '7addaab7ba3c244b065a803dfeec2c38', 'O199206219683', '2', '2020-12-17 17:05:32', 'online', '2020-09-02 16:03:46', 'yes', 'm199204012020', 'yes'),
-(87, 'A202009072020', '81dc9bdb52d04dc20036dbd8313ed055', '1234', '3', '2021-08-09 12:13:01', 'online', '2020-09-07 07:21:14', 'yes', 'm199204012020', 'yes'),
+(87, 'A202009072020', '81dc9bdb52d04dc20036dbd8313ed055', '1234', '3', '2021-09-09 05:13:23', 'online', '2020-09-07 07:21:14', 'yes', 'm199204012020', 'yes'),
 (88, 'O197802212020', 'c72090ccd0d4ebf76542935523e26b62', 'O197802212020', '1', '2021-05-07 17:01:13', 'online', '2020-09-08 21:13:56', 'yes', 'm199204012020', 'yes'),
 (89, 'A194807013283', '616978f30496a9b1121714d400c613b0', 'A194807013283', '2', '', 'offline', '2020-10-09 14:06:12', 'yes', 'a202009072020', 'yes'),
 (90, 'O198904035945', '398082ff9ed7e5dd93f2b9b899b31f54', 'O198904035945', '2', '2020-10-31 18:28:48', 'online', '2020-10-31 14:51:04', 'yes', 'a202009072020', 'yes'),
@@ -15766,6 +15834,12 @@ ALTER TABLE `company_share_dividend`
 -- Indexes for table `company_share_dividend_list`
 --
 ALTER TABLE `company_share_dividend_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comp_reve_loan_penalty`
+--
+ALTER TABLE `comp_reve_loan_penalty`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -15938,7 +16012,7 @@ ALTER TABLE `company_returnship`
 -- AUTO_INCREMENT for table `company_revenue`
 --
 ALTER TABLE `company_revenue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=951;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=958;
 
 --
 -- AUTO_INCREMENT for table `company_share_dividend`
@@ -15951,6 +16025,12 @@ ALTER TABLE `company_share_dividend`
 --
 ALTER TABLE `company_share_dividend_list`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `comp_reve_loan_penalty`
+--
+ALTER TABLE `comp_reve_loan_penalty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -15986,13 +16066,13 @@ ALTER TABLE `employment_type`
 -- AUTO_INCREMENT for table `loans_all`
 --
 ALTER TABLE `loans_all`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `loans_pay`
 --
 ALTER TABLE `loans_pay`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=729;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=733;
 
 --
 -- AUTO_INCREMENT for table `loans_top_up`
@@ -16004,7 +16084,7 @@ ALTER TABLE `loans_top_up`
 -- AUTO_INCREMENT for table `loan_collects`
 --
 ALTER TABLE `loan_collects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=729;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=733;
 
 --
 -- AUTO_INCREMENT for table `members`
@@ -16016,13 +16096,13 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `members_activities`
 --
 ALTER TABLE `members_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3879;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3888;
 
 --
 -- AUTO_INCREMENT for table `members_contributions`
 --
 ALTER TABLE `members_contributions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3415;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3420;
 
 --
 -- AUTO_INCREMENT for table `members_deactivated`
@@ -16088,7 +16168,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `staff_activities`
 --
 ALTER TABLE `staff_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4516;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4529;
 
 --
 -- AUTO_INCREMENT for table `who_can_login_in`

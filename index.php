@@ -3,6 +3,7 @@
 include 'headerweb.php';
 
 
+
 ?>
 
 
@@ -53,9 +54,10 @@ include 'headerweb.php';
 							data-paddingbottom="[0,0,0,0]"
 							data-paddingleft="[0,0,0,0]"
 
-							style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;"><div class="title-white">Need A Quick Bussiness Loan </div>
+							style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;"><div class="title-white">WHO WE ARE </div>
 							
-							<div class="text-white"  style="margin:40px 0;">Aliquam pharetra lacinia lacus vitae pretium. Morbi placerat risus sit amet <br>nulla efficitur. Vivamus ultrices semper ullamacorper placerat.</div>
+							<div class="text-white"  style="margin:40px 0;">Welcome to DAAKYE WELFARE FUND
+</div>
 
 						</div>
 					</li>
@@ -97,9 +99,10 @@ include 'headerweb.php';
 						style="z-index: 6; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;">
 						<div class="title-white">Need A Quick Bussiness Loan</div>
 
-						<div class="text-white"  style="margin:40px 0;">Aliquam pharetra lacinia lacus vitae pretium. Morbi placerat risus sit amet <br>nulla efficitur. Vivamus ultrices semper ullamacorper placerat.</div>
+						<div class="text-white"  style="margin:40px 0;">To promote thrift among its members by providing a means of saving.</div>
 
 					</li>
+
 
 
 
@@ -133,7 +136,7 @@ include 'headerweb.php';
 
 						style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;"><div class="title-white"> Need A Quick Bussiness Loan</div>
 
-						<div class="text-white"  style="margin:40px 0;">Aliquam pharetra lacinia lacus vitae pretium. Morbi placerat risus sit amet <br>nulla efficitur. Vivamus ultrices semper ullamacorper placerat.</div>
+						<div class="text-white"  style="margin:40px 0;">To provide loans to its members for providence or productive purposes at a low interest rate.</div>
 
 					</div>
 				</li>
@@ -171,13 +174,12 @@ include 'headerweb.php';
 
 					style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;"><div class="title-white"> Need A Quick Bussiness Loan</div>
 
-					<div class="text-white"  style="margin:40px 0;">Aliquam pharetra lacinia lacus vitae pretium. Morbi placerat risus sit amet <br>nulla efficitur. Vivamus ultrices semper ullamacorper placerat.</div>
+					<div class="text-white"  style="margin:40px 0;">To provide quality financial services to its members..</div>
 
 				</div>
 			</li>
 
 			<!-- -------------------------ENDS SLIDE 4 -->
-
 
 
 
@@ -208,7 +210,7 @@ include 'headerweb.php';
 
 				style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;"><div class="title-white"> Need A Quick Bussiness Loan</div>
 
-				<div class="text-white"  style="margin:40px 0;">Aliquam pharetra lacinia lacus vitae pretium. Morbi placerat risus sit amet <br>nulla efficitur. Vivamus ultrices semper ullamacorper placerat.</div>
+				<div class="text-white"  style="margin:40px 0;">To promote the welfare of its members.</div>
 
 			</div>
 		</li>
@@ -246,7 +248,7 @@ include 'headerweb.php';
 
 			style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;"><div class="title-white"> Need A Quick Bussiness Loan</div>
 
-			<div class="text-white"  style="margin:40px 0;">Aliquam pharetra lacinia lacus vitae pretium. Morbi placerat risus sit amet <br>nulla efficitur. Vivamus ultrices semper ullamacorper placerat.</div>
+			<div class="text-white"  style="margin:40px 0;">Join the Team now.</div>
 
 		</div>
 	</li>
@@ -429,7 +431,7 @@ if(htmlDiv) {
 			<div class="row">
 				<div class="col-sm-6">
 
-					<p><img class="wow zoomIn" src="wp-content/uploads/2019/01/image-2-4.jpg" alt="Awesome Image"></p>
+					<p><img class="wow zoomIn" src="images/banner_member_contribution.jpg" alt="Awesome Image"></p>
 
 				</div><!-- col -->
 				<div class="col-sm-6">
@@ -446,7 +448,8 @@ if(htmlDiv) {
 							<div id="collapse1-11" class="panel-collapse collapse in">
 								<div class="panel-body">
 
-									<p>My pledge is to create and maintain academic excellence and restore the lost confidence and ignite the interest of students in SRC and its activities through a well-organized, devoted, disciplined, determination, commitment, unchanging zeal and interactive system of leadership</p>
+									<p>To bring friends who share common ideas together to
+provide readily, accessible and affordable facility.</p>
 
 								</div><!-- panel-body -->
 							</div><!-- panel-collapse -->
@@ -463,10 +466,9 @@ if(htmlDiv) {
 								<div class="panel-body">
 
 									<p> 
-										Evolve to be among the top 5 Savings & Loans Companies in Ghana.<br>
-										Transform the lives of our clients by empowering them to create wealth by convenience.
-										Provide excellent returns for our shareholders
-									Create an exceptional working environment for our employees which fosters growth </p>
+										To impact positively on the socio-economic life of our 
+members and relations through offering affordable and client-friendly saving 
+opportunities and loan products </p>
 
 								</div><!-- panel-body -->
 							</div><!-- panel-collapse -->
@@ -482,7 +484,13 @@ if(htmlDiv) {
 							<div id="collapse1-13" class="panel-collapse collapse ">
 								<div class="panel-body">
 
-									<p>We come together and strive to meet the needs, aspirations,  and goals of our  student population.</p>
+									<p>
+										i. To promote thrift among its members by providing a means of saving. <br>
+ii. To provide loans to its members for providence or productive purposes at a low interest  rate.  <br>
+iii. To provide quality financial services to its members. <br>
+iv. To promote the welfare of its members.  <br>
+
+									</p>
 
 								</div><!-- panel-body -->
 							</div><!-- panel-collapse -->
@@ -541,7 +549,7 @@ if(htmlDiv) {
 					<div class="headline text-center">
 
 						<h2>Our Services </h2>
-						<p> lorem loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem </p>
+						<!-- <p> lorem loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem </p> -->
 
 					</div><!-- headline -->
 
@@ -564,7 +572,7 @@ if(htmlDiv) {
 						<div class="service-box-content">
 
 							<h5><a >CONTRIBUTION</a></h5>
-							<p>Honoring, appreciating and awarding the most-performed lecturer in each faculty to inspire healthy competition and raise lecture performance.</p>
+							<p>Members of the welfare must save regularly through a monthly contribution of a minimum. Saving or contribution amount will serve as part of collateral for loans. This means that the  higher the amount of saving the higher the amount of loan that will be given.</p>
 
 							<a href=""><span> << Read More >> </span></a>
 							
@@ -586,7 +594,7 @@ if(htmlDiv) {
 						<div class="service-box-content">
 
 							<h5><a >LOANS</a></h5>
-							<p>Honoring, appreciating and awarding the most-performed lecturer in each faculty to inspire healthy competition and raise lecture performance.</p>
+							<p>A Member is entitled to a loan of up to 200% of his/her total contribution at the time of applying for a loan, at a rate of 5% per annum and/or 10% for 13 to 36 months.</p>
 
 							<a href=""><span> << Read More >> </span></a>
 
@@ -607,7 +615,7 @@ if(htmlDiv) {
 						<div class="service-box-content">
 
 							<h5><a >CUSTOMERS LOANS</a></h5>
-							<p>Honoring, appreciating and awarding the most-performed lecturer in each faculty to inspire healthy competition and raise lecture performance.</p>
+							<p>A customer can also apply for a loan irrespective of the customer being a member. Outsiders are also entitle to apply for a loan without doing any contribution.</p>
 
 							<a href=""><span> << Read More >> </span></a>
 
@@ -658,10 +666,7 @@ if(htmlDiv) {
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 
-					<p class="text-center">Quisque a blandit sapien. Nullam eget lorem non erat viverra pulvinar.
-						Cras eu aliquam odio. Mauris tincidunt purus vitae purus egestas. Nullam nec nisl
-						volutpat, elementum tortor sit amet, finibus ligula. In at diam elementum quis enim ornare
-					finibus in nec felis. Praesent interdum vestibulum ultrices</p>
+					<p class="text-center">Daakye Welfare Fund (dwf) was formed in the year 30-04-2015 by Agya Kwaku Baffou Antwi as the founder of address KF1443, Koforidua and  nine (9)  cofounders.</p>
 
 				</div>
 			</div>
@@ -673,13 +678,13 @@ if(htmlDiv) {
 				<div class="team-member">
 					<div class="team-member-thumb">
 
-						<img width="480" height="550" src="../wp-content/uploads/2019/01/image-1.jpg" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-1.jpg 480w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-1-262x300.jpg 262w" sizes="(max-width: 480px) 100vw, 480px" />
+						<img style="height: 300px !important;" width="480" height="550" src="images/team/AGYA KWAKU.png" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="images/team/AGYA KWAKU.png 480w, images/team/AGYA KWAKU.png 262w" sizes="(max-width: 480px) 100vw, 480px" />
 						<div class="team-member-hover">
 
 							<div class="team-member-details">
 
-								<h4>Chris Martin</h4>
-								<p>Campaign Manager</p>
+								<h4>Agya Kwaku Baffou-Antwi</h4>
+								<p>Founder</p>
 
 							</div><!-- team-member-details -->
 
@@ -695,13 +700,13 @@ if(htmlDiv) {
 				<div class="team-member">
 					<div class="team-member-thumb">
 
-						<img width="480" height="550" src="../wp-content/uploads/2019/01/image-2.jpg" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-2.jpg 480w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-2-262x300.jpg 262w" sizes="(max-width: 480px) 100vw, 480px" />
+						<img style="height: 300px !important;" width="480" height="550" src="images/team/MICHAEL ASIATEY ODAME.png" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="images/team/MICHAEL ASIATEY ODAME.png 480w, images/team/MICHAEL ASIATEY ODAME.png 262w" sizes="(max-width: 480px) 100vw, 480px" />
 						<div class="team-member-hover">
 
 							<div class="team-member-details">
 
-								<h4>Melisa Pough</h4>
-								<p>Deputy Campaign Manager</p>
+								<h4>MICHAEL ASIATEY ODAME</h4>
+								<p>ACCOUNTANT</p>
 
 							</div><!-- team-member-details -->
 
@@ -718,22 +723,15 @@ if(htmlDiv) {
 				<div class="team-member">
 					<div class="team-member-thumb">
 
-						<img width="480" height="550" src="../wp-content/uploads/2019/01/image-3.jpg" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-3.jpg 480w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-3-262x300.jpg 262w" sizes="(max-width: 480px) 100vw, 480px" />
+						<img style="height: 300px !important;" width="480" height="550" src="images/team/ADDO EMMANUEL.png" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="images/team/ADDO EMMANUEL.png 480w, images/team/ADDO EMMANUEL.png 262w" sizes="(max-width: 480px) 100vw, 480px" />
 						<div class="team-member-hover">
 
 							<div class="team-member-details">
 
-								<h4>Ibrahim Kayaba</h4>
-								<p>Communications Director</p>
+								<h4>ADDO EMMANUEL</h4>
+								<p>DEP. ACCOUNTANT</p>
 
 							</div><!-- team-member-details -->
-
-							<div class="social-media bordered default-color">
-								<a href="https://facebook.com/" target="_blank"><i class="fa fa fa-facebook"></i></a>
-								<a href="https://twitter.com/" target="_blank"><i class="fa fa fa-twitter"></i></a>
-								<a href="https://instagram.com/" target="_blank"><i class="fa fa fa-instagram"></i></a>
-								<a href="https://linkedin.com/" target="_blank"><i class="fa fa fa-linkedin"></i></a>
-							</div><!-- social-media -->
 
 						</div><!-- team-member-hover -->
 
@@ -746,13 +744,13 @@ if(htmlDiv) {
 				<div class="team-member">
 					<div class="team-member-thumb">
 
-						<img width="480" height="550" src="../wp-content/uploads/2019/01/image-4-2.jpg" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-4-2.jpg 480w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-4-2-262x300.jpg 262w" sizes="(max-width: 480px) 100vw, 480px" />
+						<img style="height: 300px !important;" width="480" height="550" src="images/team/AFEDO HARRY.png" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="images/team/AFEDO HARRY.png 480w, images/team/AFEDO HARRY.png 262w" sizes="(max-width: 480px) 100vw, 480px" />
 						<div class="team-member-hover">
 
 							<div class="team-member-details">
 
-								<h4>Director of Social Media</h4>
-								<p>Director of Social Media</p>
+								<h4>AFEDO HARRY</h4>
+								<p>SECRETARY</p>
 
 							</div><!-- team-member-details -->
 
@@ -770,13 +768,13 @@ if(htmlDiv) {
 				<div class="team-member">
 					<div class="team-member-thumb">
 
-						<img width="480" height="550" src="../wp-content/uploads/2019/01/image-5-2.jpg" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-5-2.jpg 480w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-5-2-262x300.jpg 262w" sizes="(max-width: 480px) 100vw, 480px" />
+						<img style="height: 300px !important;" width="480" height="550" src="images/team/joannette Armah.png" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="images/team/joannette Armah.png 480w, images/team/joannette Armah.png 262w" sizes="(max-width: 480px) 100vw, 480px" />
 						<div class="team-member-hover">
 
 							<div class="team-member-details">
 
-								<h4>John Lewis</h4>
-								<p>Campaign Chairman</p>
+								<h4>Joannette Armah</h4>
+								<p>Dep. Secretary</p>
 
 							</div><!-- team-member-details -->
 
@@ -797,13 +795,13 @@ if(htmlDiv) {
 				<div class="team-member">
 					<div class="team-member-thumb">
 
-						<img width="480" height="550" src="../wp-content/uploads/2019/01/image-5-2.jpg" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-5-2.jpg 480w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-5-2-262x300.jpg 262w" sizes="(max-width: 480px) 100vw, 480px" />
+						<img style="height: 300px !important;" width="480" height="550" src="images/team/Owusu-Adjei Michael.png" class="attachment-arctica_480x550 size-arctica_480x550 wp-post-image" alt="" srcset="images/team/Owusu-Adjei Michael.png 480w, images/team/Owusu-Adjei Michael.png 262w" sizes="(max-width: 480px) 100vw, 480px" />
 						<div class="team-member-hover">
 
 							<div class="team-member-details">
 
-								<h4>John Lewis</h4>
-								<p>Political Advisor</p>
+								<h4>Owusu-Adjei Michael</h4>
+								<p>IT Manager</p>
 
 							</div><!-- team-member-details -->
 
@@ -861,7 +859,7 @@ if(htmlDiv) {
 						<div class="headline text-center">
 
 							<h2>WHAT SAY CLIENTS</h2>
-							<p>Lorem ipsum dolor sit amet</p>
+							<p>What our members say</p>
 
 						</div><!-- headline -->
 
@@ -879,11 +877,11 @@ if(htmlDiv) {
 								<div class="testimonial style-2">
 
 									<blockquote>
-										<p>&quot;Maecenas dictum tincidunt tellus, mattis vehicula tellus sodales ut. Pellentesque laoreet magna non ex maximus euismod. Etiam a dui ac ante semper ...&quot;</p>
+										<p>&quot;I was stuck with my bussiness and infact this institution has helped me alot, They gave me loan to expan my bussiness.&quot;</p>
 									</blockquote>
 
-									<h6>Justin Lewis, <span>developer</span></h6>
-									<img width="80" height="80" src="../wp-content/uploads/2019/01/image-1-6.jpg" class="attachment-sigma_80x80 size-sigma_80x80 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-1-6.jpg 80w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-1-6-60x60.jpg 60w" sizes="(max-width: 80px) 100vw, 80px" />
+									<h6>BISMARK AMPOFUL</h6>
+									<img style="width: 80px !important; height: 80px !important;" width="80" height="80" src="images/testimonials/BISMARK AMPOFUL.jpg" class="attachment-sigma_80x80 size-sigma_80x80 wp-post-image" alt="" srcset="images/testimonials/BISMARK AMPOFUL.jpg 80w, images/testimonials/BISMARK AMPOFUL.jpg 60w" sizes="(max-width: 80px) 100vw, 80px" />
 								</div><!-- testimonial -->
 
 							</div><!-- item -->
@@ -892,11 +890,11 @@ if(htmlDiv) {
 								<div class="testimonial style-2">
 
 									<blockquote>
-										<p>&quot;Donec vitae hendrerit massa. Vivamus posuere arcu in rutrum facilisis. Nullam risus ligula, tempor a ipsum vitae, fringilla vehicula lectus. In porta ...&quot;</p>
+										<p>&quot;I joined this group whiles i was making small income, i requested for a loan and they gave me a loan and now i am having 3 big companies.&quot;</p>
 									</blockquote>
 
-									<h6>Sandra Scott, <span>designer</span></h6>
-									<img width="80" height="80" src="../wp-content/uploads/2019/01/image-2-6.jpg" class="attachment-sigma_80x80 size-sigma_80x80 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-2-6.jpg 80w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-2-6-60x60.jpg 60w" sizes="(max-width: 80px) 100vw, 80px" />
+									<h6>JOSHUA ODAME OBENG</h6>
+									<img style="width: 80px !important; height: 80px !important;" width="80" height="80" src="images/testimonials/JOSHUA ODAME OBENG.png" class="attachment-sigma_80x80 size-sigma_80x80 wp-post-image" alt="" srcset="images/testimonials/JOSHUA ODAME OBENG.png 80w, images/testimonials/JOSHUA ODAME OBENG.png 60w" sizes="(max-width: 80px) 100vw, 80px" />
 								</div><!-- testimonial -->
 
 							</div><!-- item -->
@@ -905,11 +903,11 @@ if(htmlDiv) {
 								<div class="testimonial style-2">
 
 									<blockquote>
-										<p>&quot;Phasellus ac accumsan lectus. Nunc auctor pulvinar hendrerit. Integer tincidunt, leo in vehicula ullamcorper, mauris turpis sollicitudin purus, a vehicula neque lacus.&quot;</p>
+										<p>&quot;I have 2 strong pharmacy shop as a results of bein joned to this group. Infact they have really helped me a lot.&quot;</p>
 									</blockquote>
 
-									<h6>Bryan Harris, <span>developer</span></h6>
-									<img width="80" height="80" src="../wp-content/uploads/2019/01/image-3-5.jpg" class="attachment-sigma_80x80 size-sigma_80x80 wp-post-image" alt="" srcset="http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-3-5.jpg 80w, http://wp.efforttech.net/newwp/sigma/wp-content/uploads/2019/01/image-3-5-60x60.jpg 60w" sizes="(max-width: 80px) 100vw, 80px" />
+									<h6>LAMINOR SAMUEL</h6>
+									<img style="width: 80px !important; height: 80px !important;" width="80" height="80" src="images/testimonials/LAMINOR SAMUEL T.png" class="attachment-sigma_80x80 size-sigma_80x80 wp-post-image" alt="" srcset="images/testimonials/LAMINOR SAMUEL T.png 80w, images/testimonials/LAMINOR SAMUEL T.png 60w" sizes="(max-width: 80px) 100vw, 80px" />
 								</div><!-- testimonial -->
 
 							</div><!-- item -->
@@ -948,8 +946,8 @@ if(htmlDiv) {
 
 					<div class="counter">
 
-						<div class="counter-value" data-value="15" data-symbol-after="+"></div>
-						<div class="counter-details">VISIONS</div>
+						<div class="counter-value" data-value="70" data-symbol-after="+"></div>
+						<div class="counter-details">MEMBERS</div>
 
 					</div><!-- counter -->
 
@@ -958,8 +956,8 @@ if(htmlDiv) {
 
 					<div class="counter">
 
-						<div class="counter-value" data-value="5" data-symbol-after="+"></div>
-						<div class="counter-details">Projects</div>
+						<div class="counter-value" data-value="300" data-symbol-after="k"></div>
+						<div class="counter-details">CONTRIBUTIONS</div>
 
 					</div><!-- counter -->
 
@@ -968,8 +966,8 @@ if(htmlDiv) {
 
 					<div class="counter">
 
-						<div class="counter-value" data-value="20" data-symbol-after="k"></div>
-						<div class="counter-details">FOLLOWERS</div>
+						<div class="counter-value" data-value="400" data-symbol-after="k"></div>
+						<div class="counter-details">LOANS GIVING</div>
 
 					</div><!-- counter -->
 
@@ -1030,8 +1028,7 @@ if(htmlDiv) {
 
 						<h5>Address</h5>
 
-						<p>GTUC KUMASI CAMPUS,
-						KSI</p>
+						<p>KWAHU , EASTERN REGION , GHANA</p>
 
 					</div><!-- contact-box -->
 
@@ -1046,8 +1043,9 @@ if(htmlDiv) {
 
 						<h5>Phone / Fax</h5>
 
-						<p>0548157455
-						315-557-7895</p>
+						<p> 0244474866 /
+
+						0203228660</p>
 
 					</div><!-- contact-box -->
 
@@ -1062,7 +1060,7 @@ if(htmlDiv) {
 
 						<h5>E-mail</h5>
 
-						<p> ohenebadac@gmail.com
+						<p> info@daakyewelfare.com
 						</p>
 
 					</div><!-- contact-box -->
