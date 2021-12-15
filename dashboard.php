@@ -1,6 +1,6 @@
 <?php 
 
- 
+  
 
 if ($login_session_type==="3" || $login_session_type==="1") {
 
@@ -168,7 +168,6 @@ $totalExpenses = $getRow231["amount"];
 $LoaninterestPurpose1 = "Loan Interest";
 $LoaninterestPurpose2 = "Loans Interest Paid by the Guarantors";
 $LoaninterestPurpose3 = "Loan Interest and Penalty Interest";
-$PenaltyPurpose = "Penalty For member contribution";
 $RegistrationFeePurpose = "Member Registration Fee";
 $memDeductionPurpose = "5% of Member Deactivated charge";
 
@@ -183,7 +182,7 @@ $totalInterest = $getRow248["amount"];
 
 
 /*-----------------get total penalty Interest  ----------------*/
-$getTotalPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND year_finish='no' AND purpose='$PenaltyPurpose'  ");
+$getTotalPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_contrib_penalty WHERE  active='yes' AND year_finish='no'  ");
 $getRow2482 = mysqli_fetch_assoc($getTotalPenalty);
 $totalPenalty = $getRow2482["amount"];
 
@@ -191,7 +190,14 @@ $totalPenalty = $getRow2482["amount"];
 
 $getthYear = date("Y");
 /*-----------------get total LOAN  penalty Interest  ----------------*/
-$getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year='$getthYear'  ");
+// $getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year='$getthYear'  ");
+// $getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
+// $totalLoanPenalty = $getRow2555656["amount"];
+
+
+
+/*-----------------get total LOAN  penalty Interest  ----------------*/
+$getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year_finish='no'  ");
 $getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
 $totalLoanPenalty = $getRow2555656["amount"];
 
@@ -201,7 +207,7 @@ $totalLoanPenalty = $getRow2555656["amount"];
 
 
 /*-----------------get total Registration fee  ----------------*/
-$getTotalReFee = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND year_finish='no' AND purpose='$RegistrationFeePurpose'  ");
+$getTotalReFee = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND year_finish='no'  ");
 $getRow24823 = mysqli_fetch_assoc($getTotalReFee);
 $totalRegFee = $getRow24823["amount"];
 
@@ -210,7 +216,7 @@ $totalRegFee = $getRow24823["amount"];
 
 
 /*-----------------get total 5% deduction fee  ----------------*/
-$getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND year_finish='no' AND purpose='$memDeductionPurpose'  ");
+$getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_5_perc_mem_deactivate_deduction WHERE  active='yes' AND year_finish='no'  ");
 $getRow248235 = mysqli_fetch_assoc($getTotalDedcutionPercen);
 $totalPercDeduction = $getRow248235["amount"];
 

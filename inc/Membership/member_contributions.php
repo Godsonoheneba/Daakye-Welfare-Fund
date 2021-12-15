@@ -3,7 +3,7 @@
 $getMemberID = $_GET["DACO"];
 $getMemberIDEncrypt = $_GET["TRUE"];
 
-
+ 
 $selStu = mysqli_query($conn, "SELECT * FROM members WHERE  member_id='$getMemberID' AND member_id_encrypt='$getMemberIDEncrypt' AND active='yes' LIMIT 1 ");
 
 if (mysqli_num_rows($selStu)!==0) {
@@ -180,6 +180,37 @@ if (mysqli_num_rows($selStu)!==0) {
  <nav class="page-navs">
   <div class="nav-scroller">
     <div class="nav nav-center nav-tabs">
+
+
+
+
+
+
+      <?php 
+
+       if ($login_session=="b200606012021") {
+
+        ?>
+
+  <a class="nav-link active" href="homepage.php?CHECKER=VIEW_MEMBER_CONTRIBUTIONS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Contributions</a>
+
+        <?php
+        // }else if ($login_session=="b202111112021") {
+
+
+
+        }else{
+
+
+        
+
+
+       ?>
+
+
+
+
+
       <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_INFO&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> "> Overview</a> 
 
       
@@ -194,6 +225,7 @@ if (mysqli_num_rows($selStu)!==0) {
 
       <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_PAYMENTS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Payments</a>
 
+      <?php } ?>
       
     </div>
   </div>

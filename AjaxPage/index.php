@@ -2030,7 +2030,7 @@ if ($_GET["CHECKPOST"]=="changeMemberContributionPost") {
 
 
 
-
+ 
 
 
 
@@ -2078,7 +2078,6 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
     $date_created = $getall["date_created"];
 
 
-    $companyRevenuePurpose = "Penalty For member contribution";
 
 
 
@@ -2131,6 +2130,9 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
+    $thePenaltyDateAded = date("Y-m-d");
+    $thePenaltyYearr = date("Y");
+
 
     $slExist = mysqli_query($conn, "SELECT * FROM members_contributions WHERE member_id='$member_id' AND member_id_encrypt='$member_id_encrypt' AND year='$year_to_pay' AND month='$month_to_pay' AND amount='$payThisAmountAsCOntri' AND active='yes'  ");
 
@@ -2159,7 +2161,7 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
          if ($penaltyContiAMount >0) {
 
-           mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$member_id_encrypt','$id','$penaltyContiAMount','$companyRevenuePurpose','$last_month_contributed','$login_session ')");
+           mysqli_query($conn, "INSERT INTO comp_reve_contrib_penalty (member_id,amount,default_date,date_added,done_by,year) VALUES('$member_id_encrypt','$penaltyContiAMount','$last_month_contributed','$thePenaltyDateAded','$thePenaltyYearr','$login_session ')");
 
            $actualMonthlyContriTODB = $payThisAmountAsCOntri - $penaltyContiAMount;
 
@@ -2210,7 +2212,7 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
          if ($penaltyContiAMount > 0) {
 
-           mysqli_query($conn, "INSERT INTO company_revenue (person_id,loan_id,amount,purpose,purpose_date,done_by) VALUES('$member_id_encrypt','$id','$penaltyContiAMount','$companyRevenuePurpose','$last_month_contributed','$login_session ')");
+           mysqli_query($conn, "INSERT INTO comp_reve_contrib_penalty (member_id,amount,default_date,date_added,done_by,year) VALUES('$member_id_encrypt','$penaltyContiAMount','$last_month_contributed','$thePenaltyDateAded','$thePenaltyYearr','$login_session ')");
 
            $actualMonthlyContriTODB = $ownAMountPayClass - $penaltyContiAMount;
 
@@ -2294,7 +2296,7 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
-////////////////////////PAY MONTHLY DUES BY MEMBER//////////////////////////////////
+////////////////////////PAY REGISTRATION FEE//////////////////////////////////
 if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
 
   if (isset($_POST["memberID"])   ) {
@@ -2303,7 +2305,6 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
 
     $registrationFeePrice = 100;
 
-    $companyRevenuePurpose = "Member Registration Fee";
 
 
     $stf = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$login_session'");
@@ -2320,7 +2321,7 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
     $StaffDescription = "$memberID  - Member Registration Fee was Paid with amount of " . $registrationFeePrice ." By : $login_session";
 
 
-    $selre = mysqli_query($conn, "SELECT id FROM registration_fees ORDER BY id DESC LIMIT 1 ");
+    $selre = mysqli_query($conn, "SELECT id FROM comp_reve_memb_reg_fee ORDER BY id DESC LIMIT 1 ");
 
     $getlastID = mysqli_fetch_assoc($selre);
     $ids = $getlastID["id"] + 1;
@@ -2350,10 +2351,10 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
   }
 
 
-  $companyRevenuePurpose = "Member Registration Fee";
+  $theMemREgDateAded = date("Y-m-d");
+  $theMemREgYearr = date("Y");
 
-
-  $slExist = mysqli_query($conn, "SELECT * FROM registration_fees WHERE member_id='$memberID' AND active='yes'  ");
+  $slExist = mysqli_query($conn, "SELECT * FROM comp_reve_memb_reg_fee WHERE member_id='$memberID' AND active='yes'  ");
 
 
   if (mysqli_num_rows($slExist) > 0) {
@@ -2361,13 +2362,7 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
   } else {
 
 
-    if (
-
-      mysqli_query($conn, "INSERT INTO registration_fees (member_id,amount,receipt_number,done_by) VALUES('$memberID','$registrationFeePrice','$receiptNumber','$login_session') ")) {
-
-
-
-     mysqli_query($conn, "INSERT INTO company_revenue (person_id,amount,purpose,done_by) VALUES('$memberID','$registrationFeePrice','$companyRevenuePurpose','$login_session ')");
+    if (mysqli_query($conn, "INSERT INTO comp_reve_memb_reg_fee (member_id, amount,date_added,receipt_number,done_by,year) VALUES('$memberID','$registrationFeePrice','$theMemREgDateAded','$receiptNumber','$login_session','$theMemREgYearr')")) {
 
 
      mysqli_query($conn, "UPDATE members SET paid_reg_form='yes' WHERE member_id_encrypt='$memberID'  AND active='yes' LIMIT 1 ");
@@ -6416,6 +6411,7 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
     $forFounders = "founders";
     $forAll = "all";
+    $yesFor_Year = "yes";
 
 
     $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes'  ");
@@ -6433,36 +6429,119 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
 
       /*-----------------get total Expenses ----------------*/
-      $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes' AND date_added
-        BETWEEN '$Fromdate' AND '$ToDate'
-        ORDER BY id DESC
-        ");
+      // $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes' AND date_added
+      //   BETWEEN '$Fromdate' AND '$ToDate'
+      //   ORDER BY id DESC
+      //   ");
+      // $getRow231 = mysqli_fetch_assoc($getTotalExp);
+      // $totalExpenses = $getRow231["amount"];
+
+
+
+      // $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes' AND year_finish='$yesFor_Year' ");
+      // $getRow231 = mysqli_fetch_assoc($getTotalExp);
+      // $totalExpenses = $getRow231["amount"];
+
+
+
+
+      /*-----------------get total REVENUE FROM REGISTRATION FEE ----------------*/
+      // $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND date_added
+      //   BETWEEN '$Fromdate' AND '$ToDate'
+      //   ORDER BY id DESC
+      //   ");
+      // $getRow = mysqli_fetch_assoc($getCoRev); 
+      // $totalRegFeeesamount = $getRow["amount"];
+
+
+      // $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND date_added
+      //   BETWEEN '$Fromdate' AND '$ToDate'
+      //   ORDER BY id DESC
+      //   ");
+      // $getRow = mysqli_fetch_assoc($getCoRev); 
+      // $totalRegFeeesamount = $getRow["amount"];
+
+
+
+      /*-----------------get total REVENUE INTEREST----------------*/
+      // $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND date_added
+      //   BETWEEN '$Fromdate' AND '$ToDate'
+      //   ORDER BY id DESC
+      //   ");
+      // $getRow = mysqli_fetch_assoc($getCoRev); 
+      // $totalContriAmount = $getRow["amount"];
+
+
+
+
+      // $totalRevenueHas = $totalContriAmount + $totalRegFeeesamount;
+
+      // $totalInterest = $totalRevenueHas - $totalExpenses;
+
+
+
+
+            /*-----------------get total Expenses ----------------*/
+      $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes'  AND year_finish='no'  ");
       $getRow231 = mysqli_fetch_assoc($getTotalExp);
       $totalExpenses = $getRow231["amount"];
 
 
 
-      /*-----------------get total REVENUE FROM REGISTRATION FEE ----------------*/
-      $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM registration_fees WHERE  active='yes' AND date_created
-        BETWEEN '$Fromdate' AND '$ToDate'
-        ORDER BY id DESC
-        ");
-      $getRow = mysqli_fetch_assoc($getCoRev); 
-      $totalRegFeeesamount = $getRow["amount"];
+
+      $LoaninterestPurpose1 = "Loan Interest";
+      $LoaninterestPurpose2 = "Loans Interest Paid by the Guarantors";
+      $LoaninterestPurpose3 = "Loan Interest and Penalty Interest";
+      $RegistrationFeePurpose = "Member Registration Fee";
+      $memDeductionPurpose = "5% of Member Deactivated charge";
 
 
 
-      /*-----------------get total REVENUE INTEREST----------------*/
-      $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND date_added
-        BETWEEN '$Fromdate' AND '$ToDate'
-        ORDER BY id DESC
-        ");
-      $getRow = mysqli_fetch_assoc($getCoRev); 
-      $totalContriAmount = $getRow["amount"];
+      /*-----------------get total LOAN Interest  ----------------*/
+      $getTotalInteresr = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND year_finish='no' AND ( purpose='$LoaninterestPurpose1' OR  purpose='$LoaninterestPurpose2' OR  purpose='$LoaninterestPurpose3' )  ");
+      $getRow248 = mysqli_fetch_assoc($getTotalInteresr);
+      $totalInterest = $getRow248["amount"];
 
-      $totalRevenueHas = $totalContriAmount + $totalRegFeeesamount;
 
-      $totalInterest = $totalRevenueHas - $totalExpenses;
+
+
+      /*-----------------get total penalty Interest  ----------------*/
+      $getTotalPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_contrib_penalty WHERE  active='yes' AND year_finish='no'  ");
+      $getRow2482 = mysqli_fetch_assoc($getTotalPenalty);
+      $totalPenalty = $getRow2482["amount"];
+
+
+
+/*-----------------get total LOAN  penalty Interest  ----------------*/
+$getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year_finish='no'  ");
+$getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
+$totalLoanPenalty = $getRow2555656["amount"];
+
+
+
+/*-----------------get total Registration fee  ----------------*/
+$getTotalReFee = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND year_finish='no'  ");
+$getRow24823 = mysqli_fetch_assoc($getTotalReFee);
+$totalRegFee = $getRow24823["amount"];
+
+
+/*-----------------get total 5% deduction fee  ----------------*/
+$getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_5_perc_mem_deactivate_deduction WHERE  active='yes' AND year_finish='no'  ");
+$getRow248235 = mysqli_fetch_assoc($getTotalDedcutionPercen);
+$totalPercDeduction = $getRow248235["amount"];
+
+
+
+
+/*-----------------get total Revenue ----------------*/
+
+$getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
+
+$totalInterest = $getAllTOtalInterest - $totalExpenses;
+
+
+
+
 
 
 
@@ -6589,7 +6668,7 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
       } 
 
 
-      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by) VALUES('$yearToCloseAccount','$member_id','$shareAmount','$forFounders', '$login_session') ");
+      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id','$shareAmount','$forFounders', '$login_session','yes') ");
 
 
 
@@ -6618,13 +6697,13 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
       $shareAmountMem = ($total_contribution_made / $overalContributionMade ) * $shareLeft;
 
 
+ 
 
 
 
 
 
-
-      if (mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by) VALUES('$yearToCloseAccount','$member_idATME','$shareAmountMem','$forAll','$login_session') ")) {
+      if (mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_idATME','$shareAmountMem','$forAll','$login_session','yes') ")) {
 
 
       } else {
@@ -6635,19 +6714,30 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
     }
 
 
-    $yearDO = date("Y");
+    // $yearToCloseAccount = date("Y");
 
-    mysqli_query($conn, "INSERT INTO company_returnship (year,amount) VALUES('$yearDO','$returnshipShare') ");
+    mysqli_query($conn, "INSERT INTO company_returnship (year,amount) VALUES('$yearToCloseAccount','$returnshipShare') ");
 
-    mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,done_by) VALUES('$yearDO','$login_session') ");
-
-
-    mysqli_query($conn, " UPDATE company_expenses SET year_finish='yes' WHERE active='yes' AND date_added
-      BETWEEN '$Fromdate' AND '$ToDate' AND year_finish='no'  ");
+    mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,done_by) VALUES('$yearToCloseAccount','$login_session') ");
 
 
-    mysqli_query($conn, " UPDATE company_revenue SET year_finish='yes' WHERE active='yes' AND date_added
-      BETWEEN '$Fromdate' AND '$ToDate' AND year_finish='no'  ");
+    mysqli_query($conn, " UPDATE company_expenses SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+
+
+    mysqli_query($conn, " UPDATE company_revenue SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+
+
+    mysqli_query($conn, " UPDATE comp_reve_contrib_penalty SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+
+
+    mysqli_query($conn, " UPDATE comp_reve_loan_penalty SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+
+
+    mysqli_query($conn, " UPDATE comp_reve_memb_reg_fee SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+
+
+    mysqli_query($conn, " UPDATE comp_reve_5_perc_mem_deactivate_deduction SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+
 
 
   }
@@ -7818,7 +7908,12 @@ if ($_GET["CHECKPOST"]=="getMemberContributionListReportsPost") {
       echo "
 
       <div class=\"btn-toolbar\">
-      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Members/print_all_member_contribution_list.php?PRINT=PRINT_ALL_MEMBERS_LIST_FOR_ALL&&TOTAL=$TotalMEmber&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print All</span></button> 
+      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Members/print_all_member_contribution_list.php?PRINT=PRINT_ALL_MEMBERS_LIST_FOR_ALL&&TOTAL=$TotalMEmber&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print PDF</span></button> 
+
+
+
+      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('inc/Reports/Export_To_Excell/contribution_payment_export.php?EXPORT=EXPORTTOEXCELL&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Export to Excel</span></button> 
+   
 
       </div>
 
@@ -7845,7 +7940,7 @@ if ($_GET["CHECKPOST"]=="getMemberContributionListReportsPost") {
           $done_by = $getdac["done_by"];
 
 
-          $selectst = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$done_by' ");
+          $selectst = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND staffID='$done_by' ");
 
           $getdac2 = mysqli_fetch_assoc($selectst);
 
@@ -7857,7 +7952,7 @@ if ($_GET["CHECKPOST"]=="getMemberContributionListReportsPost") {
 
 
 
-          $selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id_encrypt='$member_id_encrypt' ");
+          $selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$member_id_encrypt' ");
 
           $getdac3 = mysqli_fetch_assoc($selectst2);
 
@@ -8405,6 +8500,148 @@ if ($_GET["CHECKPOST"]=="getlOANSrEPORTSpOST") {
 
 
 
+/*----------------------------LOANS PAYMENTS REPORTS -------------*/
+
+if ($_GET["CHECKPOST"]=="getLoanPaymentsPost") {
+
+  if (isset($_POST["fromDate"]) && isset($_POST["toDate"]) ) {
+
+    $fromDate  = $_POST["fromDate"];
+    $toDate  = $_POST["toDate"];
+
+
+    if (!empty($fromDate) && !empty($toDate)) {
+
+
+     if ($fromDate <= $toDate) {
+
+
+      $selectLoansPayyyy = mysqli_query($conn, "SELECT * FROM loans_pay WHERE active='yes' AND
+        date_created
+        BETWEEN '$fromDate' AND '$toDate'
+        ORDER BY id DESC 
+
+        "); 
+
+
+
+      echo "
+
+      <div class=\"btn-toolbar\">
+      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Loan_Payments/print_all_loans_payments.php?PRINT=PRINT_ALL_LOAN_INTEREST_FOR_ALL&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print PDF</span></button> 
+
+
+
+       <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('inc/Reports/Export_To_Excell/loans_payment_export.php?EXPORT=EXPORTTOEXCELL&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Export to Excel</span></button> 
+
+
+
+      </div>
+
+
+      ";
+
+
+      if (mysqli_num_rows($selectLoansPayyyy)!==0) {
+
+
+        while ($getdac = mysqli_fetch_assoc($selectLoansPayyyy)) {
+
+
+          $person_id = $getdac["person_id"];
+          $loan_id = $getdac["loan_id"];
+          $amount_paid = number_format($getdac["amount_paid"], 2);
+          $amount_collected = number_format($getdac["amount_collected"], 2);
+          $balance_before = $getdac["balance_before"];
+          $month = $getdac["month"];
+          $year = $getdac["year"];
+          $date_paid = $getdac["date_paid"];
+          $receipt_no = $getdac["receipt_no"];
+          $staff = $getdac["staff"];
+
+
+          $loanIDD = mysqli_query($conn, "SELECT * FROM loans_all WHERE id='$loan_id'  LIMIT 1 ");
+          $llI = mysqli_fetch_assoc($loanIDD);
+
+          $status = $llI["status"];
+
+
+          if ($status==="Member") {
+            $memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id'  LIMIT 1 ");
+            $memaame = mysqli_fetch_assoc($memB);
+
+            $firstname = $memaame["firstname"];
+            $surname = $memaame["surname"];
+            $persnaNames = $firstname . " " . $surname;
+          } else {
+           $memB = mysqli_query($conn, "SELECT * FROM customers WHERE customer_id_encrypt='$person_id'  LIMIT 1 ");
+           $memaame = mysqli_fetch_assoc($memB);
+
+           $firstname = $memaame["firstname"];
+           $surname = $memaame["surname"];
+           $persnaNames = $firstname . " " . $surname;
+         }
+
+         $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$staff'   LIMIT 1 ");
+         $ahemvals = mysqli_fetch_assoc($staffss);
+
+         $firstName = $ahemvals["firstName"];
+         $lastName = $ahemvals["lastName"];
+         $staffFullNAme = $firstName . " " . $lastName;
+
+
+         $resultss = "
+
+         <tr>
+
+         <td class=\"align-middle\"> $persnaNames </td>
+         <td class=\"align-middle\"> $amount_collected </td>
+         <td class=\"align-middle\"> $amount_paid </td>
+         <td class=\"align-middle\"> $balance_before </td>
+         <td class=\"align-middle\"> $month </td>
+         <td class=\"align-middle\"> $year </td>
+         <td class=\"align-middle\"> $status </td>
+         <td class=\"align-middle\"> $receipt_no </td>
+         <td class=\"align-middle\"> $date_paid </td>
+         <td class=\"align-middle\"> $staffFullNAme </td>
+
+         </tr>
+
+         ";
+
+         echo $resultss;
+
+       }
+
+     } else {
+
+      echo "nothing";
+
+    }
+
+
+
+
+
+  } else {
+   echo "mismatch";
+ }
+
+
+
+    } else {
+     echo "empty";
+    }
+
+
+    }
+
+
+}
+
+/*------------------------------ENDS LOANS INTEREST REPORTS -------------*/
+
+
 
 
 
@@ -8458,9 +8695,18 @@ if ($_GET["CHECKPOST"]=="getLoanInterestPost") {
       echo "
 
       <div class=\"btn-toolbar\">
-      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Loan_Interest/print_all_loan_interest_list.php?PRINT=PRINT_ALL_LOAN_INTEREST_FOR_ALL&&TOTAL=$totalContriamount&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print</span></button> 
+      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Loan_Interest/print_all_loan_interest_list.php?PRINT=PRINT_ALL_LOAN_INTEREST_FOR_ALL&&TOTAL=$totalContriamount&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print PDF</span></button> 
+
+
+
+        <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('inc/Reports/Export_To_Excell/loans_interest_export.php?EXPORT=EXPORTTOEXCELL&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Export to Excel</span></button> 
+
+
+
 
       </div>
+
+
 
 
       ";
@@ -8472,43 +8718,70 @@ if ($_GET["CHECKPOST"]=="getLoanInterestPost") {
         while ($getdac = mysqli_fetch_assoc($selectAllMEmbers)) {
 
 
-          $person_id = $getdac["person_id"];
-          $amount = number_format($getdac["amount"], 2);
-          $date_added = $getdac["date_added"];
-          $done_by = $getdac["done_by"];
-          $loan_id = $getdac["loan_id"];
+                   
+            $person_id = $getdac["person_id"];
+            $amount = number_format($getdac["amount"], 2);
+            $date_added = $getdac["date_added"];
+            $done_by = $getdac["done_by"];
+            $loan_id = $getdac["loan_id"];
+            $thePrup = $getdac["purpose"];
 
 
-          $loanIDD = mysqli_query($conn, "SELECT * FROM loans_all WHERE id='$loan_id' AND active='yes' LIMIT 1 ");
-          $llI = mysqli_fetch_assoc($loanIDD);
+            $amount = str_replace("-", "", $amount);
 
-          $status = $llI["status"];
+            // $loanIDD = mysqli_query($conn, "SELECT * FROM loans_all WHERE id='$loan_id' AND active='yes' LIMIT 1 ");
 
-
-          if ($status==="Member") {
-            $memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id' AND active='yes' LIMIT 1 ");
-            $memaame = mysqli_fetch_assoc($memB);
-
-            $firstname = $memaame["firstname"];
-            $surname = $memaame["surname"];
-            $persnaNames = $firstname . " " . $surname;
-          } else {
-           $memB = mysqli_query($conn, "SELECT * FROM customers WHERE customer_id_encrypt='$person_id' AND active='yes' LIMIT 1 ");
-           $memaame = mysqli_fetch_assoc($memB);
-
-           $firstname = $memaame["firstname"];
-           $surname = $memaame["surname"];
-           $persnaNames = $firstname . " " . $surname;
-         }
-
-         $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by' AND active='yes' LIMIT 1 ");
-         $ahemvals = mysqli_fetch_assoc($staffss);
-
-         $firstName = $ahemvals["firstName"];
-         $lastName = $ahemvals["lastName"];
-         $staffFullNAme = $firstName . " " . $lastName;
+            $loanIDD = mysqli_query($conn, "SELECT * FROM loans_all WHERE id='$loan_id'  LIMIT 1 ");
 
 
+            $llI = mysqli_fetch_assoc($loanIDD);
+
+            $status = $llI["status"];
+
+
+            if ($status==="Member") {
+              $memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id'  LIMIT 1 ");
+              $memaame = mysqli_fetch_assoc($memB);
+
+              $Tabid = $memaame["id"];
+              $firstname = $memaame["firstname"];
+              $surname = $memaame["surname"];
+              $persnaNames = $firstname . " " . $surname;
+            } else {
+              $memB = mysqli_query($conn, "SELECT * FROM customers WHERE customer_id_encrypt='$person_id'  LIMIT 1 ");
+              $memaame = mysqli_fetch_assoc($memB);
+
+              $Tabid = $memaame["id"];
+              $firstname = $memaame["firstname"];
+              $surname = $memaame["surname"];
+              $persnaNames = $firstname . " " . $surname;
+            }
+
+            $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by'  LIMIT 1 ");
+            $ahemvals = mysqli_fetch_assoc($staffss);
+
+            $firstName = $ahemvals["firstName"];
+            $lastName = $ahemvals["lastName"];
+            $staffFullNAme = $firstName . " " . $lastName;
+
+
+
+
+                if ($thePrup==$purpose1) {
+
+                $purposeText = "Loan Interest";
+                } 
+
+                if ($thePrup==$purpose2) {
+
+                $purposeText = " Interest Paid by the Guarantors";
+                } 
+
+
+                if ($thePrup==$purpose3) {
+
+                $purposeText = "Loan Interest and Penalty Interest";
+                }
 
 
 
@@ -8546,12 +8819,12 @@ if ($_GET["CHECKPOST"]=="getLoanInterestPost") {
 
 
 
-} else {
- echo "empty";
-}
+    } else {
+     echo "empty";
+    }
 
 
-}
+    }
 
 
 }
@@ -8580,7 +8853,6 @@ if ($_GET["CHECKPOST"]=="getContributionPenltyP") {
     $toDate  = $_POST["toDate"];
 
 
-    $purpose1 = "Penalty For member contribution";
 
     if (!empty($fromDate) && !empty($toDate)) {
 
@@ -8588,7 +8860,7 @@ if ($_GET["CHECKPOST"]=="getContributionPenltyP") {
      if ($fromDate <= $toDate) {
 
 
-      $selectAllMEmbers = mysqli_query($conn, "SELECT * FROM company_revenue WHERE  purpose='$purpose1' AND  active ='yes' AND 
+      $selectAllMEmbers = mysqli_query($conn, "SELECT * FROM comp_reve_contrib_penalty WHERE  active ='yes' AND 
         date_added
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC 
@@ -8599,7 +8871,7 @@ if ($_GET["CHECKPOST"]=="getContributionPenltyP") {
 
 
 
-      $getToContribution = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  purpose='$purpose1' AND  active ='yes' AND 
+      $getToContribution = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_contrib_penalty WHERE  active ='yes' AND 
         date_added
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC 
@@ -8615,7 +8887,12 @@ if ($_GET["CHECKPOST"]=="getContributionPenltyP") {
       echo "
 
       <div class=\"btn-toolbar\">
-      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Contributions_Penalty/print_all_contribution_penalty_list.php?PRINT=PRINT_ALL_CONTRIBUTION_PENALTY_FOR_ALL&&TOTAL=$totalContriamount&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print</span></button> 
+      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('ViewPDFS/Reports/Contributions_Penalty/print_all_contribution_penalty_list.php?PRINT=PRINT_ALL_CONTRIBUTION_PENALTY_FOR_ALL&&TOTAL=$totalContriamount&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Print PDF</span></button>
+
+
+
+
+      <button type=\"button\" class=\"btn btn-light\" onclick=\"window.open('inc/Reports/Export_To_Excell/contribution_penalties_export.php?EXPORT=EXPORTTOEXCELL&&MINDATE=$fromDate&&MAXDATE=$toDate')\"><i class=\"oi oi-print\"></i> <span class=\"ml-1\">Export to Excel</span></button>  
 
       </div>
 
@@ -8629,18 +8906,18 @@ if ($_GET["CHECKPOST"]=="getContributionPenltyP") {
         while ($getdac = mysqli_fetch_assoc($selectAllMEmbers)) {
 
 
-          $person_id = $getdac["person_id"];
+          $member_id = $getdac["member_id"];
           $amount = number_format($getdac["amount"], 2);
           $date_added = $getdac["date_added"];
           $done_by = $getdac["done_by"];
-          $loan_id = $getdac["loan_id"];
 
 
-          $memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id' AND active='yes' LIMIT 1 ");
+          $memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id' AND active='yes' LIMIT 1 ");
           $memaame = mysqli_fetch_assoc($memB);
 
           $firstname = $memaame["firstname"];
           $surname = $memaame["surname"];
+          $telephone = $memaame["telephone"];
           $persnaNames = $firstname . " " . $surname;
 
 
@@ -8660,7 +8937,8 @@ if ($_GET["CHECKPOST"]=="getContributionPenltyP") {
 
           <tr>
 
-          <td class=\"align-middle\"> $persnaNames </td>
+            <td class=\"align-middle\"> $persnaNames </td>
+          <td class=\"align-middle\"> $telephone </td>
           <td class=\"align-middle\"> $amount </td>
           <td class=\"align-middle\"> $date_added </td>
           <td class=\"align-middle\"> $staffFullNAme </td>
@@ -8996,8 +9274,8 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
      if ($fromDate <= $toDate) {
 
 
-      $selectAllMEmbers = mysqli_query($conn, "SELECT * FROM registration_fees WHERE active ='yes' AND 
-        date_created
+      $selectAllMEmbers = mysqli_query($conn, "SELECT * FROM comp_reve_memb_reg_fee WHERE active ='yes' AND 
+        date_added
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC 
 
@@ -9006,8 +9284,8 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
 
 
 
-      $seleAll = mysqli_query($conn, "SELECT count(*) AS CountAll FROM registration_fees WHERE active='yes'  AND 
-        date_created
+      $seleAll = mysqli_query($conn, "SELECT count(*) AS CountAll FROM comp_reve_memb_reg_fee WHERE active='yes'  AND 
+        date_added
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC  ");
 
@@ -9016,8 +9294,8 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
 
 
 
-      $getToContribution = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM registration_fees WHERE active='yes'  AND 
-        date_created
+      $getToContribution = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE active='yes'  AND 
+        date_added
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC  ");
       $getRow = mysqli_fetch_assoc($getToContribution);
@@ -9046,11 +9324,11 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
           $member_id = $getdac["member_id"];
           $amount = $getdac["amount"];
           $receipt_number = $getdac["receipt_number"];
-          $date_created = $getdac["date_created"];
+          $date_added = $getdac["date_added"];
           $done_by = $getdac["done_by"];
 
 
-          $staffsslo = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id' AND active='yes' LIMIT 1 ");
+          $staffsslo = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id'  LIMIT 1 ");
           $bab = mysqli_fetch_assoc($staffsslo);
 
           $member_id = $bab["member_id"];
@@ -9065,7 +9343,7 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
 
 
 
-          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by' AND active='yes' LIMIT 1 ");
+          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by'  LIMIT 1 ");
           $ahemvals = mysqli_fetch_assoc($staffss);
 
           $firstName = $ahemvals["firstName"];
@@ -9079,7 +9357,7 @@ if ($_GET["CHECKPOST"]=="getCompanyRegistrationFee") {
           <td class=\"align-middle\"> $memberFullName </td>
           <td class=\"align-middle\"> $amount </td>
           <td class=\"align-middle\"> $receipt_number </td>
-          <td class=\"align-middle\"> $date_created </td>
+          <td class=\"align-middle\"> $date_added </td>
           <td class=\"align-middle\"> $staffFullNAme </td>
 
           </tr>
@@ -9158,7 +9436,7 @@ if ($_GET["CHECKPOST"]=="getCompanyProfitAndLoss") {
 
 
       /*----------------getTOtal other Income */
-      $getOtherIncome = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM registration_fees WHERE active='yes'  AND 
+      $getOtherIncome = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE active='yes'  AND 
         date_created
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC  ");

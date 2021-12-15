@@ -123,17 +123,24 @@ RewriteRule ^.login-success.all-the-customers-list.js.css.kt.java$ homepage.php?
 #MEMBER CONTRIBUTION LIST
 RewriteRule ^.login-success.all-the-member-contribution-list.js.css.java.java$ homepage.php?CHECKER=MEMBER_CONTRIBUTIONS_LIST_REPORTS
 
+#CONTRIBUTION PAYMENTS
+RewriteRule ^.login-success.all-the-contribution-penalty-list.js.css.java.html.github$ homepage.php?CHECKER=CONTRIBUTION_PENALTY_REPORTS
+
 
 #LOAN LIST
 RewriteRule ^.login-success.all-the-loan-colelcted-list.js.css.java.html$ homepage.php?CHECKER=LOAN_LIST_REPORTS
+
+
+#LOAN PAYMENST REPORT
+RewriteRule ^.login-success.all-the-loans-paymenst-list.js.css.java.html.github.dart$ homepage.php?CHECKER=LOANS_PAYMENTS_REPORTS
+
 
 
 #LOAN INTEREST REPORT
 RewriteRule ^.login-success.all-the-loan-interest-list.js.css.java.html.tensorflow$ homepage.php?CHECKER=LOAN_INTEREST_REPORTS
 
 
-#LOAN INTEREST REPORT
-RewriteRule ^.login-success.all-the-contribution-penalty-list.js.css.java.html.github$ homepage.php?CHECKER=CONTRIBUTION_PENALTY_REPORTS
+
 
 
 #ACCOUNT REPORT

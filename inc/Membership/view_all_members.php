@@ -170,7 +170,7 @@ if ($login_session_type==="3" || $login_session_type==="1") {
                     <td class="align-middle px-0" style="width: 1.5rem">
                       <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-2020158584<?php echo $id ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
                     </td>
-
+ 
                     
                     <td class="align-middle">
                       <?php echo $member_id ?>
@@ -184,7 +184,7 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
                       <?php 
 
-                      if ($paid_reg_form==="no") {
+                      if ($paid_reg_form==="no" && $login_session!="b200606012021" && $login_session!="b202111112021") {
                         ?>
 
                         <label class="btn btn-secondary"  onclick="payRegisterationForm('<?php echo $member_id_encrypt ?>')">
@@ -193,11 +193,50 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
                           <?php
                         } else {
-                          # code...
+                          
                         }
+
+
+
+
                         
                         
                         ?>
+
+
+
+                  <?php 
+
+                    if ($login_session=="b200606012021") {
+
+                      ?>
+
+                       <label class="btn btn-secondary" onclick="window.location.href='homepage.php?CHECKER=VIEW_MEMBER_INFO&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?>' ">
+
+                          <input type="radio" name="options" id="option1" checked > View</label> 
+
+                      <?php
+
+
+
+                    }else if ($login_session=="b202111112021") {
+
+
+                        ?>
+
+                       <label class="btn btn-secondary" onclick="window.location.href='homepage.php?CHECKER=VIEW_MEMBER_INFO&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?>' ">
+
+                          <input type="radio" name="options" id="option1" checked > View</label> 
+
+                      <?php
+
+
+                    }else{
+
+
+                    
+                      
+                      ?> 
 
 
                         <label class="btn btn-secondary" onclick="window.location.href='homepage.php?CHECKER=VIEW_MEMBER_INFO&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?>' ">
@@ -219,6 +258,8 @@ if ($login_session_type==="3" || $login_session_type==="1") {
                                 <input type="radio" name="options" id="option3"> Print Info</label>
 
 
+
+                            <?php } ///////end else for view member ?>
                               </div><!-- /button radio -->
 
 

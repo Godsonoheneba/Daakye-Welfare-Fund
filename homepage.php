@@ -48,7 +48,6 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
 
 
-
 include 'header.php';
 
 
@@ -506,6 +505,18 @@ include 'sidenav.php';
       
 
     }
+
+
+
+
+    /*----------------------LOAN PAYMENTS  REPORTS---------------------*/
+    else if ($MYTOPGET==="LOANS_PAYMENTS_REPORTS") {
+
+      include 'inc/Reports/Loan_Payments/index.php';
+      
+
+    }
+
 
 
 

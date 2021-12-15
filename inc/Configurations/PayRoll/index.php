@@ -158,7 +158,7 @@
                             $date_added = $gett["date_added"];
 
 
-                            $selStu = mysqli_query($conn, "SELECT * FROM members WHERE  member_id='$member_id'  AND active='yes' ");
+                            $selStu = mysqli_query($conn, "SELECT * FROM members WHERE  member_id='$member_id'  ");
 
 
                               $getAlls = mysqli_fetch_assoc($selStu);

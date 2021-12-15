@@ -22,12 +22,145 @@ if ($login_session_type==="1" || $login_session_type==="3") {
           <!-- .menu -->
           <ul class="menu">
             <!-- .menu-item -->
+
+
+
+
             <li class="menu-item has-active">
               <a href=".home.login-successful" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Dashboard</span></a>
             </li><!-- /.menu-item -->
 
 
 
+            <?php 
+
+                    if ($login_session=="b200606012021") {
+                      
+                      ?> 
+
+ 
+
+
+            <li class="menu-item has-child">
+              <a href="#" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Membership</span></a> <!-- child menu -->
+
+              <ul class="menu">
+
+
+                <li class="menu-item">
+                  <a href=".login-success.view-all-new-members.kt.css.js.html.cpp" class="menu-link">View Members</a>
+                </li>
+
+
+
+              </ul><!-- /child menu -->
+              
+            </li><!-- /.menu-item -->
+
+
+                        
+
+        <li class="menu-item has-child">
+          <a href="#" class="menu-link"><span class="menu-icon fas fa-table"></span> <span class="menu-text">Reports</span></a> <!-- child menu -->
+
+          <ul class="menu">
+           <li class="menu-item">
+            <a href=".login-success.all-the-members-list.js.css.kt.java" class="menu-link">Members</a>
+          </li>
+
+        
+          <li class="menu-item">
+            <a href=".login-success.all-the-member-contribution-list.js.css.java.java" class="menu-link"> Contributions Payments</a>
+          </li>
+
+        
+
+         <li class="menu-item">
+            <a href=".login-success.all-the-contribution-penalty-list.js.css.java.html.github" class="menu-link">Contribution Penalty</a>
+          </li>
+
+
+          
+
+
+          
+          
+        </ul>
+
+      </li><!-- /.menu-item -->
+
+
+
+                      <?php
+
+                    }else if ($login_session=="b202111112021") {
+                      
+                      ?>
+
+
+
+            <li class="menu-item has-child">
+              <a href="#" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Membership</span></a> <!-- child menu -->
+
+              <ul class="menu">
+
+
+                <li class="menu-item">
+                  <a href=".login-success.view-all-new-members.kt.css.js.html.cpp" class="menu-link">View Members</a>
+                </li>
+
+
+
+              </ul><!-- /child menu -->
+              
+            </li><!-- /.menu-item -->
+
+
+            
+
+
+                <li class="menu-item has-child">
+          <a href="#" class="menu-link"><span class="menu-icon fas fa-table"></span> <span class="menu-text">Reports</span></a> <!-- child menu -->
+
+          <ul class="menu">
+                        
+
+                <li class="menu-item">
+                  <a href=".login-success.all-the-loan-colelcted-list.js.css.java.html" class="menu-link">Loans</a>
+                </li> 
+
+
+                
+                <li class="menu-item">
+                  <a href=".login-success.all-the-loan-interest-list.js.css.java.html.tensorflow" class="menu-link">Loan Interest</a>
+                </li>
+
+
+            <li class="menu-item">
+            <a href=".login-success.all-the-loans-paymenst-list.js.css.java.html.github.dart" class="menu-link">Loans Payments</a>
+          </li> 
+
+
+                
+
+
+                
+                
+              </ul>
+
+            </li><!-- /.menu-item -->
+
+
+
+                      <?php
+
+                    }
+
+
+
+                    else{
+
+                 ?>
 
             <li class="menu-item has-child">
               <a href="#" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Membership</span></a> <!-- child menu -->
@@ -48,6 +181,10 @@ if ($login_session_type==="1" || $login_session_type==="3") {
 
 
                  ?>
+
+
+
+             
 
 
                 <li class="menu-item">
@@ -143,13 +280,24 @@ if ($login_session_type==="1" || $login_session_type==="3") {
           <li class="menu-item">
             <a href=".login-success.all-the-customers-list.js.css.kt.java" class="menu-link">Customers</a>
           </li>
+ 
+          <li class="menu-item">
+            <a href=".login-success.all-the-member-contribution-list.js.css.java.java" class="menu-link"> Contributions Payment</a>
+          </li>
+
+
 
           <li class="menu-item">
-            <a href=".login-success.all-the-member-contribution-list.js.css.java.java" class="menu-link">Member Contribution</a>
+            <a href=".login-success.all-the-contribution-penalty-list.js.css.java.html.github" class="menu-link">Contribution Penalty</a>
           </li>
 
           <li class="menu-item">
-            <a href=".login-success.all-the-loan-colelcted-list.js.css.java.html" class="menu-link">Loans</a>
+            <a href=".login-success.all-the-loan-colelcted-list.js.css.java.html" class="menu-link">Loans Collected</a>
+          </li> 
+
+
+          <li class="menu-item">
+            <a href=".login-success.all-the-loans-paymenst-list.js.css.java.html.github.dart" class="menu-link">Loans Payments</a>
           </li> 
 
 
@@ -159,9 +307,7 @@ if ($login_session_type==="1" || $login_session_type==="3") {
           </li>
 
 
-              <li class="menu-item">
-            <a href=".login-success.all-the-contribution-penalty-list.js.css.java.html.github" class="menu-link">Contribution Penalty</a>
-          </li>
+      
 
 
           <li class="menu-item">
@@ -243,6 +389,7 @@ if ($login_session_type==="1" || $login_session_type==="3") {
 
 
 
+   <?php    } ?>
 
 
       <li class="menu-header">Others </li><!-- /.menu-header -->
@@ -276,22 +423,23 @@ if ($login_session_type==="1" || $login_session_type==="3") {
 
       </li><!-- /.menu-item -->
 
+
+
     </ul><!-- /.menu -->
   </nav><!-- /.stacked-menu -->
-</div><!-- /.aside-menu -->
-<!-- Skin changer -->
-<footer class="aside-footer border-top p-2">
-  <button class="btn btn-light btn-block text-primary" data-toggle="skin"><span class="d-compact-menu-none">Night mode</span> <i class="fas fa-moon ml-1"></i></button>
-</footer><!-- /Skin changer -->
-</div><!-- /.aside-content -->
+    </div><!-- /.aside-menu -->
+    <!-- Skin changer -->
+    <footer class="aside-footer border-top p-2">
+      <button class="btn btn-light btn-block text-primary" data-toggle="skin"><span class="d-compact-menu-none">Night mode</span> <i class="fas fa-moon ml-1"></i></button>
+    </footer><!-- /Skin changer -->
+    </div><!-- /.aside-content -->
 </aside><!-- /.app-aside -->
-
 
 
 
 <?php
 
-
+   
 
 
 } else {
@@ -312,7 +460,7 @@ if ($login_session_type==="1" || $login_session_type==="3") {
 
 
 
-
+ 
 
   <!-- .app-aside -->
   <aside class="app-aside app-aside-expand-md app-aside-light">

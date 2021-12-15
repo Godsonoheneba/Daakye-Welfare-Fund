@@ -24,7 +24,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item active">
-        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>All Contribution Penalty</a>
+        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>All Loans Payments</a>
       </li>
     </ol>
   </nav><!-- /.breadcrumb -->
@@ -77,7 +77,7 @@
 
 
 
-         <button  type="submit" name="dd" class="btn btn-primary generateBut" onclick="generateContributionPena()"> Generate  
+         <button  type="submit" name="dd" class="btn btn-primary generateBut" onclick="generateAllLoansPayments()"> Generate  
          </button>
 
 
@@ -126,8 +126,13 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th> Mobile </th>
-                <th> Amount </th>
+                <th> Loan Amount Collected</th>
+                <th> Amount Paid</th>
+                <th> Balance before </th>
+                <th> Month </th>
+                <th> Year </th>
+                <th> Status </th>
+                <th> Receipt No. </th>
                 <th> Date </th>
                 <th> Done By </th>
 
@@ -158,7 +163,7 @@
 <script type="text/javascript">
 
 
-  function generateContributionPena() {
+  function generateAllLoansPayments() {
 
 
     var fromDate = $(".fromDate").val();
@@ -176,7 +181,7 @@
         generateBut.hide();
         loadingDiv.show();
 
-        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=getContributionPenltyP",{fromDate:fromDate,toDate:toDate},function (showOutPut) {
+        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=getLoanPaymentsPost",{fromDate:fromDate,toDate:toDate},function (showOutPut) {
 
 
 

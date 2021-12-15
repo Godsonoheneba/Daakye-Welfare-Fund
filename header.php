@@ -41,6 +41,21 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
 
 
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
    $login_sessionCap = strtoupper($login_session);
      $queryWho = mysqli_query($conn, "SELECT * FROM who_can_login_in WHERE username='$login_sessionCap' AND active='yes'");
 
@@ -64,7 +79,210 @@ if ($login_session_type==="3" || $login_session_type==="1") {
     } 
 
 
+
+
+
+// delete this after its done
+
+
+
+// $sertrt2 = mysqli_query($conn, "SELECT * FROM comp_reve_loan_penalty  ");
+
+//   while ($cuc4 = mysqli_fetch_assoc($sertrt2)) {
     
+//     $theTabID = $cuc4["id"];
+//     $date_addedDBDBDBDB = $cuc4["date_added"];
+
+
+//     $expltheYearr1 = explode("-", $date_addedDBDBDBDB);
+//     $theYearrrRE = current($expltheYearr1);
+
+
+//     mysqli_query($conn, "ALTER TABLE comp_reve_loan_penalty ADD year_finish VARCHAR(50) NOT NULL AFTER year");
+
+
+//     mysqli_query($conn, "UPDATE comp_reve_loan_penalty SET year_finish='no' WHERE id = '$theTabID' ");
+
+
+//   }
+
+
+
+// $sertrt1 = mysqli_query($conn, "SELECT * FROM company_share_dividend  ");
+
+//   while ($cuc3 = mysqli_fetch_assoc($sertrt1)) {
+    
+//     $theTabID = $cuc3["id"];
+
+//     mysqli_query($conn, "ALTER TABLE company_share_dividend ADD year_finish VARCHAR(50) NOT NULL AFTER done_by");
+
+
+//     mysqli_query($conn, "UPDATE company_share_dividend SET year_finish='yes' WHERE id = '$theTabID' ");
+
+
+//   }
+
+
+
+// $sertrt = mysqli_query($conn, "SELECT * FROM company_revenue  ");
+
+//   while ($cuc21 = mysqli_fetch_assoc($sertrt)) {
+    
+//     $theTabID = $cuc21["id"];
+//     $date_addedDBDBDBDB = $cuc21["date_added"];
+
+
+//     $expltheYearr1 = explode("-", $date_addedDBDBDBDB);
+//     $theYearrrRE = current($expltheYearr1);
+
+
+//     mysqli_query($conn, "ALTER TABLE company_revenue ADD year VARCHAR(50) NOT NULL AFTER date_added");
+
+
+//     mysqli_query($conn, "UPDATE company_revenue SET year='$theYearrrRE' WHERE id = '$theTabID' ");
+
+
+//   }
+
+
+
+// ends delete this after its done
+
+     
+
+$myPurpDedc = "5% of Member Deactivated charge";
+
+$sedectt = mysqli_query($conn, "SELECT * FROM company_revenue WHERE purpose = '$myPurpDedc' AND active='yes' ");
+
+  while ($cuc = mysqli_fetch_assoc($sedectt)) {
+    
+
+    $person_idDBBDE = $cuc["person_id"];
+    $amountDBBDE = $cuc["amount"];
+    $done_byDBBDE = $cuc["done_by"];
+    $date_addedDBBDE = $cuc["date_added"];
+    $year_finishDBBDE = $cuc["year_finish"];
+
+    $expltheYearr = explode("-", $date_addedDBBDE);
+    $theYearrr = current($expltheYearr);
+
+
+    if (mysqli_query($conn, "INSERT INTO comp_reve_5_perc_mem_deactivate_deduction (member_id, amount,date_added,done_by,year,year_finish) VALUES('$person_idDBBDE','$amountDBBDE','$date_addedDBBDE','$done_byDBBDE','$theYearrr','$year_finishDBBDE') ")) {
+      
+
+        mysqli_query($conn, "DELETE FROM company_revenue WHERE purpose = '$myPurpDedc' ");
+
+
+
+    } else {
+      // echo "noo";
+    }
+    
+
+  }
+
+
+
+
+$myPURP = "Penalty For member contribution";
+
+$gtttitu = mysqli_query($conn, "SELECT * FROM company_revenue WHERE purpose = '$myPURP' AND active='yes' ");
+
+  while ($cuc = mysqli_fetch_assoc($gtttitu)) {
+    
+
+    $person_idDBB = $cuc["person_id"];
+    $amountDBB = $cuc["amount"];
+    $purpose_dateDBB = $cuc["purpose_date"];
+    $done_byDBB = $cuc["done_by"];
+    $date_addedDBB = $cuc["date_added"];
+    $year_finishDBB = $cuc["year_finish"];
+
+    $expltheYearr = explode("-", $date_addedDBB);
+    $theYearrr = current($expltheYearr);
+
+
+    if (mysqli_query($conn, "INSERT INTO comp_reve_contrib_penalty (member_id, amount, default_date,date_added,done_by,year,year_finish) VALUES('$person_idDBB','$amountDBB','$purpose_dateDBB','$date_addedDBB','$done_byDBB','$theYearrr','$year_finishDBB') ")) {
+      
+
+        mysqli_query($conn, "DELETE FROM company_revenue WHERE purpose = '$myPURP' ");
+
+
+
+    } else {
+      // echo "noo";
+    }
+    
+
+  }
+
+
+
+
+
+
+
+  $myPURPReg = "Member Registration Fee";
+
+$gtttitu22 = mysqli_query($conn, "SELECT * FROM company_revenue WHERE purpose = '$myPURPReg' AND active='yes' ");
+
+  while ($cuc22 = mysqli_fetch_assoc($gtttitu22)) {
+    
+
+    $person_idDBBREG = $cuc22["person_id"];
+    $amountDBBREG = $cuc22["amount"];
+    $done_byDBBREG = $cuc22["done_by"];
+    $date_addedDBBREG = $cuc22["date_added"];
+    $year_finishDBBREG = $cuc22["year_finish"];
+
+    $expltheYearr = explode("-", $date_addedDBBREG);
+    $theYearrrREG = current($expltheYearr);
+
+
+ mysqli_query($conn, "DELETE FROM company_revenue WHERE purpose = '$myPURPReg' ");
+
+
+  }
+
+
+
+
+
+
+$gtttitueerr = mysqli_query($conn, "SELECT * FROM registration_fees WHERE active='yes' ");
+
+  while ($rrtt4 = mysqli_fetch_assoc($gtttitueerr)) {
+
+    $member_idBDE = $rrtt4["member_id"];
+    $amountBDE = $rrtt4["amount"];
+    $receipt_numberBDE = $rrtt4["receipt_number"];
+    $date_createdBDE = $rrtt4["date_created"];
+    $done_byBDE = $rrtt4["done_by"];
+
+    $expltheYearr = explode("-", $date_createdBDE);
+    $theYearrrREGee = current($expltheYearr);
+
+
+
+
+    if (mysqli_query($conn, "INSERT INTO comp_reve_memb_reg_fee (member_id, amount,date_added,receipt_number,done_by,year) VALUES('$member_idBDE','$amountBDE','$date_createdBDE','$receipt_numberBDE','$done_byBDE','$theYearrrREGee') ")) {
+      
+
+      mysqli_query($conn, "DELETE FROM registration_fees WHERE active='yes' ");
+
+      // echo "done";
+
+
+    } else {
+      // echo "noo";
+    }
+    
+
+  }
+
+    // exit();
+
+
 
 
    /*-----------------------------------UPDATE MEMBER CONTRIBUTION ACTIVE TO NO IF MEMBER IS DEACTIVATED----------------*/
@@ -84,8 +302,10 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
     } else {
 
-     /*-----------do nothing*/
    }
+
+
+
 
  }
 

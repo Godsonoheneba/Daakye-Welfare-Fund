@@ -100,10 +100,10 @@ $pdf->SetDrawColor(180,180,255);
 
 
 
-$purpose1 = "Penalty For member contribution";
 
 
-$selectAllMEmbers = mysqli_query($conn, "SELECT * FROM company_revenue WHERE purpose='$purpose1' AND  active ='yes' AND 
+
+$selectAllMEmbers = mysqli_query($conn, "SELECT * FROM comp_reve_contrib_penalty WHERE active ='yes' AND 
 	date_added
 	BETWEEN '$MINDATE' AND '$MAXDATE'
 	ORDER BY id DESC 
@@ -115,16 +115,15 @@ $selectAllMEmbers = mysqli_query($conn, "SELECT * FROM company_revenue WHERE pur
 while ($getdac = mysqli_fetch_assoc($selectAllMEmbers)) {
 
 
-	$person_id = $getdac["person_id"];
+	$member_id = $getdac["member_id"];
 	$amount = number_format($getdac["amount"], 2);
 	$date_added = $getdac["date_added"];
 	$done_by = $getdac["done_by"];
-	$loan_id = $getdac["loan_id"];
 
 
 
 
-	$memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$person_id' AND active='yes' LIMIT 1 ");
+	$memB = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id' AND active='yes' LIMIT 1 ");
 	$memaame = mysqli_fetch_assoc($memB);
 
 	$firstname = $memaame["firstname"];

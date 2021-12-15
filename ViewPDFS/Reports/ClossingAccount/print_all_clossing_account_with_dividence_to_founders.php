@@ -145,7 +145,7 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 
 
 
-	$selectst = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$done_by' ");
+	$selectst = mysqli_query($conn, "SELECT * FROM staff WHERE id='$done_by' ");
 
 	$getdac2 = mysqli_fetch_assoc($selectst);
 
@@ -157,7 +157,7 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 
 
 
-	$selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$member_id' ");
+	$selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$member_id' ");
 
 	$getdac3 = mysqli_fetch_assoc($selectst2);
 

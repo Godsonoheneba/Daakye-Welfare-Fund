@@ -13,7 +13,7 @@
     <div class="modal-content">
       <!-- .modal-header -->
       <div class="modal-header">
-        <center> <h6 id="moreStaffInfoLabel" class="modal-title text-center"> Add to Payroll </h6></center>
+        <center> <h6 id="moreStaffInfoLabel" class="modal-title text-center"> Add Year to Close Account </h6></center>
       </div><!-- /.modal-header -->
       <!-- .modal-body -->
       <div class="modal-body px-0">
@@ -33,7 +33,10 @@
 
                 $currently_selected = date('Y'); 
                                 // Year to start available options at
-                $earliest_year = $currently_selected ; 
+                // $earliest_year = $currently_selected ; 
+
+                $earliest_year = 2019;
+
                                 // Set your latest year you want in the range, in this case we use PHP to just set it to the current year.
                 $latest_year = date('Y'); 
 
@@ -118,7 +121,7 @@
 
           if (result.value) { 
 
-
+ 
 
             $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=closeAccountForTHeYear",{yearToCloseAccount:yearToCloseAccount},function (showOutPut) {
 

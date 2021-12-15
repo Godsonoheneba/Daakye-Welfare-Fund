@@ -105,8 +105,8 @@ $pdf->SetDrawColor(180,180,255);
 
 
 
-	$selectAllMEmbers = mysqli_query($conn, "SELECT * FROM registration_fees WHERE active ='yes' AND 
-        date_created
+	$selectAllMEmbers = mysqli_query($conn, "SELECT * FROM comp_reve_memb_reg_fee WHERE active ='yes' AND 
+        date_added
         BETWEEN '$MINDATE' AND '$MAXDATE'
         ORDER BY id DESC 
 
@@ -114,7 +114,7 @@ $pdf->SetDrawColor(180,180,255);
 
 
 
-	$getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM registration_fees WHERE  active='yes' AND date_created
+	$getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND date_added
 
 		BETWEEN '$MINDATE' AND '$MAXDATE'
 		ORDER BY id DESC
@@ -135,11 +135,11 @@ $pdf->SetDrawColor(180,180,255);
 		$member_id = $getdac["member_id"];
           $amount = number_format($getdac["amount"], 2);
           $receipt_number = $getdac["receipt_number"];
-          $date_created = $getdac["date_created"];
+          $date_added = $getdac["date_added"];
           $done_by = $getdac["done_by"];
 
 
-          $staffsslo = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id' AND active='yes' LIMIT 1 ");
+          $staffsslo = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id'  LIMIT 1 ");
           $bab = mysqli_fetch_assoc($staffsslo);
 
           $member_id = $bab["member_id"];
@@ -154,7 +154,7 @@ $pdf->SetDrawColor(180,180,255);
 
 
 
-          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE id='$done_by' AND active='yes' LIMIT 1 ");
+          $staffss = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by'  LIMIT 1 ");
           $ahemvals = mysqli_fetch_assoc($staffss);
 
           $firstName = $ahemvals["firstName"];
@@ -165,7 +165,7 @@ $pdf->SetDrawColor(180,180,255);
 		$pdf->Cell(50,10,$memberFullName, 1,0, 'C');
 		$pdf->Cell(30,10,$amount, 1,0, 'C');
 		$pdf->Cell(30,10,$receipt_number, 1,0, 'C');
-		$pdf->Cell(30,10,$date_created, 1,0, 'C');
+		$pdf->Cell(30,10,$date_added, 1,0, 'C');
 		$pdf->Cell(40,10,$staffFullNAme, 1,1, 'C');
 
 	}

@@ -12,20 +12,20 @@ $getAMOUNT = $_GET["AMOUNT"];
 
 				
 
-$seleContrins = mysqli_query($conn, "SELECT * FROM registration_fees WHERE member_id='$getMEmberID' AND receipt_number='$getReceiptNumber' AND amount='$getAMOUNT' AND active='yes' LIMIT 1  ");
+$seleContrins = mysqli_query($conn, "SELECT * FROM comp_reve_memb_reg_fee WHERE member_id='$getMEmberID' AND receipt_number='$getReceiptNumber' AND amount='$getAMOUNT' AND active='yes' LIMIT 1  ");
 
 $getDem = mysqli_fetch_assoc($seleContrins);
 $Tableid = $getDem["id"];
 $member_id = $getDem["member_id"];
 $amount = $getDem["amount"];
 $receipt_number = $getDem["receipt_number"];
-$date_created = $getDem["date_created"];
+$date_added = $getDem["date_added"];
 $done_by = $getDem["done_by"];
 $amount = @number_format($amount,2);
 
 
 
-$selMems = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id' AND active='yes'  LIMIT 1  ");
+$selMems = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id'   LIMIT 1  ");
 
 $getDemMem = mysqli_fetch_assoc($selMems);
 
@@ -40,7 +40,7 @@ $payment_type = " Registration Fees";
 
 if (mysqli_num_rows($seleContrins) > 0) {
 
-	$juju = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by' AND active='yes'  LIMIT 1  ");
+	$juju = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$done_by'   LIMIT 1  ");
 
 	$getDem2 = mysqli_fetch_assoc($juju);
 	$firstName = $getDem2["firstName"];
@@ -86,7 +86,7 @@ if (mysqli_num_rows($seleContrins) > 0) {
 
 
 	$pdf->Cell(99,10, $payment_type  ,0,0,'L');
-	$pdf->Cell(90,10,'Date: ' . $date_created,0,1,'R');
+	$pdf->Cell(90,10,'Date: ' . $date_added,0,1,'R');
 
 	$pdf->SetFont('Arial','B',10);
 

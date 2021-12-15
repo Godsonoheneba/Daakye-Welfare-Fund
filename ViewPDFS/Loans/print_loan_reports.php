@@ -20,7 +20,7 @@ $interest_rate = $getDem["interest_rate"];
 $total_interest_rate_amount = $getDem["total_interest_rate_amount"];
 $interest_amount_paid = $getDem["interest_amount_paid"];
 $total_amount_to_pay = $getDem["total_amount_to_pay"];
-$amount_paid = $getDem["amount_paid"];
+$amount_paid_DB = $getDem["amount_paid"];
 $balance = $getDem["balance"];
 $date_requested = $getDem["date_requested"];
 $date_issued = $getDem["date_issued"];
@@ -227,6 +227,11 @@ $pdf->Cell(189,10, '',0,1,'L');
 
 	$pdf->Cell(189,.01, '',1,1,'L');
 
+   /*-----------------get total amount paid ----------------*/
+$getSumTo = mysqli_query($conn, "SELECT SUM(amount_paid) AS amount_paid FROM loans_pay WHERE  person_id='$getPersonID'  AND  active='yes' AND loan_id ='$gettableID'  ");
+$getR656 = mysqli_fetch_assoc($getSumTo);
+$allamount_paid = $getR656["amount_paid"];
+
 
 	$selCont2 = mysqli_query($conn, "SELECT * FROM loans_pay WHERE person_id='$getPersonID'  AND  active='yes' AND loan_id ='$gettableID' ORDER BY id ASC  ");
 
@@ -260,6 +265,9 @@ $pdf->Cell(189,10, '',0,1,'L');
        $staffFullName = $firstName . " " . $lastName; 
 
 
+
+
+
 	$pdf->SetFont('Arial','B',10);
 	$pdf->Cell(50,10, number_format($amount_paid, 2) ,0,0,'L');
 	$pdf->Cell(50,10, number_format($balance_left_there, 2) ,0,0,'L');
@@ -278,8 +286,10 @@ $pdf->Cell(189,10, '',0,1,'L');
 
 	$pdf->SetFont('Arial','B',15);
 	
-	$pdf->Cell(95,10,'Amount Paid GHC : ' . number_format($amount_paid, 2) ,0,0,'L');
-	$pdf->Cell(95,10, 'Balance Left GHC: ' . number_format($balance, 2) ,0,1,'L');
+	$pdf->Cell(189,10,'Total Amount to Pay GHC : ' . number_format($total_amount_to_pay, 2) ,0,1,'L');
+	$pdf->Cell(189,10,'Amount Paid GHC : ' . number_format($allamount_paid, 2) ,0,1,'L');
+
+	$pdf->Cell(189,10, 'Balance Left GHC: ' . number_format($total_amount_to_pay - $allamount_paid , 2) ,0,1,'L');
 
 
 	$pdf->Output();

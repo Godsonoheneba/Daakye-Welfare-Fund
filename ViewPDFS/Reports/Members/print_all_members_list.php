@@ -74,8 +74,8 @@ class PDF extends FPDF {
 		$this->Cell(25,10,'Date Of Birth',1,0,'C',true);
 		$this->Cell(25,10,'Mobile',1,0,'C',true);
 		$this->Cell(20,10,'Gender',1,0,'C',true);
-		$this->Cell(50,10,'Residence',1,0,'C',true);
-		$this->Cell(20,10,'Contribution',1,0,'C',true);
+		$this->Cell(30,10,'Residence',1,0,'C',true);
+		$this->Cell(40,10,'Contribution Made',1,0,'C',true);
 		$this->Cell(35,10,'Date Join',1,1,'C',true);
 
 
@@ -186,8 +186,8 @@ $date_created = $getAlls["date_created"];
 	$pdf->Cell(25,10,$dob, 1,0, 'C');
 	$pdf->Cell(25,10,$telephone, 1,0, 'C');
 	$pdf->Cell(20,10,$gender, 1,0, 'C');
-	$pdf->Cell(50,10,$residencial_address, 1,0, 'C');
-	$pdf->Cell(20,10,number_format($contribution_amount,2), 1,0, 'C');
+	$pdf->Cell(30,10,$residencial_address, 1,0, 'C');
+	$pdf->Cell(40,10,number_format($total_contribution_made,2), 1,0, 'C');
 	$pdf->Cell(35,10,$date_created, 1,1, 'C');
 
 

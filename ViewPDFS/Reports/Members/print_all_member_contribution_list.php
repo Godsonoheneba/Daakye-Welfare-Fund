@@ -120,6 +120,7 @@ $pdf->SetDrawColor(180,180,255);
    $selectCust = mysqli_query($conn, "SELECT * FROM members_contributions WHERE active ='yes' AND 
         date_created
         BETWEEN '$MINDATE' AND '$MAXDATE'
+       
         ORDER BY id DESC 
 
         "); 
