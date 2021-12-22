@@ -7952,7 +7952,7 @@ if ($_GET["CHECKPOST"]=="getMemberContributionListReportsPost") {
 
 
 
-          $selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$member_id_encrypt' ");
+          $selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$member_id_encrypt' AND active='yes' ");
 
           $getdac3 = mysqli_fetch_assoc($selectst2);
 

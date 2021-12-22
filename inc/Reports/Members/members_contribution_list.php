@@ -172,7 +172,7 @@
     if (fromDate!=="" && toDate!=="") {
 
 
-
+ 
       if (fromDate <= toDate) {
 
         generateBut.hide();

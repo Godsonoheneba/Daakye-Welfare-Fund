@@ -36,8 +36,8 @@ $excelData = implode("\t", array_values($fields)) . "\n";
 // Fetch records from database 
 
 
-$selectAllMEmbers = mysqli_query($conn, "SELECT * FROM members_contributions WHERE 
-        date_created
+$selectAllMEmbers = mysqli_query($conn, "SELECT * FROM members_contributions WHERE active='yes' AND
+        date_created 
         BETWEEN '$fromDate' AND '$toDate'
         ORDER BY id DESC 
 
@@ -77,7 +77,7 @@ if($selectAllMEmbers->num_rows > 0){
 
 
 
-          $selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$member_id_encrypt' ");
+          $selectst2 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$member_id_encrypt' AND active='yes' ");
 
           $getdac3 = mysqli_fetch_assoc($selectst2);
 

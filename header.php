@@ -85,6 +85,43 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 // delete this after its done
 
 
+  //   $sertrt12 = mysqli_query($conn, "SELECT * FROM comp_reve_contrib_penalty WHERE active='yes' ");
+
+  // while ($cuc31 = mysqli_fetch_assoc($sertrt12)) {
+    
+  //   $theTabID = $cuc31["id"];
+  //   $member_id = $cuc31["member_id"];
+  //   $amountForPen = $cuc31["amount"];
+  //   $date_added = $cuc31["date_added"];
+
+
+
+
+  //   $seleCont = mysqli_query($conn, "SELECT * FROM members_contributions WHERE member_id_encrypt='$member_id' AND date_created='$date_added' AND active='yes' ");
+
+
+
+  //     while ($ContrS = mysqli_fetch_assoc($seleCont)) {
+    
+  //       $ContriTabid = $ContrS["id"];
+  //       $member_id_encrypt = $ContrS["member_id_encrypt"];
+  //       $amountForCOntri = $ContrS["amount"];
+
+  //       $getRealAMountoContri = $amountForCOntri - $amountForPen;
+
+
+  //        mysqli_query($conn, "UPDATE members_contributions SET amount='$getRealAMountoContri' WHERE id = '$ContriTabid' ");
+
+
+  //     }
+
+
+   
+
+
+  // }
+
+
 
 // $sertrt2 = mysqli_query($conn, "SELECT * FROM comp_reve_loan_penalty  ");
 
