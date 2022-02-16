@@ -113,7 +113,7 @@
 
 
 
-            <div class="board p-0 perfect-scrollbar" >
+            <div class="board p-0 " >
               <!-- .list-group -->
               <div class="list-group list-group-flush list-group-divider border-top" data-toggle="radiolist">
                 <!-- .getsearch -->
@@ -128,7 +128,6 @@
                         <thead>
                           <tr class="text-cente align-middle">
                             <th >#</th>
-                            <th >Member ID </th>
                             <th> Name</th>
                             <th> Mobile</th>
                             <th >Position </th>
@@ -191,12 +190,9 @@
                                   <a ><?php echo $id ?></a>
                                 </td>
 
-                                <td class="align-middle">
-                                 <span class="badge badge-subtle badge-success" style="font-size: 14px;"><?php echo $member_id ?></span>
-                               </td>
 
                                <td class="align-middle">
-                                 <span class="badge badge-subtle badge-primary" style="font-size: 14px;"><?php echo $memberName ?></span>
+                                 <span class="" style="font-size: 14px;"><?php echo $memberName ?></span>
                                </td>
 
 

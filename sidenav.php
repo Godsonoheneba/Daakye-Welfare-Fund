@@ -307,6 +307,16 @@ if ($login_session_type==="1" || $login_session_type==="3") {
           </li>
 
 
+
+         <li class="menu-item">
+            <a href=".login-success.all-the-penalties-on-loan-laravel-list.js.css.java.html.tensorflow" class="menu-link">Penalties On Loan </a>
+          </li>
+
+           <li class="menu-item">
+            <a href=".login-success.all-the-ldeactivated-list.js.css.java.html.tensorflow" class="menu-link">Deactivated Members</a>
+          </li>
+
+
       
 
 

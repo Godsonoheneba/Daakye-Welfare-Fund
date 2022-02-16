@@ -530,12 +530,30 @@ include 'sidenav.php';
     }
 
 
+        /*----------------------PENALTIES ON LOAN   REPORTS---------------------*/
+    else if ($MYTOPGET==="PENALTIES_ON_LOAN") {
+
+      include 'inc/Reports/Penalties_On_Loan/index.php';
+      
+
+    }
+
+
 
 
     /*----------------------CONTRIBUTION PENALTY  REPORTS---------------------*/
     else if ($MYTOPGET==="CONTRIBUTION_PENALTY_REPORTS") {
 
       include 'inc/Reports/Contributions_Penalty/index.php';
+      
+
+    }
+
+    
+    /*----------------------DEACTIVATED_MEMBERS_REPORTS  REPORTS---------------------*/
+    else if ($MYTOPGET==="DEACTIVATED_MEMBERS_REPORTS") {
+
+      include 'inc/Reports/Deactivated_Members/index.php';
       
 
     }

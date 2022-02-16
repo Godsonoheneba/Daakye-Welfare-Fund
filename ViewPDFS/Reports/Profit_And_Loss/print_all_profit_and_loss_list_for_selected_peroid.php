@@ -1,6 +1,6 @@
 <?php 
 
-
+ 
 include '../../../cores/config.php';
 
 
@@ -96,148 +96,178 @@ $pdf->SetDrawColor(180,180,255);
 
 
 
-
-
-/*----------------getTOtal Loan Interest*/
-$getTotalInterest = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE active='yes'  AND 
-	date_added
-	BETWEEN '$MINDATE' AND '$MAXDATE'
-	ORDER BY id DESC  ");
-$getRow = mysqli_fetch_assoc($getTotalInterest);
-$totalRevenue = round($getRow["amount"], 2);
+    $LoaninterestPurpose1 = "Loan Interest";
+$LoaninterestPurpose2 = "Loans Interest Paid by the Guarantors";
+$LoaninterestPurpose3 = "Loan Interest and Penalty Interest";
+$RegistrationFeePurpose = "Member Registration Fee";
+$memDeductionPurpose = "5% of Member Deactivated charge";
 
 
 
-/*----------------getTOtal other Income */
-// $getOtherIncome = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM registration_fees WHERE active='yes'  AND 
-// 	date_created
-// 	BETWEEN '$MINDATE' AND '$MAXDATE'
-// 	ORDER BY id DESC  ");
-// $getRow2 = mysqli_fetch_assoc($getOtherIncome);
-// $totalOtherIncome = number_format($getRow2["amount"], 2);
 
 
-/*--------------total for interest and other income----------*/
+        /*-----------------get total LOAN Interest  ----------------*/
+        $getTotalInteresr = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND date_added BETWEEN '$MINDATE' AND '$MAXDATE' AND year_finish='no' AND ( purpose='$LoaninterestPurpose1' OR  purpose='$LoaninterestPurpose2' OR  purpose='$LoaninterestPurpose3' )  ");
+        $getRow248 = mysqli_fetch_assoc($getTotalInteresr);
+        $totalInterest = $getRow248["amount"];
 
-// $interestAndOtherIncomeTotal = $totalRevenue + $totalOtherIncome;
+
+
+
+        /*-----------------get total penalty Interest  ----------------*/
+        $getTotalPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_contrib_penalty WHERE  active='yes' AND date_added BETWEEN '$MINDATE' AND '$MAXDATE' AND year_finish='no'  ");
+        $getRow2482 = mysqli_fetch_assoc($getTotalPenalty);
+        $totalPenalty = $getRow2482["amount"];
+
+        /*-----------------get total LOAN  penalty Interest  ----------------*/
+        $getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND date_added BETWEEN '$MINDATE' AND '$MAXDATE' AND year_finish='no'  ");
+        $getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
+        $totalLoanPenalty = $getRow2555656["amount"];
+
+
+
+
+
+
+        /*-----------------get total Registration fee  ----------------*/
+        $getTotalReFee = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND date_added BETWEEN '$MINDATE' AND '$MAXDATE' AND year_finish='no'  ");
+        $getRow24823 = mysqli_fetch_assoc($getTotalReFee);
+        $totalRegFee = $getRow24823["amount"];
+
+
+
+         
+
+        /*-----------------get total 5% deduction fee  ----------------*/
+        $getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_5_perc_mem_deactivate_deduction WHERE  active='yes' AND date_added BETWEEN '$MINDATE' AND '$MAXDATE' AND year_finish='no'  ");
+        $getRow248235 = mysqli_fetch_assoc($getTotalDedcutionPercen);
+        $totalPercDeduction = $getRow248235["amount"];
+
+
+
+              /*-----------------get total Expenses ----------------*/
+      $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes' AND date_added BETWEEN '$MINDATE' AND '$MAXDATE'  AND year_finish='no'  ");
+      $getRow231 = mysqli_fetch_assoc($getTotalExp);
+      $totalExpenses = $getRow231["amount"];
+
+
+
+
+        /*-----------------get total Revenue ----------------*/
+
+        $getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
+
+        $totalSurplusORDeficit = $getAllTOtalInterest - $totalExpenses;
+
  
 
-$totalOtherIncome = "0.00";
-/*----------------get Less Total Sundry Expenses */
-$getLessSundryExpenses = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE active='yes'  AND 
-	date_added
-	BETWEEN '$MINDATE' AND '$MAXDATE'
-	ORDER BY id DESC  ");
-$getRow23 = mysqli_fetch_assoc($getLessSundryExpenses);
-$getTOtalExpenses = round($getRow23["amount"], 2);
+      /*-------------------company returnship share -----------*/
+      $returnshipShare = 0.05 * $totalSurplusORDeficit;
+      $returnshipShare = round($returnshipShare, 2);
+
+      $TotalBalanceAfterReturnship = $totalSurplusORDeficit - $returnshipShare;
 
 
-/*--------------total deficit / surplus -------*/
-$totalSurplusORDeficit = $totalRevenue + $totalOtherIncome - $getTOtalExpenses;
+      /*-------------------managements share -----------*/
+      $managements = 0.07 * $TotalBalanceAfterReturnship;
+      $managements = round($managements, 2);
+
+      $TotalBalanceAfterManagement = $TotalBalanceAfterReturnship - $managements;
 
 
+      /*-------------------founders share -----------*/
+      $founderShare = 0.1 * $TotalBalanceAfterManagement;
+      $founderShare = round($founderShare, 2); 
 
-/*-------------------company returnship share -----------*/
-$returnshipShare = 0.05 * $totalSurplusORDeficit;
-$returnshipShare = round($returnshipShare, 2);
-
-$TotalBalanceAfterReturnship = $totalSurplusORDeficit - $returnshipShare;
-
-
-/*-------------------managements share -----------*/
-$managements = 0.07 * $TotalBalanceAfterReturnship;
-$managements = round($managements, 2);
-
-$TotalBalanceAfterManagement = $TotalBalanceAfterReturnship - $managements;
+      $TotalBalanceAfterFounders = $TotalBalanceAfterManagement - $founderShare;
 
 
-/*-------------------founders share -----------*/
-$founderShare = 0.1 * $TotalBalanceAfterManagement;
-$founderShare = round($founderShare, 2); 
+      /*-------------------CO- founders share -----------*/
+      $CofounderShare = 0.09 * $TotalBalanceAfterFounders;
+      $CofounderShare = round($CofounderShare, 2);
 
-$TotalBalanceAfterFounders = $TotalBalanceAfterManagement - $founderShare;
-
-
-/*-------------------CO- founders share -----------*/
-$CofounderShare = 0.09 * $TotalBalanceAfterFounders;
-$CofounderShare = round($CofounderShare, 2);
-
-$TotalBalanceAfterCoFounders = $TotalBalanceAfterFounders - $CofounderShare;
+      $TotalBalanceAfterCoFounders = $TotalBalanceAfterFounders - $CofounderShare;
 
 
-/*-------------------2nd year people share -----------*/
-$SeniorStaffShare = 0.05 * $TotalBalanceAfterCoFounders;
-$SeniorStaffShare = round($SeniorStaffShare, 2);
+      /*-------------------2nd year people share -----------*/
+      $SeniorStaffShare = 0.05 * $TotalBalanceAfterCoFounders;
+      $SeniorStaffShare = round($SeniorStaffShare, 2);
 
-$TotalBalanceAfterSeniorStaffShare = $TotalBalanceAfterCoFounders - $SeniorStaffShare;
+      $TotalBalanceAfterSeniorStaffShare = $TotalBalanceAfterCoFounders - $SeniorStaffShare;
 
 
-/*-------------------3rd year people share -----------*/
-$juniorStaffSHare = 0.03 * $TotalBalanceAfterSeniorStaffShare;
-$juniorStaffSHare = round($juniorStaffSHare, 2);
+      /*-------------------3rd year people share -----------*/
+      $juniorStaffSHare = 0.03 * $TotalBalanceAfterSeniorStaffShare;
+      $juniorStaffSHare = round($juniorStaffSHare, 2);
 
-$TotalBalanceAfterjuniorStaffSHare = $TotalBalanceAfterSeniorStaffShare - $juniorStaffSHare;
+      $TotalBalanceAfterjuniorStaffSHare = $TotalBalanceAfterSeniorStaffShare - $juniorStaffSHare;
 
 
 
-$allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
+      $allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
 
-$shareLeft = $totalSurplusORDeficit -  $allShares;
-
-
+      $shareLeft = $totalSurplusORDeficit -  $allShares;
 
 
+      $totalInterest = number_format($totalInterest,2);
+      $totalLoanPenalty = number_format($totalLoanPenalty,2);
+      $totalPenalty = number_format($totalPenalty,2);
+      $totalRegFee = number_format($totalRegFee,2);
+      $totalPercDeduction = number_format($totalPercDeduction,2);
+      $getAllTOtalInterest = number_format($getAllTOtalInterest,2);
+      $totalExpenses = number_format($totalExpenses,2);
+      $totalSurplusORDeficit = number_format($totalSurplusORDeficit,2);
+      $allShares = number_format($allShares,2);
+      $shareLeft = number_format($shareLeft,2);
 
 
 
-
-$pdf->Cell(190,10,'', 1,1, 'C');
+$pdf->Cell(150,10,' Items', 1,0, 'L');
+$pdf->Cell(40,10,'GHC', 1,1, 'C');
 
 /*-------------------------Interest on Loans --------------------------*/
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(150,10,' Interest on Loans  :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $totalRevenue, 1,1, 'C');
+$pdf->Cell(40,10, $totalInterest, 1,1, 'C');
 
 
-
-/*-------------------------Other Income --------------------------*/
 $pdf->SetFont('Arial','',12);
-$pdf->Cell(150,10,' Other Income  :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $totalOtherIncome, 1,1, 'C');
+$pdf->Cell(150,10,' Penalties on Loans  :  ', 1,0, 'L');
+$pdf->Cell(40,10, $totalLoanPenalty, 1,1, 'C');
 
 
-/*-------------------------TOTAL  (Total Interest  + Other Income ) --------------------------*/
-$pdf->SetFont('Arial','B',14);
-$pdf->Cell(150,10,' TOTAL  (Total Interest  + Other Income ) ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $totalRevenue, 1,1, 'C');
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(150,10,' Penalties on Contributions  :  ', 1,0, 'L');
+$pdf->Cell(40,10, $totalPenalty, 1,1, 'C');
 
+
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(150,10,' Registration Fees  :  ', 1,0, 'L');
+$pdf->Cell(40,10, $totalRegFee, 1,1, 'C');
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(150,10,' 5% Members Deduction  :  ', 1,0, 'L');
+$pdf->Cell(40,10, $totalPercDeduction, 1,1, 'C');
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(150,10,' TOTAL  REVENUE  :  ', 1,0, 'L');
+$pdf->Cell(40,10, $getAllTOtalInterest, 1,1, 'C');
 
 
 /*-------------------------Less Total Sundry Expenses --------------------------*/
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(150,10,' Less Total Sundry Expenses  :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $getTOtalExpenses, 1,1, 'C');
+$pdf->Cell(40,10, $totalExpenses, 1,1, 'C');
 
 
 
 /*-------------------------Total Surplus / Deficit  (Total Interest  + Other Income - Expenses ) --------------------------*/
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(150,10,'  Surplus / Deficit  (Total Interest  + Other Income - Expenses) ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $totalSurplusORDeficit, 1,1, 'C');
+$pdf->Cell(150,10,'  Surplus / Deficit  (Total Revenue - Expenses) ', 1,0, 'L');
+$pdf->Cell(40,10, $totalSurplusORDeficit, 1,1, 'C');
 
-
-
-/*------------------------- 5% for Company Returnship--------------------------*/
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(150,10,'  5% for Company Returnship :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $returnshipShare, 1,1, 'C');
-
-
-
-/*------------------------- 7% for Managements--------------------------*/
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(150,10,'  7% for Managements :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $managements, 1,1, 'C');
 
 
 
@@ -247,25 +277,42 @@ $pdf->Cell(40,10,' GHC '. $managements, 1,1, 'C');
 /*-------------------------10% For Founders--------------------------*/
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(150,10,' 10% For Founders :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $founderShare, 1,1, 'C');
+$pdf->Cell(40,10, $founderShare, 1,1, 'C');
 
 
 /*-------------------------9% For Co-Founders--------------------------*/
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(150,10,' 9% For Co-Founders :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $CofounderShare, 1,1, 'C');
+$pdf->Cell(40,10, $CofounderShare, 1,1, 'C');
 
 
 /*-------------------------5% For 2nd Year Group--------------------------*/
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(150,10,' 5% For 2nd Year Group :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $SeniorStaffShare, 1,1, 'C');
+$pdf->Cell(40,10, $SeniorStaffShare, 1,1, 'C');
 
 
 /*-------------------------3% For 3rd Year Group--------------------------*/
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(150,10,' 3% For 3rd Year Group :  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $juniorStaffSHare, 1,1, 'C');
+$pdf->Cell(40,10, $juniorStaffSHare, 1,1, 'C');
+
+
+
+/*------------------------- 5% for Company Returnship--------------------------*/
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(150,10,'  5% for Company Returnship :  ', 1,0, 'L');
+$pdf->Cell(40,10, $returnshipShare, 1,1, 'C');
+
+
+
+/*------------------------- 7% for Managements--------------------------*/
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(150,10,'  7% for Managements :  ', 1,0, 'L');
+$pdf->Cell(40,10, $managements, 1,1, 'C');
+
+
+
 
 
 
@@ -273,13 +320,13 @@ $pdf->Cell(40,10,' GHC '. $juniorStaffSHare, 1,1, 'C');
 /*-------------------------TOTAL--------------------------*/
 $pdf->SetFont('Arial','B',14);
 $pdf->Cell(150,10,' TOTAL:  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $allShares, 1,1, 'C');
+$pdf->Cell(40,10, $allShares, 1,1, 'C');
 
 
 /*-------------------------Dividend to be Shared--------------------------*/
 $pdf->SetFont('Arial','B',16);
 $pdf->Cell(150,10,' Dividend to be Shared:  ', 1,0, 'L');
-$pdf->Cell(40,10,' GHC '. $shareLeft, 1,1, 'C');
+$pdf->Cell(40,10, $shareLeft, 1,1, 'C');
 
 
 

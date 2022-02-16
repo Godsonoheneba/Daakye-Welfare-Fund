@@ -15,6 +15,8 @@ if (!isset($_SESSION["login_session_type"]) ){
 if (!isset($_SESSION["login_session"]) ){
 	$login_session="";
 
+	// logout();
+
 }else{
 	$login_session = $_SESSION["login_session"];
 	

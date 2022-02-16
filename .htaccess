@@ -140,6 +140,12 @@ RewriteRule ^.login-success.all-the-loans-paymenst-list.js.css.java.html.github.
 RewriteRule ^.login-success.all-the-loan-interest-list.js.css.java.html.tensorflow$ homepage.php?CHECKER=LOAN_INTEREST_REPORTS
 
 
+#PENALTIES ON LOAN REPORT
+RewriteRule ^.login-success.all-the-penalties-on-loan-laravel-list.js.css.java.html.tensorflow$ homepage.php?CHECKER=PENALTIES_ON_LOAN
+
+
+#5% DEACTIVARTED MEMBERS REPORT
+RewriteRule ^.login-success.all-the-ldeactivated-list.js.css.java.html.tensorflow$ homepage.php?CHECKER=DEACTIVATED_MEMBERS_REPORTS
 
 
 
@@ -166,6 +172,9 @@ RewriteRule ^.login-success.all-company-financial-position-report.js.css.java.kt
 
 #COMPANY RETURNS REPORT
 RewriteRule ^.login-success.all-companys-returs-report.js.css.java.kt$ homepage.php?CHECKER=COMPANY_RETURS_REPORTS
+
+
+
 
 
 

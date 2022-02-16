@@ -213,7 +213,7 @@ $totalRegFee = $getRow24823["amount"];
 
 
 
-
+ 
 
 /*-----------------get total 5% deduction fee  ----------------*/
 $getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_5_perc_mem_deactivate_deduction WHERE  active='yes' AND year_finish='no'  ");
