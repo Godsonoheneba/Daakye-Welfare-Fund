@@ -51,6 +51,9 @@ $ByaLL = "all";
            <a  href=".home.settings-view-all-deactivate-members.config.java.html.css.java" class="nav-link ">Deactivated Members</a>
 
 
+              <a  onclick="sendCOntribuitionSMS()" class="nav-link ">Send Members Contibution SMS</a>
+
+
 
            <?php 
 
@@ -335,6 +338,75 @@ include 'close_for_the_year_modal.php';
 
 
 
+function sendCOntribuitionSMS() {
+
+
+    Swal.fire({
+      title: 'Are you sure you want to Send SMS',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Send!'
+    }).then((result) => {
+
+
+      if (result.value) {
+
+        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=sendCOntributionSMS",{},function (showOutPut) {
+
+          // alert(showOutPut);
+
+          if (showOutPut.includes("errorinupdate")) {
+            Swal.fire({
+              title: "error",
+              text: "An Error occured in changing",
+              type: "warning",
+              confirmButtonClass: "btn-danger",
+              confirmButtonText: "Ok",
+              closeOnConfirm: false,
+              closeOnCancel: false
+
+            });
+
+
+
+
+
+          }else{
+
+
+
+
+            Swal.fire(
+              'Successfull!',
+              ' Successfully Sent ',
+              'success'
+              ).then((result) =>{
+
+
+               location.reload();
+
+
+
+             })
+
+
+
+            }
+
+
+          });
+
+      }
+
+
+    });
+
+}
+
+
 /*------------------------------------------------------schedulePaymentClickFOrFounders-----------------*/
 function schedulePaymentClickFOrFounders(year) {
       
@@ -551,6 +623,9 @@ function schedulePaymentClickforAll(year) {
 
 
   }
+
+
+
 
 
 

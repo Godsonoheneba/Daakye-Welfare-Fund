@@ -102,7 +102,7 @@
       closeButCLisk.hide();
       loadingBut.show();
 
-
+ 
       if (yearToCloseAccount!=="" ) {
 
         closeButCLisk.hide();
@@ -124,6 +124,9 @@
  
 
             $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=closeAccountForTHeYear",{yearToCloseAccount:yearToCloseAccount},function (showOutPut) {
+
+              // alert(showOutPut)
+              // exit();
 
 
 

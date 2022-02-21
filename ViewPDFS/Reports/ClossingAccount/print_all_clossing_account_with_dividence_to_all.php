@@ -48,7 +48,7 @@ class PDF extends FPDF {
 //default margin : 10mm each side
 //writable horizontal : 219-(10*2)=189mm
 
-$pdf = new PDF('P','mm','A4'); //use new class
+$pdf = new PDF('L','mm','A4'); //use new class
 
 //define new alias for total page numbers
 $pdf->AliasNbPages('{pages}');
@@ -69,11 +69,13 @@ $pdf->SetDrawColor(180,180,255);
 		//is equivalent to: 
 		$pdf->Cell(12);
 		
-		$pdf->Image('../../../school_data/letter_head/'.$letterhead,10,10,180);
+		$pdf->Image('../../../school_data/letter_head/'.$letterhead,10,10,270);
 		
 		
 		
 		//dummy cell to give line spacing
+		$pdf->Cell(0,10,'',0,1);
+		$pdf->Cell(0,10,'',0,1);
 		$pdf->Cell(0,10,'',0,1);
 		$pdf->Cell(0,10,'',0,1);
 		$pdf->Cell(0,10,'',0,1);
@@ -88,7 +90,7 @@ $pdf->SetDrawColor(180,180,255);
 
 		$pdf->SetFont('Arial','B',12);
 
-		$pdf->Cell(180,10,'DIVIDEND LIST FOR ALL IN THE YEAR  ' . $YEAR ,0,1,'C');
+		$pdf->Cell(270,10,'DIVIDEND LIST FOR ALL MEMBERS IN THE YEAR  ' . $YEAR ,0,1,'C');
 		
 
 		$pdf->SetFont('Arial','B',9);
@@ -100,10 +102,12 @@ $pdf->SetDrawColor(180,180,255);
 		$pdf->SetDrawColor(180,180,255);
 		$pdf->Cell(10,10,'ID',1,0,'C',true);
 		$pdf->Cell(80,10,'NAME',1,0,'C',true);
-		$pdf->Cell(25,10,'MOBILE',1,0,'C',true);
-		$pdf->Cell(25,10,'AMOUNT',1,0,'C',true);
-		$pdf->Cell(35,10,'DATE',1,0,'C',true);
-		$pdf->Cell(15,10,'SIGN',1,1,'C',true);
+		$pdf->Cell(30,10,'MOBILE',1,0,'C',true);
+		$pdf->Cell(30,10,'CONTIBUTION',1,0,'C',true);
+		$pdf->Cell(30,10,'AMOUNT',1,0,'C',true);
+		$pdf->Cell(40,10,'DATE',1,0,'C',true);
+		$pdf->Cell(30,10,'DEDUCTION',1,0,'C',true);
+		$pdf->Cell(20,10,'SIGN',1,1,'C',true);
 
 
 
@@ -141,6 +145,7 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 	$Tabid = $getdac["id"];
 	$year = $getdac["year"];
 	$member_id = $getdac["member_id"];
+	$contribution_made = $getdac["contribution_made"];
 	$amount = $getdac["amount"];
 	$date_created = $getdac["date_created"];
 	$done_by = $getdac["done_by"];
@@ -177,20 +182,23 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 
 	$pdf->Cell(10,10,$no, 1,0, 'C');
 	$pdf->Cell(80,10, '  ' . $memberName, 1,0, 'L');
-	$pdf->Cell(25,10,$telephone, 1,0, 'C');
-	$pdf->Cell(25,10,round($amount,2), 1,0, 'C');
-	$pdf->Cell(35,10,$date_created, 1,0, 'C');
-	$pdf->Cell(15,10,'', 1,1, 'C');
-
-
+	$pdf->Cell(30,10,$telephone, 1,0, 'C');
+	$pdf->Cell(30,10,round($contribution_made,2), 1,0, 'C');
+	$pdf->Cell(30,10,round($amount,2), 1,0, 'C');
+	$pdf->Cell(40,10,$date_created, 1,0, 'C');
+	$pdf->Cell(30,10,'', 1,0, 'C');
+	$pdf->Cell(20,10,'', 1,1, 'C');
 
 }
 
 
 
+
+
+
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(275,10, 'TOTAL PEOPLE:  ' . $totalPeopleShared, 1,1, 'C');
-$pdf->Cell(275,10, 'TOTAL AMOUNT SHARED:  ' . number_format($totalContriAmount, 2), 1,1, 'C');
+$pdf->Cell(270,10, 'TOTAL PEOPLE:  ' . $totalPeopleShared, 1,1, 'C');
+$pdf->Cell(270,10, 'TOTAL AMOUNT SHARED:  ' .$totalContriAmount . number_format($totalContriAmount, 2), 1,1, 'C');
 
 
 $pdf->Output();

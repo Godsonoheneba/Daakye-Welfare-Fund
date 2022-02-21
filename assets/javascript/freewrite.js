@@ -34,7 +34,6 @@ function checkRestPasswordIfitStrong() {
 
 
 
-
 function chngePasswordBut(getMemberID) {
 
   var newPassword = $(".newPassword").val();

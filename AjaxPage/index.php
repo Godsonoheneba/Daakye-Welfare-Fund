@@ -17,7 +17,56 @@ $ToDate = date("Y-12-31");
 // style=\"padding:10px 50px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:25px;color:#677b82;margin:0!important\" bgcolor=\"#6747c7\" align=\"center\"
 
 
- 
+  
+if ($_GET["CHECKPOST"]=="sendCOntributionSMS") {
+
+
+  $checkExist5 = mysqli_query($conn, "SELECT * FROM members WHERE telephone!='' AND active='yes'  ");
+
+
+    while ($fetches = mysqli_fetch_assoc($checkExist5)) {
+
+
+      $firstname = $fetches["firstname"];
+      $surname = $fetches["surname"];
+      $telephone = $fetches["telephone"];
+      $total_contribution_made = $fetches["total_contribution_made"];
+
+
+       $memeberName = $firstname . " " . $surname ;
+
+       $schoolName = "DAAKYE WELFARE ";
+
+       /*-----send message to either father, mother or guardian-------------*/
+
+       if ($telephone!=="") {
+
+        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
+        $senderID = 'DaakyeWelfa';
+        $message =$schoolName . '  -  Dear ' .  $memeberName .' your total contribution balance is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       }else{
+        echo "cantsend";
+       }
+
+      
+
+
+
+
+    };
+
+
+
+
+}
+
+
+
 
 /*-----------------------forget password-----------*/
 
@@ -6388,8 +6437,7 @@ if ($_GET["CHECKPOST"]=="resetMemberPasswordPost") {
 /*----------close year for only founders --------------*/
 if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
-  $Fromdate = date("Y-01-01");
-  $ToDate = date("Y-12-31");
+
 
   if (isset($_POST["yearToCloseAccount"]) ) {
 
@@ -6399,6 +6447,15 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
    if ($yearToCloseAccount!=="" ) {
 
     $wewww = mysqli_query($conn, "SELECT year FROM company_share_dividend_list WHERE active ='yes' AND year='$yearToCloseAccount'   ");
+
+    // $Fromdate = date("Y-01-01");
+    // $ToDate = date("Y-12-31");
+
+    $Fromdate = "2014-01-01";
+    $ToDate = $yearToCloseAccount . "-12-31";
+
+
+
 
 
     if (mysqli_num_rows($wewww) >0) {
@@ -6423,62 +6480,6 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
       $position = $gett["position"];
       $member_id = $gett["member_id"];
       $date_added = $gett["date_added"];
-
-
-
-
-
-      /*-----------------get total Expenses ----------------*/
-      // $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes' AND date_added
-      //   BETWEEN '$Fromdate' AND '$ToDate'
-      //   ORDER BY id DESC
-      //   ");
-      // $getRow231 = mysqli_fetch_assoc($getTotalExp);
-      // $totalExpenses = $getRow231["amount"];
-
-
-
-      // $getTotalExp = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes' AND year_finish='$yesFor_Year' ");
-      // $getRow231 = mysqli_fetch_assoc($getTotalExp);
-      // $totalExpenses = $getRow231["amount"];
-
-
-
-
-      /*-----------------get total REVENUE FROM REGISTRATION FEE ----------------*/
-      // $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND date_added
-      //   BETWEEN '$Fromdate' AND '$ToDate'
-      //   ORDER BY id DESC
-      //   ");
-      // $getRow = mysqli_fetch_assoc($getCoRev); 
-      // $totalRegFeeesamount = $getRow["amount"];
-
-
-      // $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND date_added
-      //   BETWEEN '$Fromdate' AND '$ToDate'
-      //   ORDER BY id DESC
-      //   ");
-      // $getRow = mysqli_fetch_assoc($getCoRev); 
-      // $totalRegFeeesamount = $getRow["amount"];
-
-
-
-      /*-----------------get total REVENUE INTEREST----------------*/
-      // $getCoRev = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_revenue WHERE  active='yes' AND date_added
-      //   BETWEEN '$Fromdate' AND '$ToDate'
-      //   ORDER BY id DESC
-      //   ");
-      // $getRow = mysqli_fetch_assoc($getCoRev); 
-      // $totalContriAmount = $getRow["amount"];
-
-
-
-
-      // $totalRevenueHas = $totalContriAmount + $totalRegFeeesamount;
-
-      // $totalInterest = $totalRevenueHas - $totalExpenses;
-
-
 
 
             /*-----------------get total Expenses ----------------*/
@@ -6538,22 +6539,6 @@ $totalPercDeduction = $getRow248235["amount"];
 $getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
 
 $totalInterest = $getAllTOtalInterest - $totalExpenses;
-
-
-
-
-
-
-
-      // $founderShare = 0.1 * $totalInterest;
-      // $CofounderShare = 0.09 * $totalInterest;
-      // $SeniorStaffShare = 0.05 * $totalInterest;
-      // $juniorStaffSHare = 0.03 * $totalInterest;
-      // $managements = 0.07 * $totalInterest;
-
-      // $returnshipShare = 0.05 * $totalInterest;
-
-
 
       /*-------------------company returnship share -----------*/
       $returnshipShare = 0.05 * $totalInterest;
@@ -6668,7 +6653,7 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
       } 
 
 
-      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id','$shareAmount','$forFounders', '$login_session','yes') ");
+      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id','$total_contribution_made', '$shareAmount','$forFounders', '$login_session','yes') ");
 
 
 
@@ -6676,41 +6661,67 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
     }
 
 
+    $shareLeft = 22004;
+
+
 
     $wew = mysqli_query($conn, "SELECT * FROM members WHERE active = 'yes' AND  total_contribution_made!='0' ");
-
-
 
 
     while ($gett = mysqli_fetch_assoc($wew)) {
 
       $member_idATME = $gett["member_id"];
-      $total_contribution_made = $gett["total_contribution_made"];
+      $member_id_encryptATME = $gett["member_id_encrypt"];
+      // $total_contribution_made = $gett["total_contribution_made"];
+
+
+
+
+
+        /*----------------GET OTTAL CONTRIBUTIONS MADE*/
+    $getTotalContributions = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM members_contributions WHERE active='yes'  AND date_paid   BETWEEN '$Fromdate' AND '$ToDate' AND member_id_encrypt='$member_id_encryptATME'   ");
+    $getRowAhe = mysqli_fetch_assoc($getTotalContributions);
+
+    $total_contribution_made = $getRowAhe["amount"];
+
+
+
 
       /*-----------------get total overal contribution ----------------*/
-      $getToContribution = mysqli_query($conn, "SELECT SUM(total_contribution_made) AS total_contribution_made FROM members WHERE  active='yes'   ");
+      $getToContribution = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM members_contributions WHERE  active='yes'  AND date_paid   BETWEEN '$Fromdate' AND '$ToDate'  ");
       $getRow = mysqli_fetch_assoc($getToContribution);
-      $overalContributionMade = $getRow["total_contribution_made"];
+      $overalContributionMade = $getRow["amount"];
 
 
+
+/*-------------count month of contribution collected-------------------*/
+      $countTOMonth = mysqli_query($conn, "SELECT count(*) AS toMonth  FROM members_contributions WHERE active='yes' AND member_id_encrypt='$member_id_encryptATME'  ");
+      $getcountTOMonth = mysqli_fetch_array($countTOMonth);
+      $countTotalmOnthCOnti = $getcountTOMonth['toMonth'];
 
       $shareAmountMem = ($total_contribution_made / $overalContributionMade ) * $shareLeft;
 
+ // echo "total_contribution_made>>>>> $total_contribution_made";
+ // echo "overalContributionMade  >>>>> $overalContributionMade";
+ // echo "shareLeft >>>>> $shareLeft";
 
- 
+ // exit(); 
 
 
+      if ($countTotalmOnthCOnti >=7) {
+        
+             if (mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_idATME','$total_contribution_made','$shareAmountMem','$forAll','$login_session','yes') ")) {
 
 
-
-      if (mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_idATME','$shareAmountMem','$forAll','$login_session','yes') ")) {
+            } else {
+              echo "error";
+            }
 
 
       } else {
-        echo "error";
+        // do nothing...
       }
-
-
+      
     }
 
 
