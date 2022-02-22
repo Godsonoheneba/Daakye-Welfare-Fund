@@ -9,7 +9,7 @@ $min = 1000;
 $max = 9999;
 $last_four_rand = rand($min, $max);
 
-
+ 
 $Fromdate = date("Y-01-01");
 $ToDate = date("Y-12-31");
 
@@ -43,7 +43,7 @@ if ($_GET["CHECKPOST"]=="sendCOntributionSMS") {
 
         $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
         $senderID = 'DaakyeWelfa';
-        $message =$schoolName . '  -  Dear ' .  $memeberName .' your total contribution balance is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
+        $message = $schoolName . '  -  Dear ' .  $memeberName .' your total contribution balance  as at ' . $TOdated = date("jS F, Y") . ' is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
         
@@ -2127,8 +2127,60 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
     $date_created = $getall["date_created"];
 
 
+    $balaBefor = $total_contribution_made;
 
 
+     if ($month_to_pay === "01") {
+          $month_to_pay_in_words = "January";
+        }
+
+        if ($month_to_pay === "02") {
+          $month_to_pay_in_words = "February";
+        }
+
+        if ($month_to_pay === "03") {
+          $month_to_pay_in_words = "March";
+        }
+
+        if ($month_to_pay === "04") {
+          $month_to_pay_in_words = "April";
+        }
+
+        if ($month_to_pay === "05") {
+          $month_to_pay_in_words = "May";
+        }
+
+        if ($month_to_pay === "06") {
+          $month_to_pay_in_words = "June";
+        }
+
+        if ($month_to_pay === "07") {
+          $month_to_pay_in_words = "July";
+        }
+
+        if ($month_to_pay === "08") {
+          $month_to_pay_in_words = "August";
+        }
+        if ($month_to_pay === "09") {
+          $month_to_pay_in_words = "September";
+        }
+
+        if ($month_to_pay === "10") {
+          $month_to_pay_in_words = "October";
+        }
+
+        if ($month_to_pay === "11") {
+          $month_to_pay_in_words = "November";
+        }
+
+        if ($month_to_pay === "12") {
+          $month_to_pay_in_words = "December";
+        }
+
+
+
+
+ 
 
     if ($month_to_pay!=="" && $year_to_pay!=="" ) {
 
@@ -2220,7 +2272,32 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
         }
 
+
+
         $total_contribution_made += $actualMonthlyContriTODB;
+
+       
+
+
+        $memeberName = $firstname . " " . $surname ;
+
+       $schoolName = "DAAKYE WELFARE ";
+
+       /*-----send message  -------------*/
+
+       if ($telephone!=="") {
+
+        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
+        $senderID = 'DaakyeWelfa';
+        $message =' Alert!! GHS ' . number_format($getRealAmountPaying, 2) . ' credited to your contribution account for the month of ' . $month_to_pay_in_words . ' - ' . $year_to_pay . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balaBefor,2) .' . Your available contribution balance is GHS '. number_format($total_contribution_made, 2) .' . Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       }
+
+
 
         mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$member_id','$activityType','$StudentDescription','$TOdated','$login_session')");
 
@@ -2242,7 +2319,6 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
     } else {
 
 
-
       /*--------------------DO THIS WHEN  SPECIFY AMOUNT TO PAY---------------*/
 
       // if ($ownAMountPayClass > $penaltyContiAMount) {
@@ -2259,6 +2335,7 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
         if (mysqli_query($conn, "INSERT INTO members_contributions (member_id,member_id_encrypt,year,month,amount,receipt_number,date_paid,done_by) VALUES('$member_id','$member_id_encrypt','$year_to_pay','$month_to_pay','$getRealAmountPaying','$receiptNumber','$TOdated2','$login_session') ")) {
 
 
+
          if ($penaltyContiAMount > 0) {
 
            mysqli_query($conn, "INSERT INTO comp_reve_contrib_penalty (member_id,amount,default_date,date_added,done_by,year) VALUES('$member_id_encrypt','$penaltyContiAMount','$last_month_contributed','$thePenaltyDateAded','$thePenaltyYearr','$login_session ')");
@@ -2272,9 +2349,23 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
         }
 
 
-
-
         $total_contribution_made += $actualMonthlyContriTODB;
+          
+           /*-----send message  -------------*/
+
+       if ($telephone!=="") {
+
+        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
+        $senderID = 'DaakyeWelfa';
+        $message =' Alert!! GHS ' . number_format($getRealAmountPaying, 2) . ' credited to your contribution account for the month of ' . $month_to_pay_in_words . ' - ' . $year_to_pay . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balaBefor,2) .' . Your available contribution balance is GHS '. number_format($total_contribution_made, 2) .' . Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       }
+
+
 
         mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$member_id','$activityType','$StudentDescription','$TOdated','$login_session')");
 
@@ -6585,6 +6676,10 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
 
       $allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
 
+
+      $founders_Shares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements;
+
+
       $shareLeft = $totalInterest -  $allShares;
 
 
@@ -6653,7 +6748,10 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
       } 
 
 
-      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id','$total_contribution_made', '$shareAmount','$forFounders', '$login_session','yes') ");
+
+
+
+      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$shareAmount','$forFounders', '$login_session','yes') ");
 
 
 
@@ -6692,7 +6790,7 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
       $getRow = mysqli_fetch_assoc($getToContribution);
       $overalContributionMade = $getRow["amount"];
 
-
+ 
 
 /*-------------count month of contribution collected-------------------*/
       $countTOMonth = mysqli_query($conn, "SELECT count(*) AS toMonth  FROM members_contributions WHERE active='yes' AND member_id_encrypt='$member_id_encryptATME'  ");
@@ -6706,7 +6804,7 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
  // echo "shareLeft >>>>> $shareLeft";
 
  // exit(); 
-
+ 
 
       if ($countTotalmOnthCOnti >=7) {
         
@@ -6729,7 +6827,7 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
 
     mysqli_query($conn, "INSERT INTO company_returnship (year,amount) VALUES('$yearToCloseAccount','$returnshipShare') ");
 
-    mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,done_by) VALUES('$yearToCloseAccount','$login_session') ");
+    mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$founders_Shares','$login_session') ");
 
 
     mysqli_query($conn, " UPDATE company_expenses SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");

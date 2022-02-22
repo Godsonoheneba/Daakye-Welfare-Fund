@@ -183,8 +183,29 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
 
 
+
+
+
 // ends delete this after its done
 
+
+
+// $sertrt123232 = mysqli_query($conn, "SELECT * FROM members_contributions WHERE active='yes' AND amount='95'   ");
+
+//   while ($cuc3232 = mysqli_fetch_assoc($sertrt123232)) {
+    
+//     $theTabID = $cuc3232["id"];
+//     $amountqq = $cuc3232["amount"];
+
+
+//     if ($amountqq==="95") {
+      
+//     mysqli_query($conn, "UPDATE members_contributions  SET amount='100' WHERE active = 'yes' AND amount='95' ");
+
+
+//      }
+
+//   }
      
 
 $myPurpDedc = "5% of Member Deactivated charge";

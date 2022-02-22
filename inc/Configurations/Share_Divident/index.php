@@ -13,7 +13,7 @@ $ByaLL = "all";
 
 
 
-
+ 
 
 
 <div class="page">
@@ -159,6 +159,8 @@ $ByaLL = "all";
 
                             $id = $gett["id"];
                             $year = $gett["year"];
+                            $amount_to_all = $gett["amount_to_all"];
+                            $amount_to_founders = $gett["amount_to_founders"];
                             $date_added = $gett["date_added"];
                             $done_by = $gett["done_by"];
 
@@ -209,7 +211,7 @@ $ByaLL = "all";
                             <td class="align-middle text-center">
 
 
-                             <div class="btn-group btn-group-toggle" data-toggle="buttons" onclick="window.open('ViewPDFS/Reports/ClossingAccount/print_all_clossing_account_with_dividence_to_founders.php?PRINT=PRINT_ALL_SHARE_HOLDERS_TOKENS&&BY_WHO=<?php echo $ByFounders ?>&&YEAR=<?php echo $year ?>')">
+                             <div class="btn-group btn-group-toggle" data-toggle="buttons" onclick="window.open('ViewPDFS/Reports/ClossingAccount/print_all_clossing_account_with_dividence_to_founders.php?PRINT=PRINT_ALL_SHARE_HOLDERS_TOKENS&&BY_WHO=<?php echo $ByFounders ?>&&YEAR=<?php echo $year ?>&&AMNTFDERS=<?php echo $amount_to_founders ?>&&loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem')">
 
                               <label class="btn btn-secondary" >
 
@@ -220,7 +222,7 @@ $ByaLL = "all";
 
 
 
-                              <div class="btn-group btn-group-toggle" data-toggle="buttons" onclick="window.open('ViewPDFS/Reports/ClossingAccount/print_all_clossing_account_with_dividence_to_all.php?PRINT=PRINT_ALL_SHARE_HOLDERS_TOKENS&&BY_WHO=<?php echo $ByaLL ?>&&YEAR=<?php echo $year ?>')">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons" onclick="window.open('ViewPDFS/Reports/ClossingAccount/print_all_clossing_account_with_dividence_to_all.php?PRINT=PRINT_ALL_SHARE_HOLDERS_TOKENS&&BY_WHO=<?php echo $ByaLL ?>&&YEAR=<?php echo $year ?>&&AMNTALL=<?php echo $amount_to_all ?>&&loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem')">
 
                                 <label class="btn btn-secondary" >
 

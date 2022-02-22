@@ -18,6 +18,7 @@ $letterhead = $ahema["letterhead"];
 
 $YEAR = $_GET["YEAR"];
 $BY_WHO = $_GET["BY_WHO"];
+$AMNTFDERS = $_GET["AMNTFDERS"];
 
 
 class PDF extends FPDF {
@@ -188,7 +189,7 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 
 $pdf->SetFont('Arial','B',14);
 $pdf->Cell(275,10, 'TOTAL PEOPLE:  ' . $totalPeopleShared, 1,1, 'C');
-$pdf->Cell(275,10, 'TOTAL AMOUNT SHARED:  ' . number_format($totalContriAmount, 2), 1,1, 'C');
+$pdf->Cell(275,10, 'TOTAL AMOUNT SHARED:  ' . number_format($AMNTFDERS, 2), 1,1, 'C');
 
 
 $pdf->Output();
