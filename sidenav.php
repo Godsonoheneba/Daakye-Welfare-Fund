@@ -532,6 +532,14 @@ if ($login_session_type==="1" || $login_session_type==="3") {
                   <a href=".login-success.approve-member-loans-guarantors.html.css.java.kt" class="menu-link"> Guarantor's Approvals</a>
                 </li>
 
+
+                 <li class="menu-item">
+                  <a href=".login-success.approve-member-loans-top-up-loans.html.css.java.kt" class="menu-link"> Top Up loan Approvals</a>
+                </li>
+
+
+
+
               </ul><!-- /child menu -->
             </li><!-- /.menu-item -->
 

@@ -3,7 +3,12 @@ RewriteEngine On
 #DirectoryIndex login.php
 
 
+#COMMENT AND UNCOMMENT AFTER MAINTENANCE
 #DirectoryIndex maintenance.php
+
+#RewriteRule ^login$ maintenance.php 
+
+#END COMMENT AND UNCOMMENT AFTER MAINTENANCE
 
 RewriteRule ^login$ login.php 
 
@@ -38,6 +43,12 @@ RewriteRule ^.login-success.approve-member-contributions-edit.html.css.js.kt$ ho
 
 #LOANS GUARANTORS APPROVALS
 RewriteRule ^.login-success.approve-member-loans-guarantors.html.css.java.kt$ homepage.php?CHECKER=VIEW_GUARANTORS_APPROVALS
+
+
+
+
+#TOP UP LOANS APPROVALS
+RewriteRule ^.login-success.approve-member-loans-top-up-loans.html.css.java.kt$ homepage.php?CHECKER=VIEW_TOP_LOANS_APPROVALS
 
 
 

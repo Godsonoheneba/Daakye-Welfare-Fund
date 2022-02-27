@@ -200,6 +200,15 @@ include 'sidenav.php';
 
 
 
+     else if ($MYTOPGET==="VIEW_TOP_LOANS_APPROVALS") {
+
+        include 'inc/Membership/Approvals/top_up_approvals.php';
+
+
+      } 
+
+
+
 
 
 

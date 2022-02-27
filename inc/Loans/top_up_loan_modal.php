@@ -14,9 +14,32 @@
     <div class="modal-content">
       <!-- .modal-header -->
       <div class="modal-header text-center">
-        <h6 id="topUpLoanLabel" class="modal-title">Top Up Loan For <?php echo $getLoanBy ?></h6><br>
-        <h6 id="topUpLoanLabel" class="modal-title">Current Balance : <?php echo number_format($balance, 2) ?></h6>
-        <h6 id="topUpLoanLabel" class="modal-title">You can top up up to GH&#8373;  : <?php echo number_format($qualifyLoanTopUp, 2) ?></h6>
+        <?php 
+
+          if ($mode===1) {
+
+
+            ?>
+
+                <h6 id="topUpLoanLabel" class="modal-title">Amount toped up is GH&#8373;  <?php echo number_format($top_up_amount, 2) ?></h6><br>
+                
+            <?php
+
+
+          }else{
+
+            ?>
+
+                <h6 id="topUpLoanLabel" class="modal-title">Top Up Loan For <?php echo $getLoanBy ?></h6><br>
+                <h6 id="topUpLoanLabel" class="modal-title">Current Balance : <?php echo number_format($balance, 2) ?></h6>
+                <h6 id="topUpLoanLabel" class="modal-title">You can top up up to GH&#8373;  : <?php echo number_format($qualifyLoanTopUp, 2) ?></h6>
+            <?php
+
+          }
+
+
+         ?>
+       
       </div><!-- /.modal-header -->
       <!-- .modal-body -->
       <div class="modal-body px-0">
@@ -35,66 +58,90 @@
 
           <div class="" >
 
+            <?php 
+
+              if ($mode===1) {
+
+                ?>
+
+                  <div class="col-md-12 mb-3">
+                    <label for="Amount">Amount <abbr title="Required">*</abbr></label> <input type="text"  onkeyup="checkLoanPayAMount(this)"  class="form-control topUpLoanAmountClass" id="Amount" placeholder="Amount "  value="<?php echo $top_up_amount ?>" readonly>
+                  </div>
+
+
+                    <div class="col-md-12 mb-3">
+                      <label for="PaymentPeriod">Payment Period <abbr title="Required">*</abbr> </label> 
+                      <select class="custom-select d-block w-100 topUpPaymentPeriodChooseClass"  >
+                        <option value="<?php echo $topup_months ?>"> <?php echo $topup_months ?> Months</option>
+                      </select>
+
+                    </div>
+
+                  <?php
+                
+              } else {
+                
+                  ?>
+
+                  <div class="col-md-12 mb-3">
+                    <label for="Amount">Amount <abbr title="Required">*</abbr></label> <input type="text"  onkeyup="checkLoanPayAMount(this)"  class="form-control topUpLoanAmountClass" id="Amount" placeholder="Amount "  value="<?php echo $qualifyLoanTopUp ?>">
+                  </div>
+
+
+                    <div class="col-md-12 mb-3">
+                      <label for="PaymentPeriod">Payment Period <abbr title="Required">*</abbr> </label> <select class="custom-select d-block w-100 topUpPaymentPeriodChooseClass"  >
+                        <option value=""> Choose... </option>
+                        <option value="1">  1 Month </option>
+                        <option value="2">  2 Months </option>
+                        <option value="3">  3  Months </option>
+                        <option value="4">  4  Months </option>
+                        <option value="5">  5  Months </option>
+                        <option value="6">  6  Months </option>
+                        <option value="7">  7  Months </option>
+                        <option value="8">  8  Months </option>
+                        <option value="9">  9  Months </option>
+                        <option value="10">  10  Months </option>
+                        <option value="11">  11  Months </option>
+                        <option value="12">  12  Months </option>
+                        <option value="13">  13  Months </option>
+                        <option value="14">  14  Months </option>
+                        <option value="15">  15  Months </option>
+                        <option value="16">  16  Months </option>
+                        <option value="17">  17  Months </option>
+                        <option value="18">  18  Months </option>
+                        <option value="19">  19  Months </option>
+                        <option value="20">  20  Months </option>
+                        <option value="21">  21  Months </option>
+                        <option value="22">  22  Months </option>
+                        <option value="23">  23  Months </option>
+                        <option value="24">  24  Months </option>
+                        <option value="25">  25  Months </option>
+                        <option value="26">  26  Months </option>
+                        <option value="27">  27  Months </option>
+                        <option value="28">  28  Months </option>
+                        <option value="29">  29  Months </option>
+                        <option value="30">  30  Months </option>
+                        <option value="31">  31  Months </option>
+                        <option value="32">  32  Months </option>
+                        <option value="33">  33  Months </option>
+                        <option value="34">  34  Months </option>
+                        <option value="35">  35  Months </option>
+                        <option value="36">  36  Months </option>
+
+                      </select>
+
+                    </div>
+
+                  <?php
 
 
 
 
+              }
+              
 
 
-
-           <div class="col-md-12 mb-3">
-            <label for="Amount">Amount <abbr title="Required">*</abbr></label> <input type="text"  onkeyup="checkLoanPayAMount(this)"  class="form-control topUpLoanAmountClass" id="Amount" placeholder="Amount "  value="<?php echo $qualifyLoanTopUp ?>">
-          </div>
-
-
-
-          <div class="col-md-12 mb-3">
-              <label for="PaymentPeriod">Payment Period <abbr title="Required">*</abbr> </label> <select class="custom-select d-block w-100 topUpPaymentPeriodChooseClass"  >
-                <option value=""> Choose... </option>
-                <option value="1">  1 Month </option>
-                <option value="2">  2 Months </option>
-                <option value="3">  3  Months </option>
-                <option value="4">  4  Months </option>
-                <option value="5">  5  Months </option>
-                <option value="6">  6  Months </option>
-                <option value="7">  7  Months </option>
-                <option value="8">  8  Months </option>
-                <option value="9">  9  Months </option>
-                <option value="10">  10  Months </option>
-                <option value="11">  11  Months </option>
-                <option value="12">  12  Months </option>
-                <option value="13">  13  Months </option>
-                <option value="14">  14  Months </option>
-                <option value="15">  15  Months </option>
-                <option value="16">  16  Months </option>
-                <option value="17">  17  Months </option>
-                <option value="18">  18  Months </option>
-                <option value="19">  19  Months </option>
-                <option value="20">  20  Months </option>
-                <option value="21">  21  Months </option>
-                <option value="22">  22  Months </option>
-                <option value="23">  23  Months </option>
-                <option value="24">  24  Months </option>
-                <option value="25">  25  Months </option>
-                <option value="26">  26  Months </option>
-                <option value="27">  27  Months </option>
-                <option value="28">  28  Months </option>
-                <option value="29">  29  Months </option>
-                <option value="30">  30  Months </option>
-                <option value="31">  31  Months </option>
-                <option value="32">  32  Months </option>
-                <option value="33">  33  Months </option>
-                <option value="34">  34  Months </option>
-                <option value="35">  35  Months </option>
-                <option value="36">  36  Months </option>
-
-              </select>
-
-            </div>
-
-
-
-
+             ?>
 
           <div class="form-actions col-md-10 mb-3">
 
@@ -167,7 +214,7 @@
       confirmButtonText: 'Yes, Top Up Loan!'
     }).then((result) => {
 
-
+ 
       if (result.value) {
 
         $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=topUpLoanPost",{loanID:loanID,person_id:person_id,real_monthLeft:real_monthLeft,qualifyLoanTopUp:qualifyLoanTopUp,topUpLoanAmountClass:topUpLoanAmountClass,topUpPaymentPeriodChooseClass:topUpPaymentPeriodChooseClass},function (showOutPut) {
@@ -178,10 +225,10 @@
 
 
 
-          if (showOutPut.includes("error")) {
+          if (showOutPut.includes("requesterror")) {
             Swal.fire({
               title: "Error",
-              text: "An error occured, Pelase try again,",
+              text: "An error occured, in Requesting Top Up, Pelase try again,",
               type: "warning",
               confirmButtonClass: "btn-danger",
               confirmButtonText: "Ok",
@@ -191,22 +238,74 @@
             });
 
 
-          }else{
+          }else if (showOutPut.includes("issueerror")) {
+            Swal.fire({
+              title: "Error",
+              text: "An error occured, in Issueng of Top up Loans , Pelase try again,",
+              type: "warning",
+              confirmButtonClass: "btn-danger",
+              confirmButtonText: "Ok",
+              closeOnConfirm: false,
+              closeOnCancel: false
+
+            });
 
 
+          }else if (showOutPut.includes("errorInSendingMail")) {
+            Swal.fire({
+              title: "Error",
+              text: "An error occured in seeding email, Pelase try again,",
+              type: "warning",
+              confirmButtonClass: "btn-danger",
+              confirmButtonText: "Ok",
+              closeOnConfirm: false,
+              closeOnCancel: false
+
+            });
+
+
+          }else if (showOutPut.includes("requestsucess")) {
             Swal.fire(
             'Successfull!',
-            ' Successfully Top Up ',
+            '  Top up Loan requested Successfully ',
             'success'
             ).then((result) =>{
 
 
               location.reload();
+
+            })
+
+
+          }else if (showOutPut.includes("issuesuccess")) {
+            Swal.fire(
+            'Successfull!',
+            ' Successfully Issued Top up Loan ',
+            'success'
+            ).then((result) =>{
+
+
+              location.reload();
+
+            })
+
+
+          }else{
+
+
+            // Swal.fire(
+            // 'Successfull!',
+            // ' Successfully Top Up ',
+            // 'success'
+            // ).then((result) =>{
+
+
+            //   location.reload();
               
 
 
 
-            })
+            // })
 
 
 

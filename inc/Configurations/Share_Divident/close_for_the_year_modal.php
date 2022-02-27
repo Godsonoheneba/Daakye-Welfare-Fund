@@ -125,8 +125,8 @@
 
             $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=closeAccountForTHeYear",{yearToCloseAccount:yearToCloseAccount},function (showOutPut) {
 
-              alert(showOutPut)
-              exit();
+              // alert(showOutPut)
+              // exit();
 
 
 

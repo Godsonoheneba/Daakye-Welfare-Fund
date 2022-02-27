@@ -23,19 +23,23 @@ if ($_GET["CHECKPOST"]=="sendCOntributionSMS") {
 
   $checkExist5 = mysqli_query($conn, "SELECT * FROM members WHERE telephone!='' AND active='yes'  ");
 
+  // $checkExist5 = mysqli_query($conn, "SELECT * FROM members_fake WHERE telephone!='' AND active='yes'  ");
+
+$TOdated = date("jS F, Y");
 
     while ($fetches = mysqli_fetch_assoc($checkExist5)) {
 
 
       $firstname = $fetches["firstname"];
       $surname = $fetches["surname"];
+      $email = $fetches["email"];
       $telephone = $fetches["telephone"];
       $total_contribution_made = $fetches["total_contribution_made"];
 
 
        $memeberName = $firstname . " " . $surname ;
 
-       $schoolName = "DAAKYE WELFARE ";
+       $getFullName = "DAAKYE WELFARE ";
 
        /*-----send message to either father, mother or guardian-------------*/
 
@@ -43,15 +47,124 @@ if ($_GET["CHECKPOST"]=="sendCOntributionSMS") {
 
         $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
         $senderID = 'DaakyeWelfa';
-        $message = $schoolName . '  -  Dear ' .  $memeberName .' your total contribution balance  as at ' . $TOdated = date("jS F, Y") . ' is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
+        $message = 'Dear ' .  $memeberName .' your total contribution balance  as at ' . $TOdated . ' is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
         
-
-          $resp=file_get_contents($url);
+          if ($resp=file_get_contents($url)) {
+            echo "sent";
+          } else {
+            echo "error";
+          }
+          
        }else{
         echo "cantsend";
        }
+
+
+      /*------------------ send email-----------*/
+
+      if ($email!=="") {
+
+        $message="<html>
+        <body>
+
+        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
+
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+
+        <tbody><tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td align=\"center\">
+        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+
+
+        <tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"padding:45px 50px 45px 50px\">
+
+        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
+        <div>
+        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
+
+        Dear $memeberName! <br><br>
+
+        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> You have Successfully registered as Daakye Welfare Member
+
+
+         your total contribution balance  as at $TOdated is GHS number_format($total_contribution_made, 2). Thank you.;
+
+
+
+        <br>
+        <br>
+
+        </p>
+
+        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+        </tbody></table>
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
+        <div>
+        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+
+        </td>
+        </tr>
+        </tbody></table>
+        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
+
+        </body>
+        </html>";
+        $to = $email;
+        $subject = 'CONTRIBUTION BALANCE';
+
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+         // More headers
+            $headers .= 'From: <daakyewelfare2020@gmail.com>' . "\r\n";
+
+
+        if (mail($to, $subject, $message, $headers)) {
+
+
+        }else{
+
+
+          echo "errorInSendingMail";
+
+
+
+        }
+
+      }
+
+      /*------------------ends send email-----------*/
+
 
       
 
@@ -571,7 +684,7 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithImage") {
         <p>
         </p>
 
-        Login At  <a href=\"http://daakyewelfare-com.preview-domain.com/login.php\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
         </div>
         </td>
         </tr>
@@ -935,7 +1048,7 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithNoImage") {
       <p>
       </p>
 
-      Login At  <a href=\"http://daakyewelfare-com.preview-domain.com/login.php\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+      Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
       </div>
       </td>
       </tr>
@@ -2299,6 +2412,107 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
+      if ($email!=="") {
+
+        $message="<html>
+        <body>
+
+        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
+
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+
+        <tbody><tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td align=\"center\">
+        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+
+
+        <tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"padding:45px 50px 45px 50px\">
+
+        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
+        <div>
+        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
+
+        Dear $memeberName! <br><br>
+
+        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> 
+
+
+        Alert!! GHS $getRealAmountPaying credited to your contribution account for the month of  $month_to_pay_in_words - $year_to_pay  on the  $TOdated  Balance before : GHS  $balaBefor.  Your available contribution balance is GHS  $total_contribution_made. Thank you.;
+
+
+
+        <br>
+        <br>
+
+        </p>
+
+        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+        </tbody></table>
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
+        <div>
+        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+
+        </td>
+        </tr>
+        </tbody></table>
+        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
+
+        </body>
+        </html>";
+        $to = $email;
+        $subject = 'PAYMENT OF CONTRIBUTION';
+
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+         // More headers
+            // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
+
+
+        if (mail($to, $subject, $message, $headers)) {
+
+
+        }else{
+
+
+          echo "errorInSendingMail";
+
+
+
+        }
+
+      }
+
+
+
         mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$member_id','$activityType','$StudentDescription','$TOdated','$login_session')");
 
         mysqli_query($conn, "INSERT INTO staff_activities (staff_id,activity_type,description,datecreated) VALUES('$staffID','$activityType','$StaffDescription','$TOdated')");
@@ -2364,6 +2578,107 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
           $resp=file_get_contents($url);
        }
+
+
+
+      if ($email!=="") {
+
+        $message="<html>
+        <body>
+
+        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
+
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+
+        <tbody><tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td align=\"center\">
+        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+
+
+        <tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"padding:45px 50px 45px 50px\">
+
+        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
+        <div>
+        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
+
+        Dear $memeberName! <br><br>
+
+        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> 
+
+
+        Alert!! GHS number_format($getRealAmountPaying, 2) credited to your contribution account for the month of  $month_to_pay_in_words - $year_to_pay  on the  $TOdated  Balance before : GHS  number_format($balaBefor,2).  Your available contribution balance is GHS  number_format($total_contribution_made, 2). Thank you.;
+
+
+
+        <br>
+        <br>
+
+        </p>
+
+        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+        </tbody></table>
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
+        <div>
+        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+
+        </td>
+        </tr>
+        </tbody></table>
+        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
+
+        </body>
+        </html>";
+        $to = $email;
+        $subject = 'PAYMENT OF CONTRIBUTION';
+
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+         // More headers
+            // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
+
+
+        if (mail($to, $subject, $message, $headers)) {
+
+
+        }else{
+
+
+          echo "errorInSendingMail";
+
+
+
+        }
+
+      }
 
 
 
@@ -2637,10 +2952,57 @@ if ($_GET["CHECKPOST"]=="approvedLoansByGuarantor2Post") {
 /*-----------------------ends guarantor loans approved by guarantor 2---------------*/
 
 
+/*-----------------------top up loans approved by guarantor 1---------------*/
+ 
+
+if ($_GET["CHECKPOST"]=="approvedTopUpLoansByGuarantor1Post") {
+
+ $loanID = $_POST["loanID"];
+ $personID = $_POST["personID"];
+
+
+ if (mysqli_query($conn, "UPDATE loans_top_up SET g1_confirm='yes'  WHERE id='$loanID' AND   active='yes' LIMIT 1 " )) {
+
+
+  echo "done";
+
+} else {
+  echo "errorinupdate";
+}
 
 
 
 
+}
+
+/*-----------------------ends top up  loans approved by guarantor 1---------------*/
+
+
+
+
+/*-----------------------top up loans approved by guarantor 2---------------*/
+ 
+
+if ($_GET["CHECKPOST"]=="approvedTopUpLoansByGuarantor2Post") {
+
+ $loanID = $_POST["loanID"];
+ $personID = $_POST["personID"];
+
+
+ if (mysqli_query($conn, "UPDATE loans_top_up SET g2_confirm='yes'  WHERE id='$loanID' AND   active='yes' LIMIT 1 " )) {
+
+
+  echo "done";
+
+} else {
+  echo "errorinupdate";
+}
+
+
+
+}
+
+/*-
 
 
 
@@ -5179,9 +5541,9 @@ if ($_GET["CHECKPOST"]=="deleteRequestedLoan") {
 
 
 
+ 
 
-
-/*---------------------------------TOP UP LOANS TO USER-=----------------------*/
+/*---------------------------------TOP UP LOANS TO USE-=----------------------*/
 if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
  
@@ -5196,8 +5558,20 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
 
 
-    $selectLoanAll = mysqli_query($conn, "SELECT * FROM loans_all WHERE active ='yes' AND id='$loanID' LIMIT 1 ");
+    // $selectLoanAll = mysqli_query($conn, "SELECT * FROM loans_all WHERE active ='yes' AND id='$loanID' LIMIT 1 ");
 
+
+    $selectLoanAll = mysqli_query($conn, "SELECT ln.*,mem.* FROM loans_all ln, members mem WHERE 
+
+      ln.active ='yes'
+      AND mem.active='yes'
+      AND ln.person_id=mem.member_id_encrypt
+      AND ln.id='$loanID' 
+      LIMIT 1 ");
+
+
+
+    $seleTopUp = mysqli_query($conn, "SELECT * FROM loans_top_up WHERE active ='yes' AND loan_id='$loanID' AND topup_issued='no' LIMIT 1 ");
 
     $getdac = mysqli_fetch_assoc($selectLoanAll);
 
@@ -5229,15 +5603,51 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
     $date_added = $getdac["date_added"];
     $loan_added_by = $getdac["loan_added_by"];
 
+    $firstname = $getdac["firstname"];
+    $surname = $getdac["surname"];
+    $mobileNum = $getdac["telephone"];
+    $email = $getdac["email"];
+    $memberName = $firstname . " " . $surname;
+
 
     $total_months_for_payment = $topUpPaymentPeriodChooseClass;
 
 
+    $getdAhe = mysqli_fetch_assoc($seleTopUp);
 
+    $TopUploan_id = $getdAhe["loan_id"];
+
+ 
     $dated = date("jS F, Y");
     $activityType = "Loan Top Up";
     $MemberDescription = "A Loan of $amount_collected cedis was top up";
     $StaffDescription = "A loan of $amount_collected was top up to $person_id by : $login_session";
+
+      $selG1 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor1' LIMIT 1 ");
+       $gg1 = mysqli_fetch_assoc($selG1);
+       $g1member_id = $getdac["member_id"];
+      $selG2 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor2' LIMIT 1 ");
+      $gg2 = mysqli_fetch_assoc($selG2);
+      $g2member_id = $getdac["member_id"];
+
+
+      $g1firstname = $gg1["firstname"];
+      $g1surname = $gg1["surname"];
+      $g1mobile = $gg1["telephone"];
+      $g1FullName = $g1firstname . " " . $g1surname;
+
+      $g2firstname = $gg2["firstname"];
+      $g2surname = $gg2["surname"];
+      $g2mobile = $gg2["telephone"];
+      $g2FullName = $g2firstname . " " . $g2surname;
+
+
+      // echo "$g1FullName >>>>> $g1mobile";
+      // echo "$g2FullName >>>>> $g2mobile";
+
+      // exit();
+
+
 
 
 
@@ -5324,9 +5734,6 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
 
 
-
-
-
     if (($total_months_for_payment >12 && $month <=12) || ($month >6 && $total_months_for_payment <=12)  ) {
 
       $getMonth = $monthCHeck - 12;
@@ -5387,7 +5794,33 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
   $firstMonth = 01;
 
   $monthPlus1 = $month + 1;
+  $monthPlus1 = $month + 2;
 
+  $day2 = date("d");
+  $twoweeks = 14;
+  $thirtydays = 30;
+  // $day2 = 25;
+  $dayplus14 = $day2 + $twoweeks;
+
+  if ($day2<=16) {
+
+    $realday = $dayplus14;
+
+    // $getrealday = $realday;
+
+    } else {
+
+
+    $realday = $dayplus14-$thirtydays;
+
+    }
+
+    if ($realday===1 || $realday===2 || $realday===3 || $realday===4 || $realday===5 || $realday===6 || $realday===7 || $realday===8 || $realday===9 ) {
+      $realday = "0". $realday;
+    } else {
+      $realday  = $realday;
+    }
+    
 
   if ($monthPlus1 > 9) {
     $beofreMonthZero ="" . $monthPlus1;
@@ -5400,16 +5833,23 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
   if ($monthPlus1 > 12) {
 
-    $nextMonthPayment = $years+1 . "-" . $firstMonth  . "-". $day;
+    $nextMonthPayment = $years+1 . "-" . $firstMonth  . "-". $realday;
 
   } else {
 
-    $nextMonthPayment = $years . "-" . $beofreMonthZero  . "-". $day;
+    $nextMonthPayment = $years . "-" . $beofreMonthZero  . "-". $realday;
   }
 
 
 
-  // echo "$nextMonthPayment";
+  // $dayplus14 = 15;
+
+  // $getRealdaysafter14 = $dayplus14 - $daystosub;
+
+
+
+
+  // echo "nextMonthPayment >>>>>>> $nextMonthPayment >>>>>realday >>";
   // exit();
 
 
@@ -5435,26 +5875,6 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
  
 
   $loanSTat = "issued";
-
-
-// --------DECLARE NEW VARIABLES---------
-
-    // $new_total_amount_collected = $amount_collected + $topUpLoanAmountClass;
-    // $new_interest_rate = $interest_rate_db_amount;
-    // $CHECKtotal_interest_rate_amount = $interest_rate_db_amount * $topUpLoanAmountClass;
-    // $new_total_interest_rate_amount = $total_interest_rate_amount + $CHECKtotal_interest_rate_amount;
-    // $new_total_amount_to_pay = $new_total_amount_collected + $new_total_interest_rate_amount;
-    // $new_balance = $new_total_amount_to_pay - $amount_paid;
-
-    // $new_total_months_for_payment = $DBtotal_months_for_payment + $topUpPaymentPeriodChooseClass;
-
-    // $new_months_left = $months_left + $topUpPaymentPeriodChooseClass;
-
-
-    // $new_monthly_installment = $new_balance /  $new_months_left;
-
-
-
 
 
 
@@ -5508,23 +5928,196 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
     $new_date_issued = date("jS F, Y");
 
+    $toYear = date("Y");
 
 
-    if (mysqli_query($conn, "UPDATE loans_all SET amount_collected='$new_total_amount_collected',interest_rate='$new_interest_rate', total_interest_rate_amount='$new_total_interest_rate_amount', interest_amount_paid='$new_interest_amount_paid' ,total_amount_to_pay='$new_total_amount_to_pay' ,amount_paid='$new_amount_paid' ,balance='$new_balance', date_requested='$todayDate' , date_issued='$new_date_issued' ,monthly_installment='$new_monthly_installment', total_months_for_payment='$new_total_months_for_payment',next_month_payment_date='$nextMonthPayment', months_left='$new_months_left', date_of_completion='$date_Of_Completions' ,next_month_payment_amount='$new_monthly_installment' WHERE id='$loanID' AND person_id='$person_id' LIMIT 1  ")) {
 
-      mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$person_id','$activityType','$MemberDescription','$dated','$login_session')");
+     if (mysqli_num_rows($seleTopUp)===1) {
 
-    mysqli_query($conn, "INSERT INTO loans_top_up (loan_id,person_id,top_up_amount,months,interest_rate,total_interest_rate_amount,date_added,done_by) VALUES('$loanID','$person_id','$topUpLoanAmountClass','$topUpPaymentPeriodChooseClass','$new_interest_rate','$CHECKtotal_interest_rate_amount','$dateRequested','$login_session')");
-
-
-    mysqli_query($conn, "INSERT INTO staff_activities (staff_id,activity_type,description,datecreated) VALUES('$login_session','$activityType','$StaffDescription','$dated')");
+        if (mysqli_query($conn, "UPDATE loans_all SET amount_collected='$new_total_amount_collected',interest_rate='$new_interest_rate', total_interest_rate_amount='$new_total_interest_rate_amount', interest_amount_paid='$new_interest_amount_paid' ,total_amount_to_pay='$new_total_amount_to_pay' ,amount_paid='$new_amount_paid' ,balance='$new_balance', date_requested='$todayDate' , date_issued='$new_date_issued' ,monthly_installment='$new_monthly_installment', total_months_for_payment='$new_total_months_for_payment',next_month_payment_date='$nextMonthPayment', months_left='$new_months_left', date_of_completion='$date_Of_Completions' ,next_month_payment_amount='$new_monthly_installment' WHERE id='$loanID' AND person_id='$person_id' LIMIT 1  ")) {
 
 
-  }else{
-    echo "error";
-  }
+      if ($mobileNum!=="") {
+
+      $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
+        $senderID = 'DaakyeWelfa';
+        $message =' Dear  ' .$memberName . ',  your top up loan of GHS '. number_format($topUpLoanAmountClass, 2) . ' has been successfully issued. Your Payment begin on : ' . $nextMonthPayment . ' Monthly Installment :  ' . number_format($new_monthly_installment,2) . ' Total months for payment : ' .  $topUpPaymentPeriodChooseClass .' . Total LOAN to pay : GHS '. number_format($new_total_amount_to_pay, 2) .' . Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
+
+    if ($email!=="") {
+
+      $topUpLoanAmountClass = number_format($topUpLoanAmountClass,2);
+      $new_monthly_installment = number_format($new_monthly_installment,2);
+      $new_total_amount_to_pay = number_format($new_total_amount_to_pay,2);
+
+        $message="<html>
+        <body>
+
+        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
+
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+
+        <tbody><tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td align=\"center\">
+        <img style=\"width:143px\" src=\"https://daakyewelfare.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+
+
+        <tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"padding:45px 50px 45px 50px\">
+
+        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
+        <div>
+        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
+
+        Dear $memberName! <br><br>
+
+
+        your top up loan of GHS $topUpLoanAmountClass has been successfully issued. Your Payment begin on : $nextMonthPayment . Monthly Installment :  $new_monthly_installment. Total months for payment : $topUpPaymentPeriodChooseClass. Total LOAN to pay : GHS  $new_total_amount_to_pay. Thank you.
+
+
+
+          <br>
+          <br>
+
+          </p>
+
+          Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+          </div>
+          </td>
+          </tr>
+          </tbody></table>
+          </td>
+          </tr>
+          </tbody></table>
+
+          <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
+          <tbody><tr>
+          <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
+          <div>
+          <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
+          </div>
+          </td>
+          </tr>
+          </tbody></table>
+
+          </td>
+          </tr>
+          </tbody></table>
+          <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
+
+          </body>
+          </html>";
+          $to = $email;
+          $subject = 'LOAN TOP  UP';
+
+          $headers = "MIME-Version: 1.0\r\n";
+          $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+           // More headers
+              // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
+
+
+        if (mail($to, $subject, $message, $headers)) {
+
+
+        }else{
+
+
+          echo "errorInSendingMail";
+
+
+
+        }
+
+      }
+
+
+
+         mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$person_id','$activityType','$MemberDescription','$dated','$login_session')");
+
+
+         mysqli_query($conn, "UPDATE loans_top_up SET topup_issued='yes' WHERE loan_id='$TopUploan_id' AND topup_issued='no' LIMIT ");
+
+
+         mysqli_query($conn, "INSERT INTO staff_activities (staff_id,activity_type,description,datecreated) VALUES('$login_session','$activityType','$StaffDescription','$dated')");
+
+
+      echo "issuesuccess";
+
+
+      }else{
+        echo "issueerror";
+      }
+ 
+
+
+
+      } /////////else insert into top u loan table
+      else {
+
+
+
+        if (mysqli_query($conn, "INSERT INTO loans_top_up (loan_id,person_id,top_up_amount,months,interest_rate,total_interest_rate_amount,date_added,done_by) VALUES('$loanID','$person_id','$topUpLoanAmountClass','$topUpPaymentPeriodChooseClass','$new_interest_rate','$CHECKtotal_interest_rate_amount','$dateRequested','$login_session')")) {
+
+  
+              $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
+              $senderID = 'DaakyeWelfa';
+              $message =' Dear Member, ' . $memberName.' wants you to approve his Top up LOAN with an amount of GHS '.number_format($topUpLoanAmountClass,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
+
+              $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$g2mobile,$g1mobile&msg=$message&sender_id=$senderID";
+              
+
+                $resp=file_get_contents($url);
+
+ 
+          echo "requestsucess";
+        } else {
+          echo "requesterror";
+        }
+        
+      
+
+            
+
+
+      }
+
+
+
+
+
+
+
+
 
 }
+
+
+
+
+
+
+
+
 
 }
 
@@ -5891,7 +6484,7 @@ if ($_GET["CHECKPOST"]=="searchLoanPersonLivePost") {
 
 /*--------------------------PAY LOANS-----------------*/
 
-if ($_GET["CHECKPOST"]=="payLoansPost") {
+if ($_GET["CHECKPOST"]=="payLoansPost") { 
 
   if (isset($_POST["getLoanID"]) && isset($_POST["getPersonID"]) && isset($_POST["companyRevenueAmount"]) && isset($_POST["companyRevenuePurpose"]) && isset($_POST["actuaInterestPaid"]) && isset($_POST["actuaAmountToPayperMOnth"]) && isset($_POST["actualLoanAMountWihoutInterest"]) && isset($_POST["next_month_payment_amount"]) && isset($_POST["payLoanAmountClass"]) && isset($_POST["penalty_For_late_Payment"]) ) {
 
@@ -6029,11 +6622,6 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
 
 
-
-      // echo "getPenandInt = $getPenandInt >>>>> interest_amount_paid===$interest_amount_paid >>>> deductOrigInterest ==== $deductOrigInterest >>>>> actuaInterestPaid====$actuaInterestPaid >>>>>>> interest_rate === $interest_rate >>> deductPenalty==$deductPenalty >>>>>> gettheInterestOnPayment===$gettheInterestOnPayment >>>>>>>    getTheRawPrincipaAMountforPaying===$getTheRawPrincipaAMountforPaying >>>>>>>    penalty_For_late_Payment===$penalty_For_late_Payment >>>>>>>   payLoanAmountClass===$payLoanAmountClass >>>>>>>     ";
-
-      // exit();
-
       /*---------------------------VARIABLES DECLARES-------------------*/
 
       if ($quit_loan==="yes") {
@@ -6125,6 +6713,17 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
         if ($status==="Member") {
 
+        $selmm = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id_encrypt='$person_id'  ");
+
+          $getPayDac = mysqli_fetch_assoc($selmm);
+
+          $mobileNum = $getPayDac["telephone"];
+          $firstname = $getPayDac["firstname"];
+          $surname = $getPayDac["surname"];
+          $email = $getPayDac["email"];
+
+          $perName = $firstname . " " . $surname;
+
 
           if ($balance<=0) {
 
@@ -6162,6 +6761,20 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
 
         } else {
+
+
+          $selmm2 = mysqli_query($conn, "SELECT * FROM customers WHERE active ='yes' AND customer_id_encrypt='$person_id'  ");
+
+          $getPayDac2 = mysqli_fetch_assoc($selmm2);
+
+          $mobileNum = $getPayDac2["telephone"];
+          $firstname = $getPayDac["firstname"];
+          $surname = $getPayDac["surname"];
+          $email = $getPayDac["email"];
+
+
+          $perName = $firstname . " " . $surname;
+
 
 
           if ($balance<=0) {
@@ -6218,6 +6831,169 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
         mysqli_query($conn, "INSERT INTO loans_pay (person_id,loan_id,loan_collected_date,amount_collected,amount_paid,balance_before,month,year,date_paid,receipt_no,staff) VALUES('$getPersonID','$getLoanID','$date_issued','$amount_collected','$payLoanAmountClass','$balace_before','$toMonth','$toYear','$TOdated','$receiptNumber','$login_session' )");
 
+
+
+
+       if ($mobileNum!=="") {
+
+
+      if ($toMonth === "01") {
+          $month_to_pay_in_words = "January";
+        }
+
+        if ($toMonth === "02") {
+          $month_to_pay_in_words = "February";
+        }
+
+        if ($toMonth === "03") {
+          $month_to_pay_in_words = "March";
+        }
+
+        if ($toMonth === "04") {
+          $month_to_pay_in_words = "April";
+        }
+
+        if ($toMonth === "05") {
+          $month_to_pay_in_words = "May";
+        }
+
+        if ($toMonth === "06") {
+          $month_to_pay_in_words = "June";
+        }
+
+        if ($toMonth === "07") {
+          $month_to_pay_in_words = "July";
+        }
+
+        if ($toMonth === "08") {
+          $month_to_pay_in_words = "August";
+        }
+        if ($toMonth === "09") {
+          $month_to_pay_in_words = "September";
+        }
+
+        if ($toMonth === "10") {
+          $month_to_pay_in_words = "October";
+        }
+
+        if ($toMonth === "11") {
+          $month_to_pay_in_words = "November";
+        }
+
+        if ($toMonth === "12") {
+          $month_to_pay_in_words = "December";
+        }
+
+
+
+        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
+        $senderID = 'DaakyeWelfa';
+        $message =' Dear ' .$perName . ' , you have paid off GHS '. number_format($payLoanAmountClass, 2) . ' Loan amount for the month of ' . $month_to_pay_in_words . ' - ' . $toYear . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balace_before,2) .' . Your available LOAN balance is GHS '. number_format($balance, 2) .' . Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
+
+          if ($email!=="") {
+
+        $message="<html>
+        <body>
+
+        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
+
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+
+        <tbody><tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td align=\"center\">
+        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+
+
+        <tr>
+        <td bgcolor=\"#eeeeee\" align=\"center\">
+        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"padding:45px 50px 45px 50px\">
+
+        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
+        <div>
+        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
+
+        Dear $perName! <br><br>
+
+        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> 
+
+
+        you have paid off GHS number_format($payLoanAmountClass, 2) Loan amount for the month of $month_to_pay_in_words  - $toYear on the $TOdated. Balance before : GHS   number_format($balace_before,2). Your available LOAN balance is GHS number_format($balance, 2). Thank you.;
+
+
+
+        <br>
+        <br>
+
+        </p>
+
+        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+        </td>
+        </tr>
+        </tbody></table>
+
+        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
+        <tbody><tr>
+        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
+        <div>
+        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
+        </div>
+        </td>
+        </tr>
+        </tbody></table>
+
+        </td>
+        </tr>
+        </tbody></table>
+        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
+
+        </body>
+        </html>";
+        $to = $email;
+        $subject = 'PAYMENT OF LOAN';
+
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+         // More headers
+            // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
+
+
+        if (mail($to, $subject, $message, $headers)) {
+
+
+        }else{
+
+
+          echo "errorInSendingMail";
+
+
+
+        }
+
+      }
 
 
         echo "ViewPDFS/Loans/print_loans_receipt.php?PRINT=PRINT_LOANS_PAYMENT_RECEIPT&&DATEPAY=$next_month_payment_date&&MY_LOAN=$getLoanID&&TRUE=$getPersonID&&RECEIPT=$receiptNumber";
@@ -6527,7 +7303,7 @@ if ($_GET["CHECKPOST"]=="resetMemberPasswordPost") {
 
 /*----------close year for only founders --------------*/
 if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
-
+ 
 
 
   if (isset($_POST["yearToCloseAccount"]) ) {
@@ -6542,8 +7318,10 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
     // $Fromdate = date("Y-01-01");
     // $ToDate = date("Y-12-31");
 
-    $Fromdate = "2014-01-01";
-    $ToDate = $yearToCloseAccount . "-12-31";
+    $Fromdate = "2010-01-01";
+
+    $yearToCloseAccountPls1 = $yearToCloseAccount + 1;
+    $ToDate = $yearToCloseAccountPls1 . "-01-11";
 
 
 
@@ -6562,8 +7340,10 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
     $yesFor_Year = "yes";
 
 
-    $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes'  ");
+    // $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes'  ");
 
+
+    $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes' AND position='105' ");
 
     while ($gett= mysqli_fetch_assoc($sel)) {
 
@@ -6604,134 +7384,142 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
 
 
-/*-----------------get total LOAN  penalty Interest  ----------------*/
-$getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year_finish='no'  ");
-$getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
-$totalLoanPenalty = $getRow2555656["amount"];
+      /*-----------------get total LOAN  penalty Interest  ----------------*/
+      $getTotallOANPenalty = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_loan_penalty WHERE  active='yes' AND year_finish='no'  ");
+      $getRow2555656 = mysqli_fetch_assoc($getTotallOANPenalty);
+      $totalLoanPenalty = $getRow2555656["amount"];
 
 
 
-/*-----------------get total Registration fee  ----------------*/
-$getTotalReFee = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND year_finish='no'  ");
-$getRow24823 = mysqli_fetch_assoc($getTotalReFee);
-$totalRegFee = $getRow24823["amount"];
+      /*-----------------get total Registration fee  ----------------*/
+      $getTotalReFee = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_memb_reg_fee WHERE  active='yes' AND year_finish='no'  ");
+      $getRow24823 = mysqli_fetch_assoc($getTotalReFee);
+      $totalRegFee = $getRow24823["amount"];
 
 
-/*-----------------get total 5% deduction fee  ----------------*/
-$getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_5_perc_mem_deactivate_deduction WHERE  active='yes' AND year_finish='no'  ");
-$getRow248235 = mysqli_fetch_assoc($getTotalDedcutionPercen);
-$totalPercDeduction = $getRow248235["amount"];
+      /*-----------------get total 5% deduction fee  ----------------*/
+      $getTotalDedcutionPercen = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM comp_reve_5_perc_mem_deactivate_deduction WHERE  active='yes' AND year_finish='no'  ");
+      $getRow248235 = mysqli_fetch_assoc($getTotalDedcutionPercen);
+      $totalPercDeduction = $getRow248235["amount"];
 
 
 
 
 /*-----------------get total Revenue ----------------*/
 
-$getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
+      // $getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
 
-$totalInterest = $getAllTOtalInterest - $totalExpenses;
+      // $totalInterest = $getAllTOtalInterest - $totalExpenses;
 
-      /*-------------------company returnship share -----------*/
-      $returnshipShare = 0.05 * $totalInterest;
-      $returnshipShare = round($returnshipShare, 2);
+      // /*-------------------company returnship share -----------*/
+      // $returnshipShare = 0.05 * $totalInterest;
+      // $returnshipShare = round($returnshipShare, 2);
 
-      $TotalBalanceAfterReturnship = $totalInterest - $returnshipShare;
-
-
-      /*-------------------managements share -----------*/
-      $managements = 0.07 * $TotalBalanceAfterReturnship;
-      $managements = round($managements, 2);
-
-      $TotalBalanceAfterManagement = $TotalBalanceAfterReturnship - $managements;
+      // $TotalBalanceAfterReturnship = $totalInterest - $returnshipShare;
 
 
-      /*-------------------founders share -----------*/
-      $founderShare = 0.1 * $TotalBalanceAfterManagement;
-      $founderShare = round($founderShare, 2); 
+      // /*-------------------managements share -----------*/
+      // $managements = 0.07 * $TotalBalanceAfterReturnship;
+      // $managements = round($managements, 2);
 
-      $TotalBalanceAfterFounders = $TotalBalanceAfterManagement - $founderShare;
-
-
-      /*-------------------CO- founders share -----------*/
-      $CofounderShare = 0.09 * $TotalBalanceAfterFounders;
-      $CofounderShare = round($CofounderShare, 2);
-
-      $TotalBalanceAfterCoFounders = $TotalBalanceAfterFounders - $CofounderShare;
+      // $TotalBalanceAfterManagement = $TotalBalanceAfterReturnship - $managements;
 
 
-      /*-------------------2nd year people share -----------*/
-      $SeniorStaffShare = 0.05 * $TotalBalanceAfterCoFounders;
-      $SeniorStaffShare = round($SeniorStaffShare, 2);
+      // /*-------------------founders share -----------*/
+      // $founderShare = 0.1 * $TotalBalanceAfterManagement;
+      // $founderShare = round($founderShare, 2); 
 
-      $TotalBalanceAfterSeniorStaffShare = $TotalBalanceAfterCoFounders - $SeniorStaffShare;
-
-
-      /*-------------------3rd year people share -----------*/
-      $juniorStaffSHare = 0.03 * $TotalBalanceAfterSeniorStaffShare;
-      $juniorStaffSHare = round($juniorStaffSHare, 2);
-
-      $TotalBalanceAfterjuniorStaffSHare = $TotalBalanceAfterSeniorStaffShare - $juniorStaffSHare;
+      // $TotalBalanceAfterFounders = $TotalBalanceAfterManagement - $founderShare;
 
 
+      // /*-------------------CO- founders share -----------*/
+      // $CofounderShare = 0.09 * $TotalBalanceAfterFounders;
+      // $CofounderShare = round($CofounderShare, 2);
 
-      $allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
+      // $TotalBalanceAfterCoFounders = $TotalBalanceAfterFounders - $CofounderShare;
 
 
-      $founders_Shares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements;
+      // /*-------------------2nd year people share -----------*/
+      // $SeniorStaffShare = 0.05 * $TotalBalanceAfterCoFounders;
+      // $SeniorStaffShare = round($SeniorStaffShare, 2);
+
+      // $TotalBalanceAfterSeniorStaffShare = $TotalBalanceAfterCoFounders - $SeniorStaffShare;
 
 
-      $shareLeft = $totalInterest -  $allShares;
+      // /*-------------------3rd year people share -----------*/
+      // $juniorStaffSHare = 0.03 * $TotalBalanceAfterSeniorStaffShare;
+      // $juniorStaffSHare = round($juniorStaffSHare, 2);
+
+      // $TotalBalanceAfterjuniorStaffSHare = $TotalBalanceAfterSeniorStaffShare - $juniorStaffSHare;
+
+
+
+      // $allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
+
+
+      // $founders_Shares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements;
+
+
+      // $shareLeft = $totalInterest -  $allShares;
+
+      $returnshipShare = 1250.26;
+      $managements = 1750.35;
+      $totalExpenses = 14666;
+      $shareLeft = 22004;
+      $shareAmount = 1750.35;
+
+
 
 
 
 
       /*--------------share for founder-----------------*/
-      if ($position==="101") {
-        $countFounder = mysqli_query($conn, "SELECT count(*) AS count1 FROM payroll_members WHERE active='yes' AND position='101'  ");
+      // if ($position==="101") {
+      //   $countFounder = mysqli_query($conn, "SELECT count(*) AS count1 FROM payroll_members WHERE active='yes' AND position='101'  ");
 
-        $countFetch1 = mysqli_fetch_array($countFounder);
-        $countTOtalFounder = $countFetch1['count1'];
-        $shareAmount = $founderShare / $countTOtalFounder;
+      //   $countFetch1 = mysqli_fetch_array($countFounder);
+      //   $countTOtalFounder = $countFetch1['count1'];
+      //   $shareAmount = $founderShare / $countTOtalFounder;
 
-      } 
+      // } 
 
 
 
       /*--------------share for co founder-----------------*/
-      if ($position==="102") {
-        $countCoFounder = mysqli_query($conn, "SELECT count(*) AS count2 FROM payroll_members WHERE active='yes' AND position='102'  ");
+      // if ($position==="102") {
+      //   $countCoFounder = mysqli_query($conn, "SELECT count(*) AS count2 FROM payroll_members WHERE active='yes' AND position='102'  ");
 
-        $countFetch2 = mysqli_fetch_array($countCoFounder);
-        $countTOtalCoFounder = $countFetch2['count2'];
+      //   $countFetch2 = mysqli_fetch_array($countCoFounder);
+      //   $countTOtalCoFounder = $countFetch2['count2'];
 
-        $shareAmount = $CofounderShare / $countTOtalCoFounder;
+      //   $shareAmount = $CofounderShare / $countTOtalCoFounder;
 
-      }
+      // }
 
 
       /*--------------share for senior Staff-----------------*/
-      if ($position==="103") {
-        $countSeniorStaff = mysqli_query($conn, "SELECT count(*) AS count3 FROM payroll_members WHERE active='yes' AND position='103'  ");
+      // if ($position==="103") {
+      //   $countSeniorStaff = mysqli_query($conn, "SELECT count(*) AS count3 FROM payroll_members WHERE active='yes' AND position='103'  ");
 
-        $countFetch3 = mysqli_fetch_array($countSeniorStaff);
-        $countTOtalSeniorStaff = $countFetch3['count3'];
+      //   $countFetch3 = mysqli_fetch_array($countSeniorStaff);
+      //   $countTOtalSeniorStaff = $countFetch3['count3'];
 
-        $shareAmount = $SeniorStaffShare / $countTOtalSeniorStaff;
+      //   $shareAmount = $SeniorStaffShare / $countTOtalSeniorStaff;
 
-      }
+      // }
 
 
 
       /*--------------share for junior Staff-----------------*/
-      if ($position==="104") {
-        $countJuniorStaf = mysqli_query($conn, "SELECT count(*) AS count4 FROM payroll_members WHERE active='yes' AND position='104'  ");
+      // if ($position==="104") {
+      //   $countJuniorStaf = mysqli_query($conn, "SELECT count(*) AS count4 FROM payroll_members WHERE active='yes' AND position='104'  ");
 
-        $countFetch4 = mysqli_fetch_array($countJuniorStaf);
-        $countTOtalJuniorStaff = $countFetch4['count4'];
+      //   $countFetch4 = mysqli_fetch_array($countJuniorStaf);
+      //   $countTOtalJuniorStaff = $countFetch4['count4'];
 
-        $shareAmount = $juniorStaffSHare / $countTOtalJuniorStaff;
+      //   $shareAmount = $juniorStaffSHare / $countTOtalJuniorStaff;
 
-      } 
+      // } 
 
 
 
@@ -6751,6 +7539,9 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
 
 
 
+      // mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$shareAmount','$forFounders', '$login_session','yes') ");
+
+
       mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$shareAmount','$forFounders', '$login_session','yes') ");
 
 
@@ -6759,7 +7550,6 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
     }
 
 
-    $shareLeft = 22004;
 
 
 
@@ -6773,7 +7563,7 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
       // $total_contribution_made = $gett["total_contribution_made"];
 
 
-
+ 
 
 
         /*----------------GET OTTAL CONTRIBUTIONS MADE*/
@@ -6806,7 +7596,7 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
  // exit(); 
  
 
-      if ($countTotalmOnthCOnti >=7) {
+      if ($countTotalmOnthCOnti >=8) {
         
              if (mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_idATME','$total_contribution_made','$shareAmountMem','$forAll','$login_session','yes') ")) {
 
@@ -6827,25 +7617,28 @@ $totalInterest = $getAllTOtalInterest - $totalExpenses;
 
     mysqli_query($conn, "INSERT INTO company_returnship (year,amount) VALUES('$yearToCloseAccount','$returnshipShare') ");
 
-    mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$founders_Shares','$login_session') ");
+    // mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$founders_Shares','$login_session') ");
 
 
-    mysqli_query($conn, " UPDATE company_expenses SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+   mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$managements','$login_session') ");
 
 
-    mysqli_query($conn, " UPDATE company_revenue SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+    mysqli_query($conn, " UPDATE company_expenses SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
 
 
-    mysqli_query($conn, " UPDATE comp_reve_contrib_penalty SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+    mysqli_query($conn, " UPDATE company_revenue SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
 
 
-    mysqli_query($conn, " UPDATE comp_reve_loan_penalty SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+    mysqli_query($conn, " UPDATE comp_reve_contrib_penalty SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
 
 
-    mysqli_query($conn, " UPDATE comp_reve_memb_reg_fee SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+    mysqli_query($conn, " UPDATE comp_reve_loan_penalty SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
 
 
-    mysqli_query($conn, " UPDATE comp_reve_5_perc_mem_deactivate_deduction SET year_finish='yes' WHERE active='yes' AND year_finish='no'  ");
+    mysqli_query($conn, " UPDATE comp_reve_memb_reg_fee SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
+
+
+    mysqli_query($conn, " UPDATE comp_reve_5_perc_mem_deactivate_deduction SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
 
 
 

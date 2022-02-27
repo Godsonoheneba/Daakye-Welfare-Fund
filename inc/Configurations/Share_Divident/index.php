@@ -358,12 +358,12 @@ function sendCOntribuitionSMS() {
 
         $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=sendCOntributionSMS",{},function (showOutPut) {
 
-          // alert(showOutPut);
+          alert(showOutPut);
 
-          if (showOutPut.includes("errorinupdate")) {
+          if (showOutPut.includes("error")) {
             Swal.fire({
               title: "error",
-              text: "An Error occured in changing",
+              text: "Message coudnt send",
               type: "warning",
               confirmButtonClass: "btn-danger",
               confirmButtonText: "Ok",
@@ -372,14 +372,7 @@ function sendCOntribuitionSMS() {
 
             });
 
-
-
-
-
           }else{
-
-
-
 
             Swal.fire(
               'Successfull!',

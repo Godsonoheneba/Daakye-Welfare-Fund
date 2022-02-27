@@ -132,6 +132,19 @@ $actualLoanAMountWihoutInterest = $next_month_payment_amount - $companyRevenueAm
 // echo "actuaInterestPaid == $actuaInterestPaid >>>>>>> penalty_For_late_Payment === $penalty_For_late_Payment >>>>>>> companyRevenueAmount === $companyRevenueAmount >>>>>>>> next_month_payment_amount === $next_month_payment_amount >>>>>>>> RealcompanyRevenueAmount === $RealcompanyRevenueAmount";
 // exit();
 
+
+
+  $seleTopUp = mysqli_query($conn, "SELECT * FROM loans_top_up WHERE  loan_id='$getLoanID' AND active='yes' ORDER BY id DESC LIMIT 1 ");
+
+  $getTUp = mysqli_fetch_assoc($seleTopUp);
+  $g1_confirm = $getTUp["g1_confirm"];
+  $g2_confirm = $getTUp["g2_confirm"];
+  $topup_issued = $getTUp["topup_issued"];
+  $topup_months = $getTUp["months"];
+  $top_up_amount = $getTUp["top_up_amount"];
+
+
+
 } else {
 
   ?>
@@ -248,20 +261,75 @@ if ($finish_paying==="no") {
 
                 if ($amount_paid >= $topUpLoanCheck && $status==="Member") {
 
-                  ?>
 
 
-            <div class="col-12 col-sm-6 col-lg-3" data-toggle="modal" data-target="#topUpLoan">
-              <!-- .metric -->
-              <a  class="metric metric-bordered align-items-center">
-                <h2 class="metric-label"> Top up your Loan  </h2>
-                <p class="metric-value h3">
-                  <sub><i class="oi oi-people"></i></sub> <span class="value">Top Up </span>
-                </p>
-              </a> <!-- /.metric -->
-            </div><!-- /metric column -->
+                  if ($g2_confirm==='yes' && $g1_confirm==='yes' && $topup_issued=='no') {
+
+                    $mode = 1;
+
+                    ?>
+
+                      <div class="col-12 col-sm-6 col-lg-3" data-toggle="modal" data-target="#topUpLoan">
+                        <!-- .metric -->
+                        <a  class="metric metric-bordered align-items-center">
+                          <h2 class="metric-label"> Issue Top up Loan  </h2>
+                          <p class="metric-value h3">
+                            <sub><i class="oi oi-people"></i></sub> <span class="value">Issue Top Up </span>
+                          </p>
+                        </a> <!-- /.metric -->
+                      </div><!-- /metric column -->
 
                   <?php
+                    
+                  } else {
+
+                    if ($g1_confirm==='no' || $g2_confirm==='no' && $topup_issued=='no') {
+                      ?>
+
+                        <div class="col-12 col-sm-6 col-lg-3" >
+                          <!-- .metric -->
+                          <a  class="metric metric-bordered align-items-center">
+                            <h2 class="metric-label"> Wating for guarantors </h2>
+                            <p class="metric-value h3">
+                              <sub><i class="oi oi-people"></i></sub> <span class="value">Wating - Top Up </span>
+                            </p>
+                          </a> <!-- /.metric -->
+                        </div><!-- /metric column -->
+
+                     <?php
+                    } else {
+
+                      $mode = 0;
+
+                        
+                        ?>
+
+                        <div class="col-12 col-sm-6 col-lg-3" data-toggle="modal" data-target="#topUpLoan">
+                          <!-- .metric -->
+                          <a  class="metric metric-bordered align-items-center">
+                            <h2 class="metric-label"> Top up your Loan  </h2>
+                            <p class="metric-value h3">
+                              <sub><i class="oi oi-people"></i></sub> <span class="value">Top Up </span>
+                            </p>
+                          </a> <!-- /.metric -->
+                        </div><!-- /metric column -->
+
+                     <?php
+
+                    }
+                    
+
+
+
+
+
+                  }
+                  
+
+
+
+
+                  
                   
                 } 
                 
