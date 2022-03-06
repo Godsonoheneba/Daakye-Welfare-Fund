@@ -101,9 +101,10 @@ $pdf->SetDrawColor(180,180,255);
 		$pdf->SetFillColor(180,180,255);
 		$pdf->SetDrawColor(180,180,255);
 		$pdf->Cell(10,10,'ID',1,0,'C',true);
-		$pdf->Cell(80,10,'NAME',1,0,'C',true);
+		$pdf->Cell(60,10,'NAME',1,0,'C',true);
 		$pdf->Cell(25,10,'MOBILE',1,0,'C',true);
 		$pdf->Cell(25,10,'AMOUNT',1,0,'C',true);
+		$pdf->Cell(20,10,'PERCENTAGE',1,0,'C',true);
 		$pdf->Cell(35,10,'DATE',1,0,'C',true);
 		$pdf->Cell(15,10,'SIGN',1,1,'C',true);
 
@@ -141,6 +142,7 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 	$year = $getdac["year"];
 	$member_id = $getdac["member_id"];
 	$amount = $getdac["amount"];
+	$contribution_made = $getdac["contribution_made"];
 	$date_created = $getdac["date_created"];
 	$done_by = $getdac["done_by"];
 
@@ -175,9 +177,10 @@ while ( $getdac = mysqli_fetch_assoc($selectCust)) {
 	$no++;
 	
 	$pdf->Cell(10,10,$no, 1,0, 'C');
-	$pdf->Cell(80,10,$memberName, 1,0, 'C');
+	$pdf->Cell(60,10,$memberName, 1,0, 'C');
 	$pdf->Cell(25,10,$telephone, 1,0, 'C');
 	$pdf->Cell(25,10,round($amount,2), 1,0, 'C');
+	$pdf->Cell(20,10,$contribution_made . '%', 1,0, 'C');
 	$pdf->Cell(35,10,$date_created, 1,0, 'C');
 	$pdf->Cell(15,10,'', 1,1, 'C');
 

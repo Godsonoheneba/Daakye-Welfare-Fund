@@ -7321,7 +7321,7 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
     $Fromdate = "2010-01-01";
 
     $yearToCloseAccountPls1 = $yearToCloseAccount + 1;
-    $ToDate = $yearToCloseAccountPls1 . "-01-11";
+    $ToDate = $yearToCloseAccount . "-12-32";
 
 
 
@@ -7526,14 +7526,47 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
       /*--------------share for managements-------------*/
       if ($position==="105") {
-        $counManagements = mysqli_query($conn, "SELECT count(*) AS count5 FROM payroll_members WHERE active='yes' AND position='105'  ");
+        $counManagements = mysqli_query($conn, "SELECT count(*) AS count5 FROM payroll_members WHERE active='yes' AND position='105' AND member_id!='B197706273872'  ");
 
         $countFetch5 = mysqli_fetch_array($counManagements);
         $countTOtalManagements = $countFetch5['count5'];
 
-        $shareAmount = $managements / $countTOtalManagements;
+
+       $managementsHead = 0.4 * $managements;
+       $managementsHead = round($managementsHead, 2);
+
+       $shareMaountLeft = $managements - $managementsHead;
+
+        $shareAmount = $shareMaountLeft / $countTOtalManagements;
+
+        $manHeadPerce = 40;
+        $allPercen = 60 / $countTOtalManagements;
+
+         
+
+       //         echo "$shareMaountLeft";
+       // echo "countTOtalManagements >>>>> $countTOtalManagements";
+       // echo "shareAmount >>>>> $shareAmount";
+
+       // exit();
+
+       
+
+
+        
 
       } 
+
+      if ($member_id==='B197706273872') {
+           // $shareAmount = $managementsHead;
+
+           mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$manHeadPerce','$managementsHead','$forFounders', '$login_session','yes') ");
+
+         } else {
+
+          mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$allPercen','$shareAmount','$forFounders', '$login_session','yes') ");
+
+         }
 
 
 
@@ -7542,7 +7575,7 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
       // mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$shareAmount','$forFounders', '$login_session','yes') ");
 
 
-      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$shareAmount','$forFounders', '$login_session','yes') ");
+      
 
 
 
