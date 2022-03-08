@@ -7305,7 +7305,7 @@ if ($_GET["CHECKPOST"]=="resetMemberPasswordPost") {
 if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
  
 
-
+ 
   if (isset($_POST["yearToCloseAccount"]) ) {
 
    $yearToCloseAccount = $_POST["yearToCloseAccount"];
@@ -7321,7 +7321,7 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
     $Fromdate = "2010-01-01";
 
     $yearToCloseAccountPls1 = $yearToCloseAccount + 1;
-    $ToDate = $yearToCloseAccount . "-12-32";
+    $ToDate = $yearToCloseAccount . "-12-31";
 
 
 
@@ -7616,20 +7616,13 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
  
 
 /*-------------count month of contribution collected-------------------*/
-      $countTOMonth = mysqli_query($conn, "SELECT count(*) AS toMonth  FROM members_contributions WHERE active='yes' AND member_id_encrypt='$member_id_encryptATME'  ");
+      $countTOMonth = mysqli_query($conn, "SELECT count(*) AS toMonth  FROM members_contributions WHERE active='yes' AND member_id_encrypt='$member_id_encryptATME' AND year<='$yearToCloseAccount' ");
       $getcountTOMonth = mysqli_fetch_array($countTOMonth);
       $countTotalmOnthCOnti = $getcountTOMonth['toMonth'];
 
       $shareAmountMem = ($total_contribution_made / $overalContributionMade ) * $shareLeft;
 
- // echo "total_contribution_made>>>>> $total_contribution_made";
- // echo "overalContributionMade  >>>>> $overalContributionMade";
- // echo "shareLeft >>>>> $shareLeft";
-
- // exit(); 
- 
-
-      if ($countTotalmOnthCOnti >=8) {
+      if ($countTotalmOnthCOnti >=7) {
         
              if (mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_idATME','$total_contribution_made','$shareAmountMem','$forAll','$login_session','yes') ")) {
 
