@@ -100,6 +100,8 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
 
 
+$smsBalance = 'https://apps.mnotify.net/smsapi/balance?key=kIv2Oj3xJdUJzVTfyCrThrBaJ';
+
 
 /*-----------------get total contribution ----------------*/
 // $getToContribution = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM members_contributions WHERE  active='yes'   ");
@@ -224,7 +226,8 @@ $totalPercDeduction = $getRow248235["amount"];
 
 /*-----------------get total Revenue ----------------*/
 
-$getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
+// $getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
+$getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee;
 
 $totalRevenueGet = $getAllTOtalInterest - $totalExpenses;
 
@@ -465,15 +468,13 @@ if ($login_session_type==="1" || $login_session_type==="3") {
 
 
             <!-- metric column -->
-            <div class="col-12 col-sm-6 col-lg-3">
-              <!-- .metric -->
+            <!-- <div class="col-12 col-sm-6 col-lg-3">
               <a href="" class="metric metric-bordered align-items-center">
                 <h2 class="metric-label"> 5% Member Deduction Fee</h2>
                 <p class="metric-value h3">
-                  <sub><i class="fa fa-tasks"></i></sub> <span class="value">GH&#8373; <?php echo number_format($totalPercDeduction, 2) ?> </span>
                 </p>
-              </a> <!-- /.metric -->
-            </div><!-- /metric col-12 col-sm-6 col-lg-3umn -->
+              </a> 
+            </div> -->
 
 
 

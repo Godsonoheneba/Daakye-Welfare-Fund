@@ -3627,42 +3627,30 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
 
 
 
-}/*---------------------ends when g1 and g2 are not the same--------------*/
+      }/*---------------------ends when g1 and g2 are not the same--------------*/
 
-}else {
+  }else {
 
- Swal.fire({
-  title: "Error",
-  text: "All fields are mandatory for others",
-  type: "warning",
-  confirmButtonClass: "btn-danger",
-  confirmButtonText: "Ok",
-  closeOnConfirm: false,
-  closeOnCancel: false
+   Swal.fire({
+    title: "Error",
+    text: "All fields are mandatory for others",
+    type: "warning",
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Ok",
+    closeOnConfirm: false,
+    closeOnCancel: false
 
-});
-
-
- addBut.show();
- loadingBut.hide();
-
-}
+  });
 
 
+   addBut.show();
+   loadingBut.hide();
 
-}
+  }
 
 
 
-
-
-
-
-
-
-
-
-
+  }
 
 
 }

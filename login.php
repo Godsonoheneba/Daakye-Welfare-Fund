@@ -88,7 +88,7 @@ $letterhead = $ahema["letterhead"];
           </div>
         </div>
         <p class="py-2">
-           
+           <a href="forgetpassword.php">Forget Password</a>
         </p>
         <p class="mb-0 px-3 text-muted text-center"> © Copyright © <?php echo date("Y") ?>. All right reserved. <a href="#">Privacy</a> and <a href="#">Terms</a>
         </p>

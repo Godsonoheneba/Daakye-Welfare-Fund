@@ -145,6 +145,15 @@ include 'sidenav.php';
       }
 
 
+
+      else if ($MYTOPGET==="VIEW_MEMBER_WITHDRAWALS") {
+
+        include 'inc/Membership/Withdrawal/view_individual_withdrawals.php';
+
+
+      }
+
+
       else if ($MYTOPGET==="VIEW_MEMBER_LOANS") {
 
         include 'inc/Membership/view_all_members_loans.php';
@@ -203,6 +212,23 @@ include 'sidenav.php';
      else if ($MYTOPGET==="VIEW_TOP_LOANS_APPROVALS") {
 
         include 'inc/Membership/Approvals/top_up_approvals.php';
+
+
+      } 
+
+
+
+        else if ($MYTOPGET==="CONTRIBUTIONS_WITHDRAWALS") {
+
+        include 'inc/Membership/Withdrawal/contributions_withdrawals.php';
+
+
+      } 
+
+
+        else if ($MYTOPGET==="VIEW_WITHDRAWALS") {
+
+        include 'inc/Membership/Withdrawal/view_withdrawals.php';
 
 
       } 

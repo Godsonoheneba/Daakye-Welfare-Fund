@@ -11,7 +11,7 @@ $getMemberIDEncrypt = $_GET["TRUE"];
 
 
  
-
+ 
 
 $sel = mysqli_query($conn, "SELECT * FROM members_deactivated WHERE active = 'yes' AND  member_id='$getMemberID' LIMIT 1  ");
 
@@ -33,7 +33,7 @@ $done_by = $gett["done_by"];
 $THEidMD = "MEMB-DEACT-00000". $Deacid;
 
 
-$loanAMount = $guarantor1_amount_deduct + $guarantor2_amount_deduct;
+@$loanAMount = $guarantor1_amount_deduct + $guarantor2_amount_deduct;
 
 	
 $seleContrins11 = mysqli_query($conn, "SELECT * FROM members WHERE member_id='$member_id'   LIMIT 1  ");
@@ -136,12 +136,12 @@ $letterhead = $ahema["letterhead"];
 
 
 
-	$pdf->Cell(190,10,$memberFullname . '     has successfully Deactivate from Daakye Welfare Fund ' ,0,1,'L');
+	$pdf->Cell(190,10,$memberFullname . '     has successfully Deactivate from Daakye Welfare Fund On ' . $date_added ,0,1,'L');
 	$pdf->Cell(189,.01, '',1,1,'L');
 
 
 
-	$pdf->Cell(190,10,'On the date of  ' . $date_added . ' with a reason of : ' . $reason ,0,1,'L');
+	$pdf->Cell(190,10,'with a reason of : ' . $reason ,0,1,'L');
 	$pdf->Cell(189,.01, '',1,1,'L');
 
 
@@ -155,17 +155,17 @@ $letterhead = $ahema["letterhead"];
 
 
 	$pdf->SetFont('Arial','B',10);
-	$pdf->Cell(40,10,'5% Deduction: ' ,0,0,'L');
-	$pdf->SetFont('Arial','B',13);
-
-	$pdf->Cell(50,10, 'GHC ' . number_format($five_percent_of_total,2),0,1,'L');
-
-
-	$pdf->SetFont('Arial','B',10);
 	$pdf->Cell(50,10,'Total Amount to be given: ' ,0,0,'L');
 	$pdf->SetFont('Arial','B',13);
 
-	$pdf->Cell(50,10, 'GHC ' . number_format($amount_to_be_given,2),0,0,'L');
+	$pdf->Cell(50,10, 'GHC ' . number_format($amount_to_be_given,2),0,1,'L');
+
+
+	// $pdf->SetFont('Arial','B',10);
+	// $pdf->Cell(50,10,'Total Amount to be given: ' ,0,0,'L');
+	// $pdf->SetFont('Arial','B',13);
+
+	// $pdf->Cell(50,10, 'GHC ' . number_format($amount_to_be_given,2),0,0,'L');
 
 
 

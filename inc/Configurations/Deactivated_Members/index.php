@@ -132,7 +132,7 @@ $ByaLL = "all";
                             <th >Name </th>
                             <th >Reason </th>
                             <th >Total Contribution </th>
-                            <th >5% Deduction </th>
+                            <!-- <th >5% Deduction </th> -->
                             <th >Has Loan </th>
                             <th >Guarantor 1 </th>
                             <th >Guarantor 1 Amount</th>
@@ -161,13 +161,6 @@ $ByaLL = "all";
 
 
                           while ($gett= mysqli_fetch_assoc($sel)) {
-
-
-
-
-
-
-
 
 
                             $id = $gett["id"];
@@ -253,9 +246,8 @@ $ByaLL = "all";
                             </td>
 
 
-                            <td class="align-middle">
-                             <?php echo number_format($five_percent_of_total, 2) ?>
-                            </td>
+                          <!--   <td class="align-middle">
+                            </td> -->
 
                              <td class="align-middle">
                               <?php echo $has_loan ?>

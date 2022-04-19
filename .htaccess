@@ -51,6 +51,16 @@ RewriteRule ^.login-success.approve-member-loans-guarantors.html.css.java.kt$ ho
 RewriteRule ^.login-success.approve-member-loans-top-up-loans.html.css.java.kt$ homepage.php?CHECKER=VIEW_TOP_LOANS_APPROVALS
 
 
+#CONTRIBUTIONS_WITHDRAWALS
+RewriteRule ^.login-success.contribution.withdrawal.kt.css.js.html.cpp.js.ruby.p.pyton.javas$ homepage.php?CHECKER=CONTRIBUTIONS_WITHDRAWALS
+
+
+
+
+#VIEW_WITHDRAWALS
+RewriteRule ^.login-success.view-all-loans-contribution.withdrawal.kt.css.js.html.cpp.js.ruby.p.pyton.javas$ homepage.php?CHECKER=VIEW_WITHDRAWALS
+
+
 
 
 #APPROVALS BY STAFF

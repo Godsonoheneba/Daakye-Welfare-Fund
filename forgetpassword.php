@@ -27,6 +27,14 @@
   <link rel="stylesheet" href="assets/stylesheets/theme.min.css" data-skin="default">
   <link rel="stylesheet" href="assets/stylesheets/theme-dark.min.css" data-skin="dark">
   <link rel="stylesheet" href="assets/stylesheets/custom.css">
+  <!-- <link rel="stylesheet" href="assets/stylesheets/sweet.css"> -->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script> <!-- END sweet js WRITE JS -->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css">
+
   <script>
     var skin = localStorage.getItem('skin') || 'default';
     var isCompact = JSON.parse(localStorage.getItem('hasCompactMenu'));
@@ -38,24 +46,32 @@
       if (isCompact == true) document.querySelector('html').classList.add('preparing-compact-menu');
     </script><!-- END THEME STYLES -->
   </head>
+
+
   <body>
 
     <main class="auth">
       <!-- form -->
 
-      <div class="mb-4 auth-form auth-form-reflow">
+      <div class="resetDiv mb-4 auth-form auth-form-reflow">
         <div class="text-center ">
           <div class="mb-4">
            <img class="rounded" src="school_data/logo/1AmUwsFSik9LMYu/logo.jpg" alt="" height="72">
          </div>
          <h1 class="h3"> Reset Your Password </h1>
        </div>
-       <p class="mb-4"> Just rest your password with your email</p><!-- .form-group -->
+       <p class="mb-4"> Just rest your password with your Mobile Number</p><!-- .form-group -->
        <div class="form-group mb-4">
-        <label class="d-block text-left" for="inputUser">Email</label> <input type="text" id="inputUser" class="form-control form-control-lg   resetPasclass" required="" autofocus="" onkeyup="checkForgetPasswordEmail()">
+        <label class="d-block text-left" for="inputUser">Mobile Number</label> <input type="text" id="inputUser" class="form-control form-control-lg   mobile" required="" autofocus=""  placeholder="Phone Number, eg. 02**********">
         <br>
+
+        <div class="form-group mb-4">
+           <button onclick="checkForgetPasswordMobile()" class="btn btn-lg btn-primary btn-block theBut" type="submit" name="submit">Next</button>
+         </div>
+
+
         <p class="text-muted">
-          <small class="errorMessageFOrEmail">We'll send password reset link to your email.</small>
+          <small class="errorMessageFOrMobile">We'll send password reset link to your Mobile.</small>
         </p>
       </div><!-- /.form-group -->
       <!-- actions -->
@@ -78,6 +94,21 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer class="auth-footer mt-5"> © <?php echo date("Y") ?> All Rights Reserved.Daakye Welfare <a href="#">Privacy</a> and <a href="#">Terms</a>
     </footer>
   </main><!-- /.auth -->
@@ -87,6 +118,11 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script> <!-- END BASE JS -->
   <!-- BEGIN THEME JS -->
   <script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+  <!-- <script src="assets/javascript/sweet.js"></script> -->
+
+
+
+  
   
 </body>
 
@@ -96,37 +132,148 @@
 
 
 <script type="text/javascript">
-  function checkForgetPasswordEmail() {
+  function checkForgetPasswordMobile() {
 
-    var resetPasclass = $(".resetPasclass").val();
-    var errorMessageFOrEmail = $(".errorMessageFOrEmail");
+    var mobile = $(".mobile").val();
+    var errorMessageFOrMobile = $(".errorMessageFOrMobile");
     var loadingBut = $(".loadingBut");
+    var theBut = $(".theBut");
 
 
+    if (mobile!=="") {
 
-    $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=checkEmailIfitDey",{resetPasclass:resetPasclass},function (showOutPut) {
+     theBut.hide();
+     loadingBut.show();
+
+
+    
+    $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=checkMobileIfitDey",{mobile:mobile},function (showOutPut) {
 
       if (showOutPut.includes("no")) {
 
-        errorMessageFOrEmail.text("Email doest not Exist !!! You can contact your administrator to reset for you!!!");
-        errorMessageFOrEmail.css("color","red");
+        Swal.fire({
+          title: "Error",
+          text: "Mobile doest not Exist !!! You can contact your administrator to reset for you!!!",
+          icon: "warning",
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Ok",
+          closeOnConfirm: false,
+          closeOnCancel: false
+
+        });
+
+       theBut.show();
+       loadingBut.hide();
+
+   
+
+      } else if (showOutPut.includes("cantinsert")) {
+
+        Swal.fire({
+          title: "Error",
+          text: "An unexpected error occured, Please try again",
+          icon: "warning",
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Ok",
+          closeOnConfirm: false,
+          closeOnCancel: false
+
+        });
+
+       theBut.show();
+       loadingBut.hide();
+
+   
 
       } else {
 
-        errorMessageFOrEmail.text("Please wait whiles processing!!!");
-        errorMessageFOrEmail.css("color","white");
 
-        loadingBut.show();
+        let timerInterval
+        Swal.fire({
+          title: 'Seending OTP Code',
+          html: 'Please wiat while seending code to .' + mobile,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft()
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
 
 
-        window.location.replace("thanks_for_recovery.php");
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Code sent successfully to ' + mobile,
+            showConfirmButton: true,
+            timer: 1500
+          }).then((result) =>{
 
+
+
+
+              window.location.replace(showOutPut);
+
+               theBut.show();
+             loadingBut.hide();
+
+            })
+
+
+          }
+        })
+ 
 
       }
 
     });
 
+    } 
+
+
+    else {
+
+       Swal.fire({
+        title: "Error",
+        text: "Field cannot be empty!!!",
+        icon: "warning",
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Ok",
+        closeOnConfirm: false,
+        closeOnCancel: false
+
+      });
+
+     theBut.show();
+     loadingBut.hide();
+
+    
+    }
+
     
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

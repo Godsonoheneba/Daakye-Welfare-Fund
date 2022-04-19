@@ -45,8 +45,8 @@ $TOdated = date("jS F, Y");
 
        if ($telephone!=="") {
 
-        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
-        $senderID = 'DaakyeWelfa';
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
         $message = 'Dear ' .  $memeberName .' your total contribution balance  as at ' . $TOdated . ' is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
@@ -190,156 +190,290 @@ $TOdated = date("jS F, Y");
 
 if ($_GET["CHECKPOST"]=="checkEmailIfitDey") {
 
-  $resetPasclassEmail = $_POST["resetPasclass"];
+      $resetPasclassEmail = $_POST["resetPasclass"];
 
 
-  $checkExist = mysqli_query($conn, "SELECT * FROM members WHERE email='$resetPasclassEmail' AND active='yes'  ");
+      $checkExist = mysqli_query($conn, "SELECT * FROM members WHERE email='$resetPasclassEmail' AND active='yes'  ");
 
-  if (mysqli_num_rows($checkExist)===1) {
+      if (mysqli_num_rows($checkExist)===1) {
 
-    $fetches = mysqli_fetch_assoc($checkExist);
+        $fetches = mysqli_fetch_assoc($checkExist);
 
-    $firstname = $fetches["firstname"];
-    $surname = $fetches["surname"];
-    $member_id = $fetches["member_id"];
-
-
-    /*----------------------send email if person has email address-------------------*/
-
-    if ($resetPasclassEmail!=="") {
-
-      $getFullName = $firstname . " " . $surname;
-      $toYear = date("Y");
+        $firstname = $fetches["firstname"];
+        $surname = $fetches["surname"];
+        $member_id = $fetches["member_id"];
 
 
-      $message="<html>
-      <body>
+        /*----------------------send email if person has email address-------------------*/
+
+        if ($resetPasclassEmail!=="") {
+
+          $getFullName = $firstname . " " . $surname;
+          $toYear = date("Y");
+
+
+          $message="<html>
+          <body>
 
 
 
 
-      <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
+          <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
 
-      <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+          <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
 
-      <tbody><tr>
-      <td bgcolor=\"#eeeeee\" align=\"center\">
+          <tbody><tr>
+          <td bgcolor=\"#eeeeee\" align=\"center\">
 
-      <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
-      <tbody><tr>
-      <td align=\"center\">
-      <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
-      </td>
-      </tr>
-      </tbody></table>
-      </td>
-      </tr>
-
-
-      <tr>
-      <td bgcolor=\"#eeeeee\" align=\"center\">
-      <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-      <tbody><tr>
-      <td style=\"padding:45px 50px 45px 50px\">
-
-      <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-      <tbody><tr>
-      <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
-      <div>
-      <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
-
-      Hey $getFullName <br><br>
-
-      You requested to reset your account passwotd, Click on te button below to reset your password!!!
-
-      <table align=\"center\">
-      <tbody>
-      <tr align=\"center\">
-      <td style=\"padding:10px 50px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:25px;color:#677b82;margin:0!important\" bgcolor=\"#6747c7\" align=\"center\">
-      <a href=\"www.daakyewelfare.com/188383606aedf7a3f240f5c72d082f97a2be2bb365494eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5.php?e=eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5&&f7a3f240f5c72d082f97a2be2bb365494eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5=$member_id&&MOREGET=188383606aedf7a3f240f5c72d082f97a2be2bb365494eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5\"    target=\"_blank\">Reset Passwordss </a>
-      </td>
-      </tr>
-      </tbody></table><br>
-
-      <a onclick=\"window.open('google.com')\" > reset me </a>
-
-      <p>
-      Didnt request for password change? Notice our office through our email 
-      <br>
-      <a href=\"mailto:info@daakyewelfare.com\" target=\"_blank\">info@daakyewelfare.com</a>
-
-      </p>
-
-      <br>
-      <br>
-
-      Thanks
-      </div>
-      </td>
-      </tr>
-      </tbody></table>
-      </td>
-      </tr>
-      </tbody></table>
-
-      <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
-      <tbody><tr>
-      <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
-      <div>
-      <p style=\"margin-top:30px;margin-bottom:30px\">© 2004 - 2020 Hostinger International Ltd.</p>
-      </div>
-      </td>
-      </tr>
-      </tbody></table>
-
-      </td>
-      </tr>
-      </tbody></table>
-      <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
-
-      </body>
-      </html>";
-      $to = $resetPasclassEmail;
-      $subject = 'Password Recovery';
-
-      $headers = "MIME-Version: 1.0\r\n";
-      $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-         // More headers
-      $headers .= 'From: <info@daakyewelfare.com>' . "\r\n";
+          <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
+          <tbody><tr>
+          <td align=\"center\">
+          <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
+          </td>
+          </tr>
+          </tbody></table>
+          </td>
+          </tr>
 
 
-      // $headers = "From: info@daakyewelfare.com\r\n";
-      // $headers .= "Reply-To: info@daakyewelfare.com\r\n";
-      // $headers .= "Return-Path: info@daakyewelfare.com\r\n";
-      // $headers .= "BCC: info@daakyewelfare.com\r\n";
+          <tr>
+          <td bgcolor=\"#eeeeee\" align=\"center\">
+          <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+          <tbody><tr>
+          <td style=\"padding:45px 50px 45px 50px\">
+
+          <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
+          <tbody><tr>
+          <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
+          <div>
+          <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
+
+          Hey $getFullName <br><br>
+
+          You requested to reset your account passwotd, Click on te button below to reset your password!!!
+
+          <table align=\"center\">
+          <tbody>
+          <tr align=\"center\">
+          <td style=\"padding:10px 50px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:25px;color:#677b82;margin:0!important\" bgcolor=\"#6747c7\" align=\"center\">
+          <a href=\"www.daakyewelfare.com/188383606aedf7a3f240f5c72d082f97a2be2bb365494eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5.php?e=eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5&&f7a3f240f5c72d082f97a2be2bb365494eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5=$member_id&&MOREGET=188383606aedf7a3f240f5c72d082f97a2be2bb365494eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5eNoFwQEOgCAIAMAXmRVm2m8QodpKm7L5\"    target=\"_blank\">Reset Passwordss </a>
+          </td>
+          </tr>
+          </tbody></table><br>
+
+          <a onclick=\"window.open('google.com')\" > reset me </a>
+
+          <p>
+          Didnt request for password change? Notice our office through our email 
+          <br>
+          <a href=\"mailto:info@daakyewelfare.com\" target=\"_blank\">info@daakyewelfare.com</a>
+
+          </p>
+
+          <br>
+          <br>
+
+          Thanks
+          </div>
+          </td>
+          </tr>
+          </tbody></table>
+          </td>
+          </tr>
+          </tbody></table>
+
+          <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
+          <tbody><tr>
+          <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
+          <div>
+          <p style=\"margin-top:30px;margin-bottom:30px\">© 2004 - 2020 Hostinger International Ltd.</p>
+          </div>
+          </td>
+          </tr>
+          </tbody></table>
+
+          </td>
+          </tr>
+          </tbody></table>
+          <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
+
+          </body>
+          </html>";
+          $to = $resetPasclassEmail;
+          $subject = 'Password Recovery';
+
+          $headers = "MIME-Version: 1.0\r\n";
+          $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+             // More headers
+          $headers .= 'From: <info@daakyewelfare.com>' . "\r\n";
 
 
-      if (mail($to, $subject, $message, $headers)) {
+          // $headers = "From: info@daakyewelfare.com\r\n";
+          // $headers .= "Reply-To: info@daakyewelfare.com\r\n";
+          // $headers .= "Return-Path: info@daakyewelfare.com\r\n";
+          // $headers .= "BCC: info@daakyewelfare.com\r\n";
 
+
+          if (mail($to, $subject, $message, $headers)) {
+
+
+          }else{
+
+
+            echo "errorInSendingMail";
+
+
+
+          }
+
+        }
+
+        /*------------------ends send email-----------*/
+
+
+
+      } else {
+
+        echo "no";
+
+      }
+
+
+}
+
+
+
+
+
+if ($_GET["CHECKPOST"]=="checkMobileIfitDey") {
+
+      $mobileN = $_POST["mobile"];
+
+      $checkExist = mysqli_query($conn, "SELECT * FROM members WHERE telephone='$mobileN' AND active='yes'  ");
+
+      if (mysqli_num_rows($checkExist)===1) {
+
+        $fetches = mysqli_fetch_assoc($checkExist);
+
+        $firstname = $fetches["firstname"];
+        $surname = $fetches["surname"];
+        $member_id = $fetches["member_id"];
+
+
+        $min = 100000;
+        $max = 999999;
+        $last_six_rand = rand($min, $max);
+
+      $memeberName = $firstname . " " . $surname ;
+
+       /*-----send message  -------------*/
+
+       if ($mobileN!=="") {
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' . $memeberName . ', Use this OTP Code : ' .$last_six_rand . ' to reset your password. Thank you.';
+
+      $checkVP = mysqli_query($conn, "SELECT * FROM verify_phone WHERE member_id='$member_id' AND mobile='$mobileN' AND verify='0' AND active='yes'  ");
+
+      if (mysqli_num_rows($checkVP)===1) {
+
+        $getVP = mysqli_fetch_assoc($checkVP);
+
+        $otp = $getVP["otp"];
+        $member_id = $getVP["member_id"];
+
+        echo "verifycode.php?code=280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a6&&MEM=$member_id&&280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a6";
 
       }else{
 
 
-        echo "errorInSendingMail";
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileN&msg=$message&sender_id=$senderID";
 
+          $resp=file_get_contents($url);
+
+        if (mysqli_query($conn, "INSERT INTO verify_phone (member_id,mobile,otp) VALUES('$member_id','$mobileN','$last_six_rand') ")) {
+
+          
+            echo "verifycode.php?code=280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a6&&MEM=$member_id&&280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a637df33a280f461067d82a4957aac60a6";
+
+        } else {
+          echo "cantinsert";
+        }
 
 
       }
-
-    }
-
-    /*------------------ends send email-----------*/
+  
+       }
 
 
 
-  } else {
+      } else {
 
-    echo "no";
+        echo "no";
 
-  }
+      }
 
 
+}
+
+
+
+
+
+
+
+if ($_GET["CHECKPOST"]=="sendResetPasswordToPhone") {
+
+      $mobileN = $_POST["mobile"];
+      $hiddenOTP = $_POST["hiddenOTP"];
+     
+
+      $checkExist = mysqli_query($conn, "SELECT * FROM members WHERE telephone='$mobileN' AND active='yes'  ");
+
+      if (mysqli_num_rows($checkExist)===1) {
+
+        $fetches = mysqli_fetch_assoc($checkExist);
+
+        $firstname = $fetches["firstname"];
+        $surname = $fetches["surname"];
+        $member_id = $fetches["member_id"];
+
+        $Encry_CurrentPasswordClass = md5($member_id);
+
+
+        $min = 100000;
+        $max = 999999;
+        $last_six_rand = rand($min, $max);
+
+       if ($mobileN!=="") {
+
+        $memeberName = $firstname . " " . $surname ;
+
+          if (mysqli_query($conn, "UPDATE who_can_login_in SET password='$Encry_CurrentPasswordClass',real_password='$member_id'  WHERE username='$member_id' AND active='yes' LIMIT 1 " )) {
+
+            $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+            $senderID = 'Daakye';
+            $message =' Dear  ' . $memeberName . ', Your password has successfully reseted. Use this New credentials to login. Username: '.$member_id . ' . Password : ' .$member_id . '  ';
+
+            $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileN&msg=$message&sender_id=$senderID";
+
+              $resp=file_get_contents($url);
+
+
+            mysqli_query($conn, "UPDATE verify_phone SET verify='1' WHERE member_id='$member_id' AND otp='$hiddenOTP' AND active='yes' LIMIT 1 " );
+
+            } else {
+              echo "errorinupdate";
+            }
+
+       }
+
+      } else {
+
+        echo "no";
+
+      }
 
 
 }
@@ -621,6 +755,21 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithImage") {
        echo "done";
 
 
+       // send sms after registration
+
+    $memberName = $FirstnameCLass . " " . $SurnameClass;
+    if ($mobileClass!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' .$memberName . ',  You have Successfully registered as Daakye Welfare Member. Username: ' .$theMemberID . ' Password: ' .$theMemberID. ' Login At https://daakyewelfare.com/login . Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileClass&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
+      // ends send sms after registration
 
        /*----------------------send email if person has email address-------------------*/
 
@@ -983,7 +1132,21 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithNoImage") {
 
      echo "done";
 
+            // send sms after registration
 
+    $memberName = $FirstnameCLass . " " . $SurnameClass;
+    if ($mobileClass!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' .$memberName . ',  You have Successfully registered as Daakye Welfare Member. Username: ' .$theMemberID . ' Password: ' .$theMemberID. ' Login At https://daakyewelfare.com/login . Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileClass&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
+      // ends send sms after registration
 
 
      /*----------------------send email if person has email address-------------------*/
@@ -1778,9 +1941,11 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
   $surname = $getAlls2["surname"];
   $total_contribution_made = $getAlls2["total_contribution_made"];
 
-  $five_percent_of_total = 0.05 * $total_contribution_made;
+  // $five_percent_of_total = 0.05 * $total_contribution_made;
+  // $realAmounttobegiven = $total_contribution_made - $five_percent_of_total;
 
-  $realAmounttobegiven = $total_contribution_made - $five_percent_of_total;
+  $realAmounttobegiven = $total_contribution_made;
+
 
   $companyRevenuePurpose = "5% of Member Deactivated charge" ;
    
@@ -1878,7 +2043,7 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
 
 
 
- 
+  
 
   if (!empty($reasons)) {
 
@@ -1911,20 +2076,15 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
       if (mysqli_query($conn, "UPDATE members SET active='no' WHERE member_id='$member_id' AND active='yes' LIMIT 1 ")) {
 
 
-
-
-      if ($total_contribution_made==="0") {
+      // if ($total_contribution_made==="0") {
          
-      } else {
+      // } else {
 
-        mysqli_query($conn, "INSERT INTO company_revenue (person_id,amount,purpose,done_by) VALUES('$member_id_encrypt','$five_percent_of_total','$companyRevenuePurpose','$login_session ')");
-      } 
-
+      //   mysqli_query($conn, "INSERT INTO company_revenue (person_id,amount,purpose,done_by) VALUES('$member_id_encrypt','$five_percent_of_total','$companyRevenuePurpose','$login_session ')");
+      // } 
 
 
         if ($realAmounttobegiven >= 0) {
-
-
 
             ///////////////////////updating total contribution to amount to be given/////
              mysqli_query($conn, "
@@ -2108,12 +2268,12 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
 
 
 
-      if ($total_contribution_made==="0") {
+      // if ($total_contribution_made==="0") {
            
-        } else {
+      //   } else {
 
-          mysqli_query($conn, "INSERT INTO company_revenue (person_id,amount,purpose,done_by) VALUES('$member_id_encrypt','$five_percent_of_total','$companyRevenuePurpose','$login_session ')");
-        }
+      //     mysqli_query($conn, "INSERT INTO company_revenue (person_id,amount,purpose,done_by) VALUES('$member_id_encrypt','$five_percent_of_total','$companyRevenuePurpose','$login_session ')");
+      //   }
 
 
       $has_loan = "no";
@@ -2400,8 +2560,8 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
        if ($telephone!=="") {
 
-        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
-        $senderID = 'DaakyeWelfa';
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
         $message =' Alert!! GHS ' . number_format($getRealAmountPaying, 2) . ' credited to your contribution account for the month of ' . $month_to_pay_in_words . ' - ' . $year_to_pay . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balaBefor,2) .' . Your available contribution balance is GHS '. number_format($total_contribution_made, 2) .' . Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
@@ -2569,8 +2729,8 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
        if ($telephone!=="") {
 
-        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
-        $senderID = 'DaakyeWelfa';
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
         $message =' Alert!! GHS ' . number_format($getRealAmountPaying, 2) . ' credited to your contribution account for the month of ' . $month_to_pay_in_words . ' - ' . $year_to_pay . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balaBefor,2) .' . Your available contribution balance is GHS '. number_format($total_contribution_made, 2) .' . Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
@@ -2723,21 +2883,21 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
-}
+    }
 
 
 
 
 
 
-}else {
-  echo "empty";
-}
+    }else {
+      echo "empty";
+    }
 
 
 
 
-} 
+    } 
 
 }
 
@@ -2746,6 +2906,301 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
+
+ 
+
+////////////////////////WITHDRAW CONTRIBUTIONS BY MEMBER//////////////////////////////////
+if ($_GET["CHECKPOST"]=="withdrawContribution") {
+
+  if (isset($_POST["getIDEncrypt"]) && isset($_POST["withdrawalAMount"])   ) {
+
+    $getIDEncrypt = $_POST["getIDEncrypt"];
+    $withdrawalAMount = $_POST["withdrawalAMount"];
+
+    $SELLL1 = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$getIDEncrypt'  AND active='yes'  LIMIT 1  ");
+
+    $getall =  mysqli_fetch_assoc($SELLL1);
+    $id = $getall["id"];
+    $member_id = $getall["member_id"];
+    $member_id_encrypt = $getall["member_id_encrypt"];
+    $password = $getall["password"];
+    $firstname = $getall["firstname"];
+    $surname = $getall["surname"];
+    $residencial_address = $getall["residencial_address"];
+    $postal_address = $getall["postal_address"];
+    $place_of_work = $getall["place_of_work"];
+    $home_town = $getall["home_town"];
+    $email = $getall["email"];
+    $telephone = $getall["telephone"];
+    $dob = $getall["dob"];
+    $gender = $getall["gender"];
+    $marital_status = $getall["marital_status"];
+    $contribution_amount = $getall["contribution_amount"];
+    $total_contribution_made = $getall["total_contribution_made"];
+    $last_month_contributed = $getall["last_month_contributed"];
+    $last_year_contributed = $getall["last_year_contributed"];
+    $image = $getall["image"];
+    $paid_reg_form = $getall["paid_reg_form"];
+    $has_loan = $getall["has_loan"];
+    $staff = $getall["staff"];
+    $date_created = $getall["date_created"];
+
+
+    $balaBefor = $total_contribution_made;
+
+
+
+    if ($withdrawalAMount!=="" ) {
+
+      $year = date("Y");
+     $TOdated = date("jS F, Y");
+
+     $TOdated2 = date("Y-m-d");
+     // $activityType = " Contribution Withdrawal ";
+     // $StudentDescription = $withdrawalAMount . "  was Paid for the month of " . $month_to_pay . $year_to_pay;
+     // $StaffDescription = "$member_id  has withdraw an amount of " . $withdrawalAMount ;
+
+
+     $selre = mysqli_query($conn, "SELECT id FROM contributions_withdrawal ORDER BY id DESC LIMIT 1 ");
+
+     $getlastID = mysqli_fetch_assoc($selre);
+     $ids = $getlastID["id"] + 1;
+
+     $firstID = 1;
+     $preamble = '000000';
+
+     if (mysqli_num_rows($selre) >0) {
+
+       if($ids<=9){
+         $receiptNumber ='000000'.$ids;
+       }else if($ids<=99){
+         $receiptNumber ='00000'.$ids;
+       }else if($ids<=999){
+         $receiptNumber ='0000'.$ids;
+       }else if($ids<=9999){
+         $receiptNumber ='000'.$ids;
+       }else if($ids<=99999){
+         $receiptNumber ='00'.$ids;
+       }else if($ids<=999999){
+         $receiptNumber ='0'.$ids;
+       }else {
+         $receiptNumber =$ids;
+       }
+     } else {
+      $receiptNumber = $preamble . $firstID;
+    }
+
+    // $slExist = mysqli_query($conn, "SELECT * FROM contributions_withdrawal WHERE member_id='$member_id' AND member_id_encrypt='$member_id_encrypt'  status='0' AND active='yes'  ");
+
+
+    // if (mysqli_num_rows($slExist) > 0) {
+    //   echo "Exist";
+    // } else {
+
+
+      if ($has_loan==='no') { 
+
+
+      $amountCanBeWithdraw =  $balaBefor - $withdrawalAMount;
+
+      $errorMeesage = 'You can withdraw from  1.00 to '.number_format($amountCanBeWithdraw,2).', Your total contribution is GHC '.number_format($balaBefor,2).' ';
+
+
+        } else {
+          
+
+      $selStu23 = mysqli_query($conn, "SELECT * FROM loans_all WHERE active='yes'   AND person_id='$member_id_encrypt'  ORDER BY id DESC LIMIT 1 ");
+
+        $getAlls33 = mysqli_fetch_assoc($selStu23);
+        $balance = $getAlls33["balance"];
+
+       $amountCanBeWithdraw =  $balaBefor - $balance;
+
+      // $errorMeesage = "You cannot withdraw GHC ".number_format($withdrawalAMount, 2).", due to your outstanding loan banace of ".number_format($balance, 2)." ";
+
+       $errorMeesage = 'You can withdraw from  1.00 to '.number_format($amountCanBeWithdraw,2).', You have an outstanding loan balance  of GHC  '.number_format($balance, 2).' to be paid off ';
+
+
+        // echo "$amountCanBeWithdraw";
+
+        // if ($balance >= $withdrawalAMount) {
+        //   echo "You cannot withdraw due to your outstanding loan banace of ".number_format($balance, 2)." ";
+        // } else {
+        //   // code...
+        // }
+        
+        }
+
+        if ($withdrawalAMount <= $amountCanBeWithdraw) {
+
+
+        $SELECONT = mysqli_query($conn, "SELECT * FROM members_contributions WHERE active='yes'   AND member_id_encrypt='$member_id_encrypt'  ");
+
+
+
+ 
+
+          if (mysqli_query($conn, "INSERT INTO contributions_withdrawal (member_id,amount,year,date_added,receiptNumber,done_by) VALUES('$member_id_encrypt','$withdrawalAMount','$year','$TOdated2','$receiptNumber','$login_session') ")) {
+ 
+
+       /*-----send message  -------------*/
+
+       if ($telephone!=="") {
+
+
+        // $endPoint = 'https://api.mnotify.com/api/sms/quick';
+        // $apiKey = 'eEblAmGkvJuBKI4h3KXQECkKFVdf5KVkp6F0tlkZ4PAPy';
+        // $url = $endPoint . '?key=' . $apiKey;
+        // $data = [
+        //    'recipient' => ['0548157455'],
+        //    'sender' => 'Daakye',
+        //    'message' => 'Alert!! You have requested to withdraw an amount of  ' . number_format($withdrawalAMount, 2) . ' from your contribution. Thank you.',
+        //    'is_schedule' => 'false',
+        //    'schedule_date' => ''
+        // ];
+
+        // $ch = curl_init();
+        // $headers = array();
+        // $headers[] = "Content-Type: application/json";
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        // $result = curl_exec($ch);
+        // $result = json_decode($result, TRUE);
+        // curl_close($ch);
+
+
+
+
+
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Alert!! You have requested to withdraw an amount of  ' . number_format($withdrawalAMount, 2) . ' from your contribution. Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       }
+
+
+       echo "done";
+
+
+      
+
+      } else {
+
+
+        echo "An unexpected error occured, please try again ";
+
+      }
+
+
+        } else {
+          echo "$errorMeesage";
+        }
+
+
+    // }
+
+
+
+
+
+
+    }else {
+      echo "Field cannot be empty";
+    }
+
+
+
+
+    } 
+
+}
+
+
+/*---------------ends WITHDRAW CONTRIBUTIONS BY MEMBER/-------------------*/
+
+
+////////////////////////WITHDRAW CONTRIBUTIONS ISSUE//////////////////////////////////
+
+if ($_GET["CHECKPOST"]=="issueWithdrawalPost") {
+
+  if (isset($_POST["tabId"]) && isset($_POST["telephone"]) && isset($_POST["member_id_encrypt"])  && isset($_POST["fullname"])  ) {
+
+    $tabId = $_POST["tabId"];
+    $telephone = $_POST["telephone"];
+    $member_id_encrypt = $_POST["member_id_encrypt"];
+    $fullname = $_POST["fullname"];
+
+    $TOdated2 = date("Y-m-d");
+
+
+    $SELLL1 = mysqli_query($conn, "SELECT * FROM contributions_withdrawal WHERE id='$tabId' AND member_id='$member_id_encrypt' AND active='yes'  LIMIT 1  ");
+
+    $getall =  mysqli_fetch_assoc($SELLL1);
+    $amount = $getall["amount"];
+    $balance_before = $getall["balance_before"];
+    $receiptNumber = $getall["receiptNumber"];
+
+
+
+    $selMems = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id_encrypt' AND active='yes'  LIMIT 1  ");
+    $getDemMem = mysqli_fetch_assoc($selMems);
+    $total_contribution_made = $getDemMem["total_contribution_made"];
+
+    $currrentBal = $total_contribution_made - $amount;
+
+
+    if (mysqli_query($conn, "UPDATE contributions_withdrawal SET status=1, date_issued='$TOdated2', issued_by='$login_session',balance_before='$currrentBal' WHERE id='$tabId'  AND member_id='$member_id_encrypt' AND  amount='$amount'  AND  active='yes' LIMIT 1 ")) {
+
+
+    $getTotalCOntList = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM company_expenses WHERE  active='yes'  AND year_finish='no'  ");
+      $getRow231 = mysqli_fetch_assoc($getTotalCOntList);
+      $totalExpenses = $getRow231["amount"];
+
+      mysqli_query($conn, "UPDATE members SET total_contribution_made='$currrentBal' WHERE  member_id_encrypt='$member_id_encrypt' AND   active='yes' LIMIT 1 ");
+
+
+      echo "ViewPDFS/Withdrawal/print_withdrawal_receipt.php?PRINT=PRINT_MEMBER_WITHDRAWAL_CONTRIBUTION_RECEIPT&&TRUE=$member_id_encrypt&&RECEIPT=$receiptNumber";
+
+
+
+      if ($telephone!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Alert!! GHS '.number_format($amount, 2).'  debited from your Total Contribution as a Withdrawal. Previuos contribution GHS '.number_format($balance_before, 2). '. Current contribution GHS '.number_format($currrentBal,2).' Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
+         
+
+
+    } else {
+
+      echo "error";
+      
+
+    }
+    
+
+
+
+
+
+
+  }
+
+}
+/*---------------ends WITHDRAW CONTRIBUTIONS ISSUE/-------------------*/
 
 
 
@@ -2759,7 +3214,6 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
     $memberID = $_POST["memberID"];
 
     $registrationFeePrice = 100;
-
 
 
     $stf = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$login_session'");
@@ -2811,6 +3265,16 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
 
   $slExist = mysqli_query($conn, "SELECT * FROM comp_reve_memb_reg_fee WHERE member_id='$memberID' AND active='yes'  ");
 
+      $selm = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id_encrypt='$memberID' LIMIT 1 ");
+      $mmget = mysqli_fetch_assoc($selm);
+      $telephone = $mmget["telephone"];
+      $firstname = $mmget["firstname"];
+      $surname = $mmget["surname"];
+
+    $memberName = $firstname . " " . $surname;
+
+
+
 
   if (mysqli_num_rows($slExist) > 0) {
     echo "Exist";
@@ -2826,6 +3290,19 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
      mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$memberID','$activityType','$StudentDescription','$TOdated','$login_session')");
 
      mysqli_query($conn, "INSERT INTO staff_activities (staff_id,activity_type,description,datecreated) VALUES('$staffID','$activityType','$StaffDescription','$TOdated')");
+
+
+    if ($telephone!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' .$memberName . ',  an amount of GHS '. number_format($registrationFeePrice, 2) . ' has been successfully paid as your registration fee. Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
 
 
      echo "ViewPDFS/Members/print_member_paid_registration_fees_receipt.php?PRINT=PRINT_MEMBER_REGISTRATION_FEE_RECEIPT&&TRUE=$memberID&&RECEIPT=$receiptNumber&&AMOUNT=$registrationFeePrice";
@@ -3882,7 +4359,7 @@ if ($_GET["CHECKPOST"]=="addLoansToCustomer") {
 if ($_GET["CHECKPOST"]=="addLoansToMember") {
 
   if (isset($_POST["getIDEncrypt"]) && isset($_POST["loanAmount"]) && isset($_POST["PaymentPeriodClass"]) && isset($_POST["guarantor1Class"]) && isset($_POST["guarantor2Class"])) {
-
+ 
     $getIDEncrypt = $_POST["getIDEncrypt"];
     $loanAmount = $_POST["loanAmount"];
     $PaymentPeriodClass = $_POST["PaymentPeriodClass"];
@@ -3914,6 +4391,33 @@ if ($_GET["CHECKPOST"]=="addLoansToMember") {
     $balanceInitial = $totalAmountToPay;
     $monthly_installment = $totalAmountToPay / $PaymentPeriodClass;
     $months_left = $PaymentPeriodClass;
+
+
+$flotnum   = 397;
+
+    // $monthly_installment + 
+    if (is_float($flotnum)) {
+      echo "yes >>>>> $flotnum";
+    } else {
+      echo "no >>>>>> $flotnum";
+    }
+    
+    
+    // round($monthly_installment,2);
+    // echo "$monthly_installment";
+
+    // $number = 1234.46;
+
+    // $sss = preg_match('/^\d+\.\d+$/',$number);
+
+    // echo "$sss";
+
+// english notation (default)
+// $english_format_number = number_format($monthly_installment);
+// echo "$english_format_number";
+    // echo(round($monthly_installment,0,PHP_ROUND_HALF_UP) . "<br>");
+
+    // exit();
 
 
 
@@ -4107,7 +4611,8 @@ if ($_GET["CHECKPOST"]=="addLoansToMember") {
   }else{
 
 
-   if ($guarantor1Class === $guarantor2Class) { //////////////MEANS SELF GUARANTING////////
+   if ($guarantor1Class === $guarantor2Class) { 
+   //////////////MEANS SELF GUARANTING////////
 
 
 
@@ -4166,10 +4671,46 @@ if ($_GET["CHECKPOST"]=="addLoansToMember") {
       AND active='yes' LIMIT 1 " );
 
 
+    $selG1 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor1Class' LIMIT 1 ");
+       $gg1 = mysqli_fetch_assoc($selG1);
+       $g1member_id = $getdac["member_id"];
+      $selG2 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor2Class' LIMIT 1 ");
+      $gg2 = mysqli_fetch_assoc($selG2);
+      $g2member_id = $getdac["member_id"];
+
+
+      $g1firstname = $gg1["firstname"];
+      $g1surname = $gg1["surname"];
+      $g1mobile = $gg1["telephone"];
+      $g1FullName = $g1firstname . " " . $g1surname;
+
+      $g2firstname = $gg2["firstname"];
+      $g2surname = $gg2["surname"];
+      $g2mobile = $gg2["telephone"];
+      $g2FullName = $g2firstname . " " . $g2surname;
+
+        $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$getIDEncrypt'  LIMIT 1 ");
+        $getAlls2 = mysqli_fetch_assoc($selStu1);
+        $firstname = $getAlls2["firstname"];
+        $surname = $getAlls2["surname"];
+        $mobileNum = $getdac["telephone"];
+
+        $memberName = $firstname . " " . $surname;
 
 
 
- 
+    // if ($g1mobile!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear Member, ' . $memberName.' wants you to approve his LOAN with an amount of GHS '.number_format($loanAmount,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$g2mobile,$g1mobile&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       // }
+
 
    echo "done";
 
@@ -5136,7 +5677,7 @@ if ($_GET["CHECKPOST"]=="ChangeGuarantor2AtRequestLoan") {
 
 
 
-
+///////app
 /*---------------------------------APPROVED LOASN BY STAFF----------------------*/
 if ($_GET["CHECKPOST"]=="ApprovedLoansByStaff") {
 
@@ -5146,6 +5687,33 @@ if ($_GET["CHECKPOST"]=="ApprovedLoansByStaff") {
 
 
   if (mysqli_query($conn, "UPDATE loans_all SET approved='yes' WHERE id='$loanID' AND person_id='$person_id' AND active='yes' LIMIT 1 ")) {
+
+  $selectLoanAll = mysqli_query($conn, "SELECT * FROM loans_all WHERE active ='yes' AND id='$loanID' LIMIT 1 ");
+
+    $getdac22 = mysqli_fetch_assoc($selectLoanAll);
+    $amount_collected = $getdac22["amount_collected"];
+
+
+
+    $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$person_id'  LIMIT 1 ");
+      $getAlls2 = mysqli_fetch_assoc($selStu1);
+      $firstname = $getAlls2["firstname"];
+      $surname = $getAlls2["surname"];
+      $mobileNum = $getAlls2["telephone"];
+
+      $memberName = $firstname . " " . $surname;
+
+    if ($mobileNum!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' .$memberName . ',  your loan of GHC '. number_format($amount_collected, 2) . ' has been successfully approved. Loan shoud be issued within 2 weeks time.  Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
+
    echo "done";
  } else {
   echo "error";
@@ -5170,6 +5738,30 @@ if ($_GET["CHECKPOST"]=="DeniedLoansByStaff") {
 
 
   if (mysqli_query($conn, "UPDATE loans_all SET approved='denied' WHERE id='$loanID' AND person_id='$person_id' AND active='yes' LIMIT 1 ")) {
+
+      $selectLoanAll = mysqli_query($conn, "SELECT * FROM loans_all WHERE active ='yes' AND id='$loanID' LIMIT 1 ");
+
+    $getdac22 = mysqli_fetch_assoc($selectLoanAll);
+    $amount_collected = $getdac22["amount_collected"];
+
+    $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$person_id'  LIMIT 1 ");
+      $getAlls2 = mysqli_fetch_assoc($selStu1);
+      $firstname = $getAlls2["firstname"];
+      $surname = $getAlls2["surname"];
+      $mobileNum = $getAlls2["telephone"];
+
+      $memberName = $firstname . " " . $surname;
+
+    if ($mobileNum!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' .$memberName . ',  your loan of GHC '. number_format($amount_collected, 2) . ' has been DENIED. Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
    echo "done";
  } else {
   echo "error";
@@ -5183,12 +5775,12 @@ if ($_GET["CHECKPOST"]=="DeniedLoansByStaff") {
 }
 
  
-
+ 
 
 /*---------------------------------IISUED LOANS TO USER-=----------------------*/
 if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
-
+ 
   if (isset($_POST["loanID"]) && isset($_POST["person_id"])  && isset($_POST["status"]) ) {
 
     $loanID = $_POST["loanID"];
@@ -5470,7 +6062,20 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
 
     if ($status==="Customer") {
+
       mysqli_query($conn, "INSERT INTO customer_activities (customer_id,activity_type,description,datecreated,added_by) VALUES('$person_id','$activityType','$MemberDescription','$dated','$login_session')");
+
+
+      // $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$person_id'  LIMIT 1 ");
+      //   $getAlls2 = mysqli_fetch_assoc($selStu1);
+      //   $firstname = $getAlls2["firstname"];
+      //   $surname = $getAlls2["surname"];
+      //   $mobileNum = $getdac["telephone"];
+        
+      //   $memberName = $firstname . " " . $surname;
+
+
+      
     } else {
 
 
@@ -5478,7 +6083,31 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
 
       mysqli_query($conn, "INSERT INTO members_activities (member_id,activity_type,description,datecreated,added_by) VALUES('$person_id','$activityType','$MemberDescription','$dated','$login_session')");
+
+      $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$person_id'  LIMIT 1 ");
+        $getAlls2 = mysqli_fetch_assoc($selStu1);
+        $firstname = $getAlls2["firstname"];
+        $surname = $getAlls2["surname"];
+        $mobileNum = $getAlls2["telephone"];
+
+        $memberName = $firstname . " " . $surname;
+
+
     }
+
+
+  ////////dacostaappiah
+
+      if ($mobileNum!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Dear  ' .$memberName . ',  your loan of GHS '. number_format($amount_collected, 2) . ' has been successfully issued. Your Payment begin on : ' . $nextMonthPayment . ' Monthly Installment :  ' . number_format($monthly_installment,2) . ' Total months for payment : ' .  $total_months_for_payment .' . Total LOAN to pay : GHS '. number_format($total_amount_to_pay, 2) .' . Thank you.';
+
+         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
+
+          $resp=file_get_contents($url);
+       }
 
  
 
@@ -5939,8 +6568,8 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
       if ($mobileNum!=="") {
 
-      $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
-        $senderID = 'DaakyeWelfa';
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
         $message =' Dear  ' .$memberName . ',  your top up loan of GHS '. number_format($topUpLoanAmountClass, 2) . ' has been successfully issued. Your Payment begin on : ' . $nextMonthPayment . ' Monthly Installment :  ' . number_format($new_monthly_installment,2) . ' Total months for payment : ' .  $topUpPaymentPeriodChooseClass .' . Total LOAN to pay : GHS '. number_format($new_total_amount_to_pay, 2) .' . Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
@@ -6079,8 +6708,8 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
         if (mysqli_query($conn, "INSERT INTO loans_top_up (loan_id,person_id,top_up_amount,months,interest_rate,total_interest_rate_amount,date_added,done_by) VALUES('$loanID','$person_id','$topUpLoanAmountClass','$topUpPaymentPeriodChooseClass','$new_interest_rate','$CHECKtotal_interest_rate_amount','$dateRequested','$login_session')")) {
 
   
-              $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
-              $senderID = 'DaakyeWelfa';
+              $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+              $senderID = 'Daakye';
               $message =' Dear Member, ' . $memberName.' wants you to approve his Top up LOAN with an amount of GHS '.number_format($topUpLoanAmountClass,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
 
               $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$g2mobile,$g1mobile&msg=$message&sender_id=$senderID";
@@ -6886,8 +7515,8 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
 
 
-        $apiKey = 'slaVisNRNyAjMhfpaA094MROO';
-        $senderID = 'DaakyeWelfa';
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
         $message =' Dear ' .$perName . ' , you have paid off GHS '. number_format($payLoanAmountClass, 2) . ' Loan amount for the month of ' . $month_to_pay_in_words . ' - ' . $toYear . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balace_before,2) .' . Your available LOAN balance is GHS '. number_format($balance, 2) .' . Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
@@ -7340,10 +7969,10 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
     $yesFor_Year = "yes";
 
 
-    // $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes'  ");
+    $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes'  ");
 
 
-    $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes' AND position='105' ");
+    // $sel = mysqli_query($conn, "SELECT * FROM payroll_members WHERE active = 'yes' AND position='105' ");
 
     while ($gett= mysqli_fetch_assoc($sel)) {
 
@@ -7407,66 +8036,66 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
 /*-----------------get total Revenue ----------------*/
 
-      // $getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
+      $getAllTOtalInterest = $totalInterest + $totalPenalty + $totalLoanPenalty + $totalRegFee + $totalPercDeduction;
 
-      // $totalInterest = $getAllTOtalInterest - $totalExpenses;
+      $totalInterest = $getAllTOtalInterest - $totalExpenses;
 
-      // /*-------------------company returnship share -----------*/
-      // $returnshipShare = 0.05 * $totalInterest;
-      // $returnshipShare = round($returnshipShare, 2);
+      /*-------------------company returnship share -----------*/
+      $returnshipShare = 0.1 * $totalInterest;
+      $returnshipShare = round($returnshipShare, 2);
 
-      // $TotalBalanceAfterReturnship = $totalInterest - $returnshipShare;
-
-
-      // /*-------------------managements share -----------*/
-      // $managements = 0.07 * $TotalBalanceAfterReturnship;
-      // $managements = round($managements, 2);
-
-      // $TotalBalanceAfterManagement = $TotalBalanceAfterReturnship - $managements;
+      $TotalBalanceAfterReturnship = $totalInterest - $returnshipShare;
 
 
-      // /*-------------------founders share -----------*/
-      // $founderShare = 0.1 * $TotalBalanceAfterManagement;
-      // $founderShare = round($founderShare, 2); 
+      /*-------------------managements share -----------*/
+      $managements = 0.07 * $TotalBalanceAfterReturnship;
+      $managements = round($managements, 2);
 
-      // $TotalBalanceAfterFounders = $TotalBalanceAfterManagement - $founderShare;
-
-
-      // /*-------------------CO- founders share -----------*/
-      // $CofounderShare = 0.09 * $TotalBalanceAfterFounders;
-      // $CofounderShare = round($CofounderShare, 2);
-
-      // $TotalBalanceAfterCoFounders = $TotalBalanceAfterFounders - $CofounderShare;
+      $TotalBalanceAfterManagement = $TotalBalanceAfterReturnship - $managements;
 
 
-      // /*-------------------2nd year people share -----------*/
-      // $SeniorStaffShare = 0.05 * $TotalBalanceAfterCoFounders;
-      // $SeniorStaffShare = round($SeniorStaffShare, 2);
+      /*-------------------founders share -----------*/
+      $founderShare = 0.1 * $TotalBalanceAfterManagement;
+      $founderShare = round($founderShare, 2); 
 
-      // $TotalBalanceAfterSeniorStaffShare = $TotalBalanceAfterCoFounders - $SeniorStaffShare;
-
-
-      // /*-------------------3rd year people share -----------*/
-      // $juniorStaffSHare = 0.03 * $TotalBalanceAfterSeniorStaffShare;
-      // $juniorStaffSHare = round($juniorStaffSHare, 2);
-
-      // $TotalBalanceAfterjuniorStaffSHare = $TotalBalanceAfterSeniorStaffShare - $juniorStaffSHare;
+      $TotalBalanceAfterFounders = $TotalBalanceAfterManagement - $founderShare;
 
 
+      /*-------------------CO- founders share -----------*/
+      $CofounderShare = 0.09 * $TotalBalanceAfterFounders;
+      $CofounderShare = round($CofounderShare, 2);
 
-      // $allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
+      $TotalBalanceAfterCoFounders = $TotalBalanceAfterFounders - $CofounderShare;
 
 
-      // $founders_Shares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements;
+      /*-------------------2nd year people share -----------*/
+      $SeniorStaffShare = 0.05 * $TotalBalanceAfterCoFounders;
+      $SeniorStaffShare = round($SeniorStaffShare, 2);
+
+      $TotalBalanceAfterSeniorStaffShare = $TotalBalanceAfterCoFounders - $SeniorStaffShare;
 
 
-      // $shareLeft = $totalInterest -  $allShares;
+      /*-------------------3rd year people share -----------*/
+      $juniorStaffSHare = 0.03 * $TotalBalanceAfterSeniorStaffShare;
+      $juniorStaffSHare = round($juniorStaffSHare, 2);
 
-      $returnshipShare = 1250.26;
-      $managements = 1750.35;
-      $totalExpenses = 14666;
-      $shareLeft = 22004;
-      $shareAmount = 1750.35;
+      $TotalBalanceAfterjuniorStaffSHare = $TotalBalanceAfterSeniorStaffShare - $juniorStaffSHare;
+
+
+
+      $allShares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements + $returnshipShare;
+
+
+      $founders_Shares = $founderShare + $CofounderShare + $SeniorStaffShare + $juniorStaffSHare + $managements;
+
+
+      $shareLeft = $totalInterest -  $allShares;
+
+      // $returnshipShare = 1250.26;
+      // $managements = 1750.35;
+      // $totalExpenses = 14666;
+      // $shareLeft = 22004;
+      // $shareAmount = 1750.35;
 
 
 
@@ -7474,75 +8103,74 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
 
       /*--------------share for founder-----------------*/
-      // if ($position==="101") {
-      //   $countFounder = mysqli_query($conn, "SELECT count(*) AS count1 FROM payroll_members WHERE active='yes' AND position='101'  ");
+      if ($position==="101") {
+        $countFounder = mysqli_query($conn, "SELECT count(*) AS count1 FROM payroll_members WHERE active='yes' AND position='101'  ");
 
-      //   $countFetch1 = mysqli_fetch_array($countFounder);
-      //   $countTOtalFounder = $countFetch1['count1'];
-      //   $shareAmount = $founderShare / $countTOtalFounder;
+        $countFetch1 = mysqli_fetch_array($countFounder);
+        $countTOtalFounder = $countFetch1['count1'];
+        $shareAmount = $founderShare / $countTOtalFounder;
 
-      // } 
+      } 
 
 
 
       /*--------------share for co founder-----------------*/
-      // if ($position==="102") {
-      //   $countCoFounder = mysqli_query($conn, "SELECT count(*) AS count2 FROM payroll_members WHERE active='yes' AND position='102'  ");
+      if ($position==="102") {
+        $countCoFounder = mysqli_query($conn, "SELECT count(*) AS count2 FROM payroll_members WHERE active='yes' AND position='102'  ");
 
-      //   $countFetch2 = mysqli_fetch_array($countCoFounder);
-      //   $countTOtalCoFounder = $countFetch2['count2'];
+        $countFetch2 = mysqli_fetch_array($countCoFounder);
+        $countTOtalCoFounder = $countFetch2['count2'];
 
-      //   $shareAmount = $CofounderShare / $countTOtalCoFounder;
+        $shareAmount = $CofounderShare / $countTOtalCoFounder;
 
-      // }
+      }
 
 
       /*--------------share for senior Staff-----------------*/
-      // if ($position==="103") {
-      //   $countSeniorStaff = mysqli_query($conn, "SELECT count(*) AS count3 FROM payroll_members WHERE active='yes' AND position='103'  ");
+      if ($position==="103") {
+        $countSeniorStaff = mysqli_query($conn, "SELECT count(*) AS count3 FROM payroll_members WHERE active='yes' AND position='103'  ");
 
-      //   $countFetch3 = mysqli_fetch_array($countSeniorStaff);
-      //   $countTOtalSeniorStaff = $countFetch3['count3'];
+        $countFetch3 = mysqli_fetch_array($countSeniorStaff);
+        $countTOtalSeniorStaff = $countFetch3['count3'];
 
-      //   $shareAmount = $SeniorStaffShare / $countTOtalSeniorStaff;
+        $shareAmount = $SeniorStaffShare / $countTOtalSeniorStaff;
 
-      // }
+      }
 
 
 
       /*--------------share for junior Staff-----------------*/
-      // if ($position==="104") {
-      //   $countJuniorStaf = mysqli_query($conn, "SELECT count(*) AS count4 FROM payroll_members WHERE active='yes' AND position='104'  ");
+      if ($position==="104") {
+        $countJuniorStaf = mysqli_query($conn, "SELECT count(*) AS count4 FROM payroll_members WHERE active='yes' AND position='104'  ");
 
-      //   $countFetch4 = mysqli_fetch_array($countJuniorStaf);
-      //   $countTOtalJuniorStaff = $countFetch4['count4'];
+        $countFetch4 = mysqli_fetch_array($countJuniorStaf);
+        $countTOtalJuniorStaff = $countFetch4['count4'];
 
-      //   $shareAmount = $juniorStaffSHare / $countTOtalJuniorStaff;
+        $shareAmount = $juniorStaffSHare / $countTOtalJuniorStaff;
 
-      // } 
+      } 
 
 
 
 
       /*--------------share for managements-------------*/
       if ($position==="105") {
-        $counManagements = mysqli_query($conn, "SELECT count(*) AS count5 FROM payroll_members WHERE active='yes' AND position='105' AND member_id!='B197706273872'  ");
+        $counManagements = mysqli_query($conn, "SELECT count(*) AS count5 FROM payroll_members WHERE active='yes' AND position='105' ");
 
         $countFetch5 = mysqli_fetch_array($counManagements);
         $countTOtalManagements = $countFetch5['count5'];
 
-
-       $managementsHead = 0.4 * $managements;
-       $managementsHead = round($managementsHead, 2);
-
-       $shareMaountLeft = $managements - $managementsHead;
 
         $shareAmount = $shareMaountLeft / $countTOtalManagements;
 
         $manHeadPerce = 40;
         $allPercen = 60 / $countTOtalManagements;
 
-         
+
+       // $managementsHead = 0.4 * $managements;
+       // $managementsHead = round($managementsHead, 2);
+
+       // $shareMaountLeft = $managements - $managementsHead;
 
        //         echo "$shareMaountLeft";
        // echo "countTOtalManagements >>>>> $countTOtalManagements";
@@ -7550,26 +8178,23 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
        // exit();
 
-       
-
-
-        
-
       } 
 
-      if ($member_id==='B197706273872') {
-           // $shareAmount = $managementsHead;
+      // if ($member_id==='B197706273872') {
+      //      // $shareAmount = $managementsHead;
 
-           mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$manHeadPerce','$managementsHead','$forFounders', '$login_session','yes') ");
+      //      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$manHeadPerce','$managementsHead','$forFounders', '$login_session','yes') ");
 
-         } else {
+      //    } else {
 
-          mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$allPercen','$shareAmount','$forFounders', '$login_session','yes') ");
+      //     mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$allPercen','$shareAmount','$forFounders', '$login_session','yes') ");
 
-         }
+      //    }
 
 
 
+
+      mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,contribution_made,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$allPercen','$shareAmount','$forFounders', '$login_session','yes') ");
 
 
       // mysqli_query($conn, "INSERT INTO company_share_dividend (year,member_id,amount,for_who,done_by,year_finish) VALUES('$yearToCloseAccount','$member_id', '$shareAmount','$forFounders', '$login_session','yes') ");
@@ -7643,10 +8268,10 @@ if ($_GET["CHECKPOST"]=="closeAccountForTHeYear") {
 
     mysqli_query($conn, "INSERT INTO company_returnship (year,amount) VALUES('$yearToCloseAccount','$returnshipShare') ");
 
-    // mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$founders_Shares','$login_session') ");
+    mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$founders_Shares','$login_session') ");
 
 
-   mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$managements','$login_session') ");
+   // mysqli_query($conn, "INSERT INTO company_share_dividend_list (year,amount_to_all,amount_to_founders,done_by) VALUES('$yearToCloseAccount','$shareLeft','$managements','$login_session') ");
 
 
     mysqli_query($conn, " UPDATE company_expenses SET year_finish='yes' WHERE active='yes' AND year_finish='no' AND year='$yearToCloseAccount'  ");
