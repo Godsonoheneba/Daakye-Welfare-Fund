@@ -191,6 +191,9 @@ if (mysqli_num_rows($selStu)!==0) {
 
       <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_WITHDRAWALS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Withdrawals</a>
 
+      <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_DEDUCTIONS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Deductions</a>
+
+
       <a class="nav-link active " href="homepage.php?CHECKER=VIEW_MEMBER_LOANS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Loans</a>
 
       <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_PAYMENTS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Payments</a>

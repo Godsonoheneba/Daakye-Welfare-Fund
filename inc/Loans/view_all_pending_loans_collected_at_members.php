@@ -513,90 +513,92 @@ include 'change_guarantor_modal.php';
 <script type="text/javascript">
   /*----------------------------------------ISSUED LOANS TO USER----------------------*/
 
-  function issuedLoanToUsers(loanID, person_id,status) {
+  // function issuedLoanToUsers(loanID, person_id,status) {
 
 
 
-    Swal.fire({
-      title: 'Are you sure you want to Issued the loan? ',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Pay Loan!'
-    }).then((result) => {
+  //   Swal.fire({
+  //     title: 'Are you sure you want to Issued the loan? ',
+  //     text: "You won't be able to revert this!",
+  //     type: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, Issue Loan!'
+  //   }).then((result) => {
 
 
-      if (result.value) {
+  //     if (result.value) {
 
-        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=issueLoansToUSerPost",{loanID:loanID,person_id:person_id,status:status},function (showOutPut) {
-
-
-
-          if (showOutPut.includes("error")) {
-            Swal.fire({
-              title: "Error",
-              text: "An error occured, Pelase try again,",
-              type: "warning",
-              confirmButtonClass: "btn-danger",
-              confirmButtonText: "Ok",
-              closeOnConfirm: false,
-              closeOnCancel: false
-
-            });
+  //       $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=issueLoansToUSerPost",{loanID:loanID,person_id:person_id,status:status},function (showOutPut) {
 
 
-          }else{
+  //         alert(showOutPut);
 
 
-            Swal.fire(
-              'Successfull!',
-              ' Loan Issued Successfull.',
-              'success'
-              ).then((result) =>{
+  //         if (showOutPut.includes("error")) {
+  //           Swal.fire({
+  //             title: "Error",
+  //             text: "An error occured, Pelase try again,",
+  //             type: "warning",
+  //             confirmButtonClass: "btn-danger",
+  //             confirmButtonText: "Ok",
+  //             closeOnConfirm: false,
+  //             closeOnCancel: false
 
-                Swal.fire({
-                  title: 'Print',
-                  text: "Print Receipt",
-                  type: 'success',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Print'
-                }).then((result) => {
+  //           });
 
 
-                  if (result.value) {
-
-                    window.open(showOutPut.trim())
+  //         }else{
 
 
-                    location.reload();
+  //           Swal.fire(
+  //             'Successfull!',
+  //             ' Loan Issued Successfull.',
+  //             'success'
+  //             ).then((result) =>{
+
+  //               Swal.fire({
+  //                 title: 'Print',
+  //                 text: "Print Receipt",
+  //                 type: 'success',
+  //                 showCancelButton: true,
+  //                 confirmButtonColor: '#3085d6',
+  //                 cancelButtonColor: '#d33',
+  //                 confirmButtonText: 'Print'
+  //               }).then((result) => {
 
 
+  //                 if (result.value) {
 
-                  }
-                })
+  //                   window.open(showOutPut.trim())
+
+
+  //                   location.reload();
 
 
 
-              })
+  //                 }
+  //               })
+
+
+
+  //             })
 
 
 
 
-            }
+  //           }
 
 
-          });
+  //         });
 
-      }
+  //     }
 
 
-    });
+  //   });
 
 
     
-  }
+  // }
 </script>

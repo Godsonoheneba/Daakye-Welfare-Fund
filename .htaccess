@@ -62,6 +62,11 @@ RewriteRule ^.login-success.view-all-loans-contribution.withdrawal.kt.css.js.htm
 
 
 
+#MAKE_DEDUCTION
+RewriteRule ^.login-success.view-all-loans-contribution.add-dedcution.kt.css.js.html.cpp.js.ruby.p.pyton.javas$ homepage.php?CHECKER=MAKE_DEDUCTION
+
+
+
 
 #APPROVALS BY STAFF
 #DELETE PAYMENTS APPROVALS

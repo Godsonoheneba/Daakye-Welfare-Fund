@@ -1623,6 +1623,178 @@ function payMontlyDues(member_id,member_id_encrypt,payThisAmountAsCOntri,penalty
 
 
 
+/*---------------------------PAY MONTHLY DUES--------------*/
+function deductContribution(member_id_encrypt) {
+
+  var amountToDeduct = $(".amountToDeduct").val();
+  var reasons = $(".reasons").val();
+
+
+  var addBut = $(".addBut");
+  var loadingBut = $(".loadingBut");
+
+  addBut.hide();
+  loadingBut.show();
+
+
+  if (amountToDeduct!=="" && reasons!=="" ) {
+
+    if (amountToDeduct>0) {
+
+      Swal.fire({
+        title: 'Are you sure you want to deduct GHC ' + amountToDeduct + " .00 with " + reasons + '  as a reason? ',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Deduct!'
+      }).then((result) => {
+
+
+        if (result.value) { 
+
+          $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=deductContributionPost",{member_id_encrypt:member_id_encrypt,amountToDeduct:amountToDeduct,reasons:reasons},function (showOutPut) {
+
+
+            // alert(showOutPut);
+            // exit();
+
+
+
+            if (showOutPut.includes("greater")) {
+              Swal.fire({
+                title: "Error",
+                text: "Amount cannot be more than your current contribution",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ok",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+              });
+
+              addBut.show();
+              loadingBut.hide();
+
+
+            }else if (showOutPut.includes("errorininsert")) {
+
+              Swal.fire({
+                title: "Error",
+                text: "An error occured , Please contact technicians",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ok",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+              });
+
+              addBut.show();
+              loadingBut.hide();
+
+
+            }else{
+
+
+              Swal.fire(
+                'Successfull!',
+                ' Payment has been made.',
+                'success'
+                ).then((result) =>{
+
+                  Swal.fire({
+                    title: 'Print',
+                    text: "Print Receipt",
+                    type: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Print'
+                  }).then((result) => {
+
+
+                    if (result.value) {
+
+                      window.open(showOutPut.trim())
+
+
+                      location.reload();
+
+
+
+                    }else{
+
+                      location.reload();
+                    }
+                  })
+
+
+
+                })
+
+
+
+
+              }
+
+
+            });
+
+        }else{
+          location.reload();
+        }
+
+
+      });
+
+
+
+
+
+
+
+    } else {
+
+       Swal.fire({
+      title: "Error",
+      text: "Amount cannot be zero",
+      type: "warning",
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Ok",
+      closeOnConfirm: false,
+      closeOnCancel: false
+
+    });
+
+    addBut.show();
+    loadingBut.hide();
+
+    }
+
+  } else {
+
+    Swal.fire({
+      title: "Error",
+      text: "All fieds are mandatory (*)",
+      type: "warning",
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Ok",
+      closeOnConfirm: false,
+      closeOnCancel: false
+
+    });
+
+    addBut.show();
+    loadingBut.hide();
+  }
+
+
+
+}
+
+
 
 
 
@@ -2784,8 +2956,7 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
   loadingBut.show();
 
 
-
-  if (guaranteeOptionClass=="self") {
+ if (guaranteeOptionClass=="self") {
 
 
   var selfAmountLimit = qualifyLoanAmount / 2;
@@ -2826,7 +2997,7 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
     } else {
 
 
-
+ 
         if (qualifyLoanAmount > loanAmount || qualifyLoanAmount == loanAmount ) {
 
          Swal.fire({
@@ -2842,7 +3013,7 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
           if (result.value) { 
 
 
-            $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=addLoansToMember",{getIDEncrypt:getIDEncrypt,loanAmount:loanAmount,PaymentPeriodClass:PaymentPeriodClass,guarantor1Class:guarantor1Class,guarantor2Class:guarantor2Class},function (showOutPut) {
+            $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=addLoansToMember",{getIDEncrypt:getIDEncrypt,loanAmount:loanAmount,PaymentPeriodClass:PaymentPeriodClass,guarantor1Class:guarantor1Class,guarantor2Class:guarantor2Class,guaranteeOptionClass:guaranteeOptionClass},function (showOutPut) {
 
 
 
@@ -3088,7 +3259,309 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
 
  }  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ENDS SELF GUARANTING///////////////// ///////////////////
 
- else {
+ else 
+ if (guaranteeOptionClass=="selfandother") {
+
+
+  var selfAmountLimit = qualifyLoanAmount / 2;
+
+  // alert(selfAmountLimit)
+  // exit();
+
+    if (loanAmount!=="" && PaymentPeriodClass!=="" && guarantorSelf1Class!=="" && guarantor2Class!=="" ) {
+
+
+     
+      // if (loanAmount <= selfAmountLimit) {
+
+      // if (loanAmount <= selfAmountLimit) {
+
+
+          guarantor1Class = guarantorSelf1Class;
+          guarantor2Class = guarantor2Class;
+
+          
+          if (loanAmount<=0) {
+
+      Swal.fire({
+        title: "Error",
+        text: "Amount cannot be zero",
+        type: "warning",
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Ok",
+        closeOnConfirm: false,
+        closeOnCancel: false
+
+      });
+
+
+      addBut.show();
+      loadingBut.hide();
+
+    } else {
+
+
+        if (qualifyLoanAmount > loanAmount || qualifyLoanAmount == loanAmount ) {
+
+         Swal.fire({
+          title: 'Are you sure you want to perform this action ?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Make!'
+        }).then((result) => {
+
+          if (result.value) { 
+
+
+            $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=addLoansToMember",{getIDEncrypt:getIDEncrypt,loanAmount:loanAmount,PaymentPeriodClass:PaymentPeriodClass,guarantor1Class:guarantor1Class,guarantor2Class:guarantor2Class,guaranteeOptionClass:guaranteeOptionClass},function (showOutPut) {
+
+
+
+              if (showOutPut.includes("empty")) {
+                Swal.fire({
+                  title: "Error",
+                  text: "Field Cannot be Empty",
+                  type: "warning",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                });
+
+
+                addBut.show();
+                loadingBut.hide();
+
+
+              }else if (showOutPut.includes("cantforone")) {
+
+                Swal.fire({
+                  title: "Error",
+                  text: "Insufficient  Total Contribution Balance for Guarantor 1  ",
+                  type: "warning",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                });
+
+
+                addBut.show();
+                loadingBut.hide();
+
+
+
+
+              }else if (showOutPut.includes("cantfortwo")) {
+
+                Swal.fire({
+                  title: "Error",
+                  text: "Insufficient  Total Contribution Balance for Guarantor 2  ",
+                  type: "warning",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                });
+
+
+                addBut.show();
+                loadingBut.hide();
+
+
+
+
+              }else if (showOutPut.includes("ErrorInAddingLoan")) {
+
+                Swal.fire({
+                  title: "Error",
+                  text: "An error occurred , Please contact technicians",
+                  type: "warning",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                });
+
+
+                addBut.show();
+                loadingBut.hide();
+
+
+
+
+              }else if (showOutPut.includes("errorInUpdateList")) {
+
+                Swal.fire({
+                  title: "Error",
+                  text: "An error occurred , Please contact technicians",
+                  type: "warning",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                });
+
+                addBut.show();
+                loadingBut.hide();
+
+
+
+
+              }else if (showOutPut.includes("exixst")) {
+
+                Swal.fire({
+                  title: "Error",
+                  text: "Member had already pending loan? Finish Paying before",
+                  type: "warning",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                });
+
+
+                addBut.show();
+                loadingBut.hide();
+
+
+
+
+              }else{
+
+
+                Swal.fire({
+                  title: "Successfully",
+                  text:  "Loan Added Successfully, Status: Pending!!! Wait till guarantors Approve" ,
+                  type: "success",
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+
+                }).then((result) => {
+                  if (result.value) {
+
+
+                   location.reload();
+                 } 
+               })
+
+
+
+
+
+
+              }
+
+
+            });
+
+            
+
+
+
+
+
+
+
+
+          }else{
+            location.reload();
+          }
+
+        });
+
+
+      } else {
+
+
+
+       Swal.fire({
+        title: "Error",
+        text: "You cant apply a loan more than  GHC " + qualifyLoanAmount + ".00",
+        type: "warning",
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Ok",
+        closeOnConfirm: false,
+        closeOnCancel: false
+
+      });
+
+
+       addBut.show();
+       loadingBut.hide();
+
+     }
+
+
+
+   
+
+
+
+    }
+
+
+        
+    //   } else {
+
+    //     Swal.fire({
+    //   title: "Error",
+
+
+    //   text: "You cannot apply more than your total contribution, GHC " +  selfAmountLimit + ".00 , But Dont Worry, You qualify for 1.00 to " + selfAmountLimit + ".00",
+      
+    //   type: "warning",
+    //   confirmButtonClass: "btn-danger",
+    //   confirmButtonText: "Ok",
+    //   closeOnConfirm: false,
+    //   closeOnCancel: false
+
+    // });
+
+
+    //  addBut.show();
+    //  loadingBut.hide();
+
+    //   }
+
+
+
+
+
+    }else {
+
+     Swal.fire({
+      title: "Error",
+      text: "All fields are mandatory for self",
+      type: "warning",
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Ok",
+      closeOnConfirm: false,
+      closeOnCancel: false
+
+    });
+
+
+     addBut.show();
+     loadingBut.hide();
+
+   }
+
+
+ } ///////////////ends self and other////////
+
+  else {
 
 
 
@@ -3382,7 +3855,7 @@ function finishLoanPayments(getIDEncrypt,status,qualifyLoanAmount) {
           if (result.value) {
 
 
-            $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=addLoansToMember",{getIDEncrypt:getIDEncrypt,loanAmount:loanAmount,PaymentPeriodClass:PaymentPeriodClass,guarantor1Class:guarantor1Class,guarantor2Class:guarantor2Class},function (showOutPut) {
+            $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=addLoansToMember",{getIDEncrypt:getIDEncrypt,loanAmount:loanAmount,PaymentPeriodClass:PaymentPeriodClass,guarantor1Class:guarantor1Class,guarantor2Class:guarantor2Class,guaranteeOptionClass:guaranteeOptionClass},function (showOutPut) {
 
 
 
@@ -3786,7 +4259,11 @@ function payLoans(getLoanID,getPersonID,companyRevenueAmount,companyRevenuePurpo
                       window.open(showOutPut.trim())
 
 
-                      window.location.replace(".login-success.view-al-loans.js.kt.json.java");
+                      // window.location.replace(".login-success.view-al-loans.js.kt.json.java");
+
+                      location.reload();
+
+
                       
                       
 

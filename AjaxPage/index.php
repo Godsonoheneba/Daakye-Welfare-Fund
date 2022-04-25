@@ -47,7 +47,7 @@ $TOdated = date("jS F, Y");
 
         $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message = 'Dear ' .  $memeberName .' your total contribution balance  as at ' . $TOdated . ' is GHS '. number_format($total_contribution_made, 2) .' Thank you.';
+        $message = 'Dear '.$memeberName.' your total contribution balance  as at '.$TOdated.' is GHS '.number_format($total_contribution_made,2).' Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
         
@@ -372,7 +372,7 @@ if ($_GET["CHECKPOST"]=="checkMobileIfitDey") {
        if ($mobileN!=="") {
         $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' . $memeberName . ', Use this OTP Code : ' .$last_six_rand . ' to reset your password. Thank you.';
+        $message =' Dear  '.$memeberName.', Use this OTP Code : '.$last_six_rand.' to reset your password. Thank you.';
 
       $checkVP = mysqli_query($conn, "SELECT * FROM verify_phone WHERE member_id='$member_id' AND mobile='$mobileN' AND verify='0' AND active='yes'  ");
 
@@ -454,7 +454,7 @@ if ($_GET["CHECKPOST"]=="sendResetPasswordToPhone") {
 
             $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
             $senderID = 'Daakye';
-            $message =' Dear  ' . $memeberName . ', Your password has successfully reseted. Use this New credentials to login. Username: '.$member_id . ' . Password : ' .$member_id . '  ';
+            $message =' Dear  '.$memeberName.', Your password has successfully reseted. Use this New credentials to login. Username'.$member_id.' . Password '.$member_id.'  ';
 
             $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileN&msg=$message&sender_id=$senderID";
 
@@ -762,7 +762,7 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithImage") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  You have Successfully registered as Daakye Welfare Member. Username: ' .$theMemberID . ' Password: ' .$theMemberID. ' Login At https://daakyewelfare.com/login . Thank you.';
+        $message =' Dear  '.$memberName.',  You have Successfully registered as Daakye Welfare Member. Username '.$theMemberID.' Password: '.$theMemberID.' Login At https://daakyewelfare.com/login . Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileClass&msg=$message&sender_id=$senderID";
 
@@ -1139,7 +1139,7 @@ if ($_GET["CHECKPOST"]=="addNewMemberWithNoImage") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  You have Successfully registered as Daakye Welfare Member. Username: ' .$theMemberID . ' Password: ' .$theMemberID. ' Login At https://daakyewelfare.com/login . Thank you.';
+        $message =' Dear  '.$memberName.',  You have Successfully registered as Daakye Welfare Member. Username: '.$theMemberID.' Password: '.$theMemberID.' Login At https://daakyewelfare.com/login . Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileClass&msg=$message&sender_id=$senderID";
 
@@ -2562,7 +2562,7 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
         $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Alert!! GHS ' . number_format($getRealAmountPaying, 2) . ' credited to your contribution account for the month of ' . $month_to_pay_in_words . ' - ' . $year_to_pay . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balaBefor,2) .' . Your available contribution balance is GHS '. number_format($total_contribution_made, 2) .' . Thank you.';
+        $message =' Alert!! GHS '.number_format($getRealAmountPaying,2).' credited to your contribution account for the month of '.$month_to_pay_in_words.' - '.$year_to_pay.' on the '.$TOdated.' . Balance before : GHS '.number_format($balaBefor,2).' . Your available contribution balance is GHS '.number_format($total_contribution_made,2).' . Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
         
@@ -2731,7 +2731,7 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
         $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Alert!! GHS ' . number_format($getRealAmountPaying, 2) . ' credited to your contribution account for the month of ' . $month_to_pay_in_words . ' - ' . $year_to_pay . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balaBefor,2) .' . Your available contribution balance is GHS '. number_format($total_contribution_made, 2) .' . Thank you.';
+        $message =' Alert!! GHS '.number_format($getRealAmountPaying,2).' credited to your contribution account for the month of '.$month_to_pay_in_words.' - '.$year_to_pay.' on the '.$TOdated.' . Balance before : GHS ' .number_format($balaBefor,2).' . Your available contribution balance is GHS '.number_format($total_contribution_made,2).' . Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
         
@@ -3077,7 +3077,7 @@ if ($_GET["CHECKPOST"]=="withdrawContribution") {
 
         $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Alert!! You have requested to withdraw an amount of  ' . number_format($withdrawalAMount, 2) . ' from your contribution. Thank you.';
+        $message =' Alert!! You have requested to withdraw an amount of  '.number_format($withdrawalAMount,2). ' from your contribution. Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
         
@@ -3174,7 +3174,7 @@ if ($_GET["CHECKPOST"]=="issueWithdrawalPost") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Alert!! GHS '.number_format($amount, 2).'  debited from your Total Contribution as a Withdrawal. Previuos contribution GHS '.number_format($balance_before, 2). '. Current contribution GHS '.number_format($currrentBal,2).' Thank you.';
+        $message =' Alert!! GHS '.number_format($amount,2).'  debited from your Total Contribution as a Withdrawal. Previuos contribution GHS '.number_format($balance_before,2). '. Current contribution GHS '.number_format($currrentBal,2).' Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
 
@@ -3205,6 +3205,142 @@ if ($_GET["CHECKPOST"]=="issueWithdrawalPost") {
 
 
 
+////////////////////////DEDUCT MONEY DUES BY MEMBER//////////////////////////////////
+if ($_GET["CHECKPOST"]=="deductContributionPost") {
+
+  if (isset($_POST["member_id_encrypt"]) && isset($_POST["amountToDeduct"]) && isset($_POST["reasons"])   ) {
+
+    $member_id_encrypt = $_POST["member_id_encrypt"];
+    $amountToDeduct = $_POST["amountToDeduct"];
+    $reasons = $_POST["reasons"];
+  
+
+    $SELLL1 = mysqli_query($conn, "SELECT * FROM members WHERE member_id_encrypt='$member_id_encrypt' AND active='yes'  LIMIT 1  ");
+
+    $getall =  mysqli_fetch_assoc($SELLL1);
+    $id = $getall["id"];
+    $member_id = $getall["member_id"];
+    $member_id_encrypt = $getall["member_id_encrypt"];
+    $password = $getall["password"];
+    $firstname = $getall["firstname"];
+    $surname = $getall["surname"];
+    $residencial_address = $getall["residencial_address"];
+    $postal_address = $getall["postal_address"];
+    $place_of_work = $getall["place_of_work"];
+    $home_town = $getall["home_town"];
+    $email = $getall["email"];
+    $telephone = $getall["telephone"];
+    $dob = $getall["dob"];
+    $gender = $getall["gender"];
+    $marital_status = $getall["marital_status"];
+    $contribution_amount = $getall["contribution_amount"];
+    $total_contribution_made = $getall["total_contribution_made"];
+    $last_month_contributed = $getall["last_month_contributed"];
+    $last_year_contributed = $getall["last_year_contributed"];
+    $image = $getall["image"];
+    $paid_reg_form = $getall["paid_reg_form"];
+    $has_loan = $getall["has_loan"];
+    $staff = $getall["staff"];
+    $date_created = $getall["date_created"];
+
+
+    $balaBefor = $total_contribution_made;
+
+    $newtotal_contribution_made = $total_contribution_made - $amountToDeduct;
+
+
+   
+ 
+
+    if ($amountToDeduct<$total_contribution_made) {
+
+     $TOdated = date("jS F, Y");
+
+     $TOdated2 = date("Y-m-d");
+
+     $selre = mysqli_query($conn, "SELECT id FROM deduct_contributions ORDER BY id DESC LIMIT 1 ");
+
+     $getlastID = mysqli_fetch_assoc($selre);
+     $ids = $getlastID["id"] + 1;
+
+     $firstID = 1;
+     $preamble = '000000';
+
+     if (mysqli_num_rows($selre) >0) {
+
+       if($ids<=9){
+         $receiptNumber ='000000'.$ids;
+       }else if($ids<=99){
+         $receiptNumber ='00000'.$ids;
+       }else if($ids<=999){
+         $receiptNumber ='0000'.$ids;
+       }else if($ids<=9999){
+         $receiptNumber ='000'.$ids;
+       }else if($ids<=99999){
+         $receiptNumber ='00'.$ids;
+       }else if($ids<=999999){
+         $receiptNumber ='0'.$ids;
+       }else {
+         $receiptNumber =$ids;
+       }
+     } else {
+      $receiptNumber = $preamble . $firstID;
+    }
+         
+
+        if (mysqli_query($conn, "INSERT INTO deduct_contributions (member_id,amount,reason,balance_before,current_balance,reciept_number,staff) VALUES('$member_id_encrypt','$amountToDeduct','$reasons','$balaBefor','$newtotal_contribution_made','$receiptNumber','$login_session') ")) {
+
+
+         mysqli_query($conn, "UPDATE members SET total_contribution_made='$newtotal_contribution_made'  WHERE member_id_encrypt='$member_id_encrypt'  AND active='yes' LIMIT 1 ");
+
+
+
+        $memeberName = $firstname . " " . $surname ;
+
+
+       /*-----send message  -------------*/
+
+       if ($telephone!=="") {
+
+        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+        $message =' Alert!! GHS '.number_format($amountToDeduct,2).' deducted from your contribution account for a reason of '.$reasons.' . Balance before : '.number_format($balaBefor,2).' current balance : '.number_format($newtotal_contribution_made,2).' . Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       }
+
+
+
+       
+        echo "ViewPDFS/Members/print_member_deduction_amount_receipt.php?PRINT=PRINT_MEMBER_DEDUCTIONS_RECEIPT&&TRUE=$member_id_encrypt&&RECEIPT=$receiptNumber";
+
+      } else {
+
+
+        echo "errorininsert";
+
+      }
+
+
+    } else {
+      echo "greater";
+
+    }
+
+
+    } 
+
+}
+
+
+/*---------------ends ////////////////////////DEDUCT MONEY DUES BY MEMBER/-------------------*/
+
+
+
+
 
 ////////////////////////PAY REGISTRATION FEE//////////////////////////////////
 if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
@@ -3213,7 +3349,6 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
 
     $memberID = $_POST["memberID"];
 
-    $registrationFeePrice = 100;
 
 
     $stf = mysqli_query($conn, "SELECT * FROM staff WHERE active ='yes' AND id='$login_session'");
@@ -3221,6 +3356,34 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
     $getdac3 = mysqli_fetch_assoc($stf);
 
     $staffID = $getdac3["staffID"];
+
+   $selm = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id_encrypt='$memberID' LIMIT 1 ");
+
+
+      $mmget = mysqli_fetch_assoc($selm);
+      $telephone = $mmget["telephone"];
+      $firstname = $mmget["firstname"];
+      $surname = $mmget["surname"];
+      $dob = $mmget["dob"];
+
+    $memberName = $firstname . " " . $surname;
+
+    $explodedob = explode('-', $dob);
+
+    $getyearrr = current($explodedob);
+
+    $getThisYear = date("Y");
+
+    $getAge = $getThisYear - $getyearrr;
+
+    if ($getAge>18) {
+    $registrationFeePrice = 100;
+      
+    } else {
+    $registrationFeePrice = 50;
+      
+    }
+    
 
     $TOdated = date("jS F, Y");
 
@@ -3265,13 +3428,8 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
 
   $slExist = mysqli_query($conn, "SELECT * FROM comp_reve_memb_reg_fee WHERE member_id='$memberID' AND active='yes'  ");
 
-      $selm = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id_encrypt='$memberID' LIMIT 1 ");
-      $mmget = mysqli_fetch_assoc($selm);
-      $telephone = $mmget["telephone"];
-      $firstname = $mmget["firstname"];
-      $surname = $mmget["surname"];
+ 
 
-    $memberName = $firstname . " " . $surname;
 
 
 
@@ -3296,7 +3454,7 @@ if ($_GET["CHECKPOST"]=="payRegistrationFeePost") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  an amount of GHS '. number_format($registrationFeePrice, 2) . ' has been successfully paid as your registration fee. Thank you.';
+        $message =' Dear  '.$memberName.',  an amount of GHS '.number_format($registrationFeePrice,2).' has been successfully paid as your registration fee. Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$telephone&msg=$message&sender_id=$senderID";
 
@@ -3574,6 +3732,149 @@ if ($_GET["CHECKPOST"]=="searchMemberbyLivePost") {
      <div class=\"list-group list-group-flush list-group-divider\">
 
      <a  onclick=\"window.location.href='homepage.php?CHECKER=PAY_MEMBER_CONTRIBUTION_SEARCHED_FOUND&&DACO=$member_id&&TRUE=$member_id_encrypt'  \" class=\"list-group-item list-group-item-action\" style=\"cursor:pointer;\">
+
+     <div class=\"list-group-item-figure\">
+     <div class=\"user-avatar\">
+     $image
+     </div>
+     </div>
+
+     <div class=\"list-group-item-body\">
+     <h4 class=\"list-group-item-title\"> $fullname</h4>
+     <p class=\"list-group-item-text text-truncate\">
+     Last month payment : $last_month_contributed
+     </p>
+     </div>
+
+     </a> 
+
+     </div>
+     </div>
+     </div>";
+
+
+
+   }
+
+
+
+
+
+
+ }else{
+
+
+
+ }
+
+
+
+
+} else {
+
+  /*--------------------do naothing-----------*/
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+/*----------------------------seach member to deduct contributions -----------------*/
+
+
+if ($_GET["CHECKPOST"]=="searchMemberDedcutbyLivePost") {
+
+
+  $seachresultInput = htmlentities(strip_tags(stripcslashes($_POST["seachresultInput"])));
+
+  if (!empty($seachresultInput)) {
+
+
+   $searchStatuss = mysqli_query($conn, "SELECT * FROM members
+    WHERE (`member_id` LIKE '%".$seachresultInput."%' OR `firstname` LIKE '%".$seachresultInput."%' OR `surname` LIKE '%".$seachresultInput."%' OR `telephone` LIKE '%".$seachresultInput."%' ) AND active='yes'  ");
+
+
+
+   if(mysqli_num_rows($searchStatuss) > 0){
+
+
+
+     while ($getall =  mysqli_fetch_assoc($searchStatuss)) {
+
+
+      $id = $getall["id"];
+      $member_id = $getall["member_id"];
+      $member_id_encrypt = $getall["member_id_encrypt"];
+      $password = $getall["password"];
+      $firstname = $getall["firstname"];
+      $surname = $getall["surname"];
+      $residencial_address = $getall["residencial_address"];
+      $postal_address = $getall["postal_address"];
+      $place_of_work = $getall["place_of_work"];
+      $home_town = $getall["home_town"];
+      $email = $getall["email"];
+      $telephone = $getall["telephone"];
+      $dob = $getall["dob"];
+      $gender = $getall["gender"];
+      $marital_status = $getall["marital_status"];
+      $contribution_amount = $getall["contribution_amount"];
+      $total_contribution_made = $getall["total_contribution_made"];
+      $last_month_contributed = $getall["last_month_contributed"];
+      $image = $getall["image"];
+
+
+      $fullname = $firstname . " " . $surname;
+
+      if ($last_month_contributed==="") {
+        $last_month_contributed = 'Has not start contributing';
+      } else {
+        $last_month_contributed = $last_month_contributed;
+      }
+
+
+
+
+      if ($image==="" || $image==="/") {
+
+        if ($gender==="Male") {
+          $image = "
+          <img src=\"assets/images/customs/male.png\" >
+          ";
+        } else {
+          $image = "
+          <img src=\"assets/images/customs/female.jpg\" >
+          ";
+        }
+
+
+      } else {
+
+       $image = "
+       <img src=\"Datas/members_datas/$image\" >
+       ";
+
+
+     }
+
+
+
+
+
+     echo  "    
+
+     <div class=\"col-lg-12\">
+     <div class=\"card card-fluid\">
+     <div class=\"list-group list-group-flush list-group-divider\">
+
+     <a  onclick=\"window.location.href='homepage.php?CHECKER=DEDUCT_MEMBER_CONTRIBUTION_SEARCHED_FOUND&&DACO=$member_id&&TRUE=$member_id_encrypt'  \" class=\"list-group-item list-group-item-action\" style=\"cursor:pointer;\">
 
      <div class=\"list-group-item-figure\">
      <div class=\"user-avatar\">
@@ -4365,6 +4666,7 @@ if ($_GET["CHECKPOST"]=="addLoansToMember") {
     $PaymentPeriodClass = $_POST["PaymentPeriodClass"];
     $guarantor1Class = $_POST["guarantor1Class"];
     $guarantor2Class = $_POST["guarantor2Class"];
+    $guaranteeOptionClass = $_POST["guaranteeOptionClass"];
 
     $STATUS = "Member";
 
@@ -4393,14 +4695,14 @@ if ($_GET["CHECKPOST"]=="addLoansToMember") {
     $months_left = $PaymentPeriodClass;
 
 
-$flotnum   = 397;
+// $flotnum   = 397;
 
     // $monthly_installment + 
-    if (is_float($flotnum)) {
-      echo "yes >>>>> $flotnum";
-    } else {
-      echo "no >>>>>> $flotnum";
-    }
+    // if (is_float($flotnum)) {
+    //   echo "yes >>>>> $flotnum";
+    // } else {
+    //   echo "no >>>>>> $flotnum";
+    // }
     
     
     // round($monthly_installment,2);
@@ -4458,7 +4760,7 @@ $flotnum   = 397;
 
 
 
-
+ 
 
 
 // 1. 600 to 900 can guarantee upto 3500
@@ -4590,7 +4892,41 @@ $flotnum   = 397;
 
 
     $loan_statusSSSS = "processing";
+    $loan_statusSSSS2 = "pending";
     $guarantorsConfirms = "yes";
+    $guarantors2Confirms = "no";
+
+
+        $selG1 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor1Class' LIMIT 1 ");
+       $gg1 = mysqli_fetch_assoc($selG1);
+
+       $g1member_id = $gg1["member_id"];
+
+
+      $selG2 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor2Class' LIMIT 1 ");
+      $gg2 = mysqli_fetch_assoc($selG2);
+      $g2member_id = $gg2["member_id"];
+
+
+      $g1firstname = $gg1["firstname"];
+      $g1surname = $gg1["surname"];
+      $g1mobile = $gg1["telephone"];
+      $g1FullName = $g1firstname . " " . $g1surname;
+
+      $g2firstname = $gg2["firstname"];
+      $g2surname = $gg2["surname"];
+      $g2mobile = $gg2["telephone"];
+      $g2FullName = $g2firstname . " " . $g2surname;
+
+        $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$getIDEncrypt'  LIMIT 1 ");
+        $getAlls2 = mysqli_fetch_assoc($selStu1);
+        $firstname = $getAlls2["firstname"];
+        $surname = $getAlls2["surname"];
+
+        $memberName = $firstname . " " . $surname;
+
+        echo "$g1mobile >>>>>>>>";
+        echo "$g2mobile";
 
 
      if (mysqli_num_rows($checkExist) > 0) {
@@ -4611,7 +4947,7 @@ $flotnum   = 397;
   }else{
 
 
-   if ($guarantor1Class === $guarantor2Class) { 
+   if ($guaranteeOptionClass === 'self') { 
    //////////////MEANS SELF GUARANTING////////
 
 
@@ -4620,10 +4956,10 @@ $flotnum   = 397;
 
 
 
-    mysqli_query($conn, "UPDATE members SET 
-      total_guarantee='$selfCountt'  
-      WHERE member_id='$guarantor1Class' 
-      AND active='yes' LIMIT 1 " );
+    // mysqli_query($conn, "UPDATE members SET 
+    //   total_guarantee='$selfCountt' 
+    //   WHERE member_id='$guarantor1Class' 
+    //   AND active='yes' LIMIT 1 " );
 
 
 
@@ -4646,6 +4982,53 @@ $flotnum   = 397;
 
    }//////////////ENDS SELF GUARANTING////////
 
+  else if ($guaranteeOptionClass === 'selfandother') { 
+   //////////////MEANS SELF + OTHER GUARANTING////////
+
+
+
+     if (mysqli_query($conn, "INSERT INTO loans_all (person_id,status,amount_collected,interest_rate,total_interest_rate_amount,total_amount_to_pay,balance,date_requested,monthly_installment,total_months_for_payment,months_left,guarantor1,guarantor2,guarantor1_confirm,guarantor2_confirm,loan_status,loan_added_by) VALUES('$getIDEncrypt','$STATUS','$loanAmount','$interest_rate_db_amount','$total_interest_rate_amount','$totalAmountToPay','$balanceInitial','$dateRequested','$monthly_installment','$PaymentPeriodClass','$PaymentPeriodClass', '$guarantor1Class','$guarantor2Class','$guarantorsConfirms','$guarantors2Confirms','$loan_statusSSSS2','$login_session') ")) {
+
+
+
+    // mysqli_query($conn, "UPDATE members SET 
+    //   total_guarantee='$selfCountt' 
+    //   WHERE member_id='$guarantor1Class' 
+    //   AND active='yes' LIMIT 1 " );
+
+          if ($g2mobile!=="") {
+
+      $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
+        $senderID = 'Daakye';
+          $message =' Dear Member,'.$memberName.' wants you to approve his LOAN with an amount of GHS '.number_format($loanAmount,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
+
+        $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$g2mobile&msg=$message&sender_id=$senderID";
+        
+
+          $resp=file_get_contents($url);
+       }
+
+
+
+ 
+
+   echo "done";
+
+
+
+      } else {
+        echo "ErrorInAddingLoan";
+      }
+
+
+
+
+   
+
+
+
+   }  //////////////ENDS SELF + OTHER GUARANTING////////
+
    else{
 
 
@@ -4656,46 +5039,22 @@ $flotnum   = 397;
 
 
         //////////do for guarantor 1
-    mysqli_query($conn, "UPDATE members SET 
-      total_guarantee='$newtotal_guarantee'  
-      WHERE member_id='$guarantor1Class' 
-      AND active='yes' LIMIT 1 " );
+    // mysqli_query($conn, "UPDATE members SET 
+    //   total_guarantee='$newtotal_guarantee'  
+    //   WHERE member_id='$guarantor1Class' 
+    //   AND active='yes' LIMIT 1 " );
 
 
 
 
       //////////do for guarantor 2
-    mysqli_query($conn, "UPDATE members SET 
-      total_guarantee='$newtotal_guarantee'  
-      WHERE member_id='$guarantor2Class' 
-      AND active='yes' LIMIT 1 " );
+    // mysqli_query($conn, "UPDATE members SET 
+    //   total_guarantee='$newtotal_guarantee'  
+    //   WHERE member_id='$guarantor2Class' 
+    //   AND active='yes' LIMIT 1 " );
 
 
-    $selG1 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor1Class' LIMIT 1 ");
-       $gg1 = mysqli_fetch_assoc($selG1);
-       $g1member_id = $getdac["member_id"];
-      $selG2 = mysqli_query($conn, "SELECT * FROM members WHERE active ='yes' AND member_id='$guarantor2Class' LIMIT 1 ");
-      $gg2 = mysqli_fetch_assoc($selG2);
-      $g2member_id = $getdac["member_id"];
 
-
-      $g1firstname = $gg1["firstname"];
-      $g1surname = $gg1["surname"];
-      $g1mobile = $gg1["telephone"];
-      $g1FullName = $g1firstname . " " . $g1surname;
-
-      $g2firstname = $gg2["firstname"];
-      $g2surname = $gg2["surname"];
-      $g2mobile = $gg2["telephone"];
-      $g2FullName = $g2firstname . " " . $g2surname;
-
-        $selStu1 = mysqli_query($conn, "SELECT * FROM members WHERE  member_id_encrypt='$getIDEncrypt'  LIMIT 1 ");
-        $getAlls2 = mysqli_fetch_assoc($selStu1);
-        $firstname = $getAlls2["firstname"];
-        $surname = $getAlls2["surname"];
-        $mobileNum = $getdac["telephone"];
-
-        $memberName = $firstname . " " . $surname;
 
 
 
@@ -4703,10 +5062,13 @@ $flotnum   = 397;
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear Member, ' . $memberName.' wants you to approve his LOAN with an amount of GHS '.number_format($loanAmount,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
+
+
+        $message =' Dear Member,'.$memberName.' wants you to approve his LOAN with an amount of GHS '.number_format($loanAmount,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
 
         $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$g2mobile,$g1mobile&msg=$message&sender_id=$senderID";
-        
+
+
 
           $resp=file_get_contents($url);
        // }
@@ -5707,7 +6069,7 @@ if ($_GET["CHECKPOST"]=="ApprovedLoansByStaff") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  your loan of GHC '. number_format($amount_collected, 2) . ' has been successfully approved. Loan shoud be issued within 2 weeks time.  Thank you.';
+        $message =' Dear  '.$memberName.',  your loan of GHC '.number_format($amount_collected,2).' has been successfully approved. Loan shoud be issued within 2 weeks time.  Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
 
@@ -5756,7 +6118,7 @@ if ($_GET["CHECKPOST"]=="DeniedLoansByStaff") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  your loan of GHC '. number_format($amount_collected, 2) . ' has been DENIED. Thank you.';
+        $message =' Dear  '.$memberName.',  your loan of GHC '.number_format($amount_collected,2) . ' has been DENIED. Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
 
@@ -5972,7 +6334,8 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
   $myYear = date("Y");
   $firstMonth = 01;
 
-  $monthPlus1 = $month + 1;
+  // $monthPlus1 = $month + 1;
+  $monthPlus1 = $month + 2;
 
 
   if ($monthPlus1 > 9) {
@@ -6021,13 +6384,13 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
  
 
-
+///////////ahemadaco
 
 
       if ($guarantor1 === $guarantor2) { //////////////MEANS SELF GUARANTING////////
     
     mysqli_query($conn, "UPDATE members SET 
-      total_guarantee='$selfCountt'  
+      total_guarantee='$selfCountt',free_to_guarantee='no'  
       WHERE member_id='$guarantor1' 
       AND active='yes' LIMIT 1 " );
 
@@ -6042,7 +6405,7 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
       //////////do for guarantor 1
     mysqli_query($conn, "UPDATE members SET 
-      total_guarantee='$newtotal_guarantee1'  
+      total_guarantee='$newtotal_guarantee1',free_to_guarantee='no'  
       WHERE member_id='$guarantor1' 
       AND active='yes' LIMIT 1 " );
 
@@ -6051,7 +6414,7 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
       //////////do for guarantor 2
     mysqli_query($conn, "UPDATE members SET 
-      total_guarantee='$newtotal_guarantee2'  
+      total_guarantee='$newtotal_guarantee2',free_to_guarantee='no'    
       WHERE member_id='$guarantor2' 
       AND active='yes' LIMIT 1 " );
 
@@ -6102,7 +6465,18 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  your loan of GHS '. number_format($amount_collected, 2) . ' has been successfully issued. Your Payment begin on : ' . $nextMonthPayment . ' Monthly Installment :  ' . number_format($monthly_installment,2) . ' Total months for payment : ' .  $total_months_for_payment .' . Total LOAN to pay : GHS '. number_format($total_amount_to_pay, 2) .' . Thank you.';
+
+         $message ='Dear '.$memberName.',your loan of GHS '.number_format($amount_collected,2).' has been successfully issued. Your Payment begin on '.$nextMonthPayment.' Monthly Installment '.number_format($monthly_installment,2).' Total months for payment '.$total_months_for_payment.'. Total LOAN to pay : GHS '.number_format($total_amount_to_pay,2).' Thank you.';
+
+
+
+          // $message ='Dear '.$memberName.',your loan of GHS number_format($amount_collected,2) has been successfully issued. Your Payment begin on $nextMonthPayment Monthly Installment number_format($monthly_installment,2) Total months for payment $total_months_for_payment. Total LOAN to pay : GHS number_format($total_amount_to_pay,2) Thank you';
+
+
+
+   
+
+
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
 
@@ -6570,7 +6944,7 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
       $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
         $senderID = 'Daakye';
-        $message =' Dear  ' .$memberName . ',  your top up loan of GHS '. number_format($topUpLoanAmountClass, 2) . ' has been successfully issued. Your Payment begin on : ' . $nextMonthPayment . ' Monthly Installment :  ' . number_format($new_monthly_installment,2) . ' Total months for payment : ' .  $topUpPaymentPeriodChooseClass .' . Total LOAN to pay : GHS '. number_format($new_total_amount_to_pay, 2) .' . Thank you.';
+        $message =' Dear  '.$memberName.',  your top up loan of GHS '.number_format($topUpLoanAmountClass,2) . ' has been successfully issued. Your Payment begin on : '.$nextMonthPayment.' Monthly Installment :  '.number_format($new_monthly_installment,2).' Total months for payment : '.$topUpPaymentPeriodChooseClass.' . Total LOAN to pay : GHS '. number_format($new_total_amount_to_pay,2).' . Thank you.';
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
 
@@ -6710,7 +7084,7 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
   
               $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
               $senderID = 'Daakye';
-              $message =' Dear Member, ' . $memberName.' wants you to approve his Top up LOAN with an amount of GHS '.number_format($topUpLoanAmountClass,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
+              $message =' Dear Member, '.$memberName.' wants you to approve his Top up LOAN with an amount of GHS '.number_format($topUpLoanAmountClass,2).' as a guarantor. Please login to your portal and appove for the loan to be process. Thank you.';
 
               $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$g2mobile,$g1mobile&msg=$message&sender_id=$senderID";
               
@@ -6778,7 +7152,7 @@ if ($_GET["CHECKPOST"]=="searchLoanPersonLivePost") {
       /*--------------MEMBER LOAN PAY -----------*/
 
 
-      $searchStatusMember = mysqli_query($conn, "SELECT person.*, loanTab.* FROM members person, loans_all loanTab WHERE loanTab.person_id=person.member_id_encrypt AND loanTab.loan_status='issued' AND loanTab.finish_paying='no'  AND (person.telephone LIKE '%".$seachresultInput."%' OR person.firstname LIKE '%".$seachresultInput."%' OR person.surname LIKE '%".$seachresultInput."%' OR person.member_id LIKE '%".$seachresultInput."%'  ) ORDER BY loanTab.id DESC  ");
+      $searchStatusMember = mysqli_query($conn, "SELECT person.*, loanTab.* FROM members person, loans_all loanTab WHERE loanTab.person_id=person.member_id_encrypt AND loanTab.loan_status='issued' AND loanTab.finish_paying='no' AND loanTab.active='yes'  AND (person.telephone LIKE '%".$seachresultInput."%' OR person.firstname LIKE '%".$seachresultInput."%' OR person.surname LIKE '%".$seachresultInput."%' OR person.member_id LIKE '%".$seachresultInput."%'  ) ORDER BY loanTab.id DESC  ");
 
 
       if(mysqli_num_rows($searchStatusMember) > 0){
@@ -7515,9 +7889,11 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
 
 
 
-        $apiKey = 'kIv2Oj3xJdUJzVTfyCrThrBaJ';
-        $senderID = 'Daakye';
-        $message =' Dear ' .$perName . ' , you have paid off GHS '. number_format($payLoanAmountClass, 2) . ' Loan amount for the month of ' . $month_to_pay_in_words . ' - ' . $toYear . ' on the ' . $TOdated . ' . Balance before : GHS ' .  number_format($balace_before,2) .' . Your available LOAN balance is GHS '. number_format($balance, 2) .' . Thank you.';
+        $apiKey = "kIv2Oj3xJdUJzVTfyCrThrBaJ";
+        $senderID = "Daakye";
+        $message ="Dear ".$perName.", you have paid off GHS ".number_format($payLoanAmountClass,2)." Loan amount for the month of ".$month_to_pay_in_words." - ".$toYear." on the ".$TOdated." . Balance before : GHS ".number_format($balace_before,2).". Your available LOAN balance is GHS ".number_format($balance,2)." . Thank you.";
+
+
 
          $url="https://apps.mnotify.net/smsapi?key=$apiKey&to=$mobileNum&msg=$message&sender_id=$senderID";
 

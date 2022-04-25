@@ -2191,7 +2191,7 @@ include 'change_guarantor_modal.php';
 
         $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=issueLoansToUSerPost",{loanID:loanID,person_id:person_id,status:status},function (showOutPut) {
 
-          // alert(showOutPut);
+          alert(showOutPut);
           // exit();
 
           if (showOutPut.includes("error")) {

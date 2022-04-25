@@ -154,6 +154,31 @@ include 'sidenav.php';
       }
 
 
+
+        else if ($MYTOPGET==="VIEW_MEMBER_DEDUCTIONS") {
+
+        include 'inc/Membership/Contribution_Deduction/view_individual_deductions.php';
+
+
+      }
+
+
+
+      else if ($MYTOPGET==="MAKE_DEDUCTION") {
+
+        include 'inc/Membership/Contribution_Deduction/index.php';
+
+
+      }
+
+         else if ($MYTOPGET==="DEDUCT_MEMBER_CONTRIBUTION_SEARCHED_FOUND") {
+
+        include 'inc/Membership/Contribution_Deduction/deduct_contribution_page.php';
+
+
+      } 
+
+
       else if ($MYTOPGET==="VIEW_MEMBER_LOANS") {
 
         include 'inc/Membership/view_all_members_loans.php';

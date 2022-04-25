@@ -343,6 +343,142 @@ $gtttitueerr = mysqli_query($conn, "SELECT * FROM registration_fees WHERE active
 
 
 
+///////////////SET FREE TO GUARANTEE TO NO WHEN ON LOAN///////////
+
+ //   $sell = mysqli_query($conn, "SELECT * FROM loans_all WHERE active='yes'  ");
+
+ //   while ($feLooan = mysqli_fetch_assoc($sell)) {
+
+ //     $guarantor1 = $feLooan["guarantor1"];
+ //     $guarantor2 = $feLooan["guarantor2"];
+ //     $person_id = $feLooan["person_id"];
+ //     $total_amount_to_pay = $feLooan["total_amount_to_pay"];
+ //     $Loanbalance = $feLooan["balance"];
+
+ //     $paymentHalf = $total_amount_to_pay / 2;
+
+ //    /////////////////SELECT guarantor1/////////
+ //    $selMemmm = mysqli_query($conn, "SELECT * FROM members WHERE active='yes' AND member_id='$guarantor1'  ");
+ //    $feG1 = mysqli_fetch_assoc($selMemmm);
+ //    $total_guarantee_g1 = $feG1["total_guarantee"];
+
+ //    $new_total_guarantee_g1 = $total_guarantee_g1 - 1;
+
+
+
+ //    /////////////////SELECT guarantor1/////////
+ //    $selMemmm2 = mysqli_query($conn, "SELECT * FROM members WHERE active='yes' AND member_id='$guarantor2'  ");
+ //    $feG2 = mysqli_fetch_assoc($selMemmm2);
+ //    $total_guarantee_g2 = $feG2["total_guarantee"];
+
+ //    $new_total_guarantee_g2 = $total_guarantee_g2 - 1;
+
+
+
+ //        /////////////////SELECT the loaner/////////
+ //    $seLoner = mysqli_query($conn, "SELECT * FROM members WHERE active='yes' AND member_id_encrypt='$person_id'  ");
+ //    $feLon = mysqli_fetch_assoc($seLoner);
+ //    $total_guarantee_Loner = $feLon["total_guarantee"];
+
+ //    $new_total_guarantee_Loner = $total_guarantee_Loner - 1;
+
+
+
+
+ //       mysqli_query($conn, "UPDATE members SET free_to_guarantee='no'  WHERE member_id='$guarantor1'  AND active='yes'  " );
+ //       mysqli_query($conn, "UPDATE members SET free_to_guarantee='no'  WHERE member_id='$guarantor2'  AND active='yes'  " );
+
+
+ //        mysqli_query($conn, "UPDATE members SET free_to_guarantee='no'  WHERE member_id_encrypt='$person_id'  AND active='yes'  " );
+
+ // }
+
+
+   /*-----------------------------------UPDATE MEMBER gurantee number  IF LOAN IS PAID MORE THAN HALF----------------*/
+
+
+   $sell = mysqli_query($conn, "SELECT * FROM loans_all WHERE active='yes'  ");
+
+   while ($feLooan = mysqli_fetch_assoc($sell)) {
+
+     $guarantor1 = $feLooan["guarantor1"];
+     $guarantor2 = $feLooan["guarantor2"];
+     $person_id = $feLooan["person_id"];
+     $total_amount_to_pay = $feLooan["total_amount_to_pay"];
+     $Loanbalance = $feLooan["balance"];
+
+     $paymentHalf = $total_amount_to_pay / 2;
+
+    /////////////////SELECT guarantor1/////////
+    $selMemmm = mysqli_query($conn, "SELECT * FROM members WHERE active='yes' AND free_to_guarantee='no' AND member_id='$guarantor1'  ");
+    $feG1 = mysqli_fetch_assoc($selMemmm);
+    $total_guarantee_g1 = $feG1["total_guarantee"];
+
+    $new_total_guarantee_g1 = $total_guarantee_g1 - 1;
+
+
+
+    /////////////////SELECT guarantor1/////////
+    $selMemmm2 = mysqli_query($conn, "SELECT * FROM members WHERE active='yes' AND free_to_guarantee='no' AND member_id='$guarantor2'  ");
+    $feG2 = mysqli_fetch_assoc($selMemmm2);
+    $total_guarantee_g2 = $feG2["total_guarantee"];
+
+    $new_total_guarantee_g2 = $total_guarantee_g2 - 1;
+
+
+
+        /////////////////SELECT the loaner/////////
+    $seLoner = mysqli_query($conn, "SELECT * FROM members WHERE active='yes' AND free_to_guarantee='no' AND member_id_encrypt='$person_id'  ");
+    $feLon = mysqli_fetch_assoc($seLoner);
+    $total_guarantee_Loner = $feLon["total_guarantee"];
+
+    $new_total_guarantee_Loner = $total_guarantee_Loner - 1;
+
+
+
+     if ($paymentHalf >= $Loanbalance) {
+
+
+      if ($total_guarantee_g1>0) {
+
+             mysqli_query($conn, "UPDATE members SET total_guarantee='$new_total_guarantee_g1', free_to_guarantee='yes'  WHERE member_id='$guarantor1'  AND active='yes' AND free_to_guarantee='no'  " );
+      }
+
+       if ($total_guarantee_g1>0) {
+              
+              mysqli_query($conn, "UPDATE members SET total_guarantee='$new_total_guarantee_g2', free_to_guarantee='yes' WHERE member_id='$guarantor2'  AND active='yes' AND free_to_guarantee='no'  " );
+            }
+
+       if ($total_guarantee_g1>0) {
+
+               mysqli_query($conn, "UPDATE members SET total_guarantee='$new_total_guarantee_Loner', free_to_guarantee='yes'  WHERE member_id_encrypt='$person_id'  AND active='yes' AND free_to_guarantee='no'  " );
+            }
+
+
+    
+       
+
+
+       
+
+    }
+
+
+
+
+ }
+
+
+
+
+
+
+
+ // exit();
+
+
+
+
    /*-----------------------------------UPDATE MEMBER CONTRIBUTION ACTIVE TO NO IF MEMBER IS DEACTIVATED----------------*/
 
 

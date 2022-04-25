@@ -242,7 +242,7 @@ if ($login_session_type==="1" || $login_session_type==="3") {
           </li><!-- /.menu-item -->
 
 
-            <li class="menu-item has-child">
+          <li class="menu-item has-child">
             <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Withdrawals</span></a> 
 
 
@@ -251,6 +251,35 @@ if ($login_session_type==="1" || $login_session_type==="3") {
             <li class="menu-item">
               <a href=".login-success.view-all-loans-contribution.withdrawal.kt.css.js.html.cpp.js.ruby.p.pyton.javas" class="menu-link">View Withdrawals</a>
             </li>
+
+
+            
+
+
+
+          </ul>
+
+
+
+        </li>
+
+
+
+        <li class="menu-item has-child">
+            <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Deductions</span></a> 
+
+
+            <ul class="menu">
+
+            <li class="menu-item">
+              <a href=".login-success.view-all-loans-contribution.add-dedcution.kt.css.js.html.cpp.js.ruby.p.pyton.javas" class="menu-link">Make Deductions</a>
+            </li>
+
+
+
+    <!--          <li class="menu-item">
+              <a href=".login-success.view-all-loans-contribution.withdrawal.kt.css.js.html.cpp.js.ruby.p.pyton.javas" class="menu-link">View Deductions</a>
+            </li> -->
 
 
             
@@ -385,12 +414,10 @@ if ($login_session_type==="1" || $login_session_type==="3") {
       </li><!-- /.menu-item -->
 
 
-      <!-- .menu-item -->
-      <li class="menu-item ">
-        <a href=".login-success.all-guarantors-deductions-report.js.css.java.kt.html.py" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Deductions</span></a> <!-- child menu -->
-      </li><!-- /.menu-item -->
-
-
+<!--       <li class="menu-item ">
+        <a href=".login-success.all-guarantors-deductions-report.js.css.java.kt.html.py" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Deductions</span></a> 
+      </li>
+ -->
 
       <?php 
 

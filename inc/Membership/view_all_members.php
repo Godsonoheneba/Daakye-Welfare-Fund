@@ -162,6 +162,23 @@ if ($login_session_type==="3" || $login_session_type==="1") {
                 $getShortName = substr($firstname, 0,1);
 
 
+                  $explodedob = explode('-', $dob);
+
+                  $getyearrr = current($explodedob);
+
+                  $getThisYear = date("Y");
+
+                  $getAge = $getThisYear - $getyearrr;
+
+                  if ($getAge>18) {
+                  $registrationFeePrice = 100;
+                    
+                  } else {
+                  $registrationFeePrice = 50;
+                    
+                  }
+
+
                 ?>
                 <tbody class="getsearch" data-toggle="sidebar" data-sidebar="show">
                   <!-- tr -->
@@ -187,7 +204,7 @@ if ($login_session_type==="3" || $login_session_type==="1") {
                       if ($paid_reg_form==="no" && $login_session!="b200606012021" && $login_session!="b202111112021") {
                         ?>
 
-                        <label class="btn btn-secondary"  onclick="payRegisterationForm('<?php echo $member_id_encrypt ?>')">
+                        <label class="btn btn-secondary"  onclick="payRegisterationForm('<?php echo $member_id_encrypt ?>','<?php echo $registrationFeePrice ?>')">
 
                           <input type="radio" name="options" id="option1" checked > Pay Reg. Fee</label> 
 
@@ -620,9 +637,11 @@ if ($login_session_type==="3" || $login_session_type==="1") {
 
       <script type="text/javascript">
 
-        function payRegisterationForm(memberID) {
+        function payRegisterationForm(memberID,registrationFormPrice) {
 
-          var registrationFormPrice = 100;
+          // var registrationFormPrice = 100;
+
+          alert(registrationFormPrice)
 
           Swal.fire({
             title: 'Are you sure you want to Pay ' + registrationFormPrice + '.00  As Registration Fee? ',

@@ -193,10 +193,10 @@ if (mysqli_num_rows($selStu)!==0) {
       <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_CONTRIBUTIONS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Contributions</a>
 
 
-      <a class="nav-link active" href="homepage.php?CHECKER=VIEW_MEMBER_WITHDRAWALS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Withdrawals</a>
+      <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_WITHDRAWALS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Withdrawals</a>
 
-         <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_DEDUCTIONS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Deductions</a>
 
+      <a class="nav-link active" href="homepage.php?CHECKER=VIEW_MEMBER_DEDUCTIONS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Deductions</a>
 
       <a class="nav-link " href="homepage.php?CHECKER=VIEW_MEMBER_LOANS&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> ">Loans</a>
 
@@ -240,9 +240,9 @@ if (mysqli_num_rows($selStu)!==0) {
       <div class="col-lg-4">
         <!-- .card --> 
         <div class="card card-fluid">
-          <h6 class="card-header"> All Withdrawals for <?php echo $fullname ?>  </h6><!-- .nav -->
+          <h6 class="card-header"> All Deductions for <?php echo $fullname ?>  </h6><!-- .nav -->
           <nav class="nav nav-tabs flex-column border-0">
-            <a  class="nav-link active">Withdrawals Summary</a>
+            <a  class="nav-link active">Deductions Summary</a>
 
             <table class="table">
               <!-- thead -->
@@ -258,7 +258,7 @@ if (mysqli_num_rows($selStu)!==0) {
               <?php 
 
 
-              $selectDis = mysqli_query($conn, "SELECT DISTINCT  year FROM contributions_withdrawal WHERE member_id='$member_id_encrypt'  AND active='yes' AND status='1' ORDER BY year DESC ");
+              $selectDis = mysqli_query($conn, "SELECT DISTINCT  year FROM deduct_contributions WHERE member_id='$member_id_encrypt'  AND active='yes' ORDER BY year DESC ");
 
 
               while ($getRow2 = mysqli_fetch_assoc($selectDis)) {
@@ -266,13 +266,13 @@ if (mysqli_num_rows($selStu)!==0) {
                 $getPaidyear = $getRow2["year"];
 
 
-                $selectSum1 = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM contributions_withdrawal WHERE member_id='$member_id_encrypt'  AND active='yes' AND status='1' AND year='$getPaidyear' ");
+                $selectSum1 = mysqli_query($conn, "SELECT SUM(amount) AS amount FROM deduct_contributions WHERE member_id='$member_id_encrypt'  AND active='yes' AND year='$getPaidyear' ");
 
                 $getRow55 = mysqli_fetch_assoc($selectSum1);
-                $totalContributionforthatyear = $getRow55["amount"];
+                $totalDeductionsforthatyear = $getRow55["amount"];
 
 
-                $countCOnti = mysqli_query($conn, "SELECT count(*) AS count1 FROM contributions_withdrawal WHERE member_id='$member_id_encrypt'  AND active='yes' AND status='1' AND year='$getPaidyear'  ");
+                $countCOnti = mysqli_query($conn, "SELECT count(*) AS count1 FROM deduct_contributions WHERE member_id='$member_id_encrypt'  AND active='yes' AND year='$getPaidyear'  ");
 
                 $countFetch1 = mysqli_fetch_array($countCOnti);
                 $countTOtalConti = $countFetch1['count1'];
@@ -281,7 +281,6 @@ if (mysqli_num_rows($selStu)!==0) {
 
                 ?>
 
-                <!-- <a  class="nav-link "><?php echo $getPaidyear ?>  -   <?php echo $totalContributionforthatyear ?></a> -->
 
                 <tbody class="getsearchs" data-toggle="sidebar" data-sidebar="show">
 
@@ -297,7 +296,7 @@ if (mysqli_num_rows($selStu)!==0) {
 
 
                   <td class="align-middle">
-                    <span class="badge badge-subtle badge-primary" style="font-size: 14px;"> GH&#8373;  <?php echo number_format($totalContributionforthatyear, 2) ?></span>
+                    <span class="badge badge-subtle badge-primary" style="font-size: 14px;"> GH&#8373;  <?php echo number_format($totalDeductionsforthatyear, 2) ?></span>
                   </td>
 
 
@@ -374,7 +373,7 @@ if (mysqli_num_rows($selStu)!==0) {
 
                       <?php 
 
-                      $selCont = mysqli_query($conn, "SELECT * FROM contributions_withdrawal WHERE member_id='$getMemberIDEncrypt' AND status='1' AND  active='yes' ORDER BY year DESC  ");
+                      $selCont = mysqli_query($conn, "SELECT * FROM deduct_contributions WHERE member_id='$getMemberIDEncrypt'  AND  active='yes' ORDER BY year DESC  ");
 
                       if (mysqli_num_rows($selCont) > 0) {
 
@@ -383,15 +382,14 @@ if (mysqli_num_rows($selStu)!==0) {
                         $Tableid = $getDem["id"];
                         $member_id = $getDem["member_id"];
                         $amount = $getDem["amount"];
+                        $reason = $getDem["reason"];
                         $balance_before = $getDem["balance_before"];
-                        $status = $getDem["status"];
+                        $current_balance = $getDem["current_balance"];
+                        $reciept_number = $getDem["reciept_number"];
+                        $date_done = $getDem["date_done"];
                         $year = $getDem["year"];
-                        $receiptNumber = $getDem["receiptNumber"];
-                        $date_added = $getDem["date_added"];
-                        $date_issued = $getDem["date_issued"];
-                        $done_by = $getDem["done_by"];
-                        $issued_by = $getDem["issued_by"];
-           
+                        $staff = $getDem["staff"];
+                                
                     
                         $amountMo = @number_format($amount,2);
                         $balB = @number_format($balance_before,2);
@@ -426,7 +424,7 @@ if (mysqli_num_rows($selStu)!==0) {
 
 
                             <td class="align-middle">
-                              <span class="badge badge-subtle badge-success" style="font-size: 14px;"><?php echo $date_issued ?></span>
+                              <span class="badge badge-subtle badge-success" style="font-size: 14px;"><?php echo $date_done ?></span>
                             </td>
 
                             <?php
@@ -434,10 +432,9 @@ if (mysqli_num_rows($selStu)!==0) {
                             ?>
 
 
-
                             <td class="align-middle text-center">
 
-                              <a onclick="window.open('ViewPDFS/Withdrawal/print_withdrawal_receipt.php?PRINT=PRINT_MEMBER_WITHDRAWAL_CONTRIBUTION_RECEIPT&&TRUE=<?php echo $member_id ?>&&RECEIPT=<?php echo $receiptNumber ?>')" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-print"></i> <span class="sr-only">Print</span></a> 
+                              <a onclick="window.open('ViewPDFS/Members/print_member_deduction_amount_receipt.php?PRINT=PRINT_MEMBER_DEDUCTIONS_RECEIPT&&TRUE=<?php echo $member_id ?>&&RECEIPT=<?php echo $reciept_number ?>')" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-print"></i> <span class="sr-only">Print</span></a> 
 
                               <?php 
 
@@ -542,19 +539,6 @@ if (mysqli_num_rows($selStu)!==0) {
 
 
 </div>
-
-
-
-
-
-<?php 
-
-include 'more_info_modal.php';
-
-?>
-
-
-
 
 
 

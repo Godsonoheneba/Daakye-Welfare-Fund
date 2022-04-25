@@ -190,6 +190,7 @@ if ($has_loan==="no") {
 
                 <option value="others" selected="">Others</option>
                 <option value="self"  >Self</option>
+                <option value="selfandother"  >Self + Other</option>
 
                 <?php 
 
@@ -272,6 +273,103 @@ if ($has_loan==="no") {
          </div>
 
 
+         <div class="col-md-4 mb-3 selfandOtherGUarantorDiv" style="display: none;">
+            <label for="guarantor2">Guarantor 1 <abbr title="Required">*</abbr></label>
+            <select class="custom-select d-block w-100 guarantor1SelfAndOtherClass"   id="guarantor1" >
+             <option value="<?php echo $member_id ?>" ><?php echo $fullname ?></option>
+           </select>
+         </div>
+
+
+
+
+     <!--  <div class="col-md-4 mb-3 otherforSelfandOtherGUarantorDiv">
+          <label for="guarantor2">Guarantor 2 <abbr title="Required">*</abbr></label>
+          <select class="custom-select d-block w-100 guarantor2SelfAndOtherClass"   id="guarantor2" >
+
+           <?php 
+
+
+
+         $squery = "SELECT * FROM members WHERE active='yes' AND member_id !='$getID' ORDER BY id ASC "; 
+
+          $listOfGura="";
+
+           $sresults = mysqli_query($conn, $squery);
+           $scount = mysqli_num_rows($sresults);
+           if ($scount > 0) {
+             echo' <option value=""> Choose...</option>';
+
+             while ($srow = mysqli_fetch_array($sresults)) {
+
+             // $srow = mysqli_fetch_array($sresults);
+
+              $member_idDBB = $srow["member_id"];
+              $member_id_encrypt_LOANS= $srow["member_id_encrypt"];
+              $fname = $srow["firstname"];
+              $sname = $srow["surname"];
+              $has_loanDB = $srow["has_loan"];
+              $telephone = $srow["telephone"];
+              $total_contribution_madeDB = $srow["total_contribution_made"];
+
+              $total_guaranteeDB = $srow["total_guarantee"];
+
+
+              $thhrr = mysqli_query($conn, "SELECT * FROM loans_all WHERE active='yes' AND person_id='$member_id_encrypt_LOANS' AND finish_paying='no'  ");
+
+       
+              $getRowe = mysqli_fetch_assoc($thhrr);
+              $loanid = $getRowe["id"];
+              $total_loan_amount_to_pay = $getRowe["total_amount_to_pay"];
+              $MytotalLoanPaid = $getRowe["amount_paid"];
+
+
+              $halfOftotal_amount_to_pay = $total_loan_amount_to_pay / 2 ; 
+
+
+              $guratName = $fname . " " . $sname ;
+
+           $countTotalGuranto = mysqli_query($conn, "SELECT count(*) AS count1 FROM members_contributions WHERE active='yes' AND member_id='$member_idDBB' ");
+
+              $countFetch1 = mysqli_fetch_array($countTotalGuranto);
+              $countTotalGurantors = $countFetch1['count1'];
+
+              $limitOfGurant = 7;
+
+
+
+
+
+                  if (($total_guaranteeDB  < $MYtotal_guarantee) && ($MytotalLoanPaid >= $halfOftotal_amount_to_pay) && ($countTotalGurantors >= $limitOfGurant)  ) {
+                      
+                      $listOfGura.= '<option value="'.$srow["member_id"].'" > '.$guratName.'  -  '.$telephone.'   </option>';
+
+
+                  }
+
+                  
+
+
+ 
+
+
+
+
+
+          }
+
+              echo "$listOfGura";
+
+
+
+
+        }  
+
+        ?>
+
+      </select>
+    </div>
+ -->
 
 
 
@@ -279,8 +377,9 @@ if ($has_loan==="no") {
 
 
 
+<!-- other guaranor div -->
 
-         <div class="col-md-4 mb-3 otherGUarantorDiv">
+    <div class="col-md-4 mb-3 otherGUarantor1Div">
           <label for="guarantor1">Guarantor 1 <abbr title="Required">*</abbr></label>
           <select class="custom-select d-block w-100 guarantor1Class"   id="guarantor1" >
 
@@ -346,7 +445,7 @@ if ($has_loan==="no") {
 
                   if (($total_guaranteeDB  < $MYtotal_guarantee) && ($MytotalLoanPaid >= $halfOftotal_amount_to_pay) && ($countTotalGurantors >= $limitOfGurant)  ) {
                       
-                      $listOfGura.= '<option value="'.$srow["member_id"].'" > '.$guratName.'  -  '.$telephone.   '   </option>';
+                      $listOfGura.= '<option value="'.$srow["member_id"].'" > '.$guratName.'  -  '.$telephone.  '   </option>';
 
 
                        // $listOfGura.= '<option value="'.$srow["member_id"].'" > '.$guratName.'  -  '.$total_contribution_madeDB.   '   </option>';
@@ -375,19 +474,7 @@ if ($has_loan==="no") {
       </select>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="col-md-4 mb-3 otherGUarantorDiv">
+     <div class="col-md-4 mb-3 otherGUarantor2Div">
           <label for="guarantor2">Guarantor 2 <abbr title="Required">*</abbr></label>
           <select class="custom-select d-block w-100 guarantor2Class"   id="guarantor2" >
 
@@ -477,12 +564,17 @@ if ($has_loan==="no") {
         ?>
 
       </select>
-    </div>
+  </div>
+
+<!-- ends other guaranor div -->
+
 
 
 
 
 </div>
+
+
 
 <div class="form-actions">
 
@@ -556,18 +648,37 @@ self
     var guaranteeOptionClass = $(".guaranteeOptionClass").val();
 
     var selfGUarantorDiv = $(".selfGUarantorDiv");
-    var otherGUarantorDiv = $(".otherGUarantorDiv");
+    var otherGUarantor1Div = $(".otherGUarantor1Div");
+    var otherGUarantor2Div = $(".otherGUarantor2Div");
+    var selfandOtherGUarantorDiv = $(".selfandOtherGUarantorDiv");
 
     if (guaranteeOptionClass=="self") {
 
+     otherGUarantor1Div.hide();
+     otherGUarantor2Div.hide();
+     selfandOtherGUarantorDiv.hide();
      selfGUarantorDiv.show();
-     otherGUarantorDiv.hide();
 
 
-   } else if (guaranteeOptionClass=="others") {
 
+   } else if (guaranteeOptionClass=="selfandother") {
+
+     otherGUarantor1Div.hide();
      selfGUarantorDiv.hide();
-     otherGUarantorDiv.show();
+     otherGUarantor2Div.show();
+     selfandOtherGUarantorDiv.show();
+
+
+
+
+
+   }else if (guaranteeOptionClass=="others") {
+
+     otherGUarantor1Div.show();
+     selfGUarantorDiv.show();
+     otherGUarantor2Div.hide();
+     selfandOtherGUarantorDiv.hide();
+
 
 
    }
