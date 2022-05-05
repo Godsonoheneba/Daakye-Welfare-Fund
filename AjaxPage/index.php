@@ -64,104 +64,7 @@ $TOdated = date("jS F, Y");
 
       /*------------------ send email-----------*/
 
-      if ($email!=="") {
 
-        $message="<html>
-        <body>
-
-        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
-
-        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-
-        <tbody><tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td align=\"center\">
-        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-
-
-        <tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"padding:45px 50px 45px 50px\">
-
-        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
-        <div>
-        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
-
-        Dear $memeberName! <br><br>
-
-        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> You have Successfully registered as Daakye Welfare Member
-
-
-         your total contribution balance  as at $TOdated is GHS number_format($total_contribution_made, 2). Thank you.;
-
-
-
-        <br>
-        <br>
-
-        </p>
-
-        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-        </tbody></table>
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
-        <div>
-        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-
-        </td>
-        </tr>
-        </tbody></table>
-        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
-
-        </body>
-        </html>";
-        $to = $email;
-        $subject = 'CONTRIBUTION BALANCE';
-
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-         // More headers
-            $headers .= 'From: <daakyewelfare2020@gmail.com>' . "\r\n";
-
-
-        if (mail($to, $subject, $message, $headers)) {
-
-
-        }else{
-
-
-          echo "errorInSendingMail";
-
-
-
-        }
-
-      }
 
       /*------------------ends send email-----------*/
 
@@ -2572,104 +2475,6 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
-      if ($email!=="") {
-
-        $message="<html>
-        <body>
-
-        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
-
-        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-
-        <tbody><tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td align=\"center\">
-        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-
-
-        <tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"padding:45px 50px 45px 50px\">
-
-        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
-        <div>
-        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
-
-        Dear $memeberName! <br><br>
-
-        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> 
-
-
-        Alert!! GHS $getRealAmountPaying credited to your contribution account for the month of  $month_to_pay_in_words - $year_to_pay  on the  $TOdated  Balance before : GHS  $balaBefor.  Your available contribution balance is GHS  $total_contribution_made. Thank you.;
-
-
-
-        <br>
-        <br>
-
-        </p>
-
-        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-        </tbody></table>
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
-        <div>
-        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-
-        </td>
-        </tr>
-        </tbody></table>
-        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
-
-        </body>
-        </html>";
-        $to = $email;
-        $subject = 'PAYMENT OF CONTRIBUTION';
-
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-         // More headers
-            // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
-
-
-        if (mail($to, $subject, $message, $headers)) {
-
-
-        }else{
-
-
-          echo "errorInSendingMail";
-
-
-
-        }
-
-      }
 
 
 
@@ -2741,104 +2546,6 @@ if ($_GET["CHECKPOST"]=="payMonthlyDuesPost") {
 
 
 
-      if ($email!=="") {
-
-        $message="<html>
-        <body>
-
-        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
-
-        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-
-        <tbody><tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td align=\"center\">
-        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-
-
-        <tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"padding:45px 50px 45px 50px\">
-
-        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
-        <div>
-        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
-
-        Dear $memeberName! <br><br>
-
-        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> 
-
-
-        Alert!! GHS number_format($getRealAmountPaying, 2) credited to your contribution account for the month of  $month_to_pay_in_words - $year_to_pay  on the  $TOdated  Balance before : GHS  number_format($balaBefor,2).  Your available contribution balance is GHS  number_format($total_contribution_made, 2). Thank you.;
-
-
-
-        <br>
-        <br>
-
-        </p>
-
-        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-        </tbody></table>
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
-        <div>
-        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-
-        </td>
-        </tr>
-        </tbody></table>
-        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
-
-        </body>
-        </html>";
-        $to = $email;
-        $subject = 'PAYMENT OF CONTRIBUTION';
-
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-         // More headers
-            // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
-
-
-        if (mail($to, $subject, $message, $headers)) {
-
-
-        }else{
-
-
-          echo "errorInSendingMail";
-
-
-
-        }
-
-      }
 
 
 
@@ -3944,13 +3651,14 @@ if ($_GET["CHECKPOST"]=="deleetePaidMemberContrPostForApproval") {
 
   $reasonEditClass = $_POST["reasonEditClass"];
   $hiddenDIEditClass = $_POST["hiddenDIEditClass"];
+  $hiddenModeEditClass = $_POST["hiddenModeEditClass"];
 
-  $types = "contribution";
+  $types = $hiddenModeEditClass;
 
 
   $TOdated = date("jS F, Y");
-  $activityType = "Delete Paid Contribution ";
-  $StaffDescription = "You sent a deletion approval for member contribution with a reason of " . $reasonEditClass;
+  $activityType = "Deletion ";
+  $StaffDescription = "You sent a deletion approval for with a reason of " . $reasonEditClass;
 
 
 
@@ -3997,6 +3705,7 @@ if ($_GET["CHECKPOST"]=="deleetePaidMemberContrPostForApproval") {
 if ($_GET["CHECKPOST"]=="realDeletePaidContriByAdmin") {
 
   $TableID = $_POST["TableID"];
+  $type = $_POST["type"];
   $payment_id = $_POST["payment_id"];
 
 
@@ -4005,6 +3714,9 @@ if ($_GET["CHECKPOST"]=="realDeletePaidContriByAdmin") {
   $done_by = $Gete["done_by"];
 
 
+
+  if ($type===1) {
+    // do for contribution...
 
 
 
@@ -4034,7 +3746,7 @@ if ($_GET["CHECKPOST"]=="realDeletePaidContriByAdmin") {
   } 
 
   
-
+ 
 
   $seleInterest = mysqli_query($conn, "SELECT * FROM company_revenue WHERE person_id='$member_id_encrypt' AND date_added='$date_created' AND active='yes' LIMIT 1 ");
   $Gete3 = mysqli_fetch_assoc($seleInterest);
@@ -4047,7 +3759,6 @@ if ($_GET["CHECKPOST"]=="realDeletePaidContriByAdmin") {
   $TOdated = date("jS F, Y");
   $activityType = "Approved Delete Paid Contribution ";
   $StaffDescription = "You Approved for deletion of Member Contribution  Deleted By " . $done_by;
-
 
 
   if (mysqli_query($conn, "UPDATE members_contributions SET active='no'  WHERE id='$payment_id' AND  active='yes' LIMIT 1 ")) {
@@ -4086,6 +3797,124 @@ if ($_GET["CHECKPOST"]=="realDeletePaidContriByAdmin") {
  } else {
   echo "error";
 }
+  } else {
+    // do for loans...
+
+
+
+
+  $hgshs = mysqli_query($conn, "SELECT * FROM loans_pay WHERE id='$payment_id' AND active='yes' LIMIT 1 ");
+  $getty = mysqli_fetch_assoc($hgshs);
+  $person_id = $getty["person_id"];
+  $loan_id = $getty["loan_id"];
+  $receipt_no = $getty["receipt_no"];
+  $amount_paid_loansP = $getty["amount_paid"];
+  $date_created = $getty["date_created"];
+  $month = $getty["month"];
+  $year = $getty["year"];
+
+
+
+
+
+  
+    $hgshs = mysqli_query($conn, "SELECT * FROM loans_all WHERE id='$loan_id' AND active='yes' LIMIT 1 ");
+  $getty = mysqli_fetch_assoc($hgshs);
+  $interest_amount_paid = $getty["interest_amount_paid"];
+  $amount_paid = $getty["amount_paid"];
+  $balance = $getty["balance"];
+  $months_left = $getty["months_left"];
+  $next_month_payment_date = $getty["next_month_payment_date"];
+
+
+ $NMExp  = explode("-", $next_month_payment_date);
+
+ $getDayyy = end($NMExp);
+
+ $newnext_month_payment_date = $year.'-'.$month.'-'.$getDayyy;
+ // $newmonths_left = $months_left - 1;
+
+
+
+
+
+  $newmonths_left = $months_left + 1;
+
+  if ($newmonths_left <=9) {
+    $newmonths_left = "0".$newmonths_left;
+  } 
+
+
+  if ($newmonths_left > 9) {
+    $newmonths_left = $newmonths_left;
+  } 
+
+
+  if ($newmonths_left === "00" || $newmonths_left === "0") {
+    $newmonths_left = "12";
+    // $year -=1;
+  } 
+
+ 
+
+  $seleInterest2 = mysqli_query($conn, "SELECT * FROM company_revenue WHERE person_id='$person_id' AND date_added='$date_created' AND active='yes' LIMIT 1 ");
+  $Gete31 = mysqli_fetch_assoc($seleInterest2);
+  $CompRevTabId = $Gete31["id"];
+  $interestamount = $Gete31["amount"];
+
+  $newAmountPaid = $amount_paid - $amount_paid_loansP;
+  $newBalance = $balance + $amount_paid_loansP;
+  $newinterest_amount_paid = $interest_amount_paid - $interestamount;
+  $newinterest_amount_paid = $interest_amount_paid - $interestamount;
+
+  $TOdated = date("jS F, Y");
+  $activityType = "Approved Delete Paid Contribution ";
+  $StaffDescription = "You Approved for deletion of Member Contribution  Deleted By " . $done_by;
+
+//  echo "newnext_month_payment_date >>>>>>>>>>>> $newnext_month_payment_date";
+//  echo "newmonths_left >>>>>>>>>>>> $newmonths_left";
+//  echo "newAmountPaid >>>>>>>>>>>>> $newAmountPaid  ";
+//  echo "interestamount >>>>>>>>>>>>> $interestamount  ";
+//  echo "newBalance >>>>>>>>>>>>> $newBalance  ";
+
+//  exit();
+
+//  //////////dacos
+
+
+// company_revenue//
+// comp_reve_loan_penalty
+// loans_pay//
+// loan_collects//
+
+  if (mysqli_query($conn, " UPDATE loans_all SET interest_amount_paid='$newinterest_amount_paid', amount_paid='$newAmountPaid', balance='$newBalance', months_left='$newmonths_left', next_month_payment_date='$newnext_month_payment_date'  WHERE active ='yes' AND person_id='$person_id' AND id='$loan_id' LIMIT 1  ")) {
+
+
+
+
+       mysqli_query($conn, "UPDATE loans_pay SET active='no'  WHERE id='$payment_id' AND active='yes' LIMIT 1 ");
+
+          mysqli_query($conn, "UPDATE loan_collects SET active='no'  WHERE id='$payment_id' AND active='yes' LIMIT 1 ");
+
+           mysqli_query($conn, "UPDATE company_revenue SET active='no'  WHERE date_added='$date_created' AND active='yes' LIMIT 1 ");
+
+          mysqli_query($conn, "UPDATE comp_reve_loan_penalty SET active='no'  WHERE date_added='$date_created' AND active='yes' LIMIT 1 ");
+
+ 
+
+
+   mysqli_query($conn, "UPDATE mistakes_payments_approval SET confirm='yes'  WHERE id='$TableID' AND active='yes' LIMIT 1 ");
+
+
+   echo "done";
+
+
+ } else {
+  echo "error";
+}
+  }
+  
+
 
 
 }
@@ -6952,106 +6781,6 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
        }
 
 
-    if ($email!=="") {
-
-      $topUpLoanAmountClass = number_format($topUpLoanAmountClass,2);
-      $new_monthly_installment = number_format($new_monthly_installment,2);
-      $new_total_amount_to_pay = number_format($new_total_amount_to_pay,2);
-
-        $message="<html>
-        <body>
-
-        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
-
-        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-
-        <tbody><tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td align=\"center\">
-        <img style=\"width:143px\" src=\"https://daakyewelfare.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-
-
-        <tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"padding:45px 50px 45px 50px\">
-
-        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
-        <div>
-        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
-
-        Dear $memberName! <br><br>
-
-
-        your top up loan of GHS $topUpLoanAmountClass has been successfully issued. Your Payment begin on : $nextMonthPayment . Monthly Installment :  $new_monthly_installment. Total months for payment : $topUpPaymentPeriodChooseClass. Total LOAN to pay : GHS  $new_total_amount_to_pay. Thank you.
-
-
-
-          <br>
-          <br>
-
-          </p>
-
-          Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
-          </div>
-          </td>
-          </tr>
-          </tbody></table>
-          </td>
-          </tr>
-          </tbody></table>
-
-          <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
-          <tbody><tr>
-          <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
-          <div>
-          <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
-          </div>
-          </td>
-          </tr>
-          </tbody></table>
-
-          </td>
-          </tr>
-          </tbody></table>
-          <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
-
-          </body>
-          </html>";
-          $to = $email;
-          $subject = 'LOAN TOP  UP';
-
-          $headers = "MIME-Version: 1.0\r\n";
-          $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-           // More headers
-              // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
-
-
-        if (mail($to, $subject, $message, $headers)) {
-
-
-        }else{
-
-
-          echo "errorInSendingMail";
-
-
-
-        }
-
-      }
 
 
 
@@ -7901,104 +7630,7 @@ if ($_GET["CHECKPOST"]=="payLoansPost") {
        }
 
 
-          if ($email!=="") {
-
-        $message="<html>
-        <body>
-
-        <div style=\"padding:0;margin:0;width:100%!important;background-color:#ffffff\" bgcolor=\"#FFFFFF\">
-
-        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-
-        <tbody><tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"25\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td align=\"center\">
-        <img style=\"width:143px\" src=\"http://daakyewelfare-com.preview-domain.com/school_data/logo/1AmUwsFSik9LMYu/logo.png\" alt=\"Logo\" class=\"CToWUd\">
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-
-
-        <tr>
-        <td bgcolor=\"#eeeeee\" align=\"center\">
-        <table style=\"border-top:10px solid #6747c7\" width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"padding:45px 50px 45px 50px\">
-
-        <table width=\"600\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#FFFFFF\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-size:15px;font-family:Helvetica,Arial,sans-serif;line-height:25px;color:#445566\" align=\"left\">
-        <div>
-        <p style=\"margin-top:0px;margin-bottom:0px\"></p><div align=\"center\"><img src=\"https://ci3.googleusercontent.com/proxy/FZ1VL3zTVIfqrLvVnb-9XjY2IYKm6gYv12dk8dHUuOc6s7czUQQY05iZLdh_hr0rW3BNznj-pBnXXFmgct6rPRQpWKc=s0-d-e1-ft#https://cdn.hostinger.com/mailer/sysv2/invite.png\" alt=\"Logo\" class=\"CToWUd a6T\" tabindex=\"0\" align=\"middle\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 620.5px; top: 276.25px;\"><div id=\":o5\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div></div><br><br>
-
-        Dear $perName! <br><br>
-
-        <strong><a href=\"mailto:ohenebadac@gmail.com\" target=\"_blank\"></a></strong> 
-
-
-        you have paid off GHS number_format($payLoanAmountClass, 2) Loan amount for the month of $month_to_pay_in_words  - $toYear on the $TOdated. Balance before : GHS   number_format($balace_before,2). Your available LOAN balance is GHS number_format($balance, 2). Thank you.;
-
-
-
-        <br>
-        <br>
-
-        </p>
-
-        Login At  <a href=\"https://daakyewelfare.com/login\" target=\"_blank\"> daakyewelfare.com</a> <br><br> Thank You.  Have a nice day
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-        </td>
-        </tr>
-        </tbody></table>
-
-        <table width=\"660\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">
-        <tbody><tr>
-        <td style=\"font-family:Arial,Helvetica,sans-serif;color:#666666;font-size:12px;line-height:18px\" id=\"m_-4705205945908103414content-10\" align=\"center\">
-        <div>
-        <p style=\"margin-top:30px;margin-bottom:30px\">© 2015 - $toYear Daakye Welfare.</p>
-        </div>
-        </td>
-        </tr>
-        </tbody></table>
-
-        </td>
-        </tr>
-        </tbody></table>
-        <img alt=\"pixel\" src=\"https://ci6.googleusercontent.com/proxy/Pwg7AipkR-1z3F6htomkIjTdSsTqtgyE4HrgWSFllhLr0XuNXlqddb8rWbzmqHd_Cr-jua2IfE1fIcCkFakWb7Z0elyakxBomd1cfse36X-EQv-w-3jF_SU52zsZW2sO=s0-d-e1-ft#https://mailer.hostinger.io/o/188383606/aedf7a3f240f5c72d082f97a2be2bb36/5494\" class=\"CToWUd\"></div>
-
-        </body>
-        </html>";
-        $to = $email;
-        $subject = 'PAYMENT OF LOAN';
-
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-         // More headers
-            // $headers .= 'From: <ohenebadac@gmail.com.com>' . "\r\n";
-
-
-        if (mail($to, $subject, $message, $headers)) {
-
-
-        }else{
-
-
-          echo "errorInSendingMail";
-
-
-
-        }
-
-      }
+    
 
 
         echo "ViewPDFS/Loans/print_loans_receipt.php?PRINT=PRINT_LOANS_PAYMENT_RECEIPT&&DATEPAY=$next_month_payment_date&&MY_LOAN=$getLoanID&&TRUE=$getPersonID&&RECEIPT=$receiptNumber";

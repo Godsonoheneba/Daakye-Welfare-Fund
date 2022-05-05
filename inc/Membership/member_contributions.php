@@ -371,7 +371,7 @@ if (mysqli_num_rows($selStu)!==0) {
 
                       <?php 
 
-                      $selCont = mysqli_query($conn, "SELECT * FROM members_contributions WHERE member_id='$getMemberID' AND member_id_encrypt='$getMemberIDEncrypt' AND  active='yes' ORDER BY year DESC  ");
+                      $selCont = mysqli_query($conn, "SELECT * FROM members_contributions WHERE member_id='$getMemberID' AND member_id_encrypt='$getMemberIDEncrypt' AND  active='yes' ORDER BY id DESC  ");
 
                       if (mysqli_num_rows($selCont) > 0) {
 
@@ -432,15 +432,26 @@ if (mysqli_num_rows($selStu)!==0) {
 
                             <td class="align-middle text-center">
 
-                              <a onclick="window.open('ViewPDFS/Members/print_member_paid_contributions_receipt.php?PRINT=PRINT_MEMBER_CONTRIBUTIONS_RECEIPT&&TRUE=<?php echo $getMemberIDEncrypt ?>&&RECEIPT=<?php echo $receipt_number ?>')" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-print"></i> <span class="sr-only">Print</span></a> 
+                              
 
                               <?php 
 
+                              $print = "<a onclick=\"window.open('ViewPDFS/Members/print_member_paid_contributions_receipt.php?PRINT=PRINT_MEMBER_CONTRIBUTIONS_RECEIPT&&TRUE=$getMemberIDEncrypt&&RECEIPT=$receipt_number')\" class=\"btn btn-sm btn-icon btn-secondary\"><i class=\"fa fa-print\"></i> <span class=\"sr-only\">Print</span></a> ";
 
 
 
 
-                              if ($login_session_type==="1") {
+                                                           
+
+
+
+ 
+
+
+
+                              if ($login_session_type==="1" || $login_session_type==="3") {
+
+
 
                                 
                                 
@@ -450,6 +461,7 @@ if (mysqli_num_rows($selStu)!==0) {
                                 $confirm = $Gete["confirm"];
 
                                 if ($confirm==="no") {
+                                  $print = "";
 
                                   ?>
 
@@ -465,18 +477,25 @@ if (mysqli_num_rows($selStu)!==0) {
 
                                   <?php
 
+                                  
+
 
                                 } else {
 
+                                  $mode = '1';
+
+                                  echo "$print";
 
 
+ 
 
+ 
                                  ?>
 
 
-                                 <a data-toggle="modal" onclick="viewModalOfDelete('<?php echo $Tableid ?>')" data-target="#editPaidContribution" class="btn btn-sm btn-icon btn-secondary" title="Delete"><i class="fa fa-trash"></i> <span class="sr-only">Delete</span>
+                                 <a data-toggle="modal" onclick="viewModalOfDelete('<?php echo $Tableid ?>','<?php echo $mode ?>')" data-target="#editPaidContribution" class="btn btn-sm btn-icon btn-secondary" title="Delete"><i class="fa fa-trash"></i> <span class="sr-only">Delete</span>
 
-                                  <input type="hidden" class="theHiddenLoanID" value="<?php echo $Tableid ?>">
+                                  <!-- <input type="text" class="theHiddenLoanID" value="<?php echo $Tableid ?>"> -->
 
                                 </a> 
 
@@ -485,8 +504,9 @@ if (mysqli_num_rows($selStu)!==0) {
                               }
 
 
+                            }else{
+                              echo "$print";
                             }
-
 
 
                             ?>

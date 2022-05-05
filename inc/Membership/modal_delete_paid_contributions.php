@@ -28,6 +28,7 @@
 
                  <div class="col-md-12 mb-3">
                   <input type="hidden" class="form-control hiddenDIEditClass" >
+                  <input type="hidden" class="form-control hiddenModeEditClass" >
                 </div>
 
 

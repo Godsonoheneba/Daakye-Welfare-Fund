@@ -282,7 +282,6 @@ if (mysqli_num_rows($selStu)!==0) {
                         <thead>
                           <tr>
                             <th ></th>
-                            <th >Loan Date</th>
                             <th> Amount Received </th>
                             <th> Amount Paid</th>
                             <th> Balance </th>
@@ -327,7 +326,7 @@ if (mysqli_num_rows($selStu)!==0) {
 
 
 
-                           $queryInfo = mysqli_query($conn, "SELECT * FROM staff WHERE id='$staff' AND active='yes'");
+                           $queryInfo = mysqli_query($conn, "SELECT * FROM staff WHERE staffID='$staff' AND active='yes'");
 
                            $fetch =mysqli_fetch_assoc($queryInfo);
                            $table_id = $fetch["id"];
@@ -349,9 +348,7 @@ if (mysqli_num_rows($selStu)!==0) {
                                 <button type="button" class="btn btn-sm btn-icon btn-light" data-toggle="collapse" data-target="#details-202015858985<?php echo $Tableid ?>"><span class="collapse-indicator"><i class="fa fa-angle-right"></i></span></button>
                               </td>
 
-                              <td class="align-middle">
-                                <a ><?php echo $date_issued ?></a>
-                              </td>
+                          
 
                               <td class="align-middle">
                                 <a ><?php echo number_format($amount_collected, 2) ?></a>
@@ -387,6 +384,69 @@ if (mysqli_num_rows($selStu)!==0) {
 
 
 
+                              <?php 
+
+
+
+
+
+                              // if ($login_session_type==="1") {
+
+                                
+                                
+                                $see = mysqli_query($conn, "SELECT * FROM mistakes_payments_approval WHERE payment_id='$Tableid' AND  active='yes'  ");
+                                $Gete = mysqli_fetch_assoc($see);
+
+                                $confirm = $Gete["confirm"];
+
+                                if ($confirm==="no") {
+
+                                  ?>
+
+                                  <label class="btn btn-secondary">
+
+                                    <input type="radio" name="options" id="option1" checked > Waiting For Approval
+                                  </label> 
+
+
+
+
+                                  
+
+                                  <?php
+
+
+                                } else {
+
+                                  $mode = '2';
+
+ 
+
+
+                                 ?>
+
+
+                                 <a data-toggle="modal" onclick="viewModalOfDelete('<?php echo $Tableid ?>','<?php echo $mode ?>')" data-target="#editPaidContribution" class="btn btn-sm btn-icon btn-secondary" title="Delete"><i class="fa fa-trash"></i> <span class="sr-only">Delete</span>
+
+                                  <input type="hidden" class="theHiddenLoanID" value="<?php echo $Tableid ?>">
+
+                                </a> 
+
+                                
+                                <?php
+                              }
+
+
+                            // }
+
+
+
+                            ?>
+
+
+
+
+
                             </td>
 
 
@@ -417,6 +477,8 @@ if (mysqli_num_rows($selStu)!==0) {
                         </tbody><!-- /tbody -->
 
                         <?php
+
+                        include 'modal_delete_paid_contributions.php';
 
 
                       }

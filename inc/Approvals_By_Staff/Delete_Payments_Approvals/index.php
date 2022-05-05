@@ -112,7 +112,7 @@
                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
 
-                      <label class="btn btn-secondary"  onclick="realDeletePaidByStaf('<?php echo $TableID ?>','<?php echo $payment_id ?>')">
+                      <label class="btn btn-secondary"  onclick="realDeletePaidByStaf('<?php echo $TableID ?>','<?php echo $payment_id ?>','<?php echo $type ?>')">
 
                         <input type="radio" name="options" id="option1" checked > Approve</label> 
 

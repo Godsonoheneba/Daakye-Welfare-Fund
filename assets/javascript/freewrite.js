@@ -2012,9 +2012,9 @@ function approvedContributionEdit(member_id,amount) {
 
 
 
-function viewModalOfDelete(Tableid) {
+function viewModalOfDelete(Tableid,mode) {
 
-
+  $(".hiddenModeEditClass").val(mode);
   $(".hiddenDIEditClass").val(Tableid);
 
 }
@@ -2026,6 +2026,7 @@ function viewModalOfDelete(Tableid) {
 function deleetePaidMemberContr() {
 
   var reasonEditClass  = $(".reasonEditClass").val();
+  var hiddenModeEditClass  = $(".hiddenModeEditClass").val();
   var hiddenDIEditClass  = $(".hiddenDIEditClass").val();
 
 
@@ -2051,10 +2052,10 @@ function deleetePaidMemberContr() {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, Delete!'
     }).then((result) => {
-
+ 
       if (result.value) {
 
-        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=deleetePaidMemberContrPostForApproval",{reasonEditClass:reasonEditClass,hiddenDIEditClass:hiddenDIEditClass},function (showOutPut) {
+        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=deleetePaidMemberContrPostForApproval",{reasonEditClass:reasonEditClass,hiddenDIEditClass:hiddenDIEditClass,hiddenModeEditClass:hiddenModeEditClass},function (showOutPut) {
 
 
 
@@ -2155,7 +2156,9 @@ function deleetePaidMemberContr() {
 
 /*---------------REAL delete paid for memebr  contrinburtion BY A ADMIN---------------*/
 
-function realDeletePaidByStaf(TableID,payment_id) {
+function realDeletePaidByStaf(TableID,payment_id,type) {
+
+
 
 
   Swal.fire({
@@ -2170,7 +2173,11 @@ function realDeletePaidByStaf(TableID,payment_id) {
 
     if (result.value) {
 
-      $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=realDeletePaidContriByAdmin",{TableID:TableID,payment_id:payment_id},function (showOutPut) {
+      $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=realDeletePaidContriByAdmin",{TableID:TableID,payment_id:payment_id,type:type},function (showOutPut) {
+
+          // alert(showOutPut);
+
+          // exit();
 
         if (showOutPut.includes("error")) {
 
