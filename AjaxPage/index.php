@@ -1956,7 +1956,7 @@ if ($_GET["CHECKPOST"]=="deactivatememberPost") {
     if (mysqli_num_rows($selLoansIF)===1) {
 
 
-        $selLoansIF2323 = mysqli_query($conn, "SELECT * FROM loans_all WHERE finish_paying='no' AND active='yes' ");
+        $selLoansIF2323 = mysqli_query($conn, "SELECT * FROM loans_all WHERE finish_paying='no' AND active='yes' AND loan_status='issued' ");
 
 
         $getLoanss343 = mysqli_fetch_assoc($selLoansIF2323);
@@ -5977,6 +5977,7 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
     $loanID = $_POST["loanID"];
     $person_id = $_POST["person_id"];
     $status = $_POST["status"];
+    $tPaymentDateChooseClass = $_POST["tPaymentDateChooseClass"];
 
 
     $selectLoanAll = mysqli_query($conn, "SELECT * FROM loans_all WHERE active ='yes' AND id='$loanID' LIMIT 1 ");
@@ -6162,27 +6163,119 @@ if ($_GET["CHECKPOST"]=="issueLoansToUSerPost") {
 
   $myYear = date("Y");
   $firstMonth = 01;
+  $monthPlus1 = $month + 1;
+  $todayy = date("d");
+  $twoweeks = 14;
+  $thirtydays = 30;
 
-  // $monthPlus1 = $month + 1;
-  $monthPlus1 = $month + 2;
+    if ($tPaymentDateChooseClass==="1.5" || $tPaymentDateChooseClass==="2.5" ) {
+
+      $dayplus14 = $todayy + $twoweeks;
+
+     }else{
+      $dayplus14 = $todayy;
+
+     }
 
 
-  if ($monthPlus1 > 9) {
-    $beofreMonthZero ="" . $monthPlus1;
-  } else {
-    $beofreMonthZero = "0" . $monthPlus1;
+
+
+  if ($dayplus14<=16) {
+
+    $realday = $dayplus14;
+    $mPlus = $month + 1;
+
+    } 
+
+    if ($dayplus14<=30) {
+
+    $realday = $dayplus14;
+
+    $mPlus = $month + 1;
+
+    } 
+ 
+
+     if ($dayplus14>30) {
+    $realday = $dayplus14-$thirtydays;
+    $mPlus = $month + 2;
+
+    } 
+
+
+     $mPlus3 = $month + 3;
+     $mPlus4 = $month + 4;
+
+
+  if ($tPaymentDateChooseClass==="1.5") {
+
+      $monthPlusSelectMonth = $mPlus;
+
+  }
+
+
+    if ($tPaymentDateChooseClass==="2") {
+
+      $monthPlusSelectMonth = $month + 2;
+       $realday = $dayplus14;
+
+
+  }
+
+
+    if ($tPaymentDateChooseClass==="2.5") {
+
+      $monthPlusSelectMonth = $mPlus + 1;
+
+  }
+
+
+    if ($tPaymentDateChooseClass==="3") {
+
+      $monthPlusSelectMonth = $mPlus3;
+      $realday = $dayplus14;
+
+
+  }
+
+      if ($tPaymentDateChooseClass==="4") {
+
+      $monthPlusSelectMonth = $mPlus4;
+      $realday = $dayplus14;
+
+
   }
 
 
 
-  if ($monthPlus1 > 12) {
+    if ($realday===1 || $realday===2 || $realday===3 || $realday===4 || $realday===5 || $realday===6 || $realday===7 || $realday===8 || $realday===9 ) {
+      $realday = "0". $realday;
+    } else {
+      $realday  = $realday;
+    }
+    
 
-    $nextMonthPayment = $myYear+1 . "-" . $firstMonth  . "-". $day;
+
+  if ($monthPlusSelectMonth > 9) {
+    $beofreMonthZero ="" . $monthPlusSelectMonth;
+  } else {
+    $beofreMonthZero = "0" . $monthPlusSelectMonth;
+  }
+
+
+
+  if ($monthPlusSelectMonth > 12) {
+
+    $nextMonthPayment = $myYear+1 . "-" . $firstMonth  . "-". $realday;
 
   } else {
 
-    $nextMonthPayment = $myYear . "-" . $beofreMonthZero  . "-". $day;
+    $nextMonthPayment = $myYear . "-" . $beofreMonthZero  . "-". $realday;
   }
+
+
+
+  ///selman
 
 
 
@@ -6387,6 +6480,7 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
     $qualifyLoanTopUp = $_POST["qualifyLoanTopUp"];
     $topUpLoanAmountClass = $_POST["topUpLoanAmountClass"];
     $topUpPaymentPeriodChooseClass = $_POST["topUpPaymentPeriodChooseClass"];
+    $topUpPaymentDateChooseClass = $_POST["topUpPaymentDateChooseClass"];
 
 
 
@@ -6619,33 +6713,94 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
   /*----------------ENDS DATE OF COMPLETIONS VARIABLES ------------------------------*/
 
-
+//daco
   /*-------------------------------------for next month payment date------------------*/
 
 
   $firstMonth = 01;
-
   $monthPlus1 = $month + 1;
-  $monthPlus1 = $month + 2;
-
-  $day2 = date("d");
+  $todayy = date("d");
   $twoweeks = 14;
   $thirtydays = 30;
-  // $day2 = 25;
-  $dayplus14 = $day2 + $twoweeks;
 
-  if ($day2<=16) {
+    if ($topUpPaymentDateChooseClass==="1.5" || $topUpPaymentDateChooseClass==="2.5" ) {
+
+      $dayplus14 = $todayy + $twoweeks;
+
+     }else{
+      $dayplus14 = $todayy;
+
+     }
+
+
+
+  if ($dayplus14<=16) {
+
+    $realday = $dayplus14;
+    $mPlus = $month + 1;
+
+    } 
+
+    if ($dayplus14<=30) {
 
     $realday = $dayplus14;
 
-    // $getrealday = $realday;
+    $mPlus = $month + 1;
 
-    } else {
+    } 
+ 
 
-
+     if ($dayplus14>30) {
     $realday = $dayplus14-$thirtydays;
+    $mPlus = $month + 2;
 
-    }
+    } 
+
+
+     $mPlus3 = $month + 3;
+     $mPlus4 = $month + 4;
+
+
+  if ($topUpPaymentDateChooseClass==="1.5") {
+
+      $monthPlusSelectMonth = $mPlus;
+
+  }
+
+
+    if ($topUpPaymentDateChooseClass==="2") {
+
+      $monthPlusSelectMonth = $month + 2;
+       $realday = $dayplus14;
+
+
+  }
+
+
+    if ($topUpPaymentDateChooseClass==="2.5") {
+
+      $monthPlusSelectMonth = $mPlus + 1;
+
+  }
+
+
+    if ($topUpPaymentDateChooseClass==="3") {
+
+      $monthPlusSelectMonth = $mPlus3;
+      $realday = $dayplus14;
+
+
+  }
+
+      if ($topUpPaymentDateChooseClass==="4") {
+
+      $monthPlusSelectMonth = $mPlus4;
+      $realday = $dayplus14;
+
+
+  }
+
+
 
     if ($realday===1 || $realday===2 || $realday===3 || $realday===4 || $realday===5 || $realday===6 || $realday===7 || $realday===8 || $realday===9 ) {
       $realday = "0". $realday;
@@ -6654,16 +6809,16 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
     }
     
 
-  if ($monthPlus1 > 9) {
-    $beofreMonthZero ="" . $monthPlus1;
+  if ($monthPlusSelectMonth > 9) {
+    $beofreMonthZero ="" . $monthPlusSelectMonth;
   } else {
-    $beofreMonthZero = "0" . $monthPlus1;
+    $beofreMonthZero = "0" . $monthPlusSelectMonth;
   }
 
 
 
 
-  if ($monthPlus1 > 12) {
+  if ($monthPlusSelectMonth > 12) {
 
     $nextMonthPayment = $years+1 . "-" . $firstMonth  . "-". $realday;
 
@@ -6671,18 +6826,6 @@ if ($_GET["CHECKPOST"]=="topUpLoanPost") {
 
     $nextMonthPayment = $years . "-" . $beofreMonthZero  . "-". $realday;
   }
-
-
-
-  // $dayplus14 = 15;
-
-  // $getRealdaysafter14 = $dayplus14 - $daystosub;
-
-
-
-
-  // echo "nextMonthPayment >>>>>>> $nextMonthPayment >>>>>realday >>";
-  // exit();
 
 
    $selStu = mysqli_query($conn, "SELECT * FROM member_interest WHERE active='yes'  ORDER BY id DESC LIMIT 1 ");

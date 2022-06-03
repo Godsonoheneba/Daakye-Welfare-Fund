@@ -324,15 +324,22 @@ if ($getLoanTypeName==="All") {
 
 
 
-       <label class=\"btn btn-secondary\" onclick=\"issuedLoanToUsers('$Tableid','$person_id','$status')  \">
+       <label class=\"btn btn-secondary\"    data-toggle=\"modal\" data-target=\"#issueLoanModal\" \">
 
        <input type=\"radio\" name=\"options\" id=\"option1\" checked >Issue
        </label>  
 
        ";
 
+       //      <label class=\"btn btn-secondary\"  onclick=\"issuedLoanToUsers('$Tableid','$person_id','$status')  \">
+
+       // <input type=\"radio\" name=\"options\" id=\"option1\" checked >Issue
+       // </label>  
+
 
      } 
+
+
 
 
 
@@ -2003,6 +2010,8 @@ if ($getLoanTypeName==="All") {
 <?php  
 
 include 'change_guarantor_modal.php';
+
+  include 'issue_loan_modal.php';
 ?>
 
 
@@ -2172,107 +2181,107 @@ include 'change_guarantor_modal.php';
 
  
 
-  /*----------------------------------------ISSUED LOANS TO USER----------------------*/
+  // /*----------------------------------------ISSUED LOANS TO USER----------------------*/
 
-  function issuedLoanToUsers(loanID, person_id,status) {
+  // function issuedLoanToUsers(loanID, person_id,status) {
 
-    Swal.fire({
-      title: 'Are you sure you want to Issued the loan? ',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Issue Loan!'
-    }).then((result) => {
-
-
-      if (result.value) {
-
-        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=issueLoansToUSerPost",{loanID:loanID,person_id:person_id,status:status},function (showOutPut) {
-
-          alert(showOutPut);
-          // exit();
-
-          if (showOutPut.includes("error")) {
-            Swal.fire({
-              title: "Error",
-              text: "An error occured, Pelase try again,",
-              type: "warning",
-              confirmButtonClass: "btn-danger",
-              confirmButtonText: "Ok",
-              closeOnConfirm: false,
-              closeOnCancel: false
-
-            });
+  //   Swal.fire({
+  //     title: 'Are you sure you want to Issued the loan? ',
+  //     text: "You won't be able to revert this!",
+  //     type: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, Issue Loan!'
+  //   }).then((result) => {
 
 
-          }else{
+  //     if (result.value) {
+
+  //       $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=issueLoansToUSerPost",{loanID:loanID,person_id:person_id,status:status},function (showOutPut) {
+
+  //         alert(showOutPut);
+  //         // exit();
+
+  //         if (showOutPut.includes("error")) {
+  //           Swal.fire({
+  //             title: "Error",
+  //             text: "An error occured, Pelase try again,",
+  //             type: "warning",
+  //             confirmButtonClass: "btn-danger",
+  //             confirmButtonText: "Ok",
+  //             closeOnConfirm: false,
+  //             closeOnCancel: false
+
+  //           });
 
 
-            Swal.fire(
-              'Successfull!',
-              ' Loan Issued Successfull.',
-              'success'
-              ).then((result) =>{
-
-                Swal.fire({
-                  title: 'Print',
-                  text: "Print Receipt",
-                  type: 'success',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Print'
-                }).then((result) => {
+  //         }else{
 
 
-                  if (result.value) {
+  //           Swal.fire(
+  //             'Successfull!',
+  //             ' Loan Issued Successfull.',
+  //             'success'
+  //             ).then((result) =>{
 
-                    window.open(showOutPut.trim())
+  //               Swal.fire({
+  //                 title: 'Print',
+  //                 text: "Print Receipt",
+  //                 type: 'success',
+  //                 showCancelButton: true,
+  //                 confirmButtonColor: '#3085d6',
+  //                 cancelButtonColor: '#d33',
+  //                 confirmButtonText: 'Print'
+  //               }).then((result) => {
 
 
-                    location.reload();
+  //                 if (result.value) {
+
+  //                   window.open(showOutPut.trim())
 
 
-
-                  }
-                })
+  //                   location.reload();
 
 
 
-              })
+  //                 }
+  //               })
+
+
+
+  //             })
 
 
 
 
-            }
+  //           }
 
 
-          });
+  //         });
 
-      }
+  //     }
 
 
-    });
+  //   });
 
 
     
-  }
+  // }
 
 
 
  
 
-  function clickCHangeG1Modal(loanIDD) {
+  // function clickCHangeG1Modal(loanIDD) {
     
-    var hiddenInputForLoanID = $(".hiddenInputForLoanID").val(loanIDD);
+  //   var hiddenInputForLoanID = $(".hiddenInputForLoanID").val(loanIDD);
 
-    // hiddenInputForLoanID.text("loanIDD");
-    // alert(hiddenInputForLoanID);
+  //   // hiddenInputForLoanID.text("loanIDD");
+  //   // alert(hiddenInputForLoanID);
 
 
-  }
+  // }
 
 
 

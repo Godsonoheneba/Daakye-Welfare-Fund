@@ -104,7 +104,11 @@ $UserType = "Member";
 
             ");
 
-          if (mysqli_num_rows($selcLoannTopup)===1) {
+          // echo $selcLoannTopup;
+
+          // exit();
+
+          if (mysqli_num_rows($selcLoannTopup)>0) {
 
             while ( $getdac = mysqli_fetch_assoc($selcLoannTopup)) {
 
@@ -197,6 +201,9 @@ $UserType = "Member";
 
               $approvedddd = "Approved";
               $otherUserApproval = "For Other Member";
+
+              // echo "$g1_confirm";
+              // exit();
 
 
 

@@ -2,43 +2,20 @@
 
 <?php 
 
+// '$Tableid','$person_id','$status'
  
 ?>
 <!-- ---------------------------MORE INFO MODAL------------- -->
 
 <!-- .modal -->
-<div class="modal fade" id="topUpLoan" tabindex="-1" role="dialog" aria-labelledby="topUpLoanLabel" aria-hidden="true">
+<div class="modal fade" id="issueLoanModal" tabindex="-1" role="dialog" aria-labelledby="topUpLoanLabel" aria-hidden="true">
   <!-- .modal-dialog --> 
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <!-- .modal-content -->
     <div class="modal-content">
       <!-- .modal-header -->
       <div class="modal-header text-center">
-        <?php 
-
-          if ($mode===1) {
-
-
-            ?>
-
-                <h6 id="topUpLoanLabel" class="modal-title">Amount toped up is GH&#8373;  <?php echo number_format($top_up_amount, 2) ?></h6><br>
-                
-            <?php
-
-
-          }else{
-
-            ?>
-
-                <h6 id="topUpLoanLabel" class="modal-title">Top Up Loan For <?php echo $getLoanBy ?></h6><br>
-                <h6 id="topUpLoanLabel" class="modal-title">Current Balance : <?php echo number_format($balance, 2) ?></h6>
-                <h6 id="topUpLoanLabel" class="modal-title">You can top up up to GH&#8373;  : <?php echo number_format($qualifyLoanTopUp, 2) ?></h6>
-            <?php
-
-          }
-
-
-         ?>
+          <h6 id="topUpLoanLabel" class="modal-title">Proceed to issue loan to  <?php echo $personName ?></h6><br>
        
       </div><!-- /.modal-header -->
       <!-- .modal-body -->
@@ -58,21 +35,16 @@
 
           <div class="" >
 
-            <?php 
-
-              if ($mode===1) {
-
-                ?>
 
                   <div class="col-md-12 mb-3">
-                    <label for="Amount">Amount <abbr title="Required">*</abbr></label> <input type="text"  onkeyup="checkLoanPayAMount(this)"  class="form-control topUpLoanAmountClass" id="Amount" placeholder="Amount "  value="<?php echo $top_up_amount ?>" readonly>
+                    <label for="amount_collected">Amount <abbr title="Required">*</abbr></label> <input type="text"  onkeyup="checkLoanPayAMount(this)"  class="form-control amount_collectedClass" id="amount_collected" placeholder="amount_collected "  value="<?php echo $amount_collected ?>" readonly>
                   </div>
 
 
                     <div class="col-md-12 mb-3">
                       <label for="PaymentPeriod">Payment Period <abbr title="Required">*</abbr> </label> 
-                      <select class="custom-select d-block w-100 topUpPaymentPeriodChooseClass"  >
-                        <option value="<?php echo $topup_months ?>"> <?php echo $topup_months ?> Months</option>
+                      <select class="custom-select d-block w-100 total_months_for_paymentClass"  >
+                        <option value="<?php echo $total_months_for_payment ?>"> <?php echo $total_months_for_payment ?> Months</option>
                       </select>
 
                     </div>
@@ -80,7 +52,7 @@
 
 
                      <div class="col-md-12 mb-3">
-                      <label for="PaymentPeriodDate">Payment Date <abbr title="Required">*</abbr> </label> <select class="custom-select d-block w-100 topUpPaymentDateChooseClass"  >
+                      <label for="PaymentPeriodDate">Payment Date <abbr title="Required">*</abbr> </label> <select class="custom-select d-block w-100 tPaymentDateChooseClass"  >
                         <option value="1.5">  1 and half months  </option>
                         <option value="2">  2 Months </option>
                         <option value="2.5">  2 and half months </option>
@@ -90,76 +62,11 @@
                       </select>
                     </div>
 
-                  <?php
-                
-              } else {
-                
-                  ?>
-
-                  <div class="col-md-12 mb-3">
-                    <label for="Amount">Amount <abbr title="Required">*</abbr></label> <input type="text"  onkeyup="checkLoanPayAMount(this)"  class="form-control topUpLoanAmountClass" id="Amount" placeholder="Amount "  value="<?php echo $qualifyLoanTopUp ?>">
-                  </div>
-
-
-                    <div class="col-md-12 mb-3">
-                      <label for="PaymentPeriod">Payment Period <abbr title="Required">*</abbr> </label> <select class="custom-select d-block w-100 topUpPaymentPeriodChooseClass"  >
-                        <option value=""> Choose... </option>
-                        <option value="1">  1 Month </option>
-                        <option value="2">  2 Months </option>
-                        <option value="3">  3  Months </option>
-                        <option value="4">  4  Months </option>
-                        <option value="5">  5  Months </option>
-                        <option value="6">  6  Months </option>
-                        <option value="7">  7  Months </option>
-                        <option value="8">  8  Months </option>
-                        <option value="9">  9  Months </option>
-                        <option value="10">  10  Months </option>
-                        <option value="11">  11  Months </option>
-                        <option value="12">  12  Months </option>
-                        <option value="13">  13  Months </option>
-                        <option value="14">  14  Months </option>
-                        <option value="15">  15  Months </option>
-                        <option value="16">  16  Months </option>
-                        <option value="17">  17  Months </option>
-                        <option value="18">  18  Months </option>
-                        <option value="19">  19  Months </option>
-                        <option value="20">  20  Months </option>
-                        <option value="21">  21  Months </option>
-                        <option value="22">  22  Months </option>
-                        <option value="23">  23  Months </option>
-                        <option value="24">  24  Months </option>
-                        <option value="25">  25  Months </option>
-                        <option value="26">  26  Months </option>
-                        <option value="27">  27  Months </option>
-                        <option value="28">  28  Months </option>
-                        <option value="29">  29  Months </option>
-                        <option value="30">  30  Months </option>
-                        <option value="31">  31  Months </option>
-                        <option value="32">  32  Months </option>
-                        <option value="33">  33  Months </option>
-                        <option value="34">  34  Months </option>
-                        <option value="35">  35  Months </option>
-                        <option value="36">  36  Months </option>
-
-                      </select>
-
-                    </div>
-
-                  <?php
-
-
-
-
-              }
-              
-
-
-             ?>
-
+      
           <div class="form-actions col-md-10 mb-3">
 
 
-             <button type="submit" class="btn btn-primary topUpBut" onclick="topUpLoanCLick('<?php echo $getLoanID ?>','<?php echo $getPersonID ?>','<?php echo $real_monthLeft ?>','<?php echo $qualifyLoanTopUp ?>') "> Top Up </button>
+             <button type="submit" class="btn btn-primary topUpBut" onclick="issuedLoanToUsers('<?php echo $Tableid ?>','<?php echo $person_id ?>','<?php echo $status ?>' ) "> Issue</button>
 
 
 
@@ -192,9 +99,126 @@
 
 
 
-  /*----------------------------------------TOP UP LOAN----------------------*/
 
-  function topUpLoanCLick(loanID, person_id,real_monthLeft,qualifyLoanTopUp) {
+  /*----------------------------------------ISSUED LOANS TO USER----------------------*/
+
+  function issuedLoanToUsers(loanID, person_id,status) {
+
+
+   var amount_collectedClass = $(".amount_collectedClass").val();
+    var total_months_for_paymentClass = $(".total_months_for_paymentClass").val();
+    var tPaymentDateChooseClass = $(".tPaymentDateChooseClass").val();
+
+    if (amount_collectedClass!=="" && total_months_for_paymentClass!=="" && tPaymentDateChooseClass!="") {
+
+
+        Swal.fire({
+      title: 'Are you sure you want to Issued the loan? ',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Issue Loan!'
+    }).then((result) => {
+
+
+      if (result.value) {
+
+        $.post(".esgapehtllaroftsopxajaehtsitaht..ajaxpost?CHECKPOST=issueLoansToUSerPost",{loanID:loanID,person_id:person_id,status:status,tPaymentDateChooseClass:tPaymentDateChooseClass},function (showOutPut) {
+
+          // alert(showOutPut);
+          // exit();
+
+          if (showOutPut.includes("error")) {
+            Swal.fire({
+              title: "Error",
+              text: "An error occured, Pelase try again,",
+              type: "warning",
+              confirmButtonClass: "btn-danger",
+              confirmButtonText: "Ok",
+              closeOnConfirm: false,
+              closeOnCancel: false
+
+            });
+
+
+          }else{
+
+
+            Swal.fire(
+              'Successfull!',
+              ' Loan Issued Successfull.',
+              'success'
+              ).then((result) =>{
+
+                Swal.fire({
+                  title: 'Print',
+                  text: "Print Receipt",
+                  type: 'success',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Print'
+                }).then((result) => {
+
+
+                  if (result.value) {
+
+                    window.open(showOutPut.trim())
+
+
+                    location.reload();
+
+
+
+                  }
+                })
+
+
+
+              })
+
+
+
+
+            }
+
+
+          });
+
+      }
+
+
+    });
+
+
+
+    }
+
+ 
+  }
+
+
+
+ 
+
+  function clickCHangeG1Modal(loanIDD) {
+    
+    var hiddenInputForLoanID = $(".hiddenInputForLoanID").val(loanIDD);
+
+    // hiddenInputForLoanID.text("loanIDD");
+    // alert(hiddenInputForLoanID);
+
+
+  }
+
+
+
+
+
+  /*----------------------------------------TOP UP LOAN----------------------*/
+function topUpLoanCLick(loanID, person_id,real_monthLeft,qualifyLoanTopUp) {
 
 
   var topUpLoanAmountClass = $(".topUpLoanAmountClass").val();

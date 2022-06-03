@@ -151,7 +151,8 @@ $penaltyContiAMount = $penAInterest * $contribution_amount;
 
 
 
-if ($chechTOdayDate > $realDateFOrPayment   ) {
+
+if ( ($chechTOdayDate > $realDateFOrPayment ) && $total_contribution_made>0 ) {
   $payThisAmountAsCOntri = $penaltyContiAMount + $contribution_amount;
 
   $penaltyContiAMount = $penaltyContiAMount;
@@ -318,7 +319,7 @@ if ($last_month_contributed === "12") {
                 </a>
 
 
-
+ 
 
                 <a style="cursor: pointer;" onclick="window.location.href='homepage.php?CHECKER=VIEW_MEMBER_ACTIVITIES&&DACO=<?php echo $member_id ?>&&TRUE=<?php echo $member_id_encrypt ?> '  ">
                   <div class="visual-picker visual-picker-lg has-peek text-center" style="margin: 50px!important;">
