@@ -16,7 +16,7 @@ if (mysqli_num_rows($selectCust21) > 0) {
 
   $getdac1 = mysqli_fetch_assoc($selectCust21);
 
-  $id = $getdac1["id"];
+  $Tableid = $getdac1["id"];
   $person_id = $getdac1["person_id"];
   $status = $getdac1["status"];
   $amount_collected = $getdac1["amount_collected"];
@@ -57,7 +57,7 @@ if (mysqli_num_rows($selectCust21) > 0) {
 
   $getAlls = mysqli_fetch_assoc($selStu);
   $id = $getAlls["id"];
-  $member_id = $getAlls["member_id"];
+  $getID = $getAlls["member_id"];
   $member_id_encrypt = $getAlls["member_id_encrypt"];
   $firstname = $getAlls["firstname"];
   $surname = $getAlls["surname"];
@@ -279,16 +279,48 @@ if ($finish_paying==="no") {
                         </a> <!-- /.metric -->
                       </div><!-- /metric column -->
 
-                  <?php
+                  <?php 
                     
                   } else {
 
                     if ($g1_confirm==='no' || $g2_confirm==='no' && $topup_issued=='no') {
-                      ?>
+
+
+                      ?> 
 
                         <div class="col-12 col-sm-6 col-lg-3" >
+
                           <!-- .metric -->
                           <a  class="metric metric-bordered align-items-center">
+
+                            <?php 
+
+                               if ($g1_confirm==="no") {
+
+                                  ?>
+                                  <label onclick="clickCHangeG1Modal(this.id)" class="btn btn-secondary" id="<?php echo $Tableid ?>" data-toggle="modal" data-target="#changeGuarantorModal" >
+
+                                    <input type="hidden"   > Change G1
+
+
+                                  </label>
+                                  <?php
+                                }
+
+
+                                 if ($g2_confirm==="no") {
+
+                                  ?>
+                                  <label onclick="clickCHangeG1Modal(this.id)" class="btn btn-secondary align-left" id="<?php echo $Tableid ?>" data-toggle="modal" data-target="#changeGuarantorModal" >
+
+                                    <input type="hidden"   > Change G2
+
+
+                                  </label>
+                                  <?php
+                                }
+
+                           ?>
                             <h2 class="metric-label"> Wating for guarantors </h2>
                             <p class="metric-value h3">
                               <sub><i class="oi oi-people"></i></sub> <span class="value">Wating - Top Up </span>
@@ -357,6 +389,18 @@ if ($finish_paying==="no") {
   </div>
 
 
+<script type="text/javascript">
+   function clickCHangeG1Modal(loanIDD) {
+    
+    var hiddenInputForLoanID = $(".hiddenInputForLoanID").val(loanIDD);
+
+    // hiddenInputForLoanID.text("loanIDD");
+    // alert(hiddenInputForLoanID);
+
+
+  }
+</script>
+
   <?php 
 
   include 'pay_loan_modal.php';
@@ -368,10 +412,12 @@ if ($finish_paying==="no") {
   include 'top_up_loan_modal.php';
 
 
+include 'change_guarantor_modal.php';
+
+
+
 
   ?>
-
-
 
 
 

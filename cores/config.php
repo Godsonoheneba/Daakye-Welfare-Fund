@@ -18,6 +18,7 @@ $hostname = "localhost"; // the hostname you created when creating the database
 $username = "root";      // the username specified when setting up the database
 $password = "";      // the password specified when setting up the database
 $database = "daakye";      // the database name chosen when setting up the database 
+//$database = "d_old";      // the database name chosen when setting up the database 
 
 
 $conn = mysqli_connect($hostname, $username, $password, $database);
